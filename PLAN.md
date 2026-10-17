@@ -75,9 +75,11 @@ Phase 2 is cut only if Phase 1 isn't solid at G3. Standups at hours 4, 8, 12, 16
 
 ## Budget ($50 per account)
 
-Prices below are third-party listings (input $0.15/M, output $1.50/M, video possibly $1/M,
-context 36,864 tokens). Worst case about $0.035 per full-context video call. A1 replaces this
-with the measured cost.
+Measured in A1 (Sat 2:08 PM, `costs/raika.csv`): one tracking call on a 10 s 720p clip
+(`hb1_w00`, prompt v1, no reasoning) used 9,133 input + 265 output tokens = **$0.0018**. The
+Models API confirms input $0.15/M, output $1.50/M, context 36,864, max output 8,192. A 48-clip
+batch is about $0.09; the worst case stays about $0.035 per full-context call. Reasoning
+(`reasoning_effort`) adds output tokens, so it is the one setting that can move the cost.
 
 | Account | Spent on | Estimate |
 |---|---|---|

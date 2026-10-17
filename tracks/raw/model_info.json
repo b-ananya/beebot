@@ -1,0 +1,43 @@
+{
+ "id": "perceptron-mk1.5",
+ "object": "model",
+ "created": 1790035200,
+ "owned_by": "perceptron",
+ "name": "Perceptron Mk1.5",
+ "capabilities": [
+  "response_format_json_schema",
+  "regex",
+  "tool_calling"
+ ],
+ "modalities": [
+  "text",
+  "image",
+  "video",
+  "audio"
+ ],
+ "output_formats": [
+  "text",
+  "point",
+  "box",
+  "polygon",
+  "clip"
+ ],
+ "sampling_parameters": [
+  "temperature",
+  "top_p",
+  "top_k",
+  "frequency_penalty",
+  "presence_penalty"
+ ],
+ "reasoning": {
+  "supported": true,
+  "always_enabled": false
+ },
+ "max_context_tokens": 36864,
+ "max_output_tokens": 8192,
+ "description": "Recommended default. Our most performant model, built for physical agents: understands text, images, video, and audio; answers with text, points, boxes, polygons, clips, and object tracks; supports graded reasoning, tool calling, and structured outputs.",
+ "credits_per_million_input_tokens": 150000,
+ "credits_per_million_output_tokens": 1500000,
+ "credits_per_million_cache_read_tokens": 37500,
+ "early_access": false
+}

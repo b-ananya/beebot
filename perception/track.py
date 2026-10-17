@@ -166,7 +166,7 @@ def main(argv=None) -> int:
     clips = list(manifest()) if args.all else args.clips
     if not clips:
         ap.error("give --clips ... or --all")
-    print(f"model {client.model} · user {client.user} · spent ${client.spent_usd():.3f} of ${client.cost_cap_usd:.0f}")
+    print(f"model {client.model} | user {client.user} | spent ${client.spent_usd():.3f} of ${client.cost_cap_usd:.0f}")
     total = 0.0
     for clip_id in clips:
         part = track_clip(clip_id, version=args.version, resolution=args.resolution, client=client,
