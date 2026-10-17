@@ -1,0 +1,95 @@
+{
+ "clip_id": "sm2_08_112733",
+ "model": "perceptron-mk1.5",
+ "prompt_version": "v1",
+ "finish_reason": "stop",
+ "complete": true,
+ "cache_hit": true,
+ "cost_usd": 0.0,
+ "cache_file": "p2/sm2_08_112733__flowers-v1__31dadd9275.json",
+ "parse_errors": [],
+ "flowers": [
+  {
+   "flower_id": "flower_1",
+   "box": [
+    617,
+    274,
+    649,
+    321
+   ]
+  },
+  {
+   "flower_id": "flower_2",
+   "box": [
+    455,
+    347,
+    480,
+    381
+   ]
+  },
+  {
+   "flower_id": "flower_3",
+   "box": [
+    520,
+    412,
+    555,
+    476
+   ]
+  },
+  {
+   "flower_id": "flower_4",
+   "box": [
+    446,
+    506,
+    483,
+    569
+   ]
+  },
+  {
+   "flower_id": "flower_5",
+   "box": [
+    822,
+    560,
+    850,
+    609
+   ]
+  },
+  {
+   "flower_id": "flower_6",
+   "box": [
+    66,
+    621,
+    91,
+    679
+   ]
+  },
+  {
+   "flower_id": "flower_8",
+   "box": [
+    100,
+    689,
+    120,
+    717
+   ]
+  },
+  {
+   "flower_id": "flower_9",
+   "box": [
+    397,
+    694,
+    421,
+    743
+   ]
+  },
+  {
+   "flower_id": "flower_10",
+   "box": [
+    278,
+    732,
+    329,
+    806
+   ]
+  }
+ ],
+ "view_id": "sm2_08"
+}

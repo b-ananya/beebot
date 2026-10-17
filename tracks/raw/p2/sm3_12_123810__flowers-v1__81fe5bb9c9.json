@@ -1,0 +1,58 @@
+{
+ "request": {
+  "clip_id": "sm3_12_123810",
+  "piece": "p2",
+  "user": "falisha",
+  "created_at": "2026-10-17T22:17:18+00:00",
+  "media": [
+   "9f7eaccca84cbb4d071cc27acc622839e46fe4bc62e5b05f2217ae67e753633c"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "flowers",
+  "prompt_version": "v1",
+  "prompt_text": "Find every open flower in this image.\n\nThe image is a single frame from a field camera looking down at plants. Open flowers are small (roughly 30 to 60 pixels across), with white petals around a yellow center. Ignore buds, green or yellow fruit with no white petals, leaves, and insects.\n\nReturn one point_box per open flower with mention=\"flower\", coordinates normalized to 0-1000. Draw each box tightly around the petals. Do not box the same flower twice, and do not guess: if you are not sure something is an open flower, leave it out. Output only the box markup, no explanation.",
+  "annotation_format": "box",
+  "max_tokens": 4096,
+  "reasoning_effort": null,
+  "temperature": null
+ },
+ "response": {
+  "text": "<collection mention=\"flower\">\n <point_box> (492,260) (531,318) </point_box>\n <point_box> (523,278) (563,341) </point_box>\n <point_box> (157,437) (195,502) </point_box>\n <point_box> (827,458) (872,517) </point_box>\n <point_box> (800,474) (829,513) </point_box>\n <point_box> (879,485) (909,538) </point_box>\n <point_box> (849,503) (876,544) </point_box>\n <point_box> (82,529) (125,596) </point_box>\n <point_box> (866,542) (908,613) </point_box>\n <point_box> (794,583) (814,617) </point_box>\n <point_box> (279,864) (306,905) </point_box>\n <point_box> (52,884) (71,918) </point_box>\n <point_box> (111,925) (138,975) </point_box>\n</collection>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 1030,
+   "completion_tokens": 200,
+   "total_tokens": 1230,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "307fa0e43f39793c7bdba297a554b335",
+  "cost_usd": 0.000454
+ },
+ "raw": {
+  "id": "chatcmpl-9f8ef518c8624f4a9e296220b33cac20",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<collection mention=\"flower\">\n <point_box> (492,260) (531,318) </point_box>\n <point_box> (523,278) (563,341) </point_box>\n <point_box> (157,437) (195,502) </point_box>\n <point_box> (827,458) (872,517) </point_box>\n <point_box> (800,474) (829,513) </point_box>\n <point_box> (879,485) (909,538) </point_box>\n <point_box> (849,503) (876,544) </point_box>\n <point_box> (82,529) (125,596) </point_box>\n <point_box> (866,542) (908,613) </point_box>\n <point_box> (794,583) (814,617) </point_box>\n <point_box> (279,864) (306,905) </point_box>\n <point_box> (52,884) (71,918) </point_box>\n <point_box> (111,925) (138,975) </point_box>\n</collection>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792275437,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 1030,
+   "completion_tokens": 200,
+   "total_tokens": 1230,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}
