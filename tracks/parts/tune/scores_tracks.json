@@ -1,12 +1,12 @@
 {
  "summary": {
-  "clips": 40,
-  "mean_hit": 0.454,
-  "mean_cover": 0.328,
-  "median_of_medians": 24.2,
-  "points": 407,
-  "ghosts": 83,
-  "clips_hit_over_half": 20
+  "clips": 46,
+  "mean_hit": 0.453,
+  "mean_cover": 0.338,
+  "median_of_medians": 40.0,
+  "points": 495,
+  "ghosts": 93,
+  "clips_hit_over_half": 23
  },
  "clips": {
   "hb1_w00": {
@@ -248,6 +248,54 @@
    "median": 4.1,
    "hit": 1.0,
    "cover": 0.94
+  },
+  "hb6_w04": {
+   "n": 13,
+   "ghost": 2,
+   "matched": 11,
+   "median": 130.0,
+   "hit": 0.38,
+   "cover": 0.36
+  },
+  "hb6_w05": {
+   "n": 15,
+   "ghost": 0,
+   "matched": 15,
+   "median": 6.6,
+   "hit": 0.67,
+   "cover": 0.69
+  },
+  "hb6_w06": {
+   "n": 12,
+   "ghost": 2,
+   "matched": 10,
+   "median": 5.8,
+   "hit": 0.75,
+   "cover": 0.52
+  },
+  "hb7_w00": {
+   "n": 19,
+   "ghost": 5,
+   "matched": 14,
+   "median": 569.9,
+   "hit": 0.11,
+   "cover": 0.17
+  },
+  "hb7_w01": {
+   "n": 15,
+   "ghost": 1,
+   "matched": 14,
+   "median": 477.6,
+   "hit": 0.27,
+   "cover": 0.22
+  },
+  "hb7_w02": {
+   "n": 14,
+   "ghost": 0,
+   "matched": 14,
+   "median": 111.1,
+   "hit": 0.5,
+   "cover": 0.46
   },
   "sm2_08_112658": {
    "n": 2,

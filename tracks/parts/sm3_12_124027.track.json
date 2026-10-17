@@ -12,8 +12,8 @@
   "prompt_tokens": 55799,
   "completion_tokens": 1009
  },
- "cost_usd": 0.00993,
- "cache_hit": false,
+ "cost_usd": 0.0,
+ "cache_hit": true,
  "frames": 30,
  "fps": 2.0,
  "tiles": 2,
