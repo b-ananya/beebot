@@ -1,7 +1,7 @@
 # BeeBot
 
-Bee-pollination video → Perceptron tracks → a simulated micro-robot that imitates the bee.
-See [CONTRACT.md](CONTRACT.md) for the file formats every workstream shares, and
+Bee-pollination video → Mk1.5 tracking, analytics and search → a pollination map → the optimal route for a robot pollinator.
+See [PLAN.md](PLAN.md) for the plan and roles, [CONTRACT.md](CONTRACT.md) for the file formats every workstream shares, and
 [DATA_NOTES.md](DATA_NOTES.md) for where the data comes from.
 
 ## Setup (once)
@@ -41,7 +41,10 @@ Rebuilding from scratch (only B needs this): `python -I scripts/fetch_data.py` t
 clips/        720p working clips (mp4 via release) + manifest.json (git)
 truth/        reference tracks in contract format
 tracks/       model output per clip; tracks/raw/ keeps every API response; tracks/mock/ for C and D
-rollouts/     sim results (json in git, mp4 out)
+rollouts/     sim and plan videos (mp4 out of git)
+search/       natural-language search index
+field/        pollination maps per clip and for the farm
+plan/         robot routes and baseline scores
 eval/         run_eval.py, report.json
 sim/  app/  prompts/  scripts/
 ```
