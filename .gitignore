@@ -11,3 +11,7 @@ eval/checks/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+tracks/raw/frames/
+app/cache/
+.pytest_cache/
+eval/*.png
