@@ -1,0 +1,61 @@
+{
+ "request": {
+  "clip_id": "sm2_08_112658",
+  "piece": "p1",
+  "user": "raika",
+  "created_at": "2026-10-17T22:34:37+00:00",
+  "model": "perceptron-mk1.5",
+  "prompt_name": "frame2t2",
+  "prompt_version": "f2",
+  "prompt_text": "This is a crop from one frame of a fixed camera filming flowers and ground cover. Look for a wasp: a small dark insect with a lighter striped abdomen, on or between the plants. It may be small and partly hidden by leaves or petals.\n\nIf there is one, return exactly one point on the centre of its body, with mention=\"wasp\", coordinates normalized to 0-1000 with origin top-left. If there are several, point to the clearest one.\n\nIf there is no insect in this crop, answer exactly: none",
+  "annotation_format": "point",
+  "max_tokens": 128,
+  "reasoning_effort": null,
+  "temperature": null,
+  "media": [
+   "006500_t2_00.jpg"
+  ],
+  "media_sha256": [
+   "9609e17f612b7894159b7be39057191850b0b0d752afd781683780bcc6c2d392"
+  ]
+ },
+ "response": {
+  "text": "none",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 394,
+   "completion_tokens": 5,
+   "total_tokens": 399,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "a1cd2aef1562df2306f594e2256d1791",
+  "cost_usd": 6.7e-05
+ },
+ "raw": {
+  "id": "chatcmpl-1179b9edf91841bd9b7b1241891e8684",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "none",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792276477,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 394,
+   "completion_tokens": 5,
+   "total_tokens": 399,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

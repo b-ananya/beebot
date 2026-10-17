@@ -142,7 +142,7 @@ class PerceptionClient:
         with self._lock:
             self.costs_dir.mkdir(parents=True, exist_ok=True)
             new = not self.cost_log.exists()
-            with open(self.cost_log, "a", newline="") as f:
+            with open(self.cost_log, "a", newline="\n") as f:
                 w = csv.DictWriter(f, fieldnames=COST_COLUMNS)
                 if new:
                     w.writeheader()
@@ -172,7 +172,7 @@ class PerceptionClient:
         """Fetch the model's limits and pricing once (GET /models is rate limited) into tracks/raw/model_info.json."""
         info = self._sdk_client().models.retrieve(self.model, extended=True).to_dict()
         self.cache_dir.mkdir(parents=True, exist_ok=True)
-        (self.cache_dir / "model_info.json").write_text(json.dumps(info, indent=1))
+        (self.cache_dir / "model_info.json").write_text(json.dumps(info, indent=1), newline="\n")
         return info
 
     # ----------------------------------------------------------------- calls
@@ -226,7 +226,7 @@ class PerceptionClient:
             "raw": result.get("raw"),
         }
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps(doc, indent=1))
+        path.write_text(json.dumps(doc, indent=1), newline="\n")
         usage = result["usage"]
         self._log({"time": now, "user": self.user, "piece": self.piece, "clip_id": clip_id, "prompt": prompt_name,
                    "version": prompt_version, "model": result.get("model") or self.model,
@@ -265,7 +265,7 @@ class PerceptionClient:
             ids[key] = {"file_id": uploaded.id, "file": path.name,
                         "uploaded_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
             self.cache_dir.mkdir(parents=True, exist_ok=True)
-            ids_path.write_text(json.dumps(ids, indent=1, sort_keys=True))
+            ids_path.write_text(json.dumps(ids, indent=1, sort_keys=True), newline="\n")
             return uploaded.id
 
     def _media_parts(self, video_path: Path | None, image_paths: list[Path]) -> list:

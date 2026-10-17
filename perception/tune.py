@@ -106,7 +106,7 @@ def run(configs: list[str], clips: list[str], client: PerceptionClient | None = 
               f"{sum(r['ghost'] for r in rows) / len(rows):5.1f} {'':>6s} "
               f"{sum(r['hit'] for r in rows) / len(rows):5.2f} {sum(r['cover'] or 0 for r in rows) / len(rows):5.2f}")
     TUNE_DIR.mkdir(parents=True, exist_ok=True)
-    (TUNE_DIR / "results.json").write_text(json.dumps(results, indent=1))
+    (TUNE_DIR / "results.json").write_text(json.dumps(results, indent=1), newline="\n")
     print(f"{client.api_calls} API calls, {client.cache_hits} cache hits, ${client.spent_usd():.3f} total on "
           f"{client.cost_log.name}")
     return results

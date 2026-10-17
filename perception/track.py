@@ -468,7 +468,7 @@ def track_clip(clip_id: str, *, version: str = "v1", resolution: str = "720p", c
             "reasoning_effort": reasoning_effort, **meta, "tracks": [track]}
     parts_dir = parts_dir or PARTS_DIR
     parts_dir.mkdir(parents=True, exist_ok=True)
-    (parts_dir / f"{clip_id}.track.json").write_text(json.dumps(part, indent=1))
+    (parts_dir / f"{clip_id}.track.json").write_text(json.dumps(part, indent=1), newline="\n")
     return part
 
 
