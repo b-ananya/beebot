@@ -250,6 +250,105 @@
    "box_from": "point"
   }
  ],
- "flowers": [],
- "events": []
+ "flowers": [
+  {
+   "flower_id": "flower_1",
+   "box": [
+    492,
+    261,
+    531,
+    319
+   ]
+  },
+  {
+   "flower_id": "flower_2",
+   "box": [
+    523,
+    279,
+    563,
+    340
+   ]
+  },
+  {
+   "flower_id": "flower_4",
+   "box": [
+    158,
+    436,
+    195,
+    504
+   ]
+  },
+  {
+   "flower_id": "flower_5",
+   "box": [
+    827,
+    458,
+    872,
+    519
+   ]
+  },
+  {
+   "flower_id": "flower_7",
+   "box": [
+    878,
+    486,
+    909,
+    540
+   ]
+  },
+  {
+   "flower_id": "flower_9",
+   "box": [
+    82,
+    529,
+    125,
+    598
+   ]
+  },
+  {
+   "flower_id": "flower_10",
+   "box": [
+    867,
+    544,
+    910,
+    615
+   ]
+  },
+  {
+   "flower_id": "flower_14",
+   "box": [
+    223,
+    860,
+    254,
+    901
+   ]
+  },
+  {
+   "flower_id": "flower_16",
+   "box": [
+    51,
+    885,
+    71,
+    921
+   ]
+  },
+  {
+   "flower_id": "flower_17",
+   "box": [
+    107,
+    924,
+    138,
+    974
+   ]
+  }
+ ],
+ "events": [
+  {
+   "track_id": "honeybee_1",
+   "flower_id": "flower_5",
+   "type": "visit",
+   "t_start": 11.5,
+   "t_end": 13.0
+  }
+ ]
 }

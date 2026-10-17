@@ -1,0 +1,149 @@
+{
+ "clip_id": "sm3_12_123810",
+ "model": "perceptron-mk1.5",
+ "prompt_version": "f3",
+ "tracks": [
+  {
+   "track_id": "honeybee_1",
+   "species": "honeybee",
+   "complete": true,
+   "points": [
+    {
+     "t": 2.5,
+     "box": [
+      904.4,
+      585.5,
+      928.4,
+      609.5
+     ],
+     "center": [
+      916.4,
+      597.5
+     ],
+     "interpolated": false
+    }
+   ],
+   "box_from": "point"
+  }
+ ],
+ "flowers": [
+  {
+   "flower_id": "flower_1",
+   "box": [
+    492,
+    260,
+    531,
+    318
+   ]
+  },
+  {
+   "flower_id": "flower_2",
+   "box": [
+    523,
+    278,
+    563,
+    341
+   ]
+  },
+  {
+   "flower_id": "flower_4",
+   "box": [
+    157,
+    437,
+    195,
+    502
+   ]
+  },
+  {
+   "flower_id": "flower_5",
+   "box": [
+    827,
+    458,
+    872,
+    517
+   ]
+  },
+  {
+   "flower_id": "flower_6",
+   "box": [
+    800,
+    474,
+    829,
+    513
+   ]
+  },
+  {
+   "flower_id": "flower_7",
+   "box": [
+    879,
+    485,
+    909,
+    538
+   ]
+  },
+  {
+   "flower_id": "flower_8",
+   "box": [
+    849,
+    503,
+    876,
+    544
+   ]
+  },
+  {
+   "flower_id": "flower_9",
+   "box": [
+    82,
+    529,
+    125,
+    596
+   ]
+  },
+  {
+   "flower_id": "flower_10",
+   "box": [
+    866,
+    542,
+    908,
+    613
+   ]
+  },
+  {
+   "flower_id": "flower_11",
+   "box": [
+    794,
+    583,
+    814,
+    617
+   ]
+  },
+  {
+   "flower_id": "flower_15",
+   "box": [
+    279,
+    864,
+    306,
+    905
+   ]
+  },
+  {
+   "flower_id": "flower_16",
+   "box": [
+    52,
+    884,
+    71,
+    918
+   ]
+  },
+  {
+   "flower_id": "flower_17",
+   "box": [
+    111,
+    925,
+    138,
+    975
+   ]
+  }
+ ],
+ "events": []
+}
