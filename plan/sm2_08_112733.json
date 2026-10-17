@@ -1,0 +1,30 @@
+{
+ "field_id": "sm2_08_112733",
+ "planner": "greedy_2opt",
+ "start": [
+  0.0,
+  1000.0
+ ],
+ "budget_s": 30.0,
+ "route": [
+  "flower_5",
+  "flower_0",
+  "flower_1",
+  "flower_2"
+ ],
+ "path_length": 1087.3,
+ "deficit_covered": 0.696,
+ "total_deficit": 23.0,
+ "robot": {
+  "speed": 100.0,
+  "dwell_s": 3.83,
+  "units": "y-norm1000 per s",
+  "time_scale": 1.0
+ },
+ "baselines": {
+  "nearest_all": 0.696,
+  "random": 0.441,
+  "follow_bee": 0.13
+ },
+ "video": "rollouts/sm2_08_112733_plan.mp4"
+}

@@ -29,3 +29,13 @@ The source videos behind most of the 2,335 farm tracks are not public ("availabl
 - Bees are about 20–30 px wide at 720p. A should test native 1080p (`raw/`) early in A2.
 - Truth is a reference tracker, not hand labels. Report "agreement with HyDaT/Polytrack" for center error, and use the xlsx visible-frame counts for coverage.
 - The farm offset is accurate to roughly ±1 s for later videos in a day; T6/T7 visual checks looked aligned.
+
+## Farm-level data in git (`data/spatial/`, under 1 MB)
+
+Copied from `Insect_Trajectory_Dataset.zip` so B and C can build field maps without the raw download:
+`Flower_Positions_CSV/flowers_<station><day>.csv` (x0, y0, radius in 1920×1080 pixels, `Total_visits`,
+`Total_time` in frames at 30 fps), `flower_summary.csv`, `flower_visits.csv` (timestamped visits),
+`data_point_summary.csv`, `track_summary.csv`, `time_summary.csv`. Same CC BY 4.0 credit as above.
+
+Station positions in the farm are not in the data (only in the paper's Fig. 2b), so any farm-scale
+layout is an approximation and must be labeled as one.
