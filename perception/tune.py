@@ -112,11 +112,48 @@ def run(configs: list[str], clips: list[str], client: PerceptionClient | None = 
     return results
 
 
+def score_tracks(root: Path = ROOT) -> dict:
+    """Score every tracks/<clip>.json that has truth (observed points only; interpolated ones are skipped)."""
+    rows = {}
+    for path in sorted((root / "tracks").glob("*.json")):
+        doc = json.loads(path.read_text())
+        clip_id = doc["clip_id"]
+        truth_path = root / "truth" / f"{clip_id}.json"
+        if not truth_path.exists() or not doc["tracks"]:
+            continue
+        truth = load_truth(clip_id, root)
+        if not truth:
+            continue
+        rows[clip_id] = score(max((t["points"] for t in doc["tracks"]), key=len), truth)
+    print(f"{'clip':16s} {'n':>3s} {'ghost':>5s} {'median':>6s} {'hit':>5s} {'cover':>5s}")
+    for clip_id, s in rows.items():
+        med = "-" if s["median"] is None else f"{s['median']:.0f}"
+        print(f"{clip_id:16s} {s['n']:3d} {s['ghost']:5d} {med:>6s} {s['hit']:5.2f} {(s['cover'] or 0):5.2f}")
+    n = len(rows)
+    meds = [s["median"] for s in rows.values() if s["median"] is not None]
+    summary = {"clips": n, "mean_hit": round(sum(s["hit"] for s in rows.values()) / n, 3),
+               "mean_cover": round(sum(s["cover"] or 0 for s in rows.values()) / n, 3),
+               "median_of_medians": round(statistics.median(meds), 1) if meds else None,
+               "points": sum(s["n"] for s in rows.values()), "ghosts": sum(s["ghost"] for s in rows.values()),
+               "clips_hit_over_half": sum(1 for s in rows.values() if s["hit"] >= 0.5)}
+    print(f"{n} clips: mean hit {summary['mean_hit']:.2f}, mean cover {summary['mean_cover']:.2f}, "
+          f"median error {summary['median_of_medians']}, {summary['points']} points, {summary['ghosts']} ghosts, "
+          f"{summary['clips_hit_over_half']} clips with hit >= 0.5")
+    TUNE_DIR.mkdir(parents=True, exist_ok=True)
+    (TUNE_DIR / "scores_tracks.json").write_text(json.dumps({"summary": summary, "clips": rows}, indent=1), newline="\n")
+    return summary
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--configs", nargs="*", default=list(CONFIGS), choices=list(CONFIGS))
     ap.add_argument("--clips", nargs="*", default=CLIPS)
+    ap.add_argument("--score-tracks", action="store_true",
+                    help="no API calls: score the shipped tracks/*.json against truth/ and write scores_tracks.json")
     args = ap.parse_args(argv)
+    if args.score_tracks:
+        score_tracks()
+        return 0
     run(args.configs, args.clips)
     return 0
 

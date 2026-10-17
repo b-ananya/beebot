@@ -33,6 +33,14 @@ time covered by a hit within 0.3 s; `median` = centre error of matched points, 0
 4. The farm bee (`sm3_12_123903`, 19 units wide) is found precisely (median 13) but only in 5 of 28 frames; it
    mostly sits inside a flower. More candidates (3x3 tiles, 4 fps) are the next lever, at 2-3x the cost.
 
+## Batch score (A4, h1 at 2 fps, 40 of 46 truth clips at 4:50 PM)
+
+`python -m perception.tune --score-tracks` on the shipped `tracks/*.json`: **mean hit 0.45, mean cover 0.33,
+median error 24 units, 20 of 40 clips with hit >= 0.5** (`tracks/parts/tune/scores_tracks.json`). It is a
+per-video story: hb1, hb5 and hb6 windows are good (hit 0.6-1.0, median error 3-13); hb2 and hb4 are bad
+(hit 0-0.2, many ghosts: the model confirms something that is not the bee); hb3 is mixed; farm clips are precise
+when found but sparse. $0.49 spent.
+
 ## Next (A3 / A6)
 
 - Ship h1 at 2 fps for the 5 clips (G2), then the 48-clip batch (~$0.50, ~1 h with 4 workers).
