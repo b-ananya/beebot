@@ -1,0 +1,24 @@
+{
+ "source": "truth/sm*.json (Polytrack reference tracks, 0-1000 grid)",
+ "files": [
+  "sm2_08_112658.json",
+  "sm2_08_112704.json",
+  "sm2_08_112710.json",
+  "sm2_08_112712.json",
+  "sm2_08_112733.json",
+  "sm3_12_123633.json",
+  "sm3_12_123810.json",
+  "sm3_12_123903.json",
+  "sm3_12_124027.json",
+  "sm3_12_124130.json"
+ ],
+ "n_speed_samples": 2048,
+ "n_visits": 14,
+ "n_flowers": 65,
+ "median_speed": 31.8,
+ "median_flight_speed": 284.0,
+ "p90_flight_speed": 793.5,
+ "note": "median_speed counts every frame, most of them a bee sitting on a flower; median_flight_speed drops frames inside visit events and is the env speed cap",
+ "median_dwell_s": 3.33,
+ "median_flower_radius": 29.6
+}
