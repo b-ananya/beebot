@@ -26,6 +26,7 @@ import hashlib
 import json
 import os
 import subprocess
+import threading
 import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -122,6 +123,7 @@ class PerceptionClient:
         self.offline = bool(int(os.getenv("BEEBOT_OFFLINE", "0"))) if offline is None else offline
         self.api_key = api_key or os.getenv("PERCEPTRON_API_KEY")
         self._sdk = None
+        self._lock = threading.Lock()  # frames mode calls from several threads; the logs and counters are shared
         self.api_calls = 0
         self.cache_hits = 0
 
@@ -137,13 +139,14 @@ class PerceptionClient:
             return round(sum(float(row["cost_usd"] or 0) for row in csv.DictReader(f)), 6)
 
     def _log(self, row: dict) -> None:
-        self.costs_dir.mkdir(parents=True, exist_ok=True)
-        new = not self.cost_log.exists()
-        with open(self.cost_log, "a", newline="") as f:
-            w = csv.DictWriter(f, fieldnames=COST_COLUMNS)
-            if new:
-                w.writeheader()
-            w.writerow({k: row.get(k, "") for k in COST_COLUMNS})
+        with self._lock:
+            self.costs_dir.mkdir(parents=True, exist_ok=True)
+            new = not self.cost_log.exists()
+            with open(self.cost_log, "a", newline="") as f:
+                w = csv.DictWriter(f, fieldnames=COST_COLUMNS)
+                if new:
+                    w.writeheader()
+                w.writerow({k: row.get(k, "") for k in COST_COLUMNS})
 
     def prices(self, model: str | None = None) -> dict:
         model = model or self.model
@@ -193,7 +196,8 @@ class PerceptionClient:
 
         if path.exists():
             doc = json.loads(path.read_text())
-            self.cache_hits += 1
+            with self._lock:
+                self.cache_hits += 1
             r = doc["response"]
             return Response(text=r["text"], finish_reason=r.get("finish_reason"), usage=r.get("usage") or {},
                             cost_usd=0.0, model=r.get("model"), request_id=r.get("request_id"),
@@ -209,12 +213,14 @@ class PerceptionClient:
         parts = self._media_parts(video_path, image_paths)
         result = self._request(parts, prompt_text, annotation_format=annotation_format, max_tokens=max_tokens,
                                reasoning_effort=reasoning_effort, temperature=temperature)
-        self.api_calls += 1
+        with self._lock:
+            self.api_calls += 1
         cost = self.cost_of(result["usage"], result.get("model"))
         now = datetime.now(timezone.utc).isoformat(timespec="seconds")
         doc = {
             "request": {"clip_id": clip_id, "piece": self.piece, "user": self.user, "created_at": now,
-                        "media": [p.name for p in media], **settings},
+                        **{k: v for k, v in settings.items() if k != "media"},
+                        "media": [p.name for p in media], "media_sha256": settings["media"]},
             "response": {"text": result["text"], "finish_reason": result["finish_reason"], "usage": result["usage"],
                          "model": result.get("model"), "request_id": result.get("request_id"), "cost_usd": cost},
             "raw": result.get("raw"),
@@ -246,20 +252,21 @@ class PerceptionClient:
         from perceptron import SDKError
 
         ids_path = self.cache_dir / "file_ids.json"
-        ids = json.loads(ids_path.read_text()) if ids_path.exists() else {}
         key = f"{hashlib.sha256(self.api_key.encode()).hexdigest()[:8]}:{sha256_file(path)}"
-        if key in ids:
-            return ids[key]["file_id"]
-        try:
-            uploaded = self._sdk_client().files.upload(str(path), purpose="vision")
-        except SDKError as e:
-            print(f"warning: upload of {path.name} failed ({e}); sending it inline")
-            return None
-        ids[key] = {"file_id": uploaded.id, "file": path.name,
-                    "uploaded_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
-        self.cache_dir.mkdir(parents=True, exist_ok=True)
-        ids_path.write_text(json.dumps(ids, indent=1, sort_keys=True))
-        return uploaded.id
+        with self._lock:
+            ids = json.loads(ids_path.read_text()) if ids_path.exists() else {}
+            if key in ids:
+                return ids[key]["file_id"]
+            try:
+                uploaded = self._sdk_client().files.upload(str(path), purpose="vision")
+            except SDKError as e:
+                print(f"warning: upload of {path.name} failed ({e}); sending it inline")
+                return None
+            ids[key] = {"file_id": uploaded.id, "file": path.name,
+                        "uploaded_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+            self.cache_dir.mkdir(parents=True, exist_ok=True)
+            ids_path.write_text(json.dumps(ids, indent=1, sort_keys=True))
+            return uploaded.id
 
     def _media_parts(self, video_path: Path | None, image_paths: list[Path]) -> list:
         from perceptron import image, video

@@ -1,0 +1,284 @@
+{
+ "clip_id": "sm2_08_112733",
+ "model": "perceptron-mk1.5",
+ "prompt_version": "v3",
+ "resolution": "720p",
+ "annotation_format": "point",
+ "step_s": 0.25,
+ "reasoning_effort": "medium",
+ "usage": {
+  "prompt_tokens": 8338,
+  "completion_tokens": 616,
+  "total_tokens": 8954,
+  "prompt_tokens_details": {
+   "audio_tokens": 0
+  }
+ },
+ "finish_reason": "stop",
+ "cache_hit": false,
+ "cost_usd": 0.002175,
+ "cache_file": "p1/sm2_08_112733__track-v3__3dc38c4afb.json",
+ "parse_errors": [],
+ "tracks": [
+  {
+   "track_id": "vespidae_1",
+   "species": "vespidae",
+   "complete": true,
+   "points": [
+    {
+     "t": 0.0,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 0.6,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.1,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.7,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 2.3,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 2.8,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 3.4,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 4.0,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 4.5,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 5.1,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 5.6,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 6.2,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 6.8,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 7.3,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 7.9,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 8.5,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 9.0,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 9.6,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    }
+   ],
+   "box_from": "point"
+  }
+ ]
+}
