@@ -1,0 +1,3 @@
+Track the honeybee in this video. Follow one bee only, starting with the bee most visible near the start.
+Give its bounding box over time as a track. Only report times when the bee is actually visible:
+if it is hidden behind leaves or flowers, or off-screen, leave a gap instead of guessing its position.
