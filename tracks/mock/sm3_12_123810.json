@@ -1,0 +1,173 @@
+{
+ "clip_id": "sm3_12_123810",
+ "model": "mock",
+ "prompt_version": "mock",
+ "tracks": [
+  {
+   "track_id": "honeybee_1",
+   "species": "honeybee",
+   "complete": true,
+   "box_from": "blob_area",
+   "points": [
+    {
+     "t": 1.0,
+     "center": [
+      876.5,
+      553.5
+     ],
+     "box": [
+      863.4,
+      530.1,
+      889.6,
+      576.8
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.267,
+     "center": [
+      964.2,
+      680.6
+     ],
+     "box": [
+      950.1,
+      655.6,
+      978.2,
+      705.6
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.467,
+     "center": [
+      983.7,
+      668.3
+     ],
+     "box": [
+      961.7,
+      629.0,
+      997.8,
+      707.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.767,
+     "center": [
+      991.4,
+      716.6
+     ],
+     "box": [
+      984.5,
+      704.5,
+      994.5,
+      728.8
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.967,
+     "center": [
+      1000,
+      678.6
+     ],
+     "box": [
+      1000,
+      671.2,
+      1000,
+      686.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 2.2,
+     "center": [
+      993.0,
+      697.8
+     ],
+     "box": [
+      988.8,
+      690.4,
+      997.1,
+      705.2
+     ],
+     "interpolated": false
+    }
+   ]
+  }
+ ],
+ "flowers": [
+  {
+   "flower_id": "flower_0",
+   "box": [
+    71.9,
+    560.2,
+    113.5,
+    634.3
+   ]
+  },
+  {
+   "flower_id": "flower_1",
+   "box": [
+    150.5,
+    450.9,
+    187.0,
+    515.7
+   ]
+  },
+  {
+   "flower_id": "flower_2",
+   "box": [
+    490.1,
+    276.9,
+    528.6,
+    345.4
+   ]
+  },
+  {
+   "flower_id": "flower_3",
+   "box": [
+    536.5,
+    298.1,
+    569.8,
+    357.4
+   ]
+  },
+  {
+   "flower_id": "flower_4",
+   "box": [
+    825.0,
+    467.6,
+    862.5,
+    534.3
+   ]
+  },
+  {
+   "flower_id": "flower_5",
+   "box": [
+    868.2,
+    584.3,
+    908.9,
+    656.5
+   ]
+  },
+  {
+   "flower_id": "flower_6",
+   "box": [
+    873.4,
+    498.1,
+    905.7,
+    555.6
+   ]
+  }
+ ],
+ "events": [
+  {
+   "track_id": "honeybee_1",
+   "flower_id": "flower_5",
+   "type": "visit",
+   "t_start": 1.167,
+   "t_end": 1.284
+  }
+ ]
+}

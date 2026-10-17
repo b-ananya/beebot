@@ -1,0 +1,16 @@
+{
+ "clip_id": "hb2_w03",
+ "model": "ground_truth",
+ "prompt_version": null,
+ "tracks": [
+  {
+   "track_id": "bee_1",
+   "species": "honeybee",
+   "complete": true,
+   "box_from": "blob_area",
+   "points": []
+  }
+ ],
+ "flowers": [],
+ "events": []
+}

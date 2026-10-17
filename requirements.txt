@@ -1,0 +1,20 @@
+# Core: everyone installs this.  python -m venv .venv && .venv\Scripts\activate && pip install -r requirements.txt
+numpy>=1.26
+pandas>=2.1
+opencv-python>=4.9        # frames, overlays
+imageio[ffmpeg]>=2.34     # write mp4 without a system ffmpeg on PATH
+matplotlib>=3.8           # charts, 2D sim render
+openpyxl>=3.1             # Experiment1-Results.xlsx
+jsonschema>=4.21          # contract validator
+pytest>=8
+
+# A: perception
+perceptron>=0.4.0
+python-dotenv>=1.0        # PERCEPTRON_API_KEY from .env
+
+# B: eval
+scipy>=1.12               # track/event matching
+
+# D: app
+streamlit>=1.38
+plotly>=5.20

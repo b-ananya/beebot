@@ -1,0 +1,7 @@
+# Optional: only after gate G3, per stretch goal
+gymnasium>=0.29           # S3
+stable-baselines3>=2.3    # S3
+fiftyone>=0.24            # B5 failure browser
+mujoco>=3.1               # only if C upgrades from the 2D sim
+# S5 Isaac open weights: run on Colab GPU, not laptops
+# transformers torch accelerate

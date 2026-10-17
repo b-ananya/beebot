@@ -1,0 +1,13 @@
+# data lives outside git: raw downloads, clips, rendered video
+raw/
+clips/*.mp4
+rollouts/*.mp4
+dist/
+eval/checks/
+
+# secrets and environments
+.env
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

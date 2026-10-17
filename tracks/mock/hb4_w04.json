@@ -1,0 +1,199 @@
+{
+ "clip_id": "hb4_w04",
+ "model": "mock",
+ "prompt_version": "mock",
+ "tracks": [
+  {
+   "track_id": "bee_1",
+   "species": "honeybee",
+   "complete": true,
+   "box_from": "blob_area",
+   "points": [
+    {
+     "t": 0.0,
+     "center": [
+      61.8,
+      495.7
+     ],
+     "box": [
+      49.9,
+      474.5,
+      73.7,
+      516.9
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 0.2,
+     "center": [
+      65.2,
+      492.1
+     ],
+     "box": [
+      53.3,
+      470.9,
+      77.2,
+      513.3
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 0.4,
+     "center": [
+      47.1,
+      394.9
+     ],
+     "box": [
+      33.6,
+      371.0,
+      60.6,
+      418.9
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 0.633,
+     "center": [
+      123.2,
+      346.0
+     ],
+     "box": [
+      107.0,
+      317.0,
+      139.5,
+      374.9
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 0.85,
+     "center": [
+      249.2,
+      308.6
+     ],
+     "box": [
+      236.0,
+      285.2,
+      262.4,
+      332.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.05,
+     "center": [
+      275.5,
+      351.1
+     ],
+     "box": [
+      257.7,
+      319.4,
+      293.3,
+      382.7
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.267,
+     "center": [
+      267.8,
+      353.0
+     ],
+     "box": [
+      246.0,
+      314.4,
+      289.5,
+      391.7
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.467,
+     "center": [
+      286.9,
+      356.6
+     ],
+     "box": [
+      271.0,
+      328.3,
+      302.8,
+      384.9
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.683,
+     "center": [
+      273.5,
+      288.9
+     ],
+     "box": [
+      261.9,
+      268.2,
+      285.2,
+      309.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.9,
+     "center": [
+      305.5,
+      98.0
+     ],
+     "box": [
+      292.2,
+      74.4,
+      318.8,
+      121.7
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 2.1,
+     "center": [
+      428.4,
+      31.0
+     ],
+     "box": [
+      417.0,
+      10.7,
+      439.8,
+      51.3
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 2.317,
+     "center": [
+      423.0,
+      7.9
+     ],
+     "box": [
+      411.4,
+      0,
+      434.7,
+      28.7
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 2.55,
+     "center": [
+      431.7,
+      16.9
+     ],
+     "box": [
+      421.4,
+      0,
+      441.9,
+      35.2
+     ],
+     "interpolated": false
+    }
+   ]
+  }
+ ],
+ "flowers": [],
+ "events": []
+}

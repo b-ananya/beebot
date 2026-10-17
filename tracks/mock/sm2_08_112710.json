@@ -1,0 +1,114 @@
+{
+ "clip_id": "sm2_08_112710",
+ "model": "mock",
+ "prompt_version": "mock",
+ "tracks": [
+  {
+   "track_id": "vespidae_1",
+   "species": "vespidae",
+   "complete": true,
+   "box_from": "blob_area",
+   "points": [
+    {
+     "t": 1.033,
+     "center": [
+      928.4,
+      118.1
+     ],
+     "box": [
+      912.9,
+      90.6,
+      943.8,
+      145.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.233,
+     "center": [
+      947.1,
+      178.4
+     ],
+     "box": [
+      933.1,
+      153.6,
+      961.0,
+      203.1
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.467,
+     "center": [
+      991.4,
+      176.8
+     ],
+     "box": [
+      976.3,
+      149.8,
+      1000,
+      203.7
+     ],
+     "interpolated": false
+    }
+   ]
+  }
+ ],
+ "flowers": [
+  {
+   "flower_id": "flower_0",
+   "box": [
+    344.3,
+    760.2,
+    382.8,
+    828.7
+   ]
+  },
+  {
+   "flower_id": "flower_1",
+   "box": [
+    389.1,
+    682.4,
+    416.1,
+    730.6
+   ]
+  },
+  {
+   "flower_id": "flower_2",
+   "box": [
+    441.7,
+    540.7,
+    475.0,
+    600.0
+   ]
+  },
+  {
+   "flower_id": "flower_3",
+   "box": [
+    535.9,
+    434.3,
+    568.2,
+    491.7
+   ]
+  },
+  {
+   "flower_id": "flower_4",
+   "box": [
+    623.4,
+    269.4,
+    651.6,
+    319.4
+   ]
+  },
+  {
+   "flower_id": "flower_5",
+   "box": [
+    106.8,
+    681.5,
+    132.8,
+    727.8
+   ]
+  }
+ ],
+ "events": []
+}
