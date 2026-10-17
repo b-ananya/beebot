@@ -1,0 +1,1 @@
+Detect every open flower in this image. Give one bounding box per flower.
