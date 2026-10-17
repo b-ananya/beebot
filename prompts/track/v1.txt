@@ -1,0 +1,7 @@
+Track the single {species} in this video while it is visible.
+
+The bee is small (roughly 20 to 30 pixels across), dark with a lighter striped abdomen, and it moves fast between flowers and ground cover. Follow that one insect only. If several insects appear, follow the one that is visible for the longest time.
+
+Return exactly one track with mention="{species}" and asset_idx="0". Use point_box children with timestamps in seconds and coordinates normalized to 0-1000. Give a box roughly every {step_s} seconds while the bee is visible. The clip is {duration_s} seconds long.
+
+Do not invent positions when the bee is occluded, out of frame, or you are not sure where it is. A missing observation is better than a guessed one. Output only the track markup, no explanation.

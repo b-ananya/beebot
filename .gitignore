@@ -1,5 +1,5 @@
 # data lives outside git: raw downloads, clips, rendered video
-raw/
+/raw/
 clips/*.mp4
 rollouts/*.mp4
 dist/

@@ -1,0 +1,2 @@
+time,user,piece,clip_id,prompt,version,model,prompt_tokens,cached_tokens,completion_tokens,cost_usd,finish_reason,request_id,cache_file
+2026-10-17T21:08:10+00:00,raika,p1,hb1_w00,track,v1,perceptron-mk1.5,9133,,265,0.001767,stop,92f7dbd9758579cae70019703d437622,p1/hb1_w00__track-v1__3072d16531.json
