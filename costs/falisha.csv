@@ -1,0 +1,11 @@
+time,user,piece,clip_id,prompt,version,model,prompt_tokens,cached_tokens,completion_tokens,cost_usd,finish_reason,request_id,cache_file
+2026-10-17T22:16:56+00:00,falisha,p2,sm3_12_124130,flowers,v1,perceptron-mk1.5,1030,,242,0.000517,stop,8a431cac1565ad8e8ec161f0ab63b662,p2/sm3_12_124130__flowers-v1__a6fa55a195.json
+2026-10-17T22:17:08+00:00,falisha,p2,sm2_08_112658,flowers,v1,perceptron-mk1.5,1030,,158,0.000391,stop,8139cfbc7b35231ef0e961117d0f358d,p2/sm2_08_112658__flowers-v1__8b047ccf49.json
+2026-10-17T22:17:10+00:00,falisha,p2,sm2_08_112704,flowers,v1,perceptron-mk1.5,1030,,144,0.000371,stop,3d7818d42660cc67dd7be3c54666f46d,p2/sm2_08_112704__flowers-v1__24a5775aff.json
+2026-10-17T22:17:11+00:00,falisha,p2,sm2_08_112710,flowers,v1,perceptron-mk1.5,1030,,144,0.000371,stop,e18b4b845c656dce450896a6814462a7,p2/sm2_08_112710__flowers-v1__caa1f36fee.json
+2026-10-17T22:17:13+00:00,falisha,p2,sm2_08_112712,flowers,v1,perceptron-mk1.5,1030,,158,0.000391,stop,d701bf6b2a676e3508b0284f81540339,p2/sm2_08_112712__flowers-v1__4e59949cac.json
+2026-10-17T22:17:14+00:00,falisha,p2,sm2_08_112733,flowers,v1,perceptron-mk1.5,1030,,144,0.000371,stop,a1821aabf52f35fa315f3db449e6904e,p2/sm2_08_112733__flowers-v1__31dadd9275.json
+2026-10-17T22:17:16+00:00,falisha,p2,sm3_12_123633,flowers,v1,perceptron-mk1.5,1030,,172,0.000412,stop,da94752379953a6cec4a9cd9553b44e3,p2/sm3_12_123633__flowers-v1__50e1153951.json
+2026-10-17T22:17:18+00:00,falisha,p2,sm3_12_123810,flowers,v1,perceptron-mk1.5,1030,,200,0.000454,stop,307fa0e43f39793c7bdba297a554b335,p2/sm3_12_123810__flowers-v1__81fe5bb9c9.json
+2026-10-17T22:17:20+00:00,falisha,p2,sm3_12_123903,flowers,v1,perceptron-mk1.5,1030,,158,0.000391,stop,4794eecd78ae1b296492a72acd470b07,p2/sm3_12_123903__flowers-v1__0d60036235.json
+2026-10-17T22:17:22+00:00,falisha,p2,sm3_12_124027,flowers,v1,perceptron-mk1.5,1030,,242,0.000517,stop,31a0ba5ff238c2863026882372a2727b,p2/sm3_12_124027__flowers-v1__d3cb887907.json
