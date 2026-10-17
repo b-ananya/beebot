@@ -35,6 +35,30 @@ You now have `clips/*.mp4` (48 clips) next to `clips/manifest.json`, `truth/` an
 
 Rebuilding from scratch (only B needs this): `python -I scripts/fetch_data.py` then `python -I scripts/prepare_data.py`.
 
+## Pipeline and app
+
+```bash
+python -m perception.pipeline --all            # motion tracker -> Mk1.5 crop checks -> Mk1.5 flower boxes -> tracks/*.json
+python -m perception.pipeline --all --no-api   # same without the API (score heuristic, stop-based flowers) -> tracks/heuristic/
+python -m eval.run_eval                        # vs truth -> eval/report.json  (--pred tracks/heuristic for the no-API run)
+python -m search.search build                  # search/index.json (add --captions for Mk1.5 moment captions)
+python -m forecast.train                       # downloads the Polytrack trajectories (100 MB) once, trains in ~1 min
+streamlit run app/app.py                       # video + search, analytics, forecast, dataset, upload
+```
+
+Why not let Mk1.5 track the whole clip: on `hb1_w00` it returned an evenly spaced straight line across the frame
+(3.9% coverage, `eval/report_mk15_v1.json`); the bee is ~20 px and the clip is ~9k tokens. The cameras are fixed, so
+`perception/cv_track.py` finds moving blobs against the clip's median background and links them with a global
+best-path search (it bridges occlusions of up to 0.5 s). Its top path is the bee in every honeybee clip we checked,
+but it also proposes swaying flowers. `perception/verify.py` therefore asks Mk1.5 about a 160 px crop every 0.5 s
+along each path: is there an insect at the center, what is it, is it on a flower or flying? Paths are cut where
+it says no twice in a row. `perception/flowers.py` has Mk1.5 box flowers on the clip's insect-free median frame;
+a visit is the insect inside a flower box for ≥ 0.3 s (Polytrack's rule).
+
+Forecasting (`forecast/`) trains on the 2,335 Polytrack farm trajectories, scored on 11 camera stations held out of
+training (`forecast/report.json`): next-flower top-3 accuracy 79% (nearest-flower baseline 68%); 2 s path forecast as
+a fan of 25 sampled futures, whose closest member ends a median 8 units (~0.3 cm) from the real position.
+
 ## Layout
 
 ```
@@ -46,6 +70,8 @@ search/       natural-language search index
 field/        pollination maps per clip and for the farm
 plan/         robot routes and baseline scores
 eval/         run_eval.py, report.json
+analytics/    metrics.py: visits, dwell, transit, speed, revisits, approach, turn angles (robot parameters)
+forecast/     Polytrack data, path + next-flower models, rollouts
 sim/  app/  prompts/  scripts/
 ```
 

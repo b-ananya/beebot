@@ -1,0 +1,26 @@
+{
+ "pred_dir": "tracks",
+ "clips": 1,
+ "median_center_error": 258.7,
+ "within_25": 0.05,
+ "track_coverage": 0.039,
+ "false_alarm_rate": 0.333,
+ "visit_recall": null,
+ "visit_precision": null,
+ "notes": "center error in 0-1000 units vs reference tracker (HyDaT/Polytrack); interpolated points excluded",
+ "per_clip": {
+  "hb1_w00": {
+   "truth_points": 206,
+   "pred_points": 12,
+   "matched": 161,
+   "coverage": 0.039,
+   "median_center_error": 258.7,
+   "within_25": 0.05,
+   "false_alarm_rate": 0.333,
+   "visits_truth": 0,
+   "visits_truth_found": 0,
+   "visits_pred": 0,
+   "visits_pred_correct": 0
+  }
+ }
+}

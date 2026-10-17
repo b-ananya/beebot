@@ -29,3 +29,12 @@ The source videos behind most of the 2,335 farm tracks are not public ("availabl
 - Bees are about 20–30 px wide at 720p. A should test native 1080p (`raw/`) early in A2.
 - Truth is a reference tracker, not hand labels. Report "agreement with HyDaT/Polytrack" for center error, and use the xlsx visible-frame counts for coverage.
 - The farm offset is accurate to roughly ±1 s for later videos in a day; T6/T7 visual checks looked aligned.
+
+## Farm truth timing fix (scripts/fix_truth_offsets.py)
+
+The `absframe` timing above was off by a constant per source video: **-0.3 s** for cam 2 day 08 and **+1.4 s** for
+cam 3 day 12 (close to the filename-based estimate in `offset_check`). Found by sweeping the shift that maximizes
+agreement with the motion tracker (which never sees truth): coverage goes from ~30% to >90%, with a median error of
+2-3 units. Confirmed visually: after the shift the bee sits in the truth box, before it the box is on empty leaves
+(`eval/checks/offset_sm3_12_124027.jpg`). One offset per video, the median over its 5 clips, so a single clip can't
+move it. `truth/sm*.json` now carry `time_offset_s`. `sm3_12_123633` still agrees poorly at any shift (worth a look).

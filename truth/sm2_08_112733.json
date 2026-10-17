@@ -10,7 +10,7 @@
    "box_from": "blob_area",
    "points": [
     {
-     "t": 1.0,
+     "t": 0.7,
      "center": [
       885.4,
       769.4
@@ -24,7 +24,7 @@
      "interpolated": false
     },
     {
-     "t": 1.033,
+     "t": 0.733,
      "center": [
       887.0,
       776.9
@@ -38,7 +38,7 @@
      "interpolated": false
     },
     {
-     "t": 1.067,
+     "t": 0.767,
      "center": [
       888.5,
       783.3
@@ -52,7 +52,7 @@
      "interpolated": false
     },
     {
-     "t": 1.1,
+     "t": 0.8,
      "center": [
       891.1,
       786.1
@@ -66,7 +66,7 @@
      "interpolated": false
     },
     {
-     "t": 1.133,
+     "t": 0.833,
      "center": [
       894.3,
       788.9
@@ -80,7 +80,7 @@
      "interpolated": false
     },
     {
-     "t": 1.167,
+     "t": 0.867,
      "center": [
       898.4,
       790.7
@@ -94,7 +94,7 @@
      "interpolated": false
     },
     {
-     "t": 1.2,
+     "t": 0.9,
      "center": [
       906.2,
       788.0
@@ -108,7 +108,7 @@
      "interpolated": false
     },
     {
-     "t": 1.233,
+     "t": 0.933,
      "center": [
       914.1,
       795.4
@@ -122,7 +122,7 @@
      "interpolated": false
     },
     {
-     "t": 1.267,
+     "t": 0.967,
      "center": [
       920.8,
       804.6
@@ -136,7 +136,7 @@
      "interpolated": false
     },
     {
-     "t": 1.3,
+     "t": 1.0,
      "center": [
       926.0,
       817.6
@@ -150,7 +150,7 @@
      "interpolated": false
     },
     {
-     "t": 1.333,
+     "t": 1.033,
      "center": [
       924.0,
       838.0
@@ -164,7 +164,7 @@
      "interpolated": false
     },
     {
-     "t": 1.367,
+     "t": 1.067,
      "center": [
       922.4,
       851.9
@@ -178,7 +178,7 @@
      "interpolated": false
     },
     {
-     "t": 1.4,
+     "t": 1.1,
      "center": [
       924.0,
       860.2
@@ -192,7 +192,7 @@
      "interpolated": false
     },
     {
-     "t": 1.433,
+     "t": 1.133,
      "center": [
       925.5,
       872.2
@@ -206,7 +206,7 @@
      "interpolated": false
     },
     {
-     "t": 1.467,
+     "t": 1.167,
      "center": [
       924.5,
       874.1
@@ -220,7 +220,7 @@
      "interpolated": false
     },
     {
-     "t": 1.5,
+     "t": 1.2,
      "center": [
       925.0,
       879.6
@@ -234,7 +234,7 @@
      "interpolated": false
     },
     {
-     "t": 1.533,
+     "t": 1.233,
      "center": [
       924.0,
       882.4
@@ -248,7 +248,7 @@
      "interpolated": false
     },
     {
-     "t": 1.567,
+     "t": 1.267,
      "center": [
       922.9,
       878.7
@@ -262,7 +262,7 @@
      "interpolated": false
     },
     {
-     "t": 1.6,
+     "t": 1.3,
      "center": [
       919.8,
       872.2
@@ -276,7 +276,7 @@
      "interpolated": false
     },
     {
-     "t": 1.633,
+     "t": 1.333,
      "center": [
       917.7,
       877.8
@@ -290,7 +290,7 @@
      "interpolated": false
     },
     {
-     "t": 1.667,
+     "t": 1.367,
      "center": [
       915.1,
       883.3
@@ -304,7 +304,7 @@
      "interpolated": false
     },
     {
-     "t": 1.7,
+     "t": 1.4,
      "center": [
       912.0,
       877.8
@@ -318,7 +318,7 @@
      "interpolated": false
     },
     {
-     "t": 1.733,
+     "t": 1.433,
      "center": [
       909.4,
       860.2
@@ -332,7 +332,7 @@
      "interpolated": false
     },
     {
-     "t": 1.767,
+     "t": 1.467,
      "center": [
       904.7,
       845.4
@@ -346,7 +346,7 @@
      "interpolated": false
     },
     {
-     "t": 1.8,
+     "t": 1.5,
      "center": [
       902.6,
       841.7
@@ -360,7 +360,7 @@
      "interpolated": false
     },
     {
-     "t": 1.833,
+     "t": 1.533,
      "center": [
       900.5,
       841.7
@@ -374,7 +374,7 @@
      "interpolated": false
     },
     {
-     "t": 1.867,
+     "t": 1.567,
      "center": [
       898.4,
       834.3
@@ -388,7 +388,7 @@
      "interpolated": false
     },
     {
-     "t": 1.9,
+     "t": 1.6,
      "center": [
       895.8,
       817.6
@@ -402,7 +402,7 @@
      "interpolated": false
     },
     {
-     "t": 1.933,
+     "t": 1.633,
      "center": [
       898.4,
       800.0
@@ -416,7 +416,7 @@
      "interpolated": false
     },
     {
-     "t": 1.967,
+     "t": 1.667,
      "center": [
       899.5,
       790.7
@@ -430,7 +430,7 @@
      "interpolated": false
     },
     {
-     "t": 2.0,
+     "t": 1.7,
      "center": [
       902.1,
       789.8
@@ -444,7 +444,7 @@
      "interpolated": false
     },
     {
-     "t": 2.033,
+     "t": 1.733,
      "center": [
       903.1,
       771.3
@@ -458,7 +458,7 @@
      "interpolated": false
     },
     {
-     "t": 2.067,
+     "t": 1.767,
      "center": [
       905.2,
       761.1
@@ -472,7 +472,7 @@
      "interpolated": false
     },
     {
-     "t": 2.1,
+     "t": 1.8,
      "center": [
       907.3,
       739.8
@@ -486,7 +486,7 @@
      "interpolated": false
     },
     {
-     "t": 2.133,
+     "t": 1.833,
      "center": [
       910.9,
       727.8
@@ -500,7 +500,7 @@
      "interpolated": false
     },
     {
-     "t": 2.167,
+     "t": 1.867,
      "center": [
       914.1,
       713.9
@@ -514,7 +514,7 @@
      "interpolated": false
     },
     {
-     "t": 2.2,
+     "t": 1.9,
      "center": [
       915.6,
       698.1
@@ -528,7 +528,7 @@
      "interpolated": false
     },
     {
-     "t": 2.233,
+     "t": 1.933,
      "center": [
       917.2,
       681.5
@@ -542,7 +542,7 @@
      "interpolated": false
     },
     {
-     "t": 2.267,
+     "t": 1.967,
      "center": [
       922.4,
       666.7
@@ -556,7 +556,7 @@
      "interpolated": false
     },
     {
-     "t": 2.3,
+     "t": 2.0,
      "center": [
       923.4,
       664.8
@@ -570,7 +570,7 @@
      "interpolated": false
     },
     {
-     "t": 2.333,
+     "t": 2.033,
      "center": [
       920.3,
       674.1
@@ -584,7 +584,7 @@
      "interpolated": false
     },
     {
-     "t": 2.367,
+     "t": 2.067,
      "center": [
       915.1,
       686.1
@@ -598,7 +598,7 @@
      "interpolated": false
     },
     {
-     "t": 2.4,
+     "t": 2.1,
      "center": [
       905.7,
       696.3
@@ -612,7 +612,7 @@
      "interpolated": false
     },
     {
-     "t": 2.433,
+     "t": 2.133,
      "center": [
       892.7,
       703.7
@@ -626,7 +626,7 @@
      "interpolated": false
     },
     {
-     "t": 2.467,
+     "t": 2.167,
      "center": [
       885.9,
       706.5
@@ -640,7 +640,7 @@
      "interpolated": false
     },
     {
-     "t": 2.5,
+     "t": 2.2,
      "center": [
       880.7,
       705.6
@@ -654,7 +654,7 @@
      "interpolated": false
     },
     {
-     "t": 2.533,
+     "t": 2.233,
      "center": [
       875.0,
       707.4
@@ -668,7 +668,7 @@
      "interpolated": false
     },
     {
-     "t": 2.567,
+     "t": 2.267,
      "center": [
       872.4,
       699.1
@@ -682,7 +682,7 @@
      "interpolated": false
     },
     {
-     "t": 2.6,
+     "t": 2.3,
      "center": [
       871.9,
       695.4
@@ -696,7 +696,7 @@
      "interpolated": false
     },
     {
-     "t": 2.633,
+     "t": 2.333,
      "center": [
       872.4,
       693.5
@@ -710,7 +710,7 @@
      "interpolated": false
     },
     {
-     "t": 2.667,
+     "t": 2.367,
      "center": [
       870.3,
       693.5
@@ -724,7 +724,7 @@
      "interpolated": false
     },
     {
-     "t": 2.7,
+     "t": 2.4,
      "center": [
       864.1,
       697.2
@@ -738,7 +738,7 @@
      "interpolated": false
     },
     {
-     "t": 2.733,
+     "t": 2.433,
      "center": [
       850.0,
       702.8
@@ -752,7 +752,7 @@
      "interpolated": false
     },
     {
-     "t": 2.767,
+     "t": 2.467,
      "center": [
       839.6,
       698.1
@@ -766,7 +766,7 @@
      "interpolated": false
     },
     {
-     "t": 2.8,
+     "t": 2.5,
      "center": [
       830.2,
       684.3
@@ -780,7 +780,7 @@
      "interpolated": false
     },
     {
-     "t": 2.833,
+     "t": 2.533,
      "center": [
       822.9,
       684.3
@@ -794,7 +794,7 @@
      "interpolated": false
     },
     {
-     "t": 2.867,
+     "t": 2.567,
      "center": [
       818.8,
       682.4
@@ -808,7 +808,7 @@
      "interpolated": false
     },
     {
-     "t": 2.9,
+     "t": 2.6,
      "center": [
       819.8,
       667.6
@@ -822,7 +822,7 @@
      "interpolated": false
     },
     {
-     "t": 2.933,
+     "t": 2.633,
      "center": [
       819.8,
       654.6
@@ -836,7 +836,7 @@
      "interpolated": false
     },
     {
-     "t": 2.967,
+     "t": 2.667,
      "center": [
       821.4,
       639.8
@@ -850,7 +850,7 @@
      "interpolated": false
     },
     {
-     "t": 3.0,
+     "t": 2.7,
      "center": [
       823.4,
       625.9
@@ -864,7 +864,7 @@
      "interpolated": false
     },
     {
-     "t": 3.033,
+     "t": 2.733,
      "center": [
       824.5,
       616.7
@@ -878,7 +878,7 @@
      "interpolated": false
     },
     {
-     "t": 3.067,
+     "t": 2.767,
      "center": [
       822.9,
       612.0
@@ -892,7 +892,7 @@
      "interpolated": false
     },
     {
-     "t": 3.1,
+     "t": 2.8,
      "center": [
       824.0,
       616.7
@@ -906,7 +906,7 @@
      "interpolated": false
     },
     {
-     "t": 3.133,
+     "t": 2.833,
      "center": [
       826.6,
       613.9
@@ -920,7 +920,7 @@
      "interpolated": false
     },
     {
-     "t": 3.167,
+     "t": 2.867,
      "center": [
       836.5,
       613.9
@@ -934,7 +934,7 @@
      "interpolated": false
     },
     {
-     "t": 3.2,
+     "t": 2.9,
      "center": [
       841.1,
       616.7
@@ -948,7 +948,7 @@
      "interpolated": false
     },
     {
-     "t": 3.233,
+     "t": 2.933,
      "center": [
       845.8,
       626.9
@@ -962,7 +962,7 @@
      "interpolated": false
     },
     {
-     "t": 3.267,
+     "t": 2.967,
      "center": [
       842.2,
       625.0
@@ -976,7 +976,7 @@
      "interpolated": false
     },
     {
-     "t": 3.3,
+     "t": 3.0,
      "center": [
       832.3,
       629.6
@@ -990,7 +990,7 @@
      "interpolated": false
     },
     {
-     "t": 3.333,
+     "t": 3.033,
      "center": [
       814.6,
       628.7
@@ -1004,7 +1004,7 @@
      "interpolated": false
     },
     {
-     "t": 3.367,
+     "t": 3.067,
      "center": [
       803.6,
       617.6
@@ -1018,7 +1018,7 @@
      "interpolated": false
     },
     {
-     "t": 3.4,
+     "t": 3.1,
      "center": [
       789.1,
       609.3
@@ -1032,7 +1032,7 @@
      "interpolated": false
     },
     {
-     "t": 3.433,
+     "t": 3.133,
      "center": [
       776.0,
       611.1
@@ -1046,7 +1046,7 @@
      "interpolated": false
     },
     {
-     "t": 3.467,
+     "t": 3.167,
      "center": [
       770.8,
       613.9
@@ -1060,7 +1060,7 @@
      "interpolated": false
     },
     {
-     "t": 3.5,
+     "t": 3.2,
      "center": [
       763.0,
       616.7
@@ -1074,7 +1074,7 @@
      "interpolated": false
     },
     {
-     "t": 3.533,
+     "t": 3.233,
      "center": [
       755.7,
       620.4
@@ -1088,7 +1088,7 @@
      "interpolated": false
     },
     {
-     "t": 3.567,
+     "t": 3.267,
      "center": [
       743.8,
       621.3
@@ -1102,7 +1102,7 @@
      "interpolated": false
     },
     {
-     "t": 3.6,
+     "t": 3.3,
      "center": [
       731.2,
       619.4
@@ -1116,7 +1116,7 @@
      "interpolated": false
     },
     {
-     "t": 3.633,
+     "t": 3.333,
      "center": [
       717.7,
       616.7
@@ -1130,7 +1130,7 @@
      "interpolated": false
     },
     {
-     "t": 3.667,
+     "t": 3.367,
      "center": [
       702.1,
       611.1
@@ -1144,7 +1144,7 @@
      "interpolated": false
     },
     {
-     "t": 3.7,
+     "t": 3.4,
      "center": [
       683.9,
       600.9
@@ -1158,7 +1158,7 @@
      "interpolated": false
     },
     {
-     "t": 3.733,
+     "t": 3.433,
      "center": [
       665.6,
       594.4
@@ -1172,7 +1172,7 @@
      "interpolated": false
     },
     {
-     "t": 3.767,
+     "t": 3.467,
      "center": [
       658.9,
       571.3
@@ -1186,7 +1186,7 @@
      "interpolated": false
     },
     {
-     "t": 3.8,
+     "t": 3.5,
      "center": [
       649.0,
       550.9
@@ -1200,7 +1200,7 @@
      "interpolated": false
     },
     {
-     "t": 3.833,
+     "t": 3.533,
      "center": [
       641.7,
       525.9
@@ -1214,7 +1214,7 @@
      "interpolated": false
     },
     {
-     "t": 3.867,
+     "t": 3.567,
      "center": [
       624.0,
       512.0
@@ -1228,7 +1228,7 @@
      "interpolated": false
     },
     {
-     "t": 3.9,
+     "t": 3.6,
      "center": [
       608.9,
       517.6
@@ -1242,7 +1242,7 @@
      "interpolated": false
     },
     {
-     "t": 3.933,
+     "t": 3.633,
      "center": [
       590.1,
       534.3
@@ -1256,7 +1256,7 @@
      "interpolated": false
     },
     {
-     "t": 3.967,
+     "t": 3.667,
      "center": [
       580.2,
       538.0
@@ -1270,7 +1270,7 @@
      "interpolated": false
     },
     {
-     "t": 4.0,
+     "t": 3.7,
      "center": [
       570.8,
       530.6
@@ -1284,7 +1284,7 @@
      "interpolated": false
     },
     {
-     "t": 4.033,
+     "t": 3.733,
      "center": [
       569.3,
       496.3
@@ -1298,7 +1298,7 @@
      "interpolated": false
     },
     {
-     "t": 4.067,
+     "t": 3.767,
      "center": [
       569.3,
       468.5
@@ -1312,7 +1312,7 @@
      "interpolated": false
     },
     {
-     "t": 4.1,
+     "t": 3.8,
      "center": [
       565.6,
       460.2
@@ -1326,7 +1326,7 @@
      "interpolated": false
     },
     {
-     "t": 4.133,
+     "t": 3.833,
      "center": [
       567.2,
       460.2
@@ -1340,7 +1340,7 @@
      "interpolated": false
     },
     {
-     "t": 4.167,
+     "t": 3.867,
      "center": [
       567.2,
       451.9
@@ -1354,7 +1354,7 @@
      "interpolated": false
     },
     {
-     "t": 4.2,
+     "t": 3.9,
      "center": [
       566.7,
       460.2
@@ -1368,7 +1368,7 @@
      "interpolated": false
     },
     {
-     "t": 4.233,
+     "t": 3.933,
      "center": [
       566.1,
       463.9
@@ -1382,7 +1382,7 @@
      "interpolated": false
     },
     {
-     "t": 4.267,
+     "t": 3.967,
      "center": [
       567.7,
       464.8
@@ -1396,7 +1396,7 @@
      "interpolated": false
     },
     {
-     "t": 4.3,
+     "t": 4.0,
      "center": [
       567.7,
       448.1
@@ -1410,7 +1410,7 @@
      "interpolated": false
     },
     {
-     "t": 4.333,
+     "t": 4.033,
      "center": [
       569.3,
       433.3
@@ -1424,7 +1424,7 @@
      "interpolated": false
     },
     {
-     "t": 4.367,
+     "t": 4.067,
      "center": [
       561.5,
       430.6
@@ -1438,7 +1438,7 @@
      "interpolated": false
     },
     {
-     "t": 4.4,
+     "t": 4.1,
      "center": [
       559.9,
       426.9
@@ -1452,7 +1452,7 @@
      "interpolated": false
     },
     {
-     "t": 4.433,
+     "t": 4.133,
      "center": [
       552.6,
       425.9
@@ -1466,7 +1466,7 @@
      "interpolated": false
     },
     {
-     "t": 4.467,
+     "t": 4.167,
      "center": [
       547.4,
       421.3
@@ -1480,7 +1480,7 @@
      "interpolated": false
     },
     {
-     "t": 4.5,
+     "t": 4.2,
      "center": [
       543.8,
       412.0
@@ -1494,7 +1494,7 @@
      "interpolated": false
     },
     {
-     "t": 4.533,
+     "t": 4.233,
      "center": [
       541.1,
       414.8
@@ -1508,7 +1508,7 @@
      "interpolated": false
     },
     {
-     "t": 5.733,
+     "t": 5.433,
      "center": [
       414.6,
       546.3
@@ -1522,7 +1522,7 @@
      "interpolated": false
     },
     {
-     "t": 5.767,
+     "t": 5.467,
      "center": [
       418.8,
       533.3
@@ -1536,7 +1536,7 @@
      "interpolated": false
     },
     {
-     "t": 5.8,
+     "t": 5.5,
      "center": [
       424.5,
       540.7
@@ -1550,7 +1550,7 @@
      "interpolated": false
     },
     {
-     "t": 5.833,
+     "t": 5.533,
      "center": [
       430.7,
       556.5
@@ -1564,7 +1564,7 @@
      "interpolated": false
     },
     {
-     "t": 5.867,
+     "t": 5.567,
      "center": [
       441.1,
       567.6
@@ -1578,7 +1578,7 @@
      "interpolated": false
     },
     {
-     "t": 5.9,
+     "t": 5.6,
      "center": [
       450.5,
       576.9
@@ -1592,7 +1592,7 @@
      "interpolated": false
     },
     {
-     "t": 5.933,
+     "t": 5.633,
      "center": [
       459.9,
       580.6
@@ -1606,7 +1606,7 @@
      "interpolated": false
     },
     {
-     "t": 5.967,
+     "t": 5.667,
      "center": [
       463.0,
       587.0
@@ -1620,7 +1620,7 @@
      "interpolated": false
     },
     {
-     "t": 6.0,
+     "t": 5.7,
      "center": [
       466.7,
       588.9
@@ -1634,7 +1634,7 @@
      "interpolated": false
     },
     {
-     "t": 6.033,
+     "t": 5.733,
      "center": [
       468.2,
       594.4
@@ -1648,7 +1648,7 @@
      "interpolated": false
     },
     {
-     "t": 6.067,
+     "t": 5.767,
      "center": [
       471.4,
       594.4
@@ -1662,7 +1662,7 @@
      "interpolated": false
     },
     {
-     "t": 6.1,
+     "t": 5.8,
      "center": [
       477.6,
       589.8
@@ -1676,7 +1676,7 @@
      "interpolated": false
     },
     {
-     "t": 6.133,
+     "t": 5.833,
      "center": [
       490.6,
       589.8
@@ -1690,7 +1690,7 @@
      "interpolated": false
     },
     {
-     "t": 6.167,
+     "t": 5.867,
      "center": [
       500.5,
       583.3
@@ -1704,7 +1704,7 @@
      "interpolated": false
     },
     {
-     "t": 6.2,
+     "t": 5.9,
      "center": [
       507.3,
       576.9
@@ -1718,7 +1718,7 @@
      "interpolated": false
     },
     {
-     "t": 6.233,
+     "t": 5.933,
      "center": [
       514.1,
       567.6
@@ -1732,7 +1732,7 @@
      "interpolated": false
     },
     {
-     "t": 6.267,
+     "t": 5.967,
      "center": [
       522.4,
       558.3
@@ -1746,7 +1746,7 @@
      "interpolated": false
     },
     {
-     "t": 6.3,
+     "t": 6.0,
      "center": [
       530.2,
       549.1
@@ -1760,7 +1760,7 @@
      "interpolated": false
     },
     {
-     "t": 6.333,
+     "t": 6.033,
      "center": [
       536.5,
       534.3
@@ -1774,7 +1774,7 @@
      "interpolated": false
     },
     {
-     "t": 6.367,
+     "t": 6.067,
      "center": [
       542.2,
       524.1
@@ -1788,7 +1788,7 @@
      "interpolated": false
     },
     {
-     "t": 6.4,
+     "t": 6.1,
      "center": [
       544.3,
       513.0
@@ -1802,7 +1802,7 @@
      "interpolated": false
     },
     {
-     "t": 6.433,
+     "t": 6.133,
      "center": [
       545.8,
       509.3
@@ -1816,7 +1816,7 @@
      "interpolated": false
     },
     {
-     "t": 6.467,
+     "t": 6.167,
      "center": [
       542.2,
       512.0
@@ -1830,7 +1830,7 @@
      "interpolated": false
     },
     {
-     "t": 6.5,
+     "t": 6.2,
      "center": [
       537.5,
       511.1
@@ -1844,7 +1844,7 @@
      "interpolated": false
     },
     {
-     "t": 6.533,
+     "t": 6.233,
      "center": [
       529.7,
       506.5
@@ -1858,7 +1858,7 @@
      "interpolated": false
     },
     {
-     "t": 6.567,
+     "t": 6.267,
      "center": [
       522.9,
       500.9
@@ -1872,7 +1872,7 @@
      "interpolated": false
     },
     {
-     "t": 6.6,
+     "t": 6.3,
      "center": [
       517.2,
       498.1
@@ -1886,7 +1886,7 @@
      "interpolated": false
     },
     {
-     "t": 6.633,
+     "t": 6.333,
      "center": [
       515.6,
       498.1
@@ -1900,7 +1900,7 @@
      "interpolated": false
     },
     {
-     "t": 6.667,
+     "t": 6.367,
      "center": [
       521.4,
       496.3
@@ -1914,7 +1914,7 @@
      "interpolated": false
     },
     {
-     "t": 6.7,
+     "t": 6.4,
      "center": [
       526.6,
       494.4
@@ -1928,7 +1928,7 @@
      "interpolated": false
     },
     {
-     "t": 6.733,
+     "t": 6.433,
      "center": [
       526.0,
       493.5
@@ -1942,7 +1942,7 @@
      "interpolated": false
     },
     {
-     "t": 6.767,
+     "t": 6.467,
      "center": [
       521.9,
       494.4
@@ -1956,7 +1956,7 @@
      "interpolated": false
     },
     {
-     "t": 6.8,
+     "t": 6.5,
      "center": [
       522.4,
       495.4
@@ -1970,7 +1970,7 @@
      "interpolated": false
     },
     {
-     "t": 6.833,
+     "t": 6.533,
      "center": [
       526.0,
       497.2
@@ -1984,7 +1984,7 @@
      "interpolated": false
     },
     {
-     "t": 6.867,
+     "t": 6.567,
      "center": [
       537.0,
       504.6
@@ -1998,7 +1998,7 @@
      "interpolated": false
     },
     {
-     "t": 6.9,
+     "t": 6.6,
      "center": [
       550.5,
       514.8
@@ -2012,7 +2012,7 @@
      "interpolated": false
     },
     {
-     "t": 6.933,
+     "t": 6.633,
      "center": [
       568.2,
       520.4
@@ -2026,7 +2026,7 @@
      "interpolated": false
     },
     {
-     "t": 6.967,
+     "t": 6.667,
      "center": [
       586.5,
       513.9
@@ -2040,7 +2040,7 @@
      "interpolated": false
     },
     {
-     "t": 7.0,
+     "t": 6.7,
      "center": [
       600.5,
       496.3
@@ -2054,7 +2054,7 @@
      "interpolated": false
     },
     {
-     "t": 7.033,
+     "t": 6.733,
      "center": [
       613.0,
       475.9
@@ -2068,7 +2068,7 @@
      "interpolated": false
     },
     {
-     "t": 7.067,
+     "t": 6.767,
      "center": [
       627.1,
       469.4
@@ -2082,7 +2082,7 @@
      "interpolated": false
     },
     {
-     "t": 7.1,
+     "t": 6.8,
      "center": [
       645.3,
       471.3
@@ -2096,7 +2096,7 @@
      "interpolated": false
     },
     {
-     "t": 7.133,
+     "t": 6.833,
      "center": [
       663.5,
       458.3
@@ -2110,7 +2110,7 @@
      "interpolated": false
     },
     {
-     "t": 7.167,
+     "t": 6.867,
      "center": [
       675.0,
       488.0
@@ -2124,7 +2124,7 @@
      "interpolated": false
     },
     {
-     "t": 7.2,
+     "t": 6.9,
      "center": [
       699.0,
       488.9
@@ -2138,7 +2138,7 @@
      "interpolated": false
     },
     {
-     "t": 7.233,
+     "t": 6.933,
      "center": [
       716.1,
       492.6
@@ -2152,7 +2152,7 @@
      "interpolated": false
     },
     {
-     "t": 7.267,
+     "t": 6.967,
      "center": [
       739.6,
       476.9
@@ -2166,7 +2166,7 @@
      "interpolated": false
     },
     {
-     "t": 7.3,
+     "t": 7.0,
      "center": [
       755.7,
       447.2
@@ -2180,7 +2180,7 @@
      "interpolated": false
     },
     {
-     "t": 7.333,
+     "t": 7.033,
      "center": [
       768.2,
       425.0
@@ -2194,7 +2194,7 @@
      "interpolated": false
     },
     {
-     "t": 7.367,
+     "t": 7.067,
      "center": [
       781.8,
       404.6
@@ -2208,7 +2208,7 @@
      "interpolated": false
     },
     {
-     "t": 7.4,
+     "t": 7.1,
      "center": [
       803.6,
       384.3
@@ -2222,7 +2222,7 @@
      "interpolated": false
     },
     {
-     "t": 7.433,
+     "t": 7.133,
      "center": [
       834.4,
       367.6
@@ -2236,7 +2236,7 @@
      "interpolated": false
     },
     {
-     "t": 7.467,
+     "t": 7.167,
      "center": [
       870.8,
       340.7
@@ -2250,7 +2250,7 @@
      "interpolated": false
     },
     {
-     "t": 7.5,
+     "t": 7.2,
      "center": [
       910.9,
       300.9
@@ -2264,7 +2264,7 @@
      "interpolated": false
     },
     {
-     "t": 7.533,
+     "t": 7.233,
      "center": [
       952.1,
       284.3
@@ -2278,7 +2278,7 @@
      "interpolated": false
     },
     {
-     "t": 7.567,
+     "t": 7.267,
      "center": [
       991.7,
       281.5
@@ -2355,8 +2355,10 @@
    "track_id": "vespidae_1",
    "flower_id": "flower_3",
    "type": "visit",
-   "t_start": 4.467,
-   "t_end": 4.567
+   "t_start": 4.167,
+   "t_end": 4.267
   }
- ]
+ ],
+ "time_offset_s": -0.3,
+ "time_offset_note": "per-video constant shift, see scripts/fix_truth_offsets.py"
 }

@@ -10,7 +10,7 @@
    "box_from": "blob_area",
    "points": [
     {
-     "t": 1.0,
+     "t": 2.4,
      "center": [
       893.2,
       555.6
@@ -24,7 +24,7 @@
      "interpolated": false
     },
     {
-     "t": 1.033,
+     "t": 2.433,
      "center": [
       902.6,
       560.2
@@ -38,7 +38,7 @@
      "interpolated": false
     },
     {
-     "t": 1.067,
+     "t": 2.467,
      "center": [
       912.0,
       581.5
@@ -52,7 +52,7 @@
      "interpolated": false
     },
     {
-     "t": 1.1,
+     "t": 2.5,
      "center": [
       918.2,
       598.1
@@ -66,7 +66,7 @@
      "interpolated": false
     },
     {
-     "t": 1.133,
+     "t": 2.533,
      "center": [
       927.6,
       625.0
@@ -80,7 +80,7 @@
      "interpolated": false
     },
     {
-     "t": 1.167,
+     "t": 2.567,
      "center": [
       945.3,
       662.0
@@ -94,7 +94,7 @@
      "interpolated": false
     },
     {
-     "t": 1.2,
+     "t": 2.6,
      "center": [
       953.6,
       688.9
@@ -108,7 +108,7 @@
      "interpolated": false
     },
     {
-     "t": 1.233,
+     "t": 2.633,
      "center": [
       966.1,
       706.5
@@ -122,7 +122,7 @@
      "interpolated": false
     },
     {
-     "t": 1.267,
+     "t": 2.667,
      "center": [
       974.0,
       696.3
@@ -136,7 +136,7 @@
      "interpolated": false
     },
     {
-     "t": 1.3,
+     "t": 2.7,
      "center": [
       977.6,
       670.4
@@ -150,7 +150,7 @@
      "interpolated": false
     },
     {
-     "t": 1.333,
+     "t": 2.733,
      "center": [
       982.3,
       652.8
@@ -164,7 +164,7 @@
      "interpolated": false
     },
     {
-     "t": 1.367,
+     "t": 2.767,
      "center": [
       984.4,
       632.4
@@ -178,7 +178,7 @@
      "interpolated": false
     },
     {
-     "t": 1.4,
+     "t": 2.8,
      "center": [
       985.9,
       640.7
@@ -192,7 +192,7 @@
      "interpolated": false
     },
     {
-     "t": 1.433,
+     "t": 2.833,
      "center": [
       989.1,
       663.0
@@ -206,7 +206,7 @@
      "interpolated": false
     },
     {
-     "t": 1.467,
+     "t": 2.867,
      "center": [
       985.9,
       676.9
@@ -220,7 +220,7 @@
      "interpolated": false
     },
     {
-     "t": 1.5,
+     "t": 2.9,
      "center": [
       987.0,
       686.1
@@ -234,7 +234,7 @@
      "interpolated": false
     },
     {
-     "t": 1.533,
+     "t": 2.933,
      "center": [
       982.8,
       673.1
@@ -248,7 +248,7 @@
      "interpolated": false
     },
     {
-     "t": 1.567,
+     "t": 2.967,
      "center": [
       990.1,
       677.8
@@ -262,7 +262,7 @@
      "interpolated": false
     },
     {
-     "t": 1.6,
+     "t": 3.0,
      "center": [
       987.5,
       681.5
@@ -276,7 +276,7 @@
      "interpolated": false
     },
     {
-     "t": 1.633,
+     "t": 3.033,
      "center": [
       991.7,
       696.3
@@ -290,7 +290,7 @@
      "interpolated": false
     },
     {
-     "t": 1.667,
+     "t": 3.067,
      "center": [
       989.6,
       686.1
@@ -304,7 +304,7 @@
      "interpolated": false
     },
     {
-     "t": 1.7,
+     "t": 3.1,
      "center": [
       990.1,
       685.2
@@ -318,7 +318,7 @@
      "interpolated": false
     },
     {
-     "t": 1.733,
+     "t": 3.133,
      "center": [
       988.5,
       708.3
@@ -332,7 +332,7 @@
      "interpolated": false
     },
     {
-     "t": 1.767,
+     "t": 3.167,
      "center": [
       996.9,
       722.2
@@ -346,7 +346,7 @@
      "interpolated": false
     },
     {
-     "t": 1.8,
+     "t": 3.2,
      "center": [
       989.1,
       694.4
@@ -360,7 +360,7 @@
      "interpolated": false
     },
     {
-     "t": 1.833,
+     "t": 3.233,
      "center": [
       994.3,
       693.5
@@ -374,7 +374,7 @@
      "interpolated": false
     },
     {
-     "t": 1.867,
+     "t": 3.267,
      "center": [
       993.2,
       693.5
@@ -388,7 +388,7 @@
      "interpolated": false
     },
     {
-     "t": 1.933,
+     "t": 3.333,
      "center": [
       992.7,
       693.5
@@ -402,7 +402,7 @@
      "interpolated": false
     },
     {
-     "t": 1.967,
+     "t": 3.367,
      "center": [
       994.3,
       693.5
@@ -416,7 +416,7 @@
      "interpolated": false
     },
     {
-     "t": 2.0,
+     "t": 3.4,
      "center": [
       993.8,
       693.5
@@ -430,7 +430,7 @@
      "interpolated": false
     },
     {
-     "t": 2.033,
+     "t": 3.433,
      "center": [
       993.8,
       693.5
@@ -444,7 +444,7 @@
      "interpolated": false
     },
     {
-     "t": 2.067,
+     "t": 3.467,
      "center": [
       993.8,
       693.5
@@ -458,7 +458,7 @@
      "interpolated": false
     },
     {
-     "t": 2.1,
+     "t": 3.5,
      "center": [
       993.2,
       693.5
@@ -472,7 +472,7 @@
      "interpolated": false
     },
     {
-     "t": 2.133,
+     "t": 3.533,
      "center": [
       993.8,
       693.5
@@ -486,7 +486,7 @@
      "interpolated": false
     },
     {
-     "t": 2.167,
+     "t": 3.567,
      "center": [
       993.8,
       693.5
@@ -500,7 +500,7 @@
      "interpolated": false
     },
     {
-     "t": 2.2,
+     "t": 3.6,
      "center": [
       993.8,
       693.5
@@ -514,7 +514,7 @@
      "interpolated": false
     },
     {
-     "t": 2.233,
+     "t": 3.633,
      "center": [
       994.3,
       693.5
@@ -528,7 +528,7 @@
      "interpolated": false
     },
     {
-     "t": 2.367,
+     "t": 3.767,
      "center": [
       994.3,
       693.5
@@ -614,8 +614,10 @@
    "track_id": "honeybee_1",
    "flower_id": "flower_5",
    "type": "visit",
-   "t_start": 1.0,
-   "t_end": 1.167
+   "t_start": 2.4,
+   "t_end": 2.567
   }
- ]
+ ],
+ "time_offset_s": 1.4,
+ "time_offset_note": "per-video constant shift, see scripts/fix_truth_offsets.py"
 }

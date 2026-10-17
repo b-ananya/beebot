@@ -26,6 +26,7 @@ import hashlib
 import json
 import os
 import subprocess
+import threading
 import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -49,6 +50,7 @@ COST_COLUMNS = ["time", "user", "piece", "clip_id", "prompt", "version", "model"
                 "completion_tokens", "cost_usd", "finish_reason", "request_id", "cache_file"]
 
 RETRY_DELAYS_S = (2, 5, 15)
+_LOG_LOCK = threading.Lock()   # calls may run from a thread pool (perception.verify)
 
 
 class BudgetExceeded(RuntimeError):
@@ -138,12 +140,13 @@ class PerceptionClient:
 
     def _log(self, row: dict) -> None:
         self.costs_dir.mkdir(parents=True, exist_ok=True)
-        new = not self.cost_log.exists()
-        with open(self.cost_log, "a", newline="") as f:
-            w = csv.DictWriter(f, fieldnames=COST_COLUMNS)
-            if new:
-                w.writeheader()
-            w.writerow({k: row.get(k, "") for k in COST_COLUMNS})
+        with _LOG_LOCK:
+            new = not self.cost_log.exists()
+            with open(self.cost_log, "a", newline="") as f:
+                w = csv.DictWriter(f, fieldnames=COST_COLUMNS)
+                if new:
+                    w.writeheader()
+                w.writerow({k: row.get(k, "") for k in COST_COLUMNS})
 
     def prices(self, model: str | None = None) -> dict:
         model = model or self.model
@@ -176,10 +179,11 @@ class PerceptionClient:
     def call(self, *, clip_id: str, prompt_name: str, prompt_version: str, prompt_text: str,
              video_path: Path | str | None = None, image_paths=(), annotation_format: str = "box",
              max_tokens: int = 4096, reasoning_effort: str | None = None,
-             temperature: float | None = None) -> Response:
+             temperature: float | None = None, response_format: dict | None = None) -> Response:
         """One Perceptron request, served from the cache when the same request was made before.
 
-        ``annotation_format`` is ``box``, ``point``, ``polygon`` or ``clip`` (the server's ``vision_config``).
+        ``annotation_format`` is ``box``, ``point``, ``polygon`` or ``clip`` (the server's ``vision_config``), or None
+        for plain text. ``response_format`` is e.g. ``perceptron.json_schema_format(schema)`` (constrained decoding).
         """
         video_path = Path(video_path) if video_path else None
         image_paths = [Path(p) for p in image_paths]
@@ -188,6 +192,8 @@ class PerceptionClient:
                     "prompt_text": prompt_text, "media": [sha256_file(p) for p in media],
                     "annotation_format": annotation_format, "max_tokens": max_tokens,
                     "reasoning_effort": reasoning_effort, "temperature": temperature}
+        if response_format is not None:     # only when used, so existing cache keys stay valid
+            settings["response_format"] = response_format
         key = hashlib.sha256(json.dumps(settings, sort_keys=True).encode()).hexdigest()
         path = self.cache_dir / self.piece / f"{clip_id}__{prompt_name}-{prompt_version}__{key[:10]}.json"
 
@@ -208,7 +214,8 @@ class PerceptionClient:
 
         parts = self._media_parts(video_path, image_paths)
         result = self._request(parts, prompt_text, annotation_format=annotation_format, max_tokens=max_tokens,
-                               reasoning_effort=reasoning_effort, temperature=temperature)
+                               reasoning_effort=reasoning_effort, temperature=temperature,
+                               response_format=response_format)
         self.api_calls += 1
         cost = self.cost_of(result["usage"], result.get("model"))
         now = datetime.now(timezone.utc).isoformat(timespec="seconds")
@@ -271,14 +278,18 @@ class PerceptionClient:
         parts.extend(image(str(p)) for p in image_paths)
         return parts
 
-    def _request(self, parts: list, prompt_text: str, *, annotation_format: str, max_tokens: int,
-                 reasoning_effort: str | None, temperature: float | None) -> dict:
+    def _request(self, parts: list, prompt_text: str, *, annotation_format: str | None, max_tokens: int,
+                 reasoning_effort: str | None, temperature: float | None, response_format: dict | None = None) -> dict:
         """The network call. Tests replace this method; nothing else in the class touches the API."""
         from perceptron import RateLimitError, ServerError, TimeoutError, TransportError
 
         kwargs = {"model": self.model,
                   "messages": [{"role": "user", "content": [*parts, {"type": "text", "text": prompt_text}]}],
-                  "max_completion_tokens": max_tokens, "vision_config": {"annotation_format": annotation_format}}
+                  "max_completion_tokens": max_tokens}
+        if annotation_format:
+            kwargs["vision_config"] = {"annotation_format": annotation_format}
+        if response_format is not None:
+            kwargs["response_format"] = response_format
         if reasoning_effort:
             kwargs["reasoning_effort"] = reasoning_effort
         if temperature is not None:

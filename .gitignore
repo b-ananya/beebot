@@ -15,3 +15,17 @@ tracks/raw/frames/
 app/cache/
 .pytest_cache/
 eval/*.png
+scratch/
+
+# BeeBot pipeline: regenerable intermediates (python -m perception.pipeline / forecast.train)
+beebot-data-v1.zip
+scratch/
+tracks/cv/
+tracks/verified/
+tracks/heuristic/
+tracks/heuristic_v/
+tracks/_stages/
+tracks/*/_stages/
+tracks/uploads/
+clips/uploads/
+forecast/models/

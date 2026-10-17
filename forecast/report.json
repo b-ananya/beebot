@@ -1,0 +1,137 @@
+{
+ "held_out_stations": [
+  "110",
+  "115",
+  "215",
+  "217",
+  "510",
+  "515",
+  "608",
+  "610",
+  "615",
+  "709",
+  "715"
+ ],
+ "units": "1/1000 frame width (~0.04 cm at farm scale)",
+ "path": {
+  "all": {
+   "stay": {
+    "ade": 24.2,
+    "fde_1s": 23.1,
+    "fde_2s": 45.1,
+    "median_fde_2s": 9.7
+   },
+   "const_vel": {
+    "ade": 42.1,
+    "fde_1s": 39.1,
+    "fde_2s": 83.6,
+    "median_fde_2s": 19.1
+   },
+   "knn": {
+    "ade": 23.4,
+    "fde_1s": 22.1,
+    "fde_2s": 44.4,
+    "median_fde_2s": 10.3
+   },
+   "mlp": {
+    "ade": 29.3,
+    "fde_1s": 28.3,
+    "fde_2s": 53.5,
+    "median_fde_2s": 23.7
+   }
+  },
+  "moving": {
+   "stay": {
+    "ade": 48.9,
+    "fde_1s": 50.2,
+    "fde_2s": 73.8,
+    "median_fde_2s": 21.5
+   },
+   "const_vel": {
+    "ade": 122.8,
+    "fde_1s": 116.2,
+    "fde_2s": 235.0,
+    "median_fde_2s": 133.4
+   },
+   "knn": {
+    "ade": 44.4,
+    "fde_1s": 45.4,
+    "fde_2s": 68.5,
+    "median_fde_2s": 19.6
+   },
+   "mlp": {
+    "ade": 50.8,
+    "fde_1s": 52.3,
+    "fde_2s": 79.2,
+    "median_fde_2s": 39.6
+   }
+  },
+  "moving_share": 0.21,
+  "knn_fan_minFDE_2s_moving": 8.1,
+  "best": "knn",
+  "train_samples": 48987,
+  "test_samples": 8960
+ },
+ "next_flower": {
+  "model": {
+   "top1": 0.429,
+   "top3": 0.794,
+   "decisions": 417
+  },
+  "nearest_other_flower": {
+   "top1": 0.417,
+   "top3": 0.681,
+   "decisions": 417
+  },
+  "random": {
+   "top1": 0.163,
+   "top3": 0.489,
+   "decisions": 417
+  },
+  "same_flower_share": 0.222,
+  "train_decisions": 2684
+ },
+ "continue": {
+  "accuracy": 0.679,
+  "base_rate": 0.656,
+  "majority_baseline": 0.656
+ },
+ "dwell_s": {
+  "honeybee": {
+   "n": 4222,
+   "q10": 0.13,
+   "q50": 2.8,
+   "q90": 8.75,
+   "mean": 3.99
+  },
+  "syrphidae": {
+   "n": 123,
+   "q10": 0.13,
+   "q50": 1.07,
+   "q90": 9.37,
+   "mean": 3.45
+  },
+  "vespidae": {
+   "n": 10,
+   "q10": 0.07,
+   "q50": 0.13,
+   "q90": 1.04,
+   "mean": 0.57
+  },
+  "lepidoptera": {
+   "n": 217,
+   "q10": 0.13,
+   "q50": 0.9,
+   "q90": 4.5,
+   "mean": 1.85
+  },
+  "all": {
+   "n": 4572,
+   "q10": 0.13,
+   "q50": 2.63,
+   "q90": 8.63,
+   "mean": 3.87
+  }
+ },
+ "transit_speed_units_s": 209.7
+}

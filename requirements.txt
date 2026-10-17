@@ -21,3 +21,4 @@ ortools>=9.10             # orienteering / vehicle routing
 # D: app
 streamlit>=1.38
 plotly>=5.20
+scikit-learn>=1.4         # forecasting (kNN path model, next-flower classifier)
