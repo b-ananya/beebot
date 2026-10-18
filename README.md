@@ -107,61 +107,53 @@ Full command reference: [RUNNING.md](RUNNING.md).
 ## 4. Architecture
 
 ```mermaid
-flowchart LR
-  subgraph Data
-    V[Field video<br/>fixed camera]
-    PT[(2,335 Polytrack<br/>insect trajectories)]
-    REF[(Reference tracks<br/>HyDaT / Polytrack)]
+flowchart TB
+  subgraph IN["Inputs"]
+    direction LR
+    V["Field video<br/>fixed camera"]
+    PT[("2,335 recorded<br/>insect flights")]
+    REF[("Reference tracks<br/>HyDaT / Polytrack")]
   end
 
-  subgraph Perception["Perception (perception/)"]
-    CV[cv_track<br/>median background +<br/>global best-path linking]
-    VER[verify<br/>Mk1.5 insect detection<br/>on crops every 0.5 s]
-    FL[flowers<br/>Mk1.5 boxes on median frame,<br/>2x2 tiles, stable ids per camera]
-    VIS[visits<br/>visit events, stop-flowers,<br/>behavior labels]
+  subgraph P["1 · Perception — perception/"]
+    direction LR
+    CV["cv_track<br/>motion vs median background,<br/>global best-path linking"] --> VER["verify<br/>Mk1.5 checks a crop<br/>every 0.5 s per path"] --> VIS["visits<br/>visit events,<br/>behavior labels"]
+    FL["flowers<br/>Mk1.5 boxes on median frame,<br/>stable ids per camera"] --> VIS
+    MK{{"Perceptron Mk1.5<br/>cached client · cost cap"}}
+    VER -.-> MK
+    FL -.-> MK
   end
 
-  MK{{Perceptron Mk1.5<br/>cached client}}
-
-  subgraph Outputs["Contract files (CONTRACT.md)"]
-    TR[tracks/*.json]
-    FI[field/*.json]
-    PL[plan/*.json]
-    IDX[search/index.json]
+  subgraph O["2 · Contract files — CONTRACT.md, checked by validate.py"]
+    direction LR
+    TR["tracks/*.json"]
+    FI["field/*.json"]
+    PL["plan/*.json"]
+    IDX["search/index.json"]
   end
 
-  subgraph Intelligence
-    AN[analytics<br/>dwell, transit, speed,<br/>revisits, turns]
-    FC[forecast<br/>kNN path fan +<br/>next-flower ranker + rollouts]
-    SR[search<br/>moment index]
-    PLN[sim planner<br/>greedy + 2-opt orienteering]
-    RL[sim RL prototype<br/>Gymnasium + PPO]
+  subgraph I["3 · Intelligence"]
+    direction LR
+    AN["analytics"]
+    FC["forecast"]
+    PLN["route planner"]
+    SIM["RL bee · MuJoCo tab<br/>(prototype / in progress)"]
+    EV["eval + audits"]
   end
 
-  subgraph App["Web app (app/web)"]
-    UI[React panels:<br/>Video, Analytics, Forecast,<br/>Field, Dataset, Upload]
-    API[Vite dev server API<br/>/api/forecast, /api/analyze,<br/>/api/search/live]
+  subgraph A["4 · Web app — app/web"]
+    direction LR
+    UI["React tabs<br/>Video · Analytics · Forecast · Field<br/>Dataset · Upload · Search"]
+    API["dev-server API<br/>forecast · upload · live search"]
   end
 
-  EV[eval<br/>tracking + flower scores,<br/>visual audits]
-
-  V --> CV --> VER --> VIS
-  V --> FL --> VIS
-  VER <--> MK
-  FL <--> MK
-  VIS --> TR
-  TR --> AN & SR & EV
-  TR --> FI --> PL
-  PLN --> PL
+  V --> P
+  P --> O
+  O --> I
   PT --> FC
   REF --> EV
-  SR --> IDX
-  TR & FI & PL & IDX --> UI
-  UI <--> API
-  API --> FC
-  API --> CV
-  API --> MK
-  FI --> RL
+  I --> A
+  O --> A
 ```
 
 **Design choices that matter**
