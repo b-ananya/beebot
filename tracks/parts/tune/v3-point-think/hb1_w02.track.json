@@ -1,0 +1,30 @@
+{
+ "clip_id": "hb1_w02",
+ "model": "perceptron-mk1.5",
+ "prompt_version": "v3",
+ "resolution": "720p",
+ "annotation_format": "point",
+ "step_s": 0.25,
+ "reasoning_effort": "medium",
+ "usage": {
+  "prompt_tokens": 9233,
+  "completion_tokens": 367,
+  "total_tokens": 9600,
+  "prompt_tokens_details": {
+   "audio_tokens": 0
+  }
+ },
+ "finish_reason": "stop",
+ "cache_hit": false,
+ "cost_usd": 0.001935,
+ "cache_file": "p1/hb1_w02__track-v3__7430a150b0.json",
+ "parse_errors": [],
+ "tracks": [
+  {
+   "track_id": "honeybee_1",
+   "species": "honeybee",
+   "complete": true,
+   "points": []
+  }
+ ]
+}

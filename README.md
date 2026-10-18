@@ -57,6 +57,11 @@ user, because Mk1.5 called every insect a hoverfly at this resolution. `percepti
 on the clip's insect-free median frame (skipped for dense ground cover, where stops become the flowers);
 a visit is the insect inside a flower box for ≥ 0.3 s (Polytrack's rule).
 
+`tracks/*.json` is written by `perception.pipeline`. The earlier hybrid tracker's tracks (Raika, 2 fps) are kept in
+`tracks/hybrid/` for comparison: on the same eval they cover 38% of the reference path vs 90% for the pipeline
+(0.25 s window; pipeline better on 45 of 46 clips). Note `python -m perception.merge` rebuilds `tracks/*.json` from
+`tracks/parts/` and would overwrite the pipeline output; use `merge_clip(..., out_dir=...)` when experimenting.
+
 Forecasting (`forecast/`) trains on the 2,335 Polytrack farm trajectories, scored on 11 camera stations held out of
 training (`forecast/report.json`): next-flower top-3 accuracy 79% (nearest-flower baseline 68%); 2 s path forecast as
 a fan of 25 sampled futures, whose closest member ends a median 8 units (~0.3 cm) from the real position.

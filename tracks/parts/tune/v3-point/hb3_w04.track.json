@@ -1,0 +1,172 @@
+{
+ "clip_id": "hb3_w04",
+ "model": "perceptron-mk1.5",
+ "prompt_version": "v3",
+ "resolution": "720p",
+ "annotation_format": "point",
+ "step_s": 0.25,
+ "reasoning_effort": null,
+ "usage": {
+  "prompt_tokens": 9227,
+  "completion_tokens": 186,
+  "total_tokens": 9413,
+  "prompt_tokens_details": {
+   "audio_tokens": 0
+  }
+ },
+ "finish_reason": "stop",
+ "cache_hit": false,
+ "cost_usd": 0.001663,
+ "cache_file": "p1/hb3_w04__track-v3__0b1f980e4f.json",
+ "parse_errors": [],
+ "tracks": [
+  {
+   "track_id": "honeybee_1",
+   "species": "honeybee",
+   "complete": true,
+   "points": [
+    {
+     "t": 5.2,
+     "box": [
+      876.0,
+      955.0,
+      900.0,
+      979.0
+     ],
+     "center": [
+      888.0,
+      967.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 5.8,
+     "box": [
+      872.0,
+      932.0,
+      896.0,
+      956.0
+     ],
+     "center": [
+      884.0,
+      944.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 6.3,
+     "box": [
+      868.0,
+      907.0,
+      892.0,
+      931.0
+     ],
+     "center": [
+      880.0,
+      919.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 6.8,
+     "box": [
+      871.0,
+      882.0,
+      895.0,
+      906.0
+     ],
+     "center": [
+      883.0,
+      894.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 7.3,
+     "box": [
+      874.0,
+      857.0,
+      898.0,
+      881.0
+     ],
+     "center": [
+      886.0,
+      869.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 7.9,
+     "box": [
+      875.0,
+      830.0,
+      899.0,
+      854.0
+     ],
+     "center": [
+      887.0,
+      842.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 8.4,
+     "box": [
+      877.0,
+      805.0,
+      901.0,
+      829.0
+     ],
+     "center": [
+      889.0,
+      817.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 8.9,
+     "box": [
+      878.0,
+      782.0,
+      902.0,
+      806.0
+     ],
+     "center": [
+      890.0,
+      794.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 9.4,
+     "box": [
+      879.0,
+      759.0,
+      903.0,
+      783.0
+     ],
+     "center": [
+      891.0,
+      771.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 10.0,
+     "box": [
+      880.0,
+      737.0,
+      904.0,
+      761.0
+     ],
+     "center": [
+      892.0,
+      749.0
+     ],
+     "interpolated": false
+    }
+   ],
+   "box_from": "point"
+  }
+ ]
+}

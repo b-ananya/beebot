@@ -1,0 +1,255 @@
+{
+ "clip_id": "hb1_w02",
+ "model": "perceptron-mk1.5",
+ "prompt_version": "v2",
+ "resolution": "720p",
+ "annotation_format": "box",
+ "step_s": 0.5,
+ "reasoning_effort": null,
+ "usage": {
+  "prompt_tokens": 9223,
+  "completion_tokens": 346,
+  "total_tokens": 9569,
+  "prompt_tokens_details": {
+   "audio_tokens": 0
+  }
+ },
+ "finish_reason": "stop",
+ "cache_hit": false,
+ "cost_usd": 0.001902,
+ "cache_file": "p1/hb1_w02__track-v2__d633217904.json",
+ "parse_errors": [],
+ "tracks": [
+  {
+   "track_id": "honeybee_1",
+   "species": "honeybee",
+   "complete": true,
+   "points": [
+    {
+     "t": 1.6,
+     "box": [
+      916,
+      411,
+      944,
+      454
+     ],
+     "center": [
+      930.0,
+      432.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 2.1,
+     "box": [
+      905,
+      456,
+      931,
+      494
+     ],
+     "center": [
+      918.0,
+      475.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 3.1,
+     "box": [
+      909,
+      496,
+      933,
+      538
+     ],
+     "center": [
+      921.0,
+      517.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 3.7,
+     "box": [
+      913,
+      453,
+      934,
+      497
+     ],
+     "center": [
+      923.5,
+      475.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 4.2,
+     "box": [
+      906,
+      519,
+      930,
+      556
+     ],
+     "center": [
+      918.0,
+      537.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 4.7,
+     "box": [
+      895,
+      481,
+      918,
+      517
+     ],
+     "center": [
+      906.5,
+      499.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 5.2,
+     "box": [
+      889,
+      544,
+      910,
+      585
+     ],
+     "center": [
+      899.5,
+      564.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 5.8,
+     "box": [
+      888,
+      557,
+      908,
+      594
+     ],
+     "center": [
+      898.0,
+      575.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 6.3,
+     "box": [
+      890,
+      560,
+      911,
+      596
+     ],
+     "center": [
+      900.5,
+      578.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 6.8,
+     "box": [
+      893,
+      564,
+      914,
+      599
+     ],
+     "center": [
+      903.5,
+      581.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 7.3,
+     "box": [
+      896,
+      572,
+      917,
+      606
+     ],
+     "center": [
+      906.5,
+      589.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 7.9,
+     "box": [
+      899,
+      576,
+      921,
+      609
+     ],
+     "center": [
+      910.0,
+      592.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 8.4,
+     "box": [
+      903,
+      578,
+      924,
+      610
+     ],
+     "center": [
+      913.5,
+      594.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 8.9,
+     "box": [
+      907,
+      579,
+      927,
+      611
+     ],
+     "center": [
+      917.0,
+      595.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 9.4,
+     "box": [
+      912,
+      577,
+      932,
+      608
+     ],
+     "center": [
+      922.0,
+      592.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 10.0,
+     "box": [
+      919,
+      569,
+      941,
+      601
+     ],
+     "center": [
+      930.0,
+      585.0
+     ],
+     "interpolated": false
+    }
+   ]
+  }
+ ]
+}

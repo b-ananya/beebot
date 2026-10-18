@@ -1,0 +1,139 @@
+# sim/ — RL prototype for the bee path
+
+A proposal, not part of PLAN.md yet: instead of (or next to) the OR-Tools route planner, train a
+small policy that *behaves like a bee* on the 0–1000 field grid and draw its predicted path over a
+flower-only clip. Everything here lives under `sim/` and `rollouts/`.
+
+```bash
+python -m sim.bee_stats                 # measure speed / dwell from truth/sm*.json -> sim/bee_stats.json
+python -m sim.train                     # ~5 min CPU PPO -> sim/policy.zip, sim/eval.json
+python -m sim.rollout sm3_12_123903     # -> rollouts/sm3_12_123903_rl.mp4 + .json
+python -m sim.predict photo.jpg         # any picture -> Mk1.5 flowers -> path over the still (png, mp4, json)
+python -m pytest tests/test_sim.py
+```
+
+Needs `gymnasium` and `stable-baselines3` in `.venv` (`pip install gymnasium stable-baselines3`).
+`sim.rollout` reads `clips/<clip>.mp4`, so run it from the main checkout (or pass `--video`).
+
+## What the agent learned from
+
+- **Real bee numbers, not real bee paths.** From the 10 farm truth files (`truth/sm*.json`,
+  Polytrack reference tracks) we take the median flight speed outside visit events
+  (284 grid units/s), the median visit dwell (3.33 s) and the median flower radius (30 units).
+  These are the env's speed cap, the time the agent must hold on a flower to score, and the
+  size of the flower targets. See `sim/bee_stats.json`.
+- **Random fields.** Training episodes drop 4–10 flowers of that size at random positions and
+  start the agent at a random point. The real farm layouts are only used for evaluation and
+  rendering, so the policy has never seen them.
+- **The reward.** +1 for reaching an unvisited open flower and dwelling the median dwell time,
+  −0.01 per 0.1 s step, episode over after the time budget (30 s in training). A potential-based
+  shaping term (distance to the nearest unvisited flower) speeds up learning without changing
+  which policy is optimal.
+- **What it sees.** Its own position, time left, dwell progress, and the relative position of
+  the 6 nearest unvisited open flowers. Flowers with `state` `bud`/`fruit`/`unknown` are drawn
+  but never rewarded, matching the CONTRACT.md rule that only open flowers get a deficit.
+
+## What it did not learn from
+
+- **No pixels.** The policy never sees video. Flowers arrive as boxes (today from `truth/`,
+  later from `tracks/parts/<clip>.flowers.json` when Mk1.5 produces them); the video is only
+  the backdrop for the rendered dot.
+- **No flight physics.** The agent is a point with a velocity cap. No inertia, wind, wings,
+  hovering, occlusion by leaves, or the real bee's habit of circling before landing.
+- **No bee preferences.** It does not know species, flower quality, scent, or which flowers the
+  real bee actually chose. "Looks like a bee" means "moves at bee speed and stops for bee dwell
+  time", nothing more.
+- **No learning from the real tracks.** The truth tracks set three constants; they are not
+  imitation data. A next step would be behaviour cloning on the 48 clips' tracks.
+
+## How it compares to the baseline
+
+The baseline is *nearest-unvisited*: fly at the speed cap straight to the closest unvisited
+open flower, hold still for the dwell time, repeat. On the farm layouts this is close to
+optimal, because the flowers are few and the dwell time dominates travel time.
+
+Trained 5 min on CPU (1.1 M steps, `sim/eval.json`). Flowers visited per budget on the 10 real
+farm layouts, both starting where the real bee entered the frame:
+
+| Budget | Layouts | PPO visits (mean) | Baseline visits (mean) | Layouts where PPO < baseline |
+|---|---|---|---|---|
+| 15 s (clip length) | 10 | 3.3 | 3.4 | 1 of 10 (`sm3_12_123810`: 3 vs 4) |
+| 30 s (training budget) | 10 | 6.5 (all open flowers) | 6.5 (all open flowers) | 0 of 10 |
+
+Mean time to the first visit is 4.1 s for PPO and 4.0 s for the baseline. A 30-second training
+run reached only 1.3 visits, so the policy really is learned, not a lucky initialisation.
+
+Read the table as: the baseline is the ceiling for this toy problem, and PPO's job was to
+rediscover it from reward alone. Where PPO ties it, the RL plumbing works; where it falls short,
+it is a training-budget gap, not a modelling one. The RL framing earns its keep once the env
+gets things a greedy rule cannot handle: flower deficits as reward weights, several bees or
+robots sharing a field, flowers that close, or motion costs that are not straight lines.
+
+## Any picture: `python -m sim.predict photo.jpg`
+
+The upload path. One image goes to Mk1.5 for flower boxes through the shared `perception.client`
+(cached by image bytes, so a repeat is free; logged in `costs/`, about $0.006 a picture), the policy
+flies the field for `--budget` seconds (default 30), and three files land in `rollouts/`:
+
+- `<name>_rl.png`: the whole path, each visited flower numbered in visit order with its arrival
+  time and how long the bee waits there (`+3.3s`, the median farm dwell).
+- `<name>_rl.mp4`: the orange dot animated over the still image.
+- `<name>_rl.json`: the flowers, `detection` (source, cost, warnings), `visits` with
+  `t_arrive`, `t_leave`, `dwell_s`, and the full `waypoints` list. This is the hand-off for a
+  MuJoCo bee: follow the waypoints, pause at each visit.
+
+Farm reference frames (`tracks/raw/frames/<clip>_ref.png`) reuse the team's cached detection in
+`tracks/parts/` and cost nothing. `--prompt strawberry` uses the farm camera prompt; the default
+`any` prompt accepts any colour of flower. `--start x,y` moves the entry point (default
+bottom-right).
+
+**Known limit: very dense fields.** On the Monash Scaevola ground cover (hundreds of flowers in
+frame) Mk1.5 collapses: it emits sliver boxes along the top edge until it runs out of tokens, and
+a point-only retry with a 40-flower cap still clusters in the top band. `predict` drops sliver
+boxes, falls back to points with the median flower radius, and sets `detection.warning` when the
+answer was cut off, so the JSON says when the path is built on a bad flower list. Tiling the image
+into quarters would be the next thing to try. The farm frames (6�10 flowers) detect fine.
+
+## Known limitations
+
+1. **Flower detection is the weak link.** Mk1.5 boxes the farm frames well (6�10 flowers) but
+   collapses on dense scenes: on the Monash Scaevola ground cover it emits sliver boxes along the
+   top edge until the token limit, ignores the "at most 40" instruction, and a point-only retry
+   still clusters in the top band. `predict` drops slivers, retries with points, and sets
+   `detection.warning` in the JSON, but it cannot make a bad flower list good. Untested on an
+   ordinary garden photo; expect it to sit between those two cases. Tiling the image is the next
+   thing to try.
+2. **One dwell time for every flower.** Every visit lasts 3.33 s, the median of the 14 real farm
+   visits. Real dwell varies a lot (1�7 s in truth) and depends on the flower; 14 samples are too
+   few to learn that, so the number is a constant, not a prediction.
+3. **Straight-line flight.** The policy learned bee speed and dwell, not bee paths: no inertia,
+   wind, hovering, circling before landing, or occlusion by leaves. Trails are smooth curves
+   between flowers, not bee-like flight. Behaviour cloning on the 48 clips' tracks is the fix.
+4. **No pixels, no scene.** The agent sees flower boxes only. It does not know flower species,
+   quality, scent, or whether a flower was already pollinated; every open flower is worth +1.
+5. **Start point is a guess.** Rollouts start where the real bee entered the frame (first truth
+   point); `predict` starts at the bottom-right corner unless `--start` is given.
+6. **Single bee, flat field.** One agent, a 2-D plane, flowers that never close, no other insects.
+7. **Trained on random fields, scored on 10 real layouts.** PPO ties the greedy baseline there,
+   which says the pipeline works, not that RL beats a rule. The RL framing pays off only once the
+   reward gets richer (deficits, several agents, flowers closing).
+8. **Not in CONTRACT.md.** The rollout and predict JSON shapes are this folder's own; the
+   `waypoints` list (`t, x, y, flower_id`) is meant as the MuJoCo hand-off but nothing consumes
+   it yet.
+9. **Runs from the main checkout.** `sim.rollout` needs `clips/`, `predict` needs `.env` with
+   `PERCEPTRON_API_KEY`; both are gitignored. Pasting a photo into chat does not create a file:
+   save it to disk and pass the path.
+
+## Files
+
+| Path | What |
+|---|---|
+| `sim/bee_stats.py` → `sim/bee_stats.json` | median flight speed, dwell, flower radius from `truth/sm*.json` |
+| `sim/field_env.py` | `FieldEnv` (Gymnasium), `random_layout`, `nearest_unvisited_action` baseline |
+| `sim/train.py` → `sim/policy.zip`, `sim/eval.json` | PPO training and the per-layout comparison |
+| `sim/rollout.py` → `rollouts/<clip>_rl.mp4`, `rollouts/<clip>_rl.json` | render + waypoints `[{t, x, y, flower_id}]` |
+| `tests/test_sim.py` | env reset/step, reward fires on a visit, rollout and predict JSON shape (no API, no video) |
+
+`rollouts/*.mp4` and `*.png` are gitignored; the JSON is committed. The rollout starts the dot where the
+real bee entered the frame (first truth point) so the overlay is comparable with the truth
+track; without a track it starts at the bottom-right corner.

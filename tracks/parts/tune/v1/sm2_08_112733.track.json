@@ -1,0 +1,241 @@
+{
+ "clip_id": "sm2_08_112733",
+ "model": "perceptron-mk1.5",
+ "prompt_version": "v1",
+ "resolution": "720p",
+ "annotation_format": "box",
+ "step_s": 0.5,
+ "reasoning_effort": null,
+ "usage": {
+  "prompt_tokens": 8238,
+  "completion_tokens": 324,
+  "total_tokens": 8562,
+  "prompt_tokens_details": {
+   "audio_tokens": 0
+  }
+ },
+ "finish_reason": "stop",
+ "cache_hit": false,
+ "cost_usd": 0.001722,
+ "cache_file": "p1/sm2_08_112733__track-v1__c341797a1b.json",
+ "parse_errors": [],
+ "tracks": [
+  {
+   "track_id": "vespidae_1",
+   "species": "vespidae",
+   "complete": true,
+   "points": [
+    {
+     "t": 1.7,
+     "box": [
+      895,
+      768,
+      912,
+      806
+     ],
+     "center": [
+      903.5,
+      787.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 2.3,
+     "box": [
+      865,
+      678,
+      882,
+      716
+     ],
+     "center": [
+      873.5,
+      697.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 2.8,
+     "box": [
+      813,
+      592,
+      833,
+      635
+     ],
+     "center": [
+      823.0,
+      613.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 3.4,
+     "box": [
+      670,
+      581,
+      698,
+      619
+     ],
+     "center": [
+      684.0,
+      600.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 4.0,
+     "box": [
+      555,
+      444,
+      582,
+      481
+     ],
+     "center": [
+      568.5,
+      462.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 4.5,
+     "box": [
+      414,
+      388,
+      438,
+      426
+     ],
+     "center": [
+      426.0,
+      407.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 5.1,
+     "box": [
+      384,
+      606,
+      406,
+      640
+     ],
+     "center": [
+      395.0,
+      623.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 5.6,
+     "box": [
+      393,
+      688,
+      416,
+      719
+     ],
+     "center": [
+      404.5,
+      703.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 6.2,
+     "box": [
+      528,
+      496,
+      545,
+      532
+     ],
+     "center": [
+      536.5,
+      514.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 6.8,
+     "box": [
+      615,
+      456,
+      639,
+      488
+     ],
+     "center": [
+      627.0,
+      472.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 7.3,
+     "box": [
+      705,
+      431,
+      730,
+      464
+     ],
+     "center": [
+      717.5,
+      447.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 7.9,
+     "box": [
+      773,
+      394,
+      798,
+      427
+     ],
+     "center": [
+      785.5,
+      410.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 8.5,
+     "box": [
+      845,
+      356,
+      870,
+      389
+     ],
+     "center": [
+      857.5,
+      372.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 9.0,
+     "box": [
+      913,
+      314,
+      937,
+      347
+     ],
+     "center": [
+      925.0,
+      330.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 9.6,
+     "box": [
+      962,
+      276,
+      986,
+      309
+     ],
+     "center": [
+      974.0,
+      292.5
+     ],
+     "interpolated": false
+    }
+   ]
+  }
+ ]
+}

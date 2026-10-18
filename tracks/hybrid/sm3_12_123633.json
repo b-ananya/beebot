@@ -1,0 +1,131 @@
+{
+ "clip_id": "sm3_12_123633",
+ "model": "perceptron-mk1.5",
+ "prompt_version": "f3",
+ "tracks": [
+  {
+   "track_id": "lepidoptera_1",
+   "species": "lepidoptera",
+   "complete": true,
+   "points": [
+    {
+     "t": 2.5,
+     "box": [
+      78.6,
+      557.4,
+      102.6,
+      581.4
+     ],
+     "center": [
+      90.6,
+      569.4
+     ],
+     "interpolated": false
+    }
+   ],
+   "box_from": "point"
+  }
+ ],
+ "flowers": [
+  {
+   "flower_id": "flower_1",
+   "box": [
+    492,
+    261,
+    532,
+    319
+   ]
+  },
+  {
+   "flower_id": "flower_2",
+   "box": [
+    523,
+    278,
+    563,
+    341
+   ]
+  },
+  {
+   "flower_id": "flower_4",
+   "box": [
+    157,
+    437,
+    195,
+    502
+   ]
+  },
+  {
+   "flower_id": "flower_5",
+   "box": [
+    827,
+    458,
+    871,
+    517
+   ]
+  },
+  {
+   "flower_id": "flower_7",
+   "box": [
+    877,
+    486,
+    909,
+    538
+   ]
+  },
+  {
+   "flower_id": "flower_9",
+   "box": [
+    83,
+    529,
+    125,
+    594
+   ]
+  },
+  {
+   "flower_id": "flower_10",
+   "box": [
+    865,
+    544,
+    908,
+    613
+   ]
+  },
+  {
+   "flower_id": "flower_11",
+   "box": [
+    793,
+    584,
+    812,
+    617
+   ]
+  },
+  {
+   "flower_id": "flower_14",
+   "box": [
+    219,
+    859,
+    254,
+    901
+   ]
+  },
+  {
+   "flower_id": "flower_16",
+   "box": [
+    51,
+    881,
+    71,
+    919
+   ]
+  },
+  {
+   "flower_id": "flower_17",
+   "box": [
+    110,
+    923,
+    138,
+    974
+   ]
+  }
+ ],
+ "events": []
+}

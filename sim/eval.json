@@ -1,0 +1,92 @@
+{
+ "budget_s": 30.0,
+ "layouts": 10,
+ "ppo_visits_mean": 6.5,
+ "baseline_visits_mean": 6.5,
+ "ppo_first_visit_s_mean": 4.11,
+ "baseline_first_visit_s_mean": 4.05,
+ "per_layout": [
+  {
+   "clip_id": "sm2_08_112658",
+   "n_open": 6,
+   "ppo": 6,
+   "ppo_first_visit_s": 4.9,
+   "nearest_unvisited": 6,
+   "nearest_unvisited_first_visit_s": 4.8
+  },
+  {
+   "clip_id": "sm2_08_112704",
+   "n_open": 6,
+   "ppo": 6,
+   "ppo_first_visit_s": 4.5,
+   "nearest_unvisited": 6,
+   "nearest_unvisited_first_visit_s": 4.4
+  },
+  {
+   "clip_id": "sm2_08_112710",
+   "n_open": 6,
+   "ppo": 6,
+   "ppo_first_visit_s": 4.5,
+   "nearest_unvisited": 6,
+   "nearest_unvisited_first_visit_s": 4.4
+  },
+  {
+   "clip_id": "sm2_08_112712",
+   "n_open": 6,
+   "ppo": 6,
+   "ppo_first_visit_s": 4.4,
+   "nearest_unvisited": 6,
+   "nearest_unvisited_first_visit_s": 4.3
+  },
+  {
+   "clip_id": "sm2_08_112733",
+   "n_open": 6,
+   "ppo": 6,
+   "ppo_first_visit_s": 4.8,
+   "nearest_unvisited": 6,
+   "nearest_unvisited_first_visit_s": 4.7
+  },
+  {
+   "clip_id": "sm3_12_123633",
+   "n_open": 7,
+   "ppo": 7,
+   "ppo_first_visit_s": 3.3,
+   "nearest_unvisited": 7,
+   "nearest_unvisited_first_visit_s": 3.3
+  },
+  {
+   "clip_id": "sm3_12_123810",
+   "n_open": 7,
+   "ppo": 7,
+   "ppo_first_visit_s": 3.3,
+   "nearest_unvisited": 7,
+   "nearest_unvisited_first_visit_s": 3.3
+  },
+  {
+   "clip_id": "sm3_12_123903",
+   "n_open": 7,
+   "ppo": 7,
+   "ppo_first_visit_s": 3.7,
+   "nearest_unvisited": 7,
+   "nearest_unvisited_first_visit_s": 3.7
+  },
+  {
+   "clip_id": "sm3_12_124027",
+   "n_open": 7,
+   "ppo": 7,
+   "ppo_first_visit_s": 3.7,
+   "nearest_unvisited": 7,
+   "nearest_unvisited_first_visit_s": 3.6
+  },
+  {
+   "clip_id": "sm3_12_124130",
+   "n_open": 7,
+   "ppo": 7,
+   "ppo_first_visit_s": 4.0,
+   "nearest_unvisited": 7,
+   "nearest_unvisited_first_visit_s": 4.0
+  }
+ ],
+ "timesteps": 1114120,
+ "train_seconds": 300.1
+}

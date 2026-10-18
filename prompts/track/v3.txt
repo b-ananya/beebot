@@ -1,0 +1,11 @@
+Point to the single {species} in this video at each sampled time while it is visible.
+
+What to look for: a small dark insect, about 20 to 30 pixels across, with a lighter striped abdomen. It flies and walks between flowers and ground cover, changes direction often, and may leave the frame or hide behind leaves. The camera does not move. Only the insect moves.
+
+Return exactly one track with mention="{species}" and asset_idx="0" made of point children, each with a timestamp in seconds and coordinates normalized to 0-1000, origin top-left. Put the point on the centre of the insect's body. Give a point about every {step_s} seconds, but only at times where you can see the insect in that frame. The clip is {duration_s} seconds long.
+
+Rules:
+- Every point must come from where the insect is in that frame. Do not extrapolate, smooth or fill in a path. Real insect paths are jerky, not straight lines, and the insect often stays in one place for a while.
+- If the insect is hidden, out of frame, or you cannot find it, give no point for that time. A gap is correct. A guess is wrong.
+
+Output only the track markup, no explanation.

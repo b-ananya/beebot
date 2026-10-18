@@ -1,0 +1,61 @@
+{
+ "request": {
+  "clip_id": "hb1_w05",
+  "piece": "p1",
+  "user": "raika",
+  "created_at": "2026-10-17T22:09:11+00:00",
+  "model": "perceptron-mk1.5",
+  "prompt_name": "verify192",
+  "prompt_version": "f3",
+  "prompt_text": "This is a small zoomed-in crop, about 190 pixels square, from one frame of a fixed camera filming flowers and ground cover. Is there a honeybee in it? A honeybee is a dark insect with a lighter striped abdomen, wings and legs. In a crop this size it would be large and clear, roughly a tenth to a third of the crop wide. Petals, leaves, stems, shadows, soil and dark spots are not insects.\n\nIf there is one, return exactly one point on the centre of its body, with mention=\"honeybee\", coordinates normalized to 0-1000 with origin top-left.\n\nIf there is no insect in this crop, answer exactly: none",
+  "annotation_format": "point",
+  "max_tokens": 128,
+  "reasoning_effort": null,
+  "temperature": null,
+  "media": [
+   "004500_c879_0_192.jpg"
+  ],
+  "media_sha256": [
+   "d67a9d2f4f7bb90b9ce18e3b50fb24aab114e9e17a36c6cd7184db4412ff8e81"
+  ]
+ },
+ "response": {
+  "text": "<point mention=\"honeybee\"> (500,433) </point>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 227,
+   "completion_tokens": 19,
+   "total_tokens": 246,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "48a0e9e194360cd272bce0ef4bdf6af1",
+  "cost_usd": 6.3e-05
+ },
+ "raw": {
+  "id": "chatcmpl-82ce557eb0c145eb93c6ce08493da032",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<point mention=\"honeybee\"> (500,433) </point>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792274951,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 227,
+   "completion_tokens": 19,
+   "total_tokens": 246,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

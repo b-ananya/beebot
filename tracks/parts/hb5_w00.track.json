@@ -1,0 +1,232 @@
+{
+ "clip_id": "hb5_w00",
+ "prompt_version": "f3",
+ "mode": "hybrid",
+ "resolution": "720p",
+ "annotation_format": "box",
+ "step_s": 0.5,
+ "reasoning_effort": null,
+ "model": "perceptron-mk1.5",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 52030,
+  "completion_tokens": 1732
+ },
+ "cost_usd": 0.010463,
+ "cache_hit": false,
+ "frames": 20,
+ "fps": 2.0,
+ "tiles": 2,
+ "crop_px": 192,
+ "tile_version": "f2",
+ "candidates": 90,
+ "verified": 20,
+ "cache_file": "p1/hb5_w00__{frame2t2,verify192}-*.json",
+ "parse_errors": [],
+ "tracks": [
+  {
+   "track_id": "honeybee_1",
+   "species": "honeybee",
+   "complete": true,
+   "points": [
+    {
+     "t": 0.5,
+     "box": [
+      888.9,
+      418.9,
+      912.9,
+      442.9
+     ],
+     "center": [
+      900.9,
+      430.9
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.0,
+     "box": [
+      889.6,
+      422.8,
+      913.6,
+      446.8
+     ],
+     "center": [
+      901.6,
+      434.8
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.5,
+     "box": [
+      864.6,
+      418.9,
+      888.6,
+      442.9
+     ],
+     "center": [
+      876.6,
+      430.9
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 3.5,
+     "box": [
+      559.1,
+      903.5,
+      583.1,
+      927.5
+     ],
+     "center": [
+      571.1,
+      915.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 4.0,
+     "box": [
+      551.3,
+      896.3,
+      575.3,
+      920.3
+     ],
+     "center": [
+      563.3,
+      908.3
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 4.5,
+     "box": [
+      470.8,
+      779.4,
+      494.8,
+      803.4
+     ],
+     "center": [
+      482.8,
+      791.4
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 5.0,
+     "box": [
+      409.5,
+      811.9,
+      433.5,
+      835.9
+     ],
+     "center": [
+      421.5,
+      823.9
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 5.5,
+     "box": [
+      397.4,
+      780.0,
+      421.4,
+      804.0
+     ],
+     "center": [
+      409.4,
+      792.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 6.5,
+     "box": [
+      392.8,
+      772.7,
+      416.8,
+      796.7
+     ],
+     "center": [
+      404.8,
+      784.7
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 7.0,
+     "box": [
+      399.9,
+      758.1,
+      423.9,
+      782.1
+     ],
+     "center": [
+      411.9,
+      770.1
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 8.0,
+     "box": [
+      402.8,
+      744.6,
+      426.8,
+      768.6
+     ],
+     "center": [
+      414.8,
+      756.6
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 8.5,
+     "box": [
+      150.5,
+      280.3,
+      174.5,
+      304.3
+     ],
+     "center": [
+      162.5,
+      292.3
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 9.0,
+     "box": [
+      402.1,
+      743.6,
+      426.1,
+      767.6
+     ],
+     "center": [
+      414.1,
+      755.6
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 9.5,
+     "box": [
+      134.8,
+      279.7,
+      158.8,
+      303.7
+     ],
+     "center": [
+      146.8,
+      291.7
+     ],
+     "interpolated": false
+    }
+   ],
+   "box_from": "point"
+  }
+ ]
+}
