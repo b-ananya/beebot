@@ -1,0 +1,50 @@
+{
+ "clip_id": "sm3_12_123633",
+ "prompt_version": "f3",
+ "mode": "hybrid",
+ "resolution": "720p",
+ "annotation_format": "box",
+ "step_s": 0.5,
+ "reasoning_effort": null,
+ "model": "perceptron-mk1.5",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 49608,
+  "completion_tokens": 704
+ },
+ "cost_usd": 0.0,
+ "cache_hit": true,
+ "frames": 30,
+ "fps": 2.0,
+ "tiles": 2,
+ "crop_px": 192,
+ "tile_version": "f2",
+ "candidates": 8,
+ "verified": 1,
+ "cache_file": "p1/sm3_12_123633__{frame2t2,verify192}-*.json",
+ "parse_errors": [],
+ "tracks": [
+  {
+   "track_id": "lepidoptera_1",
+   "species": "lepidoptera",
+   "complete": true,
+   "points": [
+    {
+     "t": 2.5,
+     "box": [
+      78.6,
+      557.4,
+      102.6,
+      581.4
+     ],
+     "center": [
+      90.6,
+      569.4
+     ],
+     "interpolated": false
+    }
+   ],
+   "box_from": "point"
+  }
+ ]
+}

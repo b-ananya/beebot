@@ -1,0 +1,186 @@
+{
+ "clip_id": "sm2_08_112733",
+ "model": "perceptron-mk1.5",
+ "prompt_version": "v3",
+ "resolution": "720p",
+ "annotation_format": "point",
+ "step_s": 0.25,
+ "reasoning_effort": null,
+ "usage": {
+  "prompt_tokens": 8332,
+  "completion_tokens": 200,
+  "total_tokens": 8532,
+  "prompt_tokens_details": {
+   "audio_tokens": 0
+  }
+ },
+ "finish_reason": "stop",
+ "cache_hit": false,
+ "cost_usd": 0.00155,
+ "cache_file": "p1/sm2_08_112733__track-v3__94cff40ece.json",
+ "parse_errors": [],
+ "tracks": [
+  {
+   "track_id": "vespidae_1",
+   "species": "vespidae",
+   "complete": true,
+   "points": [
+    {
+     "t": 0.6,
+     "box": [
+      861.0,
+      720.0,
+      885.0,
+      744.0
+     ],
+     "center": [
+      873.0,
+      732.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.7,
+     "box": [
+      890.0,
+      778.0,
+      914.0,
+      802.0
+     ],
+     "center": [
+      902.0,
+      790.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 2.3,
+     "box": [
+      859.0,
+      689.0,
+      883.0,
+      713.0
+     ],
+     "center": [
+      871.0,
+      701.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 2.8,
+     "box": [
+      811.0,
+      601.0,
+      835.0,
+      625.0
+     ],
+     "center": [
+      823.0,
+      613.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 3.4,
+     "box": [
+      671.0,
+      592.0,
+      695.0,
+      616.0
+     ],
+     "center": [
+      683.0,
+      604.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 4.0,
+     "box": [
+      558.0,
+      451.0,
+      582.0,
+      475.0
+     ],
+     "center": [
+      570.0,
+      463.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 4.5,
+     "box": [
+      383.0,
+      612.0,
+      407.0,
+      636.0
+     ],
+     "center": [
+      395.0,
+      624.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 5.1,
+     "box": [
+      384.0,
+      609.0,
+      408.0,
+      633.0
+     ],
+     "center": [
+      396.0,
+      621.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 5.6,
+     "box": [
+      524.0,
+      505.0,
+      548.0,
+      529.0
+     ],
+     "center": [
+      536.0,
+      517.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 6.2,
+     "box": [
+      618.0,
+      460.0,
+      642.0,
+      484.0
+     ],
+     "center": [
+      630.0,
+      472.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 6.8,
+     "box": [
+      711.0,
+      442.0,
+      735.0,
+      466.0
+     ],
+     "center": [
+      723.0,
+      454.0
+     ],
+     "interpolated": false
+    }
+   ],
+   "box_from": "point"
+  }
+ ]
+}

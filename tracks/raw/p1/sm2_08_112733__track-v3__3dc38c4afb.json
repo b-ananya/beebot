@@ -1,0 +1,59 @@
+{
+ "request": {
+  "clip_id": "sm2_08_112733",
+  "piece": "p1",
+  "user": "raika",
+  "created_at": "2026-10-17T21:26:10+00:00",
+  "media": [
+   "39751b5550533b092df16622f9d15ffcc5c18c8c8a968814f351b48c51dc9c9b"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "track",
+  "prompt_version": "v3",
+  "prompt_text": "Point to the single wasp in this video at each sampled time while it is visible.\n\nWhat to look for: a small dark insect, about 20 to 30 pixels across, with a lighter striped abdomen. It flies and walks between flowers and ground cover, changes direction often, and may leave the frame or hide behind leaves. The camera does not move. Only the insect moves.\n\nReturn exactly one track with mention=\"wasp\" and asset_idx=\"0\" made of point children, each with a timestamp in seconds and coordinates normalized to 0-1000, origin top-left. Put the point on the centre of the insect's body. Give a point about every 0.25 seconds, but only at times where you can see the insect in that frame. The clip is 9.633 seconds long.\n\nRules:\n- Every point must come from where the insect is in that frame. Do not extrapolate, smooth or fill in a path. Real insect paths are jerky, not straight lines, and the insect often stays in one place for a while.\n- If the insect is hidden, out of frame, or you cannot find it, give no point for that time. A gap is correct. A guess is wrong.\n\nOutput only the track markup, no explanation.",
+  "annotation_format": "point",
+  "max_tokens": 4096,
+  "reasoning_effort": "medium",
+  "temperature": null
+ },
+ "response": {
+  "text": "<track mention=\"wasp\">\n <point t=\"0.0 seconds\"> (873,732) </point>\n <point t=\"0.6 seconds\"> (873,732) </point>\n <point t=\"1.1 seconds\"> (873,732) </point>\n <point t=\"1.7 seconds\"> (873,732) </point>\n <point t=\"2.3 seconds\"> (873,732) </point>\n <point t=\"2.8 seconds\"> (873,732) </point>\n <point t=\"3.4 seconds\"> (873,732) </point>\n <point t=\"4.0 seconds\"> (873,732) </point>\n <point t=\"4.5 seconds\"> (873,732) </point>\n <point t=\"5.1 seconds\"> (873,732) </point>\n <point t=\"5.6 seconds\"> (873,732) </point>\n <point t=\"6.2 seconds\"> (873,732) </point>\n <point t=\"6.8 seconds\"> (873,732) </point>\n <point t=\"7.3 seconds\"> (873,732) </point>\n <point t=\"7.9 seconds\"> (873,732) </point>\n <point t=\"8.5 seconds\"> (873,732) </point>\n <point t=\"9.0 seconds\"> (873,732) </point>\n <point t=\"9.6 seconds\"> (873,732) </point>\n</track>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 8338,
+   "completion_tokens": 616,
+   "total_tokens": 8954,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "48448bb2beac8dd03f1d32ebd457a576",
+  "cost_usd": 0.002175
+ },
+ "raw": {
+  "id": "chatcmpl-8dcd8bb6793d4753af78b2ff3b1767e6",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<track mention=\"wasp\">\n <point t=\"0.0 seconds\"> (873,732) </point>\n <point t=\"0.6 seconds\"> (873,732) </point>\n <point t=\"1.1 seconds\"> (873,732) </point>\n <point t=\"1.7 seconds\"> (873,732) </point>\n <point t=\"2.3 seconds\"> (873,732) </point>\n <point t=\"2.8 seconds\"> (873,732) </point>\n <point t=\"3.4 seconds\"> (873,732) </point>\n <point t=\"4.0 seconds\"> (873,732) </point>\n <point t=\"4.5 seconds\"> (873,732) </point>\n <point t=\"5.1 seconds\"> (873,732) </point>\n <point t=\"5.6 seconds\"> (873,732) </point>\n <point t=\"6.2 seconds\"> (873,732) </point>\n <point t=\"6.8 seconds\"> (873,732) </point>\n <point t=\"7.3 seconds\"> (873,732) </point>\n <point t=\"7.9 seconds\"> (873,732) </point>\n <point t=\"8.5 seconds\"> (873,732) </point>\n <point t=\"9.0 seconds\"> (873,732) </point>\n <point t=\"9.6 seconds\"> (873,732) </point>\n</track>",
+     "reasoning_content": "<track mention=\"wasp\">\n <point t=\"0.0 seconds\"> (873,732) </point>\n <point t=\"0.6 seconds\"> (873,732) </point>\n <point t=\"1.1 seconds\"> (873,732) </point>\n <point t=\"1.7 seconds\"> (873,732) </point>\n <point t=\"2.3 seconds\"> (873,732) </point>\n <point t=\"2.8 seconds\"> (873,732) </point>\n <point t=\"3.4 seconds\"> (873,732) </point>\n <point t=\"4.0 seconds\"> (873,732) </point>\n <point t=\"4.5 seconds\"> (873,732) </point>\n <point t=\"5.1 seconds\"> (873,732) </point>\n <point t=\"5.6 seconds\"> (873,732) </point>\n <point t=\"6.2 seconds\"> (873,732) </point>\n <point t=\"6.8 seconds\"> (873,732) </point>\n <point t=\"7.3 seconds\"> (873,732) </point>\n <point t=\"7.9 seconds\"> (873,732) </point>\n <point t=\"8.5 seconds\"> (873,732) </point>\n <point t=\"9.0 seconds\"> (873,732) </point>\n <point t=\"9.6 seconds\"> (873,732) </point>\n</track>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792272366,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 8338,
+   "completion_tokens": 616,
+   "total_tokens": 8954,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

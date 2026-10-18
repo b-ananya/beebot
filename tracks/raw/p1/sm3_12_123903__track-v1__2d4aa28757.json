@@ -1,0 +1,58 @@
+{
+ "request": {
+  "clip_id": "sm3_12_123903",
+  "piece": "p1",
+  "user": "raika",
+  "created_at": "2026-10-17T21:24:18+00:00",
+  "media": [
+   "61587100ffd84664ded3ab101a81fee7127a1d41d9af9046d65e447e09297270"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "track",
+  "prompt_version": "v1",
+  "prompt_text": "Track the single honeybee in this video while it is visible.\n\nThe bee is small (roughly 20 to 30 pixels across), dark with a lighter striped abdomen, and it moves fast between flowers and ground cover. Follow that one insect only. If several insects appear, follow the one that is visible for the longest time.\n\nReturn exactly one track with mention=\"honeybee\" and asset_idx=\"0\". Use point_box children with timestamps in seconds and coordinates normalized to 0-1000. Give a box roughly every 0.5 seconds while the bee is visible. The clip is 15.0 seconds long.\n\nDo not invent positions when the bee is occluded, out of frame, or you are not sure where it is. A missing observation is better than a guessed one. Output only the track markup, no explanation.",
+  "annotation_format": "box",
+  "max_tokens": 4096,
+  "reasoning_effort": null,
+  "temperature": null
+ },
+ "response": {
+  "text": "<track mention=\"honeybee\" asset_idx=\"0\">\n <point_box t=\"1.5 seconds\"> (927,656) (945,681) </point_box>\n <point_box t=\"2.1 seconds\"> (923,658) (941,685) </point_box>\n <point_box t=\"2.6 seconds\"> (916,660) (933,686) </point_box>\n <point_box t=\"3.1 seconds\"> (905,661) (921,687) </point_box>\n <point_box t=\"3.6 seconds\"> (895,663) (909,688) </point_box>\n <point_box t=\"4.1 seconds\"> (884,664) (898,689) </point_box>\n <point_box t=\"4.6 seconds\"> (874,665) (887,690) </point_box>\n <point_box t=\"5.2 seconds\"> (862,666) (875,691) </point_box>\n <point_box t=\"5.7 seconds\"> (852,667) (865,692) </point_box>\n <point_box t=\"6.2 seconds\"> (842,668) (854,693) </point_box>\n <point_box t=\"6.7 seconds\"> (833,669) (844,694) </point_box>\n <point_box t=\"7.2 seconds\"> (823,670) (834,695) </point_box>\n <point_box t=\"7.7 seconds\"> (814,671) (825,696) </point_box>\n <point_box t=\"8.3 seconds\"> (802,672) (812,697) </point_box>\n <point_box t=\"8.8 seconds\"> (794,674) (804,699) </point_box>\n <point_box t=\"9.3 seconds\"> (786,675) (795,700) </point_box>\n <point_box t=\"9.8 seconds\"> (778,676) (785,701) </point_box>\n <point_box t=\"10.3 seconds\"> (770,678) (777,703) </point_box>\n <point_box t=\"10.8 seconds\"> (762,679) (769,704) </point_box>\n <point_box t=\"11.4 seconds\"> (753,680) (760,706) </point_box>\n <point_box t=\"11.9 seconds\"> (745,681) (752,707) </point_box>\n <point_box t=\"12.4 seconds\"> (738,682) (744,708) </point_box>\n <point_box t=\"12.9 seconds\"> (730,683) (736,710) </point_box>\n <point_box t=\"13.4 seconds\"> (723,684) (728,711) </point_box>\n <point_box t=\"13.9 seconds\"> (716,685) (721,712) </point_box>\n <point_box t=\"14.5 seconds\"> (709,686) (714,713) </point_box>\n <point_box t=\"15.0 seconds\"> (702,687) (707,715) </point_box>\n</track>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 13612,
+   "completion_tokens": 575,
+   "total_tokens": 14187,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "d76c67f9b5cd3ee03e19d4c793a56fa0",
+  "cost_usd": 0.002904
+ },
+ "raw": {
+  "id": "chatcmpl-82068c80d61a43b18fc7a937e87cda0c",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<track mention=\"honeybee\" asset_idx=\"0\">\n <point_box t=\"1.5 seconds\"> (927,656) (945,681) </point_box>\n <point_box t=\"2.1 seconds\"> (923,658) (941,685) </point_box>\n <point_box t=\"2.6 seconds\"> (916,660) (933,686) </point_box>\n <point_box t=\"3.1 seconds\"> (905,661) (921,687) </point_box>\n <point_box t=\"3.6 seconds\"> (895,663) (909,688) </point_box>\n <point_box t=\"4.1 seconds\"> (884,664) (898,689) </point_box>\n <point_box t=\"4.6 seconds\"> (874,665) (887,690) </point_box>\n <point_box t=\"5.2 seconds\"> (862,666) (875,691) </point_box>\n <point_box t=\"5.7 seconds\"> (852,667) (865,692) </point_box>\n <point_box t=\"6.2 seconds\"> (842,668) (854,693) </point_box>\n <point_box t=\"6.7 seconds\"> (833,669) (844,694) </point_box>\n <point_box t=\"7.2 seconds\"> (823,670) (834,695) </point_box>\n <point_box t=\"7.7 seconds\"> (814,671) (825,696) </point_box>\n <point_box t=\"8.3 seconds\"> (802,672) (812,697) </point_box>\n <point_box t=\"8.8 seconds\"> (794,674) (804,699) </point_box>\n <point_box t=\"9.3 seconds\"> (786,675) (795,700) </point_box>\n <point_box t=\"9.8 seconds\"> (778,676) (785,701) </point_box>\n <point_box t=\"10.3 seconds\"> (770,678) (777,703) </point_box>\n <point_box t=\"10.8 seconds\"> (762,679) (769,704) </point_box>\n <point_box t=\"11.4 seconds\"> (753,680) (760,706) </point_box>\n <point_box t=\"11.9 seconds\"> (745,681) (752,707) </point_box>\n <point_box t=\"12.4 seconds\"> (738,682) (744,708) </point_box>\n <point_box t=\"12.9 seconds\"> (730,683) (736,710) </point_box>\n <point_box t=\"13.4 seconds\"> (723,684) (728,711) </point_box>\n <point_box t=\"13.9 seconds\"> (716,685) (721,712) </point_box>\n <point_box t=\"14.5 seconds\"> (709,686) (714,713) </point_box>\n <point_box t=\"15.0 seconds\"> (702,687) (707,715) </point_box>\n</track>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792272253,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 13612,
+   "completion_tokens": 575,
+   "total_tokens": 14187,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

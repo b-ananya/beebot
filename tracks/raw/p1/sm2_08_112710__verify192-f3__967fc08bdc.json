@@ -1,0 +1,61 @@
+{
+ "request": {
+  "clip_id": "sm2_08_112710",
+  "piece": "p1",
+  "user": "raika",
+  "created_at": "2026-10-17T22:37:12+00:00",
+  "model": "perceptron-mk1.5",
+  "prompt_name": "verify192",
+  "prompt_version": "f3",
+  "prompt_text": "This is a small zoomed-in crop, about 190 pixels square, from one frame of a fixed camera filming flowers and ground cover. Is there a wasp in it? A wasp is a dark insect with a lighter striped abdomen, wings and legs. In a crop this size it would be large and clear, roughly a tenth to a third of the crop wide. Petals, leaves, stems, shadows, soil and dark spots are not insects.\n\nIf there is one, return exactly one point on the centre of its body, with mention=\"wasp\", coordinates normalized to 0-1000 with origin top-left.\n\nIf there is no insect in this crop, answer exactly: none",
+  "annotation_format": "point",
+  "max_tokens": 128,
+  "reasoning_effort": null,
+  "temperature": null,
+  "media": [
+   "004000_c927_312_192.jpg"
+  ],
+  "media_sha256": [
+   "2f49d0c1df85f44a7c2d49874f1c37936f4ae79d0b1a5807074ecd5041c42462"
+  ]
+ },
+ "response": {
+  "text": "none",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 226,
+   "completion_tokens": 5,
+   "total_tokens": 231,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "422bb670d14218a8d4ddcd34b2e1b363",
+  "cost_usd": 4.1e-05
+ },
+ "raw": {
+  "id": "chatcmpl-a80c71a1b0e249e9b19f4ce3f8fb7b0c",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "none",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792276631,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 226,
+   "completion_tokens": 5,
+   "total_tokens": 231,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

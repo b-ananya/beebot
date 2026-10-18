@@ -1,0 +1,45 @@
+{
+ "clip_id": "sm2_08_112733",
+ "prompt_version": "f1",
+ "mode": "frames",
+ "resolution": "720p",
+ "annotation_format": "box",
+ "step_s": 0.5,
+ "reasoning_effort": null,
+ "model": "perceptron-mk1.5",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 20100,
+  "completion_tokens": 113
+ },
+ "cost_usd": 0.00318,
+ "cache_hit": false,
+ "frames": 20,
+ "fps": 2.0,
+ "cache_file": "p1/sm2_08_112733__frame2-f1__*.json",
+ "parse_errors": [],
+ "tracks": [
+  {
+   "track_id": "vespidae_1",
+   "species": "vespidae",
+   "complete": true,
+   "points": [
+    {
+     "t": 6.5,
+     "box": [
+      511.0,
+      483.0,
+      535.0,
+      507.0
+     ],
+     "center": [
+      523.0,
+      495.0
+     ],
+     "interpolated": false
+    }
+   ],
+   "box_from": "point"
+  }
+ ]
+}

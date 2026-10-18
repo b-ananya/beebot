@@ -1,0 +1,5 @@
+This is a crop from one frame of a fixed camera filming flowers and ground cover. Look for a {species}: a small dark insect with a lighter striped abdomen, on or between the plants. It may be small and partly hidden by leaves or petals.
+
+If there is one, return exactly one point on the centre of its body, with mention="{species}", coordinates normalized to 0-1000 with origin top-left. If there are several, point to the clearest one.
+
+If there is no insect in this crop, answer exactly: none

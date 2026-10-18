@@ -1,0 +1,58 @@
+{
+ "request": {
+  "clip_id": "sm2_08_112733",
+  "piece": "p1",
+  "user": "raika",
+  "created_at": "2026-10-17T21:31:51+00:00",
+  "media": [
+   "9199d177d4ff661c05e86de710701318312d8cd7f413f716be82ec7a778d0d68"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "frame2",
+  "prompt_version": "f1",
+  "prompt_text": "This is one frame from a fixed camera filming flowers and ground cover. Find the single wasp in it: a small dark insect, about 20 to 30 pixels across, with a lighter striped abdomen, on or between the plants.\n\nIf you can see it, return exactly one point on the centre of its body, with mention=\"wasp\", coordinates normalized to 0-1000 with origin top-left.\n\nIf there is no such insect in this frame, or you are not sure, answer exactly: none",
+  "annotation_format": "point",
+  "max_tokens": 256,
+  "reasoning_effort": null,
+  "temperature": null
+ },
+ "response": {
+  "text": "none",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 1005,
+   "completion_tokens": 5,
+   "total_tokens": 1010,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "75a43f09fbc61db4c728b4475872147f",
+  "cost_usd": 0.000158
+ },
+ "raw": {
+  "id": "chatcmpl-d997ae67728b459cb69e8838837821b1",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "none",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792272711,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 1005,
+   "completion_tokens": 5,
+   "total_tokens": 1010,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

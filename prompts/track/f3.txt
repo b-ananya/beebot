@@ -1,0 +1,5 @@
+This is a small zoomed-in crop, about 190 pixels square, from one frame of a fixed camera filming flowers and ground cover. Is there a {species} in it? A {species} is a dark insect with a lighter striped abdomen, wings and legs. In a crop this size it would be large and clear, roughly a tenth to a third of the crop wide. Petals, leaves, stems, shadows, soil and dark spots are not insects.
+
+If there is one, return exactly one point on the centre of its body, with mention="{species}", coordinates normalized to 0-1000 with origin top-left.
+
+If there is no insect in this crop, answer exactly: none

@@ -1,0 +1,58 @@
+{
+ "request": {
+  "clip_id": "hb1_w02",
+  "piece": "p1",
+  "user": "raika",
+  "created_at": "2026-10-17T21:25:34+00:00",
+  "media": [
+   "9addaff8792c542221351f3a4619c7f66bbf4af2fdc27797341de8f4784a276d"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "track",
+  "prompt_version": "v3",
+  "prompt_text": "Point to the single honeybee in this video at each sampled time while it is visible.\n\nWhat to look for: a small dark insect, about 20 to 30 pixels across, with a lighter striped abdomen. It flies and walks between flowers and ground cover, changes direction often, and may leave the frame or hide behind leaves. The camera does not move. Only the insect moves.\n\nReturn exactly one track with mention=\"honeybee\" and asset_idx=\"0\" made of point children, each with a timestamp in seconds and coordinates normalized to 0-1000, origin top-left. Put the point on the centre of the insect's body. Give a point about every 0.25 seconds, but only at times where you can see the insect in that frame. The clip is 10.0 seconds long.\n\nRules:\n- Every point must come from where the insect is in that frame. Do not extrapolate, smooth or fill in a path. Real insect paths are jerky, not straight lines, and the insect often stays in one place for a while.\n- If the insect is hidden, out of frame, or you cannot find it, give no point for that time. A gap is correct. A guess is wrong.\n\nOutput only the track markup, no explanation.",
+  "annotation_format": "point",
+  "max_tokens": 4096,
+  "reasoning_effort": null,
+  "temperature": null
+ },
+ "response": {
+  "text": "<track mention=\"honeybee\" asset_idx=\"0\">\n <point t=\"1.6 seconds\"> (931,442) </point>\n <point t=\"2.1 seconds\"> (920,479) </point>\n <point t=\"2.6 seconds\"> (916,506) </point>\n <point t=\"3.1 seconds\"> (919,518) </point>\n <point t=\"3.7 seconds\"> (923,531) </point>\n <point t=\"4.2 seconds\"> (917,536) </point>\n <point t=\"4.7 seconds\"> (908,549) </point>\n <point t=\"5.2 seconds\"> (901,563) </point>\n <point t=\"5.8 seconds\"> (895,576) </point>\n <point t=\"6.3 seconds\"> (898,581) </point>\n <point t=\"6.8 seconds\"> (905,586) </point>\n <point t=\"7.3 seconds\"> (910,592) </point>\n <point t=\"7.9 seconds\"> (913,596) </point>\n <point t=\"8.4 seconds\"> (915,597) </point>\n <point t=\"8.9 seconds\"> (918,594) </point>\n <point t=\"9.4 seconds\"> (927,585) </point>\n <point t=\"10.0 seconds\"> (936,578) </point>\n</track>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 9227,
+   "completion_tokens": 298,
+   "total_tokens": 9525,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "dcef67425a10e8d8ab88824c66320217",
+  "cost_usd": 0.001831
+ },
+ "raw": {
+  "id": "chatcmpl-f287788a676e4a0c878c03965fa4885e",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<track mention=\"honeybee\" asset_idx=\"0\">\n <point t=\"1.6 seconds\"> (931,442) </point>\n <point t=\"2.1 seconds\"> (920,479) </point>\n <point t=\"2.6 seconds\"> (916,506) </point>\n <point t=\"3.1 seconds\"> (919,518) </point>\n <point t=\"3.7 seconds\"> (923,531) </point>\n <point t=\"4.2 seconds\"> (917,536) </point>\n <point t=\"4.7 seconds\"> (908,549) </point>\n <point t=\"5.2 seconds\"> (901,563) </point>\n <point t=\"5.8 seconds\"> (895,576) </point>\n <point t=\"6.3 seconds\"> (898,581) </point>\n <point t=\"6.8 seconds\"> (905,586) </point>\n <point t=\"7.3 seconds\"> (910,592) </point>\n <point t=\"7.9 seconds\"> (913,596) </point>\n <point t=\"8.4 seconds\"> (915,597) </point>\n <point t=\"8.9 seconds\"> (918,594) </point>\n <point t=\"9.4 seconds\"> (927,585) </point>\n <point t=\"10.0 seconds\"> (936,578) </point>\n</track>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792272330,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 9227,
+   "completion_tokens": 298,
+   "total_tokens": 9525,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

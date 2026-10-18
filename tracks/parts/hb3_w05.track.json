@@ -1,0 +1,176 @@
+{
+ "clip_id": "hb3_w05",
+ "prompt_version": "f3",
+ "mode": "hybrid",
+ "resolution": "720p",
+ "annotation_format": "box",
+ "step_s": 0.5,
+ "reasoning_effort": null,
+ "model": "perceptron-mk1.5",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 50441,
+  "completion_tokens": 1445
+ },
+ "cost_usd": 0.009791,
+ "cache_hit": false,
+ "frames": 20,
+ "fps": 2.0,
+ "tiles": 2,
+ "crop_px": 192,
+ "tile_version": "f2",
+ "candidates": 83,
+ "verified": 11,
+ "cache_file": "p1/hb3_w05__{frame2t2,verify192}-*.json",
+ "parse_errors": [],
+ "tracks": [
+  {
+   "track_id": "honeybee_1",
+   "species": "honeybee",
+   "complete": true,
+   "points": [
+    {
+     "t": 0.5,
+     "box": [
+      890.3,
+      885.6,
+      914.3,
+      909.6
+     ],
+     "center": [
+      902.3,
+      897.6
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.0,
+     "box": [
+      889.7,
+      888.0,
+      913.7,
+      912.0
+     ],
+     "center": [
+      901.7,
+      900.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 3.0,
+     "box": [
+      876.6,
+      813.7,
+      900.6,
+      837.7
+     ],
+     "center": [
+      888.6,
+      825.7
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 3.5,
+     "box": [
+      869.6,
+      797.7,
+      893.6,
+      821.7
+     ],
+     "center": [
+      881.6,
+      809.7
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 4.0,
+     "box": [
+      870.0,
+      793.9,
+      894.0,
+      817.9
+     ],
+     "center": [
+      882.0,
+      805.9
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 4.5,
+     "box": [
+      913.0,
+      749.6,
+      937.0,
+      773.6
+     ],
+     "center": [
+      925.0,
+      761.6
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 6.0,
+     "box": [
+      936.4,
+      755.4,
+      960.4,
+      779.4
+     ],
+     "center": [
+      948.4,
+      767.4
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 6.5,
+     "box": [
+      950.5,
+      769.9,
+      974.5,
+      793.9
+     ],
+     "center": [
+      962.5,
+      781.9
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 7.0,
+     "box": [
+      972.0,
+      775.5,
+      996.0,
+      799.5
+     ],
+     "center": [
+      984.0,
+      787.5
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 8.5,
+     "box": [
+      972.0,
+      804.8,
+      996.0,
+      828.8
+     ],
+     "center": [
+      984.0,
+      816.8
+     ],
+     "interpolated": false
+    }
+   ],
+   "box_from": "point"
+  }
+ ]
+}

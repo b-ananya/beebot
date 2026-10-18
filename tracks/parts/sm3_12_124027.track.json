@@ -1,0 +1,64 @@
+{
+ "clip_id": "sm3_12_124027",
+ "prompt_version": "f3",
+ "mode": "hybrid",
+ "resolution": "720p",
+ "annotation_format": "box",
+ "step_s": 0.5,
+ "reasoning_effort": null,
+ "model": "perceptron-mk1.5",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 55799,
+  "completion_tokens": 1009
+ },
+ "cost_usd": 0.0,
+ "cache_hit": true,
+ "frames": 30,
+ "fps": 2.0,
+ "tiles": 2,
+ "crop_px": 192,
+ "tile_version": "f2",
+ "candidates": 37,
+ "verified": 2,
+ "cache_file": "p1/sm3_12_124027__{frame2t2,verify192}-*.json",
+ "parse_errors": [],
+ "tracks": [
+  {
+   "track_id": "honeybee_1",
+   "species": "honeybee",
+   "complete": true,
+   "points": [
+    {
+     "t": 1.0,
+     "box": [
+      251.39999999999998,
+      573.0,
+      275.4,
+      597.0
+     ],
+     "center": [
+      263.4,
+      585.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 11.5,
+     "box": [
+      163.1,
+      469.6,
+      187.1,
+      493.6
+     ],
+     "center": [
+      175.1,
+      481.6
+     ],
+     "interpolated": false
+    }
+   ],
+   "box_from": "point"
+  }
+ ]
+}

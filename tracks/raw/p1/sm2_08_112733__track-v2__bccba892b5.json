@@ -1,0 +1,58 @@
+{
+ "request": {
+  "clip_id": "sm2_08_112733",
+  "piece": "p1",
+  "user": "raika",
+  "created_at": "2026-10-17T21:25:01+00:00",
+  "media": [
+   "39751b5550533b092df16622f9d15ffcc5c18c8c8a968814f351b48c51dc9c9b"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "track",
+  "prompt_version": "v2",
+  "prompt_text": "Track the single wasp in this video, frame by frame, while it is visible.\n\nWhat to look for: a small dark insect, about 20 to 30 pixels across, with a lighter striped abdomen. It flies and walks between flowers and ground cover, changes direction often, and may leave the frame or hide behind leaves. The camera does not move. Only the insect moves.\n\nReturn exactly one track with mention=\"wasp\" and asset_idx=\"0\". Use point_box children with timestamps in seconds and coordinates normalized to 0-1000, origin top-left. Give a box about every 0.25 seconds, but only at times where you can see the insect in that frame. The clip is 9.633 seconds long.\n\nRules:\n- Every box must come from where the insect is in that frame. Do not extrapolate, smooth or fill in a path. Real insect paths are jerky, not straight lines, and the insect often stays in one place for a while.\n- If the insect is hidden, out of frame, or you cannot find it, give no box for that time. A gap is correct. A guess is wrong.\n- Keep the box tight around the insect's body.\n\nOutput only the track markup, no explanation.",
+  "annotation_format": "box",
+  "max_tokens": 4096,
+  "reasoning_effort": null,
+  "temperature": null
+ },
+ "response": {
+  "text": "<track mention=\"wasp\" asset_idx=\"0\">\n <point_box t=\"1.7 seconds\"> (894,764) (913,806) </point_box>\n <point_box t=\"2.3 seconds\"> (863,678) (882,719) </point_box>\n <point_box t=\"2.8 seconds\"> (814,592) (834,635) </point_box>\n <point_box t=\"3.4 seconds\"> (672,585) (698,624) </point_box>\n <point_box t=\"4.0 seconds\"> (555,444) (580,479) </point_box>\n <point_box t=\"4.5 seconds\"> (380,590) (402,626) </point_box>\n <point_box t=\"5.1 seconds\"> (388,606) (406,640) </point_box>\n <point_box t=\"6.2 seconds\"> (530,494) (544,531) </point_box>\n <point_box t=\"6.8 seconds\"> (617,456) (639,488) </point_box>\n <point_box t=\"7.3 seconds\"> (674,426) (695,458) </point_box>\n</track>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 8329,
+   "completion_tokens": 224,
+   "total_tokens": 8553,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "212358a2fad2a335c2d96cfa63807304",
+  "cost_usd": 0.001585
+ },
+ "raw": {
+  "id": "chatcmpl-a925970d07f64622addd9ad759cbcdb1",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<track mention=\"wasp\" asset_idx=\"0\">\n <point_box t=\"1.7 seconds\"> (894,764) (913,806) </point_box>\n <point_box t=\"2.3 seconds\"> (863,678) (882,719) </point_box>\n <point_box t=\"2.8 seconds\"> (814,592) (834,635) </point_box>\n <point_box t=\"3.4 seconds\"> (672,585) (698,624) </point_box>\n <point_box t=\"4.0 seconds\"> (555,444) (580,479) </point_box>\n <point_box t=\"4.5 seconds\"> (380,590) (402,626) </point_box>\n <point_box t=\"5.1 seconds\"> (388,606) (406,640) </point_box>\n <point_box t=\"6.2 seconds\"> (530,494) (544,531) </point_box>\n <point_box t=\"6.8 seconds\"> (617,456) (639,488) </point_box>\n <point_box t=\"7.3 seconds\"> (674,426) (695,458) </point_box>\n</track>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792272299,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 8329,
+   "completion_tokens": 224,
+   "total_tokens": 8553,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}
