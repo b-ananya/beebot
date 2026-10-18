@@ -227,6 +227,50 @@ def finish_clip(clip_id: str, *, client: PerceptionClient | None, video: Path | 
     return out
 
 
+def stable_ids(docs: list[dict]) -> list[dict]:
+    """Rename flowers so one physical flower has one flower_id in every clip of a camera view.
+
+    Matching is Falisha's ``perception.flowers.assign_view_ids`` (one-to-one box IoU >= 0.4 against the view's
+    flowers so far, ids ordered top-to-bottom). Extra fields (``source``) are kept and visit events are renamed
+    to match. All docs must come from one view; boxes are unchanged.
+    """
+    from perception.flowers import assign_view_ids
+
+    parts = [{"clip_id": d["clip_id"], "flowers": [{"flower_id": f"f{i}", "box": f["box"]}
+                                                   for i, f in enumerate(d["flowers"])]} for d in docs]
+    relabeled = assign_view_ids(parts)
+    out = []
+    for d in docs:
+        new_of_old = {}
+        new_flowers = []
+        for f_new in relabeled[d["clip_id"]]["flowers"]:
+            i = next(k for k, f in enumerate(d["flowers"]) if f["box"] == f_new["box"]
+                     and d["flowers"][k]["flower_id"] not in new_of_old)
+            old = d["flowers"][i]
+            new_of_old[old["flower_id"]] = f_new["flower_id"]
+            new_flowers.append({**old, "flower_id": f_new["flower_id"]})
+        events = [{**e, "flower_id": new_of_old.get(e["flower_id"], e["flower_id"])} for e in d["events"]]
+        out.append({**d, "flowers": new_flowers, "events": events, "view_id": relabeled[d["clip_id"]]["view_id"]})
+    return out
+
+
+def relabel_views(tracks_dir: Path = OUT_DIR, clip_ids: list[str] | None = None) -> dict[str, int]:
+    """Apply ``stable_ids`` to every camera view under tracks_dir; returns flowers per view."""
+    from perception.flowers import view_id
+
+    clip_ids = clip_ids or [c for c in manifest() if (tracks_dir / f"{c}.json").exists()]
+    views: dict[str, list[str]] = {}
+    for c in clip_ids:
+        views.setdefault(view_id(c), []).append(c)
+    summary = {}
+    for view, cids in views.items():
+        docs = stable_ids([json.loads((tracks_dir / f"{c}.json").read_text()) for c in cids])
+        for d in docs:
+            (tracks_dir / f"{d['clip_id']}.json").write_text(json.dumps(d, indent=1))
+        summary[view] = len({f["flower_id"] for d in docs for f in d["flowers"]})
+    return summary
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--clips", nargs="*", default=[])

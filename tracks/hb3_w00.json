@@ -7145,17 +7145,7 @@
  ],
  "flowers": [
   {
-   "flower_id": "stop_0",
-   "source": "stop",
-   "box": [
-    75.1,
-    571.1,
-    105.1,
-    601.1
-   ]
-  },
-  {
-   "flower_id": "stop_1",
+   "flower_id": "flower_1",
    "source": "stop",
    "box": [
     281.3,
@@ -7165,7 +7155,7 @@
    ]
   },
   {
-   "flower_id": "stop_2",
+   "flower_id": "flower_2",
    "source": "stop",
    "box": [
     278.8,
@@ -7175,7 +7165,7 @@
    ]
   },
   {
-   "flower_id": "stop_3",
+   "flower_id": "flower_6",
    "source": "stop",
    "box": [
     408.4,
@@ -7185,7 +7175,7 @@
    ]
   },
   {
-   "flower_id": "stop_4",
+   "flower_id": "flower_10",
    "source": "stop",
    "box": [
     428.1,
@@ -7195,7 +7185,17 @@
    ]
   },
   {
-   "flower_id": "stop_5",
+   "flower_id": "flower_12",
+   "source": "stop",
+   "box": [
+    75.1,
+    571.1,
+    105.1,
+    601.1
+   ]
+  },
+  {
+   "flower_id": "flower_13",
    "source": "stop",
    "box": [
     44.6,
@@ -7205,7 +7205,7 @@
    ]
   },
   {
-   "flower_id": "stop_6",
+   "flower_id": "flower_17",
    "source": "stop",
    "box": [
     18.8,
@@ -7218,52 +7218,53 @@
  "events": [
   {
    "track_id": "honeybee_1",
-   "flower_id": "stop_0",
+   "flower_id": "flower_12",
    "type": "visit",
    "t_start": 0.0,
    "t_end": 1.467
   },
   {
    "track_id": "honeybee_1",
-   "flower_id": "stop_1",
+   "flower_id": "flower_1",
    "type": "visit",
    "t_start": 1.8,
    "t_end": 3.533
   },
   {
    "track_id": "honeybee_1",
-   "flower_id": "stop_2",
+   "flower_id": "flower_2",
    "type": "visit",
    "t_start": 3.233,
    "t_end": 5.7
   },
   {
    "track_id": "honeybee_2",
-   "flower_id": "stop_5",
+   "flower_id": "flower_13",
    "type": "visit",
    "t_start": 3.867,
    "t_end": 5.333
   },
   {
    "track_id": "honeybee_2",
-   "flower_id": "stop_6",
+   "flower_id": "flower_17",
    "type": "visit",
    "t_start": 5.667,
    "t_end": 9.967
   },
   {
    "track_id": "honeybee_1",
-   "flower_id": "stop_3",
+   "flower_id": "flower_6",
    "type": "visit",
    "t_start": 6.4,
    "t_end": 7.767
   },
   {
    "track_id": "honeybee_1",
-   "flower_id": "stop_4",
+   "flower_id": "flower_10",
    "type": "visit",
    "t_start": 7.767,
    "t_end": 9.467
   }
- ]
+ ],
+ "view_id": "hb3"
 }
