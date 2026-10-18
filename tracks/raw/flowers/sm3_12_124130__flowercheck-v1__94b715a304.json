@@ -1,0 +1,78 @@
+{
+ "request": {
+  "clip_id": "sm3_12_124130",
+  "piece": "flowers",
+  "user": "b-ananya",
+  "created_at": "2026-10-18T02:11:45+00:00",
+  "model": "perceptron-mk1.5",
+  "prompt_name": "flowercheck",
+  "prompt_version": "v1",
+  "prompt_text": "This is a close-up from a camera looking down at strawberry plants. Is there an OPEN strawberry flower at the center of the image: white petals spread around a yellow center? Answer false for buds, green or yellow fruit, leaves, fallen petals, wilted flowers and sky or soil. Answer in JSON.",
+  "annotation_format": null,
+  "max_tokens": 50,
+  "reasoning_effort": null,
+  "temperature": null,
+  "response_format": {
+   "type": "json_schema",
+   "json_schema": {
+    "name": "flower_check",
+    "schema": {
+     "type": "object",
+     "properties": {
+      "open_flower_at_center": {
+       "type": "boolean"
+      }
+     },
+     "required": [
+      "open_flower_at_center"
+     ]
+    }
+   }
+  },
+  "media": [
+   "sm3_12_124130_chk_1028_433.png"
+  ],
+  "media_sha256": [
+   "933a565bb0e477d4fc98991df744194bdbc0df9580f6ad884e08aad5d9971b03"
+  ]
+ },
+ "response": {
+  "text": "{\n  \"open_flower_at_center\": false\n}",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 214,
+   "completion_tokens": 17,
+   "total_tokens": 231,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "b81059ba3e1d53b201c3bf3491f90344",
+  "cost_usd": 5.8e-05
+ },
+ "raw": {
+  "id": "chatcmpl-e0133d7ae5824de5b49cf9ef43d07398",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "{\n  \"open_flower_at_center\": false\n}",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792289504,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 214,
+   "completion_tokens": 17,
+   "total_tokens": 231,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

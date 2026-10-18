@@ -1,0 +1,61 @@
+{
+ "request": {
+  "clip_id": "sm3_12_124130",
+  "piece": "flowers",
+  "user": "b-ananya",
+  "created_at": "2026-10-18T02:10:59+00:00",
+  "model": "perceptron-mk1.5",
+  "prompt_name": "flowers",
+  "prompt_version": "v1",
+  "prompt_text": "Your goal is to segment out the following categories: open flower. Box every individual open flower head you can see, including small and partly hidden ones. Do not box leaves, buds or fruit.",
+  "annotation_format": "box",
+  "max_tokens": 6000,
+  "reasoning_effort": null,
+  "temperature": null,
+  "media": [
+   "sm3_12_124130_t3_21.png"
+  ],
+  "media_sha256": [
+   "0e5f88861760f91e7ac1177ab861faf30d2327bb1cde6cfe2dc6199869f67bb8"
+  ]
+ },
+ "response": {
+  "text": "<collection mention=\"open flower\">\n <point_box> (570,308) (675,469) </point_box>\n <point_box> (695,388) (772,509) </point_box>\n <point_box> (625,431) (697,531) </point_box>\n <point_box> (664,512) (775,712) </point_box>\n <point_box> (483,631) (534,716) </point_box>\n</collection>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 198,
+   "completion_tokens": 89,
+   "total_tokens": 287,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "90dbc131c7f6338fa99c52384942bcf0",
+  "cost_usd": 0.000163
+ },
+ "raw": {
+  "id": "chatcmpl-b020c2ce0e524a66a6828b91d0d36978",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<collection mention=\"open flower\">\n <point_box> (570,308) (675,469) </point_box>\n <point_box> (695,388) (772,509) </point_box>\n <point_box> (625,431) (697,531) </point_box>\n <point_box> (664,512) (775,712) </point_box>\n <point_box> (483,631) (534,716) </point_box>\n</collection>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792289458,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 198,
+   "completion_tokens": 89,
+   "total_tokens": 287,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

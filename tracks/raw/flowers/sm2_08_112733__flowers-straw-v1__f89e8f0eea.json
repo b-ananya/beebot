@@ -1,0 +1,61 @@
+{
+ "request": {
+  "clip_id": "sm2_08_112733",
+  "piece": "flowers",
+  "user": "b-ananya",
+  "created_at": "2026-10-18T02:09:54+00:00",
+  "model": "perceptron-mk1.5",
+  "prompt_name": "flowers",
+  "prompt_version": "straw-v1",
+  "prompt_text": "Find every open flower in this image.\n\nThe image is a single frame from a field camera looking down at plants. Open flowers are small (roughly 30 to 60 pixels across), with white petals around a yellow center. Ignore buds, green or yellow fruit with no white petals, leaves, and insects.\n\nReturn one point_box per open flower with mention=\"flower\", coordinates normalized to 0-1000. Draw each box tightly around the petals. Do not box the same flower twice, and do not guess: if you are not sure something is an open flower, leave it out. Output only the box markup, no explanation.",
+  "annotation_format": "box",
+  "max_tokens": 6000,
+  "reasoning_effort": null,
+  "temperature": null,
+  "media": [
+   "sm2_08_112733_t2_00.png"
+  ],
+  "media_sha256": [
+   "1f2428a77e04c0b30743d27ef8d5fa72c7d0f95efb7b80b69600e5ab1febb29d"
+  ]
+ },
+ "response": {
+  "text": "<collection mention=\"flower\">\n <point_box> (759,579) (798,634) </point_box>\n <point_box> (869,688) (925,794) </point_box>\n <point_box> (745,843) (802,949) </point_box>\n</collection>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 486,
+   "completion_tokens": 60,
+   "total_tokens": 546,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "bad39e67adc640a5592babceefaaf121",
+  "cost_usd": 0.000163
+ },
+ "raw": {
+  "id": "chatcmpl-2ec782f1e783498b87359f7b068b3053",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<collection mention=\"flower\">\n <point_box> (759,579) (798,634) </point_box>\n <point_box> (869,688) (925,794) </point_box>\n <point_box> (745,843) (802,949) </point_box>\n</collection>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792289393,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 486,
+   "completion_tokens": 60,
+   "total_tokens": 546,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

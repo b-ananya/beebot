@@ -35,7 +35,7 @@ You now have `clips/*.mp4` (48 clips) next to `clips/manifest.json`, `truth/` an
 
 Rebuilding from scratch (only B needs this): `python -I scripts/fetch_data.py` then `python -I scripts/prepare_data.py`.
 
-## Pipeline and app
+## Pipeline
 
 ```bash
 python -m perception.pipeline --all            # motion tracker -> Mk1.5 crop checks -> Mk1.5 flower boxes -> tracks/*.json
@@ -43,7 +43,6 @@ python -m perception.pipeline --all --no-api   # same without the API (score heu
 python -m eval.run_eval                        # vs truth -> eval/report.json  (--pred tracks/heuristic for the no-API run)
 python -m search.search build                  # search/index.json (add --captions for Mk1.5 moment captions)
 python -m forecast.train                       # downloads the Polytrack trajectories (100 MB) once, trains in ~1 min
-streamlit run app/app.py                       # video + search, analytics, forecast, dataset, upload
 ```
 
 Why not let Mk1.5 track the whole clip: on `hb1_w00` it returned an evenly spaced straight line across the frame

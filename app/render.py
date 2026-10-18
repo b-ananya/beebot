@@ -3,8 +3,7 @@
     python -m app.render --clip sm3_12_123903 --source tracks          # -> app/cache/tracks/sm3_12_123903.mp4
     python -m app.render --all --source truth
 
-Streamlit can't draw on a playing video, so overlays are pre-rendered once per (source, clip) and cached; the app
-seeks with ``st.video(start_time=...)``.
+Writes a standalone mp4 with overlays burned in. The panel UI draws boxes on a canvas instead of using this.
 """
 from __future__ import annotations
 

@@ -13,15 +13,38 @@ On another machine: `python -m venv .venv`, activate it, `pip install -r require
 The API key goes in `.env` as `PERCEPTRON_API_KEY=...`. Every Mk1.5 answer is cached under `tracks/raw/`, so
 running anything twice costs nothing the second time. `costs/<you>.csv` logs every paid call; calls stop at $40.
 
-## 1. The app (start here)
+## 1. The UI
+
+The Streamlit app has been removed. The replacement is the panel UI in `app/web` (Blender-style shell: video in the center, lists and properties on the sides, timeline along the bottom).
+
+Needs Node 20+ (`winget install OpenJS.NodeJS.LTS` / `brew install node`). Once:
 
 ```powershell
-streamlit run app/app.py
+cd app\web
+npm install
 ```
 
-Opens http://localhost:8501. Sidebar: pick the data source (Mk1.5 pipeline, motion-only, reference tracker, mock)
-and a clip. Tabs: video + search, analytics, forecast, dataset & accuracy, analyze your own video.
-Shareable link to a view: `http://localhost:8501/?source=truth&clip=sm3_12_123903`.
+Then, every time:
+
+```powershell
+cd app\web
+npm run dev          # http://localhost:5173 ; npm run build type-checks and bundles
+```
+
+The dev server serves `clips/`, `tracks/`, `field/`, `plan/`, `eval/`, `forecast/` and `rollouts/` straight from the repo,
+and runs Python for Forecast, Upload and Live search. It uses, in order: `BEEBOT_PYTHON` (environment or `.env`), the
+repo's `.venv` (`bin/python` or `Scripts\python.exe`), then `python` on Windows / `python3` elsewhere. With the
+environment outside the repo, add to `.env`:
+
+```
+BEEBOT_PYTHON=C:\Users\<you>\.venvs\beebot\Scripts\python.exe
+```
+
+Overlays can still be burned into an mp4 without a UI:
+
+```powershell
+python -m app.render --clip sm3_12_123903 --source tracks
+```
 
 ## 2. The pipeline (video -> tracks, flowers, visits)
 
@@ -76,8 +99,7 @@ python -m sim.run_plan --all --source truth          # dataset whole-day maps ->
 ```
 
 The field map for a farm clip holds every flower its camera has seen (stable flower ids across clips) and the
-visits counted over all of that camera's clips up to this one. In the app: tab "Pollination & robot plan", with
-sliders for target visits, robot budget and speed.
+visits counted over all of that camera's clips up to this one.
 
 ## 7. Tests
 

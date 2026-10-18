@@ -1,0 +1,61 @@
+{
+ "request": {
+  "clip_id": "sm3_12_124130",
+  "piece": "flowers",
+  "user": "b-ananya",
+  "created_at": "2026-10-18T02:10:00+00:00",
+  "model": "perceptron-mk1.5",
+  "prompt_name": "flowers",
+  "prompt_version": "straw-v1",
+  "prompt_text": "Find every open flower in this image.\n\nThe image is a single frame from a field camera looking down at plants. Open flowers are small (roughly 30 to 60 pixels across), with white petals around a yellow center. Ignore buds, green or yellow fruit with no white petals, leaves, and insects.\n\nReturn one point_box per open flower with mention=\"flower\", coordinates normalized to 0-1000. Draw each box tightly around the petals. Do not box the same flower twice, and do not guess: if you are not sure something is an open flower, leave it out. Output only the box markup, no explanation.",
+  "annotation_format": "box",
+  "max_tokens": 6000,
+  "reasoning_effort": null,
+  "temperature": null,
+  "media": [
+   "sm3_12_124130_t2_11.png"
+  ],
+  "media_sha256": [
+   "0c59c0279f843bf7a99184e6aa55ab73e2f384e7478bf86037a8a600d6234b16"
+  ]
+ },
+ "response": {
+  "text": "<collection mention=\"flower\">\n <point_box> (711,99) (778,196) </point_box>\n <point_box> (670,119) (710,188) </point_box>\n <point_box> (795,146) (845,226) </point_box>\n <point_box> (750,175) (794,240) </point_box>\n <point_box> (777,242) (847,359) </point_box>\n <point_box> (656,306) (688,360) </point_box>\n</collection>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 486,
+   "completion_tokens": 102,
+   "total_tokens": 588,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "d87424fc169b378e55b4d274d057a4fa",
+  "cost_usd": 0.000226
+ },
+ "raw": {
+  "id": "chatcmpl-4c4b23b6582f47f2bf8d52006c49cbab",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<collection mention=\"flower\">\n <point_box> (711,99) (778,196) </point_box>\n <point_box> (670,119) (710,188) </point_box>\n <point_box> (795,146) (845,226) </point_box>\n <point_box> (750,175) (794,240) </point_box>\n <point_box> (777,242) (847,359) </point_box>\n <point_box> (656,306) (688,360) </point_box>\n</collection>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792289399,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 486,
+   "completion_tokens": 102,
+   "total_tokens": 588,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

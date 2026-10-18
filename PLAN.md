@@ -59,7 +59,7 @@ Phase 2 is cut only if Phase 1 isn't solid at G3. Standups at hours 4, 8, 12, 16
 ### D: App + story
 | Step | Hours | Deliverable | Done when |
 |---|---|---|---|
-| D1 | 0–2 | Streamlit skeleton on `tracks/mock/`; GitHub Projects board | All four run the app |
+| D1 | 0–2 | Panel UI shell in `app/web` (video center, side panels, timeline); GitHub Projects board | All four run the app |
 | D2 | 2–5 | Panel 1: video with bee box, trail, flower boxes, visit flashes | Plays smoothly on one clip |
 | D3 | 5–8 | Panel 2: analytics: visits per flower, dwell, heatmap, timeline | Renders from mock |
 | D4 | 8–12 | Search box (index first, live Mk1.5 as a toggle) that seeks the video; real data | **G3** demo |
@@ -95,7 +95,7 @@ from cache, live calls are a bonus.
 ## Tech stack
 
 Python 3.11 · `perceptron` SDK 0.4.0 (Mk1.5) · ffmpeg + OpenCV · numpy / pandas / scipy ·
-OR-Tools (routing) · matplotlib + imageio (2D sim) · Streamlit + Plotly · GitHub (repo, Release, Projects)
+OR-Tools (routing) · matplotlib + imageio (2D sim) · React + TypeScript (`app/web`) · GitHub (repo, Release, Projects)
 Stretch only: MuJoCo ≥ 3.2 + MuJoCo Menagerie `bitcraze_crazyflie_2` (3D replay, `requirements-stretch.txt`)
 
 ## Stretch goals (after G3, stop at hour 17)

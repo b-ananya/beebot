@@ -1,0 +1,61 @@
+{
+ "request": {
+  "clip_id": "sm3_12_124130",
+  "piece": "flowers",
+  "user": "b-ananya",
+  "created_at": "2026-10-18T02:10:39+00:00",
+  "model": "perceptron-mk1.5",
+  "prompt_name": "flowers",
+  "prompt_version": "v1",
+  "prompt_text": "Your goal is to segment out the following categories: open flower. Box every individual open flower head you can see, including small and partly hidden ones. Do not box leaves, buds or fruit.",
+  "annotation_format": "box",
+  "max_tokens": 6000,
+  "reasoning_effort": null,
+  "temperature": null,
+  "media": [
+   "sm3_12_124130_t3_02.png"
+  ],
+  "media_sha256": [
+   "f85fdcc8a59823dfac7bfa5374b395f051a4bb1bacc169595790cb09b43d5800"
+  ]
+ },
+ "response": {
+  "text": "<collection mention=\"open flower\">\n <point_box> (281,0) (370,62) </point_box>\n <point_box> (623,0) (688,50) </point_box>\n <point_box> (870,262) (930,344) </point_box>\n <point_box> (770,286) (820,375) </point_box>\n <point_box> (702,672) (762,756) </point_box>\n <point_box> (558,675) (641,750) </point_box>\n <point_box> (131,711) (178,800) </point_box>\n <point_box> (227,844) (266,969) </point_box>\n</collection>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 198,
+   "completion_tokens": 131,
+   "total_tokens": 329,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "617db8dd1f9b562137b3baaa76b64ea5",
+  "cost_usd": 0.000226
+ },
+ "raw": {
+  "id": "chatcmpl-731fb00000564ffabcdd1ede94dc8045",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<collection mention=\"open flower\">\n <point_box> (281,0) (370,62) </point_box>\n <point_box> (623,0) (688,50) </point_box>\n <point_box> (870,262) (930,344) </point_box>\n <point_box> (770,286) (820,375) </point_box>\n <point_box> (702,672) (762,756) </point_box>\n <point_box> (558,675) (641,750) </point_box>\n <point_box> (131,711) (178,800) </point_box>\n <point_box> (227,844) (266,969) </point_box>\n</collection>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792289438,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 198,
+   "completion_tokens": 131,
+   "total_tokens": 329,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}
