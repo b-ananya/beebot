@@ -1,0 +1,61 @@
+{
+ "request": {
+  "clip_id": "daises",
+  "piece": "p2",
+  "user": "raika",
+  "created_at": "2026-10-18T00:26:49+00:00",
+  "model": "perceptron-mk1.5",
+  "prompt_name": "flowers-points",
+  "prompt_version": "v1",
+  "prompt_text": "Mark the open flowers in this image.\n\nThe image is a photo of plants with flowers, taken from any angle. An open flower shows its petals spread out; it may be any colour. Ignore buds that have not opened, fruit, leaves, stems, and insects.\n\nReturn one point per open flower with mention=\"flower\", at the flower's centre, coordinates normalized to 0-1000. If there are more than 40 open flowers, return only the 40 largest and clearest ones, spread across the whole image. Never return more than 40 points. Output only the point markup, no explanation.",
+  "annotation_format": "point",
+  "max_tokens": 2048,
+  "reasoning_effort": null,
+  "temperature": null,
+  "media": [
+   "daises.jpg"
+  ],
+  "media_sha256": [
+   "bc4d09ca204ff3e326a1302c15f42a9ae57bffb1fefd1a21010bb480b3aa1fac"
+  ]
+ },
+ "response": {
+  "text": "<collection mention=\"flower\">\n <point> (296,12) </point>\n <point> (480,14) </point>\n <point> (643,16) </point>\n <point> (545,25) </point>\n <point> (199,44) </point>\n <point> (346,48) </point>\n <point> (426,58) </point>\n <point> (679,88) </point>\n <point> (131,98) </point>\n <point> (574,102) </point>\n <point> (267,125) </point>\n <point> (922,135) </point>\n <point> (791,144) </point>\n <point> (874,155) </point>\n <point> (746,175) </point>\n <point> (492,178) </point>\n <point> (229,200) </point>\n <point> (559,206) </point>\n <point> (609,208) </point>\n <point> (134,215) </point>\n <point> (99,231) </point>\n <point> (284,233) </point>\n <point> (338,233) </point>\n <point> (685,242) </point>\n <point> (792,247) </point>\n <point> (875,248) </point>\n <point> (976,252) </point>\n <point> (174,262) </point>\n <point> (454,272) </point>\n <point> (920,300) </point>\n <point> (781,320) </point>\n <point> (569,323) </point>\n <point> (194,326) </point>\n <point> (49,330) </point>\n <point> (847,334) </point>\n <point> (953,344) </point>\n <point> (389,348) </point>\n <point> (324,352) </point>\n <point> (115,372) </point>\n <point> (506,397) </point>\n <point> (142,400) </point>\n <point> (594,416) </point>\n <point> (183,427) </point>\n <point> (238,431) </point>\n <point> (276,441) </point>\n <point> (384,447) </point>\n <point> (536,452) </point>\n <point> (696,455) </point>\n <point> (100,462) </point>\n <point> (20,485) </point>\n <point> (207,490) </point>\n <point> (742,493) </point>\n <point> (834,494) </point>\n <point> (971,500) </point>\n <point> (418,513) </point>\n <point> (475,531) </point>\n <point> (682,534) </point>\n <point> (894,547) </point>\n <point> (168,556) </point>\n <point> (566,558) </point>\n <point> (860,573) </point>\n <point> (422,576) </point>\n <point> (793,586) </point>\n <point> (736,606) </point>\n <point> (216,638) </point>\n <point> (514,641) </point>\n <point> (83,644) </point>\n <point> (316,648) </point>\n <point> (683,658) </point>\n <point> (629,667) </point>\n <point> (730,672) </point>\n <point> (132,677) </point>\n <point> (345,680) </point>\n <point> (562,719) </point>\n <point> (806,723) </point>\n <point> (486,728) </point>\n <point> (243,747) </point>\n <point> (885,771) </point>\n <point> (349,794) </point>\n <point> (488,816) </point>\n <point> (363,844) </point>\n <point> (496,855) </point>\n <point> (750,866) </point>\n <point> (218,872) </point>\n <point> (988,878) </point>\n <point> (938,889) </point>\n <point> (652,925) </point>\n <point> (572,931) </point>\n <point> (72,933) </point>\n <point> (214,939) </point>\n <point> (278,945) </point>\n <point> (336,966) </point>\n <point> (639,982) </point>\n <point> (470,986) </point>\n</collection>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 393,
+   "completion_tokens": 958,
+   "total_tokens": 1351,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "b6ea5aacb3a776b6e19b95bb3b0ad357",
+  "cost_usd": 0.001496
+ },
+ "raw": {
+  "id": "chatcmpl-16b4d8c02ccb4195b9536156b93e5f72",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<collection mention=\"flower\">\n <point> (296,12) </point>\n <point> (480,14) </point>\n <point> (643,16) </point>\n <point> (545,25) </point>\n <point> (199,44) </point>\n <point> (346,48) </point>\n <point> (426,58) </point>\n <point> (679,88) </point>\n <point> (131,98) </point>\n <point> (574,102) </point>\n <point> (267,125) </point>\n <point> (922,135) </point>\n <point> (791,144) </point>\n <point> (874,155) </point>\n <point> (746,175) </point>\n <point> (492,178) </point>\n <point> (229,200) </point>\n <point> (559,206) </point>\n <point> (609,208) </point>\n <point> (134,215) </point>\n <point> (99,231) </point>\n <point> (284,233) </point>\n <point> (338,233) </point>\n <point> (685,242) </point>\n <point> (792,247) </point>\n <point> (875,248) </point>\n <point> (976,252) </point>\n <point> (174,262) </point>\n <point> (454,272) </point>\n <point> (920,300) </point>\n <point> (781,320) </point>\n <point> (569,323) </point>\n <point> (194,326) </point>\n <point> (49,330) </point>\n <point> (847,334) </point>\n <point> (953,344) </point>\n <point> (389,348) </point>\n <point> (324,352) </point>\n <point> (115,372) </point>\n <point> (506,397) </point>\n <point> (142,400) </point>\n <point> (594,416) </point>\n <point> (183,427) </point>\n <point> (238,431) </point>\n <point> (276,441) </point>\n <point> (384,447) </point>\n <point> (536,452) </point>\n <point> (696,455) </point>\n <point> (100,462) </point>\n <point> (20,485) </point>\n <point> (207,490) </point>\n <point> (742,493) </point>\n <point> (834,494) </point>\n <point> (971,500) </point>\n <point> (418,513) </point>\n <point> (475,531) </point>\n <point> (682,534) </point>\n <point> (894,547) </point>\n <point> (168,556) </point>\n <point> (566,558) </point>\n <point> (860,573) </point>\n <point> (422,576) </point>\n <point> (793,586) </point>\n <point> (736,606) </point>\n <point> (216,638) </point>\n <point> (514,641) </point>\n <point> (83,644) </point>\n <point> (316,648) </point>\n <point> (683,658) </point>\n <point> (629,667) </point>\n <point> (730,672) </point>\n <point> (132,677) </point>\n <point> (345,680) </point>\n <point> (562,719) </point>\n <point> (806,723) </point>\n <point> (486,728) </point>\n <point> (243,747) </point>\n <point> (885,771) </point>\n <point> (349,794) </point>\n <point> (488,816) </point>\n <point> (363,844) </point>\n <point> (496,855) </point>\n <point> (750,866) </point>\n <point> (218,872) </point>\n <point> (988,878) </point>\n <point> (938,889) </point>\n <point> (652,925) </point>\n <point> (572,931) </point>\n <point> (72,933) </point>\n <point> (214,939) </point>\n <point> (278,945) </point>\n <point> (336,966) </point>\n <point> (639,982) </point>\n <point> (470,986) </point>\n</collection>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792283205,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 393,
+   "completion_tokens": 958,
+   "total_tokens": 1351,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}
