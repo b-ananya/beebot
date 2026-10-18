@@ -1,0 +1,276 @@
+{
+ "clips": 10,
+ "scenes": 2,
+ "overall_per_clip": {
+  "ref_iou": {
+   "precision": 0.357,
+   "recall": 0.538,
+   "tp": 35,
+   "pred": 98,
+   "ref": 65
+  },
+  "ref_center": {
+   "precision": 0.571,
+   "recall": 0.862,
+   "tp": 56,
+   "pred": 98,
+   "ref": 65
+  },
+  "audit": {
+   "precision": 0.98,
+   "recall": 0.873,
+   "tp": 96,
+   "pred": 98,
+   "ref": 110
+  }
+ },
+ "per_view_distinct_flowers": {
+  "sm2_08": {
+   "distinct_boxes": 9,
+   "boxes_on_open_flowers": 9,
+   "open_flowers": 9,
+   "precision": 1.0,
+   "recall": 1.0
+  },
+  "sm3_12": {
+   "distinct_boxes": 13,
+   "boxes_on_open_flowers": 11,
+   "open_flowers": 13,
+   "precision": 0.846,
+   "recall": 0.846
+  }
+ },
+ "notes": "ref = dataset flower list (Polytrack), audit = visual labels (eval/audit/flower_labels.json, needs a human spot-check). See module docstring for why three scores.",
+ "per_clip": {
+  "sm2_08_112658": {
+   "ref_iou": {
+    "precision": 0.25,
+    "recall": 0.333,
+    "tp": 2,
+    "pred": 8,
+    "ref": 6
+   },
+   "ref_center": {
+    "precision": 0.5,
+    "recall": 0.667,
+    "tp": 4,
+    "pred": 8,
+    "ref": 6
+   },
+   "audit": {
+    "precision": 1.0,
+    "recall": 0.889,
+    "tp": 8,
+    "pred": 8,
+    "ref": 9
+   }
+  },
+  "sm2_08_112704": {
+   "ref_iou": {
+    "precision": 0.222,
+    "recall": 0.333,
+    "tp": 2,
+    "pred": 9,
+    "ref": 6
+   },
+   "ref_center": {
+    "precision": 0.556,
+    "recall": 0.833,
+    "tp": 5,
+    "pred": 9,
+    "ref": 6
+   },
+   "audit": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 9,
+    "pred": 9,
+    "ref": 9
+   }
+  },
+  "sm2_08_112710": {
+   "ref_iou": {
+    "precision": 0.25,
+    "recall": 0.333,
+    "tp": 2,
+    "pred": 8,
+    "ref": 6
+   },
+   "ref_center": {
+    "precision": 0.5,
+    "recall": 0.667,
+    "tp": 4,
+    "pred": 8,
+    "ref": 6
+   },
+   "audit": {
+    "precision": 1.0,
+    "recall": 0.889,
+    "tp": 8,
+    "pred": 8,
+    "ref": 9
+   }
+  },
+  "sm2_08_112712": {
+   "ref_iou": {
+    "precision": 0.25,
+    "recall": 0.333,
+    "tp": 2,
+    "pred": 8,
+    "ref": 6
+   },
+   "ref_center": {
+    "precision": 0.5,
+    "recall": 0.667,
+    "tp": 4,
+    "pred": 8,
+    "ref": 6
+   },
+   "audit": {
+    "precision": 1.0,
+    "recall": 0.889,
+    "tp": 8,
+    "pred": 8,
+    "ref": 9
+   }
+  },
+  "sm2_08_112733": {
+   "ref_iou": {
+    "precision": 0.25,
+    "recall": 0.333,
+    "tp": 2,
+    "pred": 8,
+    "ref": 6
+   },
+   "ref_center": {
+    "precision": 0.5,
+    "recall": 0.667,
+    "tp": 4,
+    "pred": 8,
+    "ref": 6
+   },
+   "audit": {
+    "precision": 1.0,
+    "recall": 0.889,
+    "tp": 8,
+    "pred": 8,
+    "ref": 9
+   }
+  },
+  "sm3_12_123633": {
+   "ref_iou": {
+    "precision": 0.455,
+    "recall": 0.714,
+    "tp": 5,
+    "pred": 11,
+    "ref": 7
+   },
+   "ref_center": {
+    "precision": 0.636,
+    "recall": 1.0,
+    "tp": 7,
+    "pred": 11,
+    "ref": 7
+   },
+   "audit": {
+    "precision": 1.0,
+    "recall": 0.846,
+    "tp": 11,
+    "pred": 11,
+    "ref": 13
+   }
+  },
+  "sm3_12_123810": {
+   "ref_iou": {
+    "precision": 0.385,
+    "recall": 0.714,
+    "tp": 5,
+    "pred": 13,
+    "ref": 7
+   },
+   "ref_center": {
+    "precision": 0.538,
+    "recall": 1.0,
+    "tp": 7,
+    "pred": 13,
+    "ref": 7
+   },
+   "audit": {
+    "precision": 0.846,
+    "recall": 0.846,
+    "tp": 11,
+    "pred": 13,
+    "ref": 13
+   }
+  },
+  "sm3_12_123903": {
+   "ref_iou": {
+    "precision": 0.455,
+    "recall": 0.714,
+    "tp": 5,
+    "pred": 11,
+    "ref": 7
+   },
+   "ref_center": {
+    "precision": 0.636,
+    "recall": 1.0,
+    "tp": 7,
+    "pred": 11,
+    "ref": 7
+   },
+   "audit": {
+    "precision": 1.0,
+    "recall": 0.846,
+    "tp": 11,
+    "pred": 11,
+    "ref": 13
+   }
+  },
+  "sm3_12_124027": {
+   "ref_iou": {
+    "precision": 0.455,
+    "recall": 0.714,
+    "tp": 5,
+    "pred": 11,
+    "ref": 7
+   },
+   "ref_center": {
+    "precision": 0.636,
+    "recall": 1.0,
+    "tp": 7,
+    "pred": 11,
+    "ref": 7
+   },
+   "audit": {
+    "precision": 1.0,
+    "recall": 0.846,
+    "tp": 11,
+    "pred": 11,
+    "ref": 13
+   }
+  },
+  "sm3_12_124130": {
+   "ref_iou": {
+    "precision": 0.455,
+    "recall": 0.714,
+    "tp": 5,
+    "pred": 11,
+    "ref": 7
+   },
+   "ref_center": {
+    "precision": 0.636,
+    "recall": 1.0,
+    "tp": 7,
+    "pred": 11,
+    "ref": 7
+   },
+   "audit": {
+    "precision": 1.0,
+    "recall": 0.846,
+    "tp": 11,
+    "pred": 11,
+    "ref": 13
+   }
+  }
+ }
+}

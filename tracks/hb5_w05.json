@@ -5270,7 +5270,7 @@
       796.7
      ],
      "interpolated": false,
-     "label": "foraging"
+     "label": "flying"
     },
     {
      "t": 6.3,
@@ -5285,7 +5285,7 @@
       796.3
      ],
      "interpolated": false,
-     "label": "foraging"
+     "label": "walking"
     },
     {
      "t": 6.333,
@@ -5300,7 +5300,7 @@
       796.4
      ],
      "interpolated": false,
-     "label": "foraging"
+     "label": "flying"
     },
     {
      "t": 6.367,
@@ -8124,7 +8124,7 @@
    "flower_id": "flower_22",
    "type": "visit",
    "t_start": 3.133,
-   "t_end": 6.833
+   "t_end": 6.733
   },
   {
    "track_id": "honeybee_4",
@@ -8138,7 +8138,7 @@
    "flower_id": "flower_29",
    "type": "visit",
    "t_start": 4.667,
-   "t_end": 6.5
+   "t_end": 6.233
   },
   {
    "track_id": "honeybee_3",
@@ -8151,7 +8151,7 @@
    "track_id": "honeybee_2",
    "flower_id": "flower_23",
    "type": "visit",
-   "t_start": 6.6,
+   "t_start": 6.767,
    "t_end": 8.0
   }
  ],

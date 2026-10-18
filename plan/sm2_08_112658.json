@@ -10,21 +10,20 @@
   "flower_6",
   "flower_9",
   "flower_8",
-  "flower_4",
-  "flower_3"
+  "flower_4"
  ],
- "path_length": 1351.2,
- "deficit_covered": 0.625,
+ "path_length": 1191.5,
+ "deficit_covered": 0.5,
  "total_deficit": 32.0,
  "robot": {
   "speed": 100.0,
-  "dwell_s": 2.77,
+  "dwell_s": 3.5,
   "units": "y-norm1000 per s",
   "time_scale": 1.0
  },
  "baselines": {
-  "nearest_all": 0.625,
-  "random": 0.375
+  "nearest_all": 0.5,
+  "random": 0.331
  },
  "video": "rollouts/sm2_08_112658_plan.mp4",
  "source": "mk1.5"

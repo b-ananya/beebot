@@ -18,13 +18,13 @@
  "total_deficit": 36.0,
  "robot": {
   "speed": 100.0,
-  "dwell_s": 2.77,
+  "dwell_s": 3.5,
   "units": "y-norm1000 per s",
   "time_scale": 1.0
  },
  "baselines": {
   "nearest_all": 0.556,
-  "random": 0.322
+  "random": 0.283
  },
  "video": "rollouts/sm2_08_112733_plan.mp4",
  "source": "mk1.5"

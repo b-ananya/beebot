@@ -58,6 +58,15 @@ detector, `perception/flowers.py` (`detect_tiled`: Mk1.5 on the clip's insect-fr
 ground cover skipped so stops become the flowers; ids stable per camera view); `perception/visits.py` adds visits:
 a visit is the insect inside a flower box for ≥ 0.3 s (Polytrack's rule).
 
+**Flower boxes** (`python -m eval.flowers_eval`, 10 farm clips = 2 fixed-camera scenes): vs a visual audit of every
+open flower (`eval/audit/flower_labels.json`, needs a human spot-check) precision 0.98, recall 0.87 per clip; per
+scene 9/9 and 11/13 boxes are open flowers and 9/9 and 11/13 open flowers are found. Against the dataset's flower
+list the same boxes score 0.36 / 0.54 by box overlap and 0.57 / 0.86 by center distance: that list holds only the
+flowers Polytrack used (most "extras" are real flowers), as radius-estimated squares that sit ~13 px off on camera 3.
+Tried and not adopted (scratch study, 2 clips vs the audit): strawberry-specific prompt 0.91/0.91, 3x3 tiles
+0.46/0.95, 3x3 proposals confirmed on crops 0.95/0.91, vs current 1.00/0.86; adopted: a flower found in >= 2 clips
+of a camera is added to the clips that missed it (`visits.fill_view`).
+
 `tracks/*.json` is written by `perception.pipeline`. The earlier hybrid tracker's tracks (Raika, 2 fps) are kept in
 `tracks/hybrid/` for comparison: on the same eval they cover 38% of the reference path vs 90% for the pipeline
 (0.25 s window; pipeline better on 45 of 46 clips). Note `python -m perception.merge` rebuilds `tracks/*.json` from

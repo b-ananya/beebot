@@ -20,9 +20,9 @@
    ],
    "radius": 30.7,
    "state": "open",
-   "visits": 2,
-   "dwell_s": 7.13,
-   "deficit": 2,
+   "visits": 1,
+   "dwell_s": 3.5,
+   "deficit": 3,
    "seen_in_clips": 5
   },
   {
@@ -33,9 +33,9 @@
    ],
    "radius": 32.7,
    "state": "open",
-   "visits": 4,
-   "dwell_s": 9.7,
-   "deficit": 0,
+   "visits": 3,
+   "dwell_s": 8.87,
+   "deficit": 1,
    "seen_in_clips": 5
   },
   {
@@ -98,9 +98,9 @@
    ],
    "radius": 20.3,
    "state": "open",
-   "visits": 1,
-   "dwell_s": 1.57,
-   "deficit": 3,
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
    "seen_in_clips": 5
   },
   {
@@ -125,7 +125,7 @@
    "radius": 40.8,
    "state": "open",
    "visits": 1,
-   "dwell_s": 5.67,
+   "dwell_s": 5.6,
    "deficit": 3,
    "seen_in_clips": 5
   },
@@ -166,7 +166,7 @@
    "visits": 0,
    "dwell_s": 0.0,
    "deficit": 4,
-   "seen_in_clips": 3
+   "seen_in_clips": 5
   },
   {
    "flower_id": "flower_13",

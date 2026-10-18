@@ -551,6 +551,30 @@ with tab_data:
             with st.expander("Audit crops (red circle = BeeBot's point)"):
                 st.image(str(ROOT / "eval" / "audit" / "disputed_points_v0.7.jpg"))
 
+    fr_path = ROOT / "eval" / "flowers_report.json"
+    if fr_path.exists():
+        FR = json.loads(fr_path.read_text())
+        st.subheader("Flower detection (farm clips)")
+        names = {"ref_iou": "vs dataset flower list, box overlap ≥ 0.3",
+                 "ref_center": "vs dataset flower list, centers within one flower width",
+                 "audit": "vs visual audit of every open flower"}
+        st.dataframe(pd.DataFrame([{"scored against": names[k], "precision": v["precision"], "recall": v["recall"],
+                                    "boxes": v["pred"], "labels": v["ref"]} for k, v in FR["overall_per_clip"].items()]),
+                     hide_index=True, width="stretch")
+        pv = FR["per_view_distinct_flowers"]
+        st.caption(f"{FR['clips']} clips from {FR['scenes']} fixed cameras, so {FR['scenes']} independent scenes. "
+                   + " ".join(f"Camera {v.split('_')[0][-1]}: {d['boxes_on_open_flowers']}/{d['distinct_boxes']} boxes on "
+                              f"open flowers, {d['boxes_on_open_flowers']}/{d['open_flowers']} open flowers found."
+                              for v, d in pv.items()))
+        st.info("**Why three numbers.** The dataset's flower list holds only the flowers its tracker used, as squares "
+                "estimated from a radius and placed once per day; on camera 3 they sit ~13 px below every flower, so "
+                "box overlap misses real matches and most 'extra' boxes are real flowers it doesn't list. The visual "
+                "audit labels every open flower in both scenes (and needs a human spot-check before quoting).")
+        with st.expander("Audit images"):
+            for img in ("flowers_sm2_08_boxes.jpg", "flowers_sm3_12_boxes.jpg", "flowers_unboxed_candidates.jpg"):
+                if (ROOT / "eval" / "audit" / img).exists():
+                    st.image(str(ROOT / "eval" / "audit" / img), caption=img)
+
 
 # ------------------------------------------------------------------ tab: upload
 with tab_upload:

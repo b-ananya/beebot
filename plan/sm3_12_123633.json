@@ -18,13 +18,13 @@
  "total_deficit": 43.0,
  "robot": {
   "speed": 100.0,
-  "dwell_s": 2.77,
+  "dwell_s": 3.5,
   "units": "y-norm1000 per s",
   "time_scale": 1.0
  },
  "baselines": {
   "nearest_all": 0.442,
-  "random": 0.195,
+  "random": 0.187,
   "follow_bee": 0.07
  },
  "video": "rollouts/sm3_12_123633_plan.mp4",

@@ -10555,21 +10555,21 @@
    "flower_id": "flower_10",
    "type": "visit",
    "t_start": 0.0,
-   "t_end": 1.7
+   "t_end": 1.5
   },
   {
    "track_id": "honeybee_2",
    "flower_id": "flower_9",
    "type": "visit",
-   "t_start": 1.433,
-   "t_end": 3.033
+   "t_start": 1.533,
+   "t_end": 2.867
   },
   {
    "track_id": "honeybee_2",
    "flower_id": "flower_10",
    "type": "visit",
    "t_start": 2.9,
-   "t_end": 4.633
+   "t_end": 4.033
   },
   {
    "track_id": "honeybee_2",
