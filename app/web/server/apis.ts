@@ -259,6 +259,8 @@ function apiKey(): string {
 function pythonBin(): string {
   const configured = (process.env.BEEBOT_PYTHON ?? readDotenv().BEEBOT_PYTHON ?? '').trim()
   if (configured) return configured
+  // The project venv: .venv/bin on macOS and Linux, .venv/Scripts on Windows. Without one, fall back to the
+  // interpreter on PATH ("python3" does not exist on Windows outside the Store stub, so try "python" there).
   for (const venv of [path.join(repoRoot, '.venv', 'bin', 'python'),
                       path.join(repoRoot, '.venv', 'Scripts', 'python.exe')]) {
     if (fs.existsSync(venv)) return venv
