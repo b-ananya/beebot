@@ -255,11 +255,12 @@ function apiKey(): string {
 }
 
 function pythonBin(): string {
-  const candidates = [
+  // The project venv: .venv/bin on macOS and Linux, .venv/Scripts on Windows. Without one, fall back to the
+  // interpreter on PATH ("python3" does not exist on Windows outside the Store stub, so try "python" there).
+  for (const candidate of [
     path.join(repoRoot, '.venv', 'bin', 'python'),
     path.join(repoRoot, '.venv', 'Scripts', 'python.exe'),
-  ]
-  for (const candidate of candidates) {
+  ]) {
     if (fs.existsSync(candidate)) return candidate
   }
   return process.platform === 'win32' ? 'python' : 'python3'
