@@ -1,7 +1,6 @@
 # Pollensight
 
-**Problem:** Growers can't see which flowers insects actually pollinate, so missed flowers go unnoticed and robot
-pollinators don't know where to go.
+**Problem:** Pollinators are disappearing, and a third of the food we grow depends on them.
 
 **Solution:** Pollensight turns ordinary fixed-camera video into a per-flower record of insect visits. It uses
 motion tracking plus Perceptron's Mk1.5 vision model, then forecasts insect movement and plans a robot route to the
