@@ -255,8 +255,14 @@ function apiKey(): string {
 }
 
 function pythonBin(): string {
-  const venv = path.join(repoRoot, '.venv', 'bin', 'python')
-  return fs.existsSync(venv) ? venv : 'python3'
+  const candidates = [
+    path.join(repoRoot, '.venv', 'bin', 'python'),
+    path.join(repoRoot, '.venv', 'Scripts', 'python.exe'),
+  ]
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) return candidate
+  }
+  return process.platform === 'win32' ? 'python' : 'python3'
 }
 
 function modelsTrained(): boolean {
