@@ -1,0 +1,58 @@
+{
+ "request": {
+  "clip_id": "sm3_12_123633",
+  "piece": "flowers",
+  "user": "b-ananya",
+  "created_at": "2026-10-18T00:18:30+00:00",
+  "media": [
+   "ba073e088ff081c8b5dd99fc9aa9c857bdb06858580a33894e696da723eef864"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "flowers",
+  "prompt_version": "v1",
+  "prompt_text": "Your goal is to segment out the following categories: open flower. Box every individual open flower head you can see, including small and partly hidden ones. Do not box leaves, buds or fruit.",
+  "annotation_format": "box",
+  "max_tokens": 6000,
+  "reasoning_effort": null,
+  "temperature": null
+ },
+ "response": {
+  "text": "<collection mention=\"open flower\">\n <point_box> (152,433) (219,531) </point_box>\n <point_box> (205,464) (272,572) </point_box>\n <point_box> (711,762) (788,866) </point_box>\n <point_box> (791,808) (847,894) </point_box>\n <point_box> (747,844) (797,906) </point_box>\n <point_box> (775,889) (848,1000) </point_box>\n</collection>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 390,
+   "completion_tokens": 103,
+   "total_tokens": 493,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "bbc11f5d540936b69889bddd99edb9dc",
+  "cost_usd": 0.000213
+ },
+ "raw": {
+  "id": "chatcmpl-8a3ba262b5344a6392f0994dad379f96",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<collection mention=\"open flower\">\n <point_box> (152,433) (219,531) </point_box>\n <point_box> (205,464) (272,572) </point_box>\n <point_box> (711,762) (788,866) </point_box>\n <point_box> (791,808) (847,894) </point_box>\n <point_box> (747,844) (797,906) </point_box>\n <point_box> (775,889) (848,1000) </point_box>\n</collection>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792282708,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 390,
+   "completion_tokens": 103,
+   "total_tokens": 493,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

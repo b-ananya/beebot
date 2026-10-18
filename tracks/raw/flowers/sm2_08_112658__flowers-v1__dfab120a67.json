@@ -1,0 +1,58 @@
+{
+ "request": {
+  "clip_id": "sm2_08_112658",
+  "piece": "flowers",
+  "user": "b-ananya",
+  "created_at": "2026-10-18T00:17:35+00:00",
+  "media": [
+   "a922a222c116981a4a5cd109475463ba1e8499a163802c676223e05f1a8dae8b"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "flowers",
+  "prompt_version": "v1",
+  "prompt_text": "Your goal is to segment out the following categories: open flower. Box every individual open flower head you can see, including small and partly hidden ones. Do not box leaves, buds or fruit.",
+  "annotation_format": "box",
+  "max_tokens": 6000,
+  "reasoning_effort": null,
+  "temperature": null
+ },
+ "response": {
+  "text": "<collection mention=\"open flower\">\n <point_box> (866,22) (925,127) </point_box>\n <point_box> (745,175) (803,281) </point_box>\n <point_box> (108,370) (150,469) </point_box>\n <point_box> (659,488) (703,572) </point_box>\n <point_box> (466,550) (548,675) </point_box>\n</collection>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 390,
+   "completion_tokens": 89,
+   "total_tokens": 479,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "7e212a03b3ef6ebc8390c6690c9ba1fc",
+  "cost_usd": 0.000192
+ },
+ "raw": {
+  "id": "chatcmpl-d5c2f94e53c74885b3502d7e4116bf9d",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<collection mention=\"open flower\">\n <point_box> (866,22) (925,127) </point_box>\n <point_box> (745,175) (803,281) </point_box>\n <point_box> (108,370) (150,469) </point_box>\n <point_box> (659,488) (703,572) </point_box>\n <point_box> (466,550) (548,675) </point_box>\n</collection>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792282653,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 390,
+   "completion_tokens": 89,
+   "total_tokens": 479,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

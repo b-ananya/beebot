@@ -1,0 +1,58 @@
+{
+ "request": {
+  "clip_id": "hb6_w05",
+  "piece": "verify",
+  "user": "b-ananya",
+  "created_at": "2026-10-17T22:51:34+00:00",
+  "media": [
+   "122a449fd09ba0774cfc8d834ef5e7cdccfd2d08b17843931302f11417e5eba1"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "verify",
+  "prompt_version": "v2-detect",
+  "prompt_text": "Your goal is to segment out the following categories: insect, bee, wasp, fly",
+  "annotation_format": "box",
+  "max_tokens": 400,
+  "reasoning_effort": null,
+  "temperature": null
+ },
+ "response": {
+  "text": "<collection mention=\"insect\">\n <point_box> (0,350) (31,375) </point_box>\n <point_box> (0,370) (38,425) </point_box>\n <point_box> (75,388) (162,462) </point_box>\n <point_box> (406,408) (500,488) </point_box>\n <point_box> (416,438) (588,562) </point_box>\n <point_box> (0,450) (12,512) </point_box>\n <point_box> (0,469) (19,525) </point_box>\n <point_box> (0,475) (16,528) </point_box>\n <point_box> (0,481) (22,538) </point_box>\n <point_box> (0,492) (25,547) </point_box>\n <point_box> (0,498) (28,553) </point_box>\n <point_box> (0,506) (34,559) </point_box>\n <point_box> (0,514) (36,569) </point_box>\n <point_box> (0,522) (41,575) </point_box>\n <point_box> (0,531) (44,584) </point_box>\n <point_box> (0,536) (50,591) </point_box>\n <point_box> (0,544) (53,597) </point_box>\n <point_box> (0,550) (59,603) </point_box>\n <point_box> (0,556) (62,609) </point_box>\n <point_box> (0,562) (66,616) </point_box>\n <point_box> (0,567) (70,619) </point_box>\n <point_box> (0,572) (75,622) </point_box>\n <point_box> (0,578) (78,625) </point_box>\n <point_box> (0,581) (81,628) </point_box>\n <point_box> (0,586) (84,631) </point_box>\n <point_box> (0,589) (88,634) </point_box>\n <point_box> (0,594) (91,638) </point_box>",
+  "finish_reason": "length",
+  "usage": {
+   "prompt_tokens": 258,
+   "completion_tokens": 400,
+   "total_tokens": 658,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "0db3b7a1d586080c332921566b08a59d",
+  "cost_usd": 0.000639
+ },
+ "raw": {
+  "id": "chatcmpl-4e27217ae18d46af944ec260649d4457",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<collection mention=\"insect\">\n <point_box> (0,350) (31,375) </point_box>\n <point_box> (0,370) (38,425) </point_box>\n <point_box> (75,388) (162,462) </point_box>\n <point_box> (406,408) (500,488) </point_box>\n <point_box> (416,438) (588,562) </point_box>\n <point_box> (0,450) (12,512) </point_box>\n <point_box> (0,469) (19,525) </point_box>\n <point_box> (0,475) (16,528) </point_box>\n <point_box> (0,481) (22,538) </point_box>\n <point_box> (0,492) (25,547) </point_box>\n <point_box> (0,498) (28,553) </point_box>\n <point_box> (0,506) (34,559) </point_box>\n <point_box> (0,514) (36,569) </point_box>\n <point_box> (0,522) (41,575) </point_box>\n <point_box> (0,531) (44,584) </point_box>\n <point_box> (0,536) (50,591) </point_box>\n <point_box> (0,544) (53,597) </point_box>\n <point_box> (0,550) (59,603) </point_box>\n <point_box> (0,556) (62,609) </point_box>\n <point_box> (0,562) (66,616) </point_box>\n <point_box> (0,567) (70,619) </point_box>\n <point_box> (0,572) (75,622) </point_box>\n <point_box> (0,578) (78,625) </point_box>\n <point_box> (0,581) (81,628) </point_box>\n <point_box> (0,586) (84,631) </point_box>\n <point_box> (0,589) (88,634) </point_box>\n <point_box> (0,594) (91,638) </point_box>",
+     "role": "assistant"
+    },
+    "finish_reason": "length"
+   }
+  ],
+  "created": 1792277490,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 258,
+   "completion_tokens": 400,
+   "total_tokens": 658,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

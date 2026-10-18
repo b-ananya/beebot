@@ -1,0 +1,492 @@
+{
+ "clip_id": "sm3_12_123810",
+ "model": "cv-bgsub-dp+perceptron-mk1.5",
+ "prompt_version": "mk1.5-v2-detect",
+ "tracks": [
+  {
+   "track_id": "insect_1",
+   "species": "unknown",
+   "complete": true,
+   "points": [
+    {
+     "t": 2.4,
+     "box": [
+      874.8,
+      529.2,
+      907.6,
+      587.5
+     ],
+     "center": [
+      891.2,
+      558.3
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.433,
+     "box": [
+      887.8,
+      539.0,
+      913.2,
+      584.0
+     ],
+     "center": [
+      900.5,
+      561.5
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.467,
+     "box": [
+      899.8,
+      559.2,
+      924.2,
+      602.5
+     ],
+     "center": [
+      912.0,
+      580.9
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.5,
+     "box": [
+      899.7,
+      566.5,
+      933.4,
+      626.5
+     ],
+     "center": [
+      916.6,
+      596.5
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.533,
+     "box": [
+      911.0,
+      597.8,
+      942.8,
+      654.5
+     ],
+     "center": [
+      926.9,
+      626.1
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.567,
+     "box": [
+      927.2,
+      630.4,
+      962.8,
+      693.7
+     ],
+     "center": [
+      945.0,
+      662.0
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.6,
+     "box": [
+      936.7,
+      663.6,
+      969.5,
+      721.9
+     ],
+     "center": [
+      953.1,
+      692.7
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.633,
+     "box": [
+      952.1,
+      679.9,
+      982.1,
+      733.2
+     ],
+     "center": [
+      967.1,
+      706.6
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.667,
+     "box": [
+      959.7,
+      670.2,
+      988.8,
+      721.8
+     ],
+     "center": [
+      974.3,
+      696.0
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.7,
+     "box": [
+      961.6,
+      643.5,
+      993.4,
+      700.2
+     ],
+     "center": [
+      977.5,
+      671.9
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.733,
+     "box": [
+      968.8,
+      625.5,
+      996.0,
+      673.9
+     ],
+     "center": [
+      982.4,
+      649.7
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.767,
+     "box": [
+      971.3,
+      612.9,
+      995.6,
+      656.2
+     ],
+     "center": [
+      983.5,
+      634.5
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.8,
+     "box": [
+      964.4,
+      608.0,
+      1000.0,
+      676.3
+     ],
+     "center": [
+      983.7,
+      642.1
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.833,
+     "box": [
+      975.1,
+      637.0,
+      1000.0,
+      683.7
+     ],
+     "center": [
+      988.2,
+      660.4
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.867,
+     "box": [
+      971.2,
+      654.9,
+      1000.0,
+      716.6
+     ],
+     "center": [
+      988.5,
+      685.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.9,
+     "box": [
+      966.1,
+      655.3,
+      1000.0,
+      720.3
+     ],
+     "center": [
+      984.4,
+      687.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.933,
+     "box": [
+      966.3,
+      652.8,
+      1000.0,
+      716.1
+     ],
+     "center": [
+      984.1,
+      684.5
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.967,
+     "box": [
+      973.5,
+      650.8,
+      1000.0,
+      709.1
+     ],
+     "center": [
+      989.9,
+      680.0
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 3.0,
+     "box": [
+      972.4,
+      652.7,
+      1000.0,
+      709.4
+     ],
+     "center": [
+      988.3,
+      681.1
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 3.033,
+     "box": [
+      979.2,
+      640.7,
+      1000.0,
+      689.0
+     ],
+     "center": [
+      992.8,
+      664.9
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 3.067,
+     "box": [
+      974.3,
+      660.6,
+      1000.0,
+      712.2
+     ],
+     "center": [
+      988.8,
+      686.4
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 3.1,
+     "box": [
+      975.2,
+      658.6,
+      1000.0,
+      712.0
+     ],
+     "center": [
+      990.2,
+      685.3
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 3.133,
+     "box": [
+      978.8,
+      681.1,
+      1000.0,
+      729.4
+     ],
+     "center": [
+      992.4,
+      705.3
+     ],
+     "interpolated": false,
+     "label": "flying"
+    }
+   ]
+  }
+ ],
+ "flowers": [
+  {
+   "flower_id": "flower_0",
+   "box": [
+    491.2,
+    258.6,
+    531.4,
+    322.8
+   ],
+   "source": "mk1.5"
+  },
+  {
+   "flower_id": "flower_1",
+   "box": [
+    523.6,
+    277.2,
+    563.8,
+    343.2
+   ],
+   "source": "mk1.5"
+  },
+  {
+   "flower_id": "flower_2",
+   "box": [
+    219.6,
+    320.4,
+    238.8,
+    348.6
+   ],
+   "source": "mk1.5"
+  },
+  {
+   "flower_id": "flower_3",
+   "box": [
+    157.2,
+    433.8,
+    195.0,
+    502.8
+   ],
+   "source": "mk1.5"
+  },
+  {
+   "flower_id": "flower_4",
+   "box": [
+    826.6,
+    457.2,
+    872.8,
+    521.4
+   ],
+   "source": "mk1.5"
+  },
+  {
+   "flower_id": "flower_5",
+   "box": [
+    874.6,
+    485.4,
+    908.8,
+    538.2
+   ],
+   "source": "mk1.5"
+  },
+  {
+   "flower_id": "flower_6",
+   "box": [
+    850.0,
+    508.2,
+    878.8,
+    549.6
+   ],
+   "source": "mk1.5"
+  },
+  {
+   "flower_id": "flower_7",
+   "box": [
+    82.8,
+    529.6,
+    125.4,
+    598.6
+   ],
+   "source": "mk1.5"
+  },
+  {
+   "flower_id": "flower_8",
+   "box": [
+    866.2,
+    529.6,
+    908.8,
+    615.4
+   ],
+   "source": "mk1.5"
+  },
+  {
+   "flower_id": "flower_9",
+   "box": [
+    575.4,
+    649.6,
+    600.0,
+    690.4
+   ],
+   "source": "mk1.5"
+  },
+  {
+   "flower_id": "flower_10",
+   "box": [
+    52.8,
+    880.0,
+    75.0,
+    913.6
+   ],
+   "source": "mk1.5"
+  },
+  {
+   "flower_id": "flower_11",
+   "box": [
+    109.8,
+    925.0,
+    138.6,
+    968.2
+   ],
+   "source": "mk1.5"
+  },
+  {
+   "flower_id": "flower_12",
+   "box": [
+    140.4,
+    943.6,
+    204.6,
+    1000.0
+   ],
+   "source": "mk1.5"
+  }
+ ],
+ "events": []
+}

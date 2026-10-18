@@ -6,6 +6,8 @@
 
 Reference frame: the per-pixel median of the clip, so moving insects vanish and flowers stay. Mk1.5 boxes every
 open flower on it (tiled 2x2 with overlap so small flowers are big enough to see; duplicates merged by IoU).
+Dense ground cover is detected from the first tile (cut-off answer or > DENSE_BOXES boxes) and skipped: on the
+honeybee clips 43 of 76 answers hit the 6,000-token limit at ~1,000 blossoms per clip.
 
 Visits follow the Polytrack definition the farm truth uses: the insect's center is inside a flower's box (grown by
 ``GROW`` on each side) for at least ``MIN_VISIT_S``; gaps shorter than ``MERGE_GAP_S`` are bridged. In dense ground
@@ -36,6 +38,8 @@ MERGE_GAP_S = 0.5
 MIN_STOP_S = 0.6     # a bee this still for this long is on something
 STOP_SPEED = 25.0    # units (0-1000) per second, smoothed
 STOP_BOX = 30        # side of a stop-flower box in 0-1000 units
+
+DENSE_BOXES = 150    # first tile with more boxes than this (or a cut-off answer) = dense ground cover
 
 PROMPT = ("Your goal is to segment out the following categories: open flower. Box every individual open flower "
           "head you can see, including small and partly hidden ones. Do not box leaves, buds or fruit.")
@@ -87,10 +91,15 @@ def detect_flowers(client: PerceptionClient, clip_id: str, video: Path) -> list[
     from perceptron import BoundingBox
 
     boxes = []
-    for tile, (x0, y0, w, h) in _tiles(reference_frame(video, clip_id), clip_id):
+    for k, (tile, (x0, y0, w, h)) in enumerate(_tiles(reference_frame(video, clip_id), clip_id)):
         r = client.call(clip_id=clip_id, prompt_name="flowers", prompt_version=PROMPT_VERSION, prompt_text=PROMPT,
                         image_paths=[tile], annotation_format="box", max_tokens=6000)
-        for b in r.annotations().boxes:
+        tile_boxes = r.annotations().boxes
+        if k == 0 and (r.finish_reason == "length" or len(tile_boxes) > DENSE_BOXES):
+            # dense ground cover (the honeybee clips: ~1,000 blossoms, answers cut off at the token limit):
+            # a full inventory is neither complete nor useful, so visits fall back to stop-flowers
+            return []
+        for b in tile_boxes:
             if not isinstance(b, BoundingBox):
                 continue
             bx = [x0 + b.top_left.x / 1000 * w, y0 + b.top_left.y / 1000 * h,
@@ -180,14 +189,36 @@ def visit_events(tracks: list[dict], flowers: list[dict]) -> tuple[list[dict], l
     return events, flowers
 
 
+FLY_SPEED = 40.0      # units/s; faster than this between observed points = flying
+
+
+def label_behavior(tracks: list[dict], events: list[dict]) -> None:
+    """Per-point label from motion and visits: inside a visit = foraging, fast = flying, otherwise walking.
+    (Mk1.5's own behavior answers on 20 px insects were unreliable, see perception/verify.py.)"""
+    for tr in tracks:
+        vis = [(e["t_start"], e["t_end"]) for e in events if e["track_id"] == tr["track_id"]]
+        pts = tr["points"]
+        for i, p in enumerate(pts):
+            if any(a <= p["t"] <= b for a, b in vis):
+                p["label"] = "foraging"
+                continue
+            j = i + 1 if i + 1 < len(pts) else i - 1
+            if j < 0 or pts[j]["t"] == p["t"]:
+                continue
+            a, b = _center(p), _center(pts[j])
+            speed = ((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2) ** 0.5 / abs(pts[j]["t"] - p["t"])
+            p["label"] = "flying" if speed >= FLY_SPEED else "walking"
+
+
 def finish_clip(clip_id: str, *, client: PerceptionClient | None, video: Path | None = None,
                 in_dir: Path = IN_DIR, out_dir: Path = OUT_DIR) -> dict:
     doc = json.loads((in_dir / f"{clip_id}.json").read_text())
     video = video or (ROOT / manifest()[clip_id]["path"])
     flowers = detect_flowers(client, clip_id, video) if client else []
     events, flowers = visit_events(doc["tracks"], flowers)
+    label_behavior(doc["tracks"], events)
     for tr in doc["tracks"]:
-        for k in ("source_track", "confirmed_samples", "kind_votes"):
+        for k in ("source_track", "confirmed_samples", "kind_votes", "hit_rate"):
             tr.pop(k, None)
     out = {"clip_id": clip_id, "model": doc["model"], "prompt_version": doc["prompt_version"],
            "tracks": doc["tracks"], "flowers": flowers, "events": events}

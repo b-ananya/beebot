@@ -27,18 +27,18 @@ def api_ready() -> bool:
 
 
 def run(clip_id: str, *, use_api: bool, video: Path | None = None, out_dir: Path | None = None,
-        workers: int = 8) -> dict:
+        workers: int = 4, species: str | None = None) -> dict:
     out_dir = out_dir or (ROOT / "tracks" if use_api else ROOT / "tracks" / "heuristic")
     stage = out_dir / "_stages"
     cv_track.run_clip(clip_id, out_dir=stage / "cv", video=video)
     client_v = PerceptionClient(verify.PIECE) if use_api else None
     verify.verify_clip(clip_id, client=client_v, workers=workers, cv_dir=stage / "cv", out_dir=stage / "verified",
-                       video=video)
+                       video=video, species=species)
     client_f = PerceptionClient(flowers.PIECE) if use_api else None
     return flowers.finish_clip(clip_id, client=client_f, video=video, in_dir=stage / "verified", out_dir=out_dir)
 
 
-def analyze_video(path: Path, *, use_api: bool | None = None) -> tuple[str, Path, dict]:
+def analyze_video(path: Path, *, use_api: bool | None = None, species: str = "unknown") -> tuple[str, Path, dict]:
     """Transcode an uploaded video to the working format and run the pipeline. Returns (clip_id, mp4, doc)."""
     use_api = api_ready() if use_api is None else use_api
     h = hashlib.sha256(Path(path).read_bytes()).hexdigest()[:10]
@@ -55,7 +55,7 @@ def analyze_video(path: Path, *, use_api: bool | None = None) -> tuple[str, Path
                         "-c:v", "libx264", "-crf", "20", "-preset", "fast", "-pix_fmt", "yuv420p", "-an",
                         "-movflags", "+faststart", str(mp4)], check=True)
     out_dir = ROOT / "tracks" / "uploads"
-    doc = run(clip_id, use_api=use_api, video=mp4, out_dir=out_dir)
+    doc = run(clip_id, use_api=use_api, video=mp4, out_dir=out_dir, species=species)
     return clip_id, mp4, doc
 
 
@@ -65,11 +65,12 @@ def main(argv=None) -> int:
     ap.add_argument("--all", action="store_true")
     ap.add_argument("--video")
     ap.add_argument("--no-api", action="store_true")
-    ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--species", default="unknown", help="for --video: honeybee, vespidae, syrphidae, lepidoptera")
     args = ap.parse_args(argv)
     use_api = api_ready() and not args.no_api
     if args.video:
-        cid, mp4, doc = analyze_video(Path(args.video), use_api=use_api)
+        cid, mp4, doc = analyze_video(Path(args.video), use_api=use_api, species=args.species)
         print(f"{cid}: {len(doc['tracks'])} insects, {len(doc['events'])} visits -> tracks/uploads/{cid}.json")
         return 0
     manifest = json.loads((ROOT / "clips" / "manifest.json").read_text())

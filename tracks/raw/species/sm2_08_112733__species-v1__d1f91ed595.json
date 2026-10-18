@@ -1,0 +1,93 @@
+{
+ "request": {
+  "clip_id": "sm2_08_112733",
+  "piece": "species",
+  "user": "b-ananya",
+  "created_at": "2026-10-17T22:32:39+00:00",
+  "media": [
+   "39751b5550533b092df16622f9d15ffcc5c18c8c8a968814f351b48c51dc9c9b"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "species",
+  "prompt_version": "v1",
+  "prompt_text": "This fixed camera films flowering plants. Small insects visit the flowers. What kind of insect is it, mostly? Honeybees are golden-brown with dark stripes and hairy bodies; wasps are slimmer, shiny, with a narrow waist and bright yellow-black markings; hoverflies have large eyes, one pair of wings and hover in place. Also say the largest number of insects visible at the same time. Answer in JSON.",
+  "annotation_format": null,
+  "max_tokens": 100,
+  "reasoning_effort": null,
+  "temperature": null,
+  "response_format": {
+   "type": "json_schema",
+   "json_schema": {
+    "name": "s",
+    "schema": {
+     "type": "object",
+     "properties": {
+      "insects_visible": {
+       "type": "boolean"
+      },
+      "main_insect": {
+       "type": "string",
+       "enum": [
+        "honeybee",
+        "bumblebee",
+        "other_bee",
+        "wasp",
+        "hoverfly",
+        "butterfly_or_moth",
+        "other_insect",
+        "none"
+       ]
+      },
+      "how_many_at_once": {
+       "type": "integer"
+      }
+     },
+     "required": [
+      "insects_visible",
+      "main_insect",
+      "how_many_at_once"
+     ]
+    }
+   }
+  }
+ },
+ "response": {
+  "text": "{\n  \"insects_visible\":  \tfalse,\n  \"main_insect\": \"hoverfly\",\n  \"how_many_at_once\": 1\n}",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 8138,
+   "completion_tokens": 42,
+   "total_tokens": 8180,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "cf74b9ccc5d70f32937d810b43079143",
+  "cost_usd": 0.001284
+ },
+ "raw": {
+  "id": "chatcmpl-598117c445ea4589be278d6f36b5f08b",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "{\n  \"insects_visible\":  \tfalse,\n  \"main_insect\": \"hoverfly\",\n  \"how_many_at_once\": 1\n}",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792276356,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 8138,
+   "completion_tokens": 42,
+   "total_tokens": 8180,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

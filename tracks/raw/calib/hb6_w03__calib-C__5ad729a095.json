@@ -1,0 +1,108 @@
+{
+ "request": {
+  "clip_id": "hb6_w03",
+  "piece": "calib",
+  "user": "b-ananya",
+  "created_at": "2026-10-17T22:29:33+00:00",
+  "media": [
+   "f15d8b6704b6ccedb094e311a10e370393636c70b6d9b48fe3ba5522331f182b"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "calib",
+  "prompt_version": "C",
+  "prompt_text": "This is a zoomed-in crop from a fixed camera filming flowering plants outdoors. Insects here are small (a few millimetres to a centimetre) and often partly hidden among petals and leaves. Is there an insect (bee, wasp, hoverfly, moth, butterfly or other insect) inside the red circle? Look carefully for a body, wings or stripes. Petals, flower centers, leaves, buds, stems and shadows are not insects. If there is one, say what kind it is and whether it is on a flower, on a leaf or the ground, or flying. Answer in JSON.",
+  "annotation_format": null,
+  "max_tokens": 200,
+  "reasoning_effort": null,
+  "temperature": null,
+  "response_format": {
+   "type": "json_schema",
+   "json_schema": {
+    "name": "x",
+    "schema": {
+     "type": "object",
+     "properties": {
+      "insect_at_center": {
+       "type": "boolean"
+      },
+      "kind": {
+       "type": "string",
+       "enum": [
+        "honeybee",
+        "bumblebee",
+        "other_bee",
+        "wasp",
+        "hoverfly",
+        "butterfly_or_moth",
+        "other_insect",
+        "none"
+       ]
+      },
+      "behavior": {
+       "type": "string",
+       "enum": [
+        "on_flower",
+        "on_leaf_or_ground",
+        "flying",
+        "none"
+       ]
+      },
+      "confidence": {
+       "type": "string",
+       "enum": [
+        "low",
+        "medium",
+        "high"
+       ]
+      }
+     },
+     "required": [
+      "insect_at_center",
+      "kind",
+      "behavior",
+      "confidence"
+     ]
+    }
+   }
+  }
+ },
+ "response": {
+  "text": "{\n  \"insect_at_center\": true,\n  \"kind\": \"honeybee\",\n  \"behavior\": \"on_flower\"\n    ,\n  \"confidence\":  \t\"high\"\n}",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 359,
+   "completion_tokens": 51,
+   "total_tokens": 410,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "aa37261e513ab67cc5369f8a39330d5c",
+  "cost_usd": 0.00013
+ },
+ "raw": {
+  "id": "chatcmpl-2e4cd6213eb84afaa8a2bf15afc3a988",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "{\n  \"insect_at_center\": true,\n  \"kind\": \"honeybee\",\n  \"behavior\": \"on_flower\"\n    ,\n  \"confidence\":  \t\"high\"\n}",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792276172,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 359,
+   "completion_tokens": 51,
+   "total_tokens": 410,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

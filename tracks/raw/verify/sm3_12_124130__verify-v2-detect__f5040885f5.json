@@ -1,0 +1,58 @@
+{
+ "request": {
+  "clip_id": "sm3_12_124130",
+  "piece": "verify",
+  "user": "b-ananya",
+  "created_at": "2026-10-17T22:55:17+00:00",
+  "media": [
+   "076b4473639420566c62f10e6c1a53688c226dec080f265eea847bf7c907166f"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "verify",
+  "prompt_version": "v2-detect",
+  "prompt_text": "Your goal is to segment out the following categories: insect, bee, wasp, fly",
+  "annotation_format": "box",
+  "max_tokens": 400,
+  "reasoning_effort": null,
+  "temperature": null
+ },
+ "response": {
+  "text": "<point_box mention=\"insect\" asset_idx=\"0\"> (0,0) (188,200) </point_box>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 258,
+   "completion_tokens": 27,
+   "total_tokens": 285,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "2c40c2342b8b55c81affa0513c060335",
+  "cost_usd": 7.9e-05
+ },
+ "raw": {
+  "id": "chatcmpl-ec7e06fa1eb94c53ad9f9af8fc506cef",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<point_box mention=\"insect\" asset_idx=\"0\"> (0,0) (188,200) </point_box>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792277716,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 258,
+   "completion_tokens": 27,
+   "total_tokens": 285,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

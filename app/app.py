@@ -433,6 +433,16 @@ with tab_data:
         st.dataframe(pd.DataFrame(arows), hide_index=True, width="stretch")
         st.caption("Coverage: share of reference points with a prediction within 50 units at the same time. "
                    "False alarms: predicted points not within 50 units of the reference. Visits scored on farm clips only.")
+        audit = ROOT / "eval" / "audit" / "disputed_points.json"
+        if audit.exists():
+            A = json.loads(audit.read_text())
+            n = A["sample"]
+            st.info(f"**Most 'false alarms' are real bees.** The reference follows one bee per honeybee video, but many "
+                    f"videos have several. In a visual audit of {n} random disputed points, {len(A['real_insect_clear'])} "
+                    f"were clearly bees, {len(A['real_insect_probable'])} probably, and {len(A['not_an_insect'])} were not "
+                    f"insects. {A['conclusion'].split('. ')[-1]}")
+            with st.expander("Audit crops (red circle = BeeBot's point)"):
+                st.image(str(ROOT / "eval" / "audit" / "disputed_points_v0.7.jpg"))
 
 
 # ------------------------------------------------------------------ tab: upload
@@ -444,12 +454,15 @@ with tab_upload:
                 "and forecasts above. First 60 s are used.")
     use_api = st.toggle("Use Mk1.5 (verification + flower boxes)", value=api_ready(), disabled=not api_ready(),
                         help=None if api_ready() else "Set PERCEPTRON_API_KEY in .env to enable")
+    species = st.selectbox("Insect species (if known)", ["unknown", "honeybee", "vespidae", "syrphidae", "lepidoptera"],
+                           help="Mk1.5 can't tell species apart on insects this small (it answered 'hoverfly' for "
+                                "honeybees and wasps alike), so set it here. It picks the dwell-time model.")
     up = st.file_uploader("Video", type=["mp4", "mov", "avi", "mkv"])
     if up is not None and st.button("Analyze", type="primary"):
         with tempfile.NamedTemporaryFile(suffix=Path(up.name).suffix, delete=False) as tmp:
             tmp.write(up.getbuffer())
         with st.spinner("Tracking, verifying, finding flowers…"):
-            cid, mp4, udoc = analyze_video(Path(tmp.name), use_api=use_api)
+            cid, mp4, udoc = analyze_video(Path(tmp.name), use_api=use_api, species=species)
             out = ROOT / "app" / "cache" / "uploads" / f"{cid}.mp4"
             render(mp4, udoc, out)
         st.session_state["upload"] = (cid, str(mp4), str(out))

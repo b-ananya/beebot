@@ -1,0 +1,108 @@
+{
+ "request": {
+  "clip_id": "sm2_08_112712",
+  "piece": "calib",
+  "user": "b-ananya",
+  "created_at": "2026-10-17T22:29:25+00:00",
+  "media": [
+   "1d14d34fae4ee40dd8195357b90c774ba3e11b6251eca20bfdb62490a87c2698"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "calib",
+  "prompt_version": "B",
+  "prompt_text": "This is a zoomed-in crop from a fixed camera filming flowering plants outdoors. Look at the CENTER of the image. Is there an insect (a bee, wasp, hoverfly, moth, butterfly or other insect) at or very near the center? Petals, flower centers, leaves, buds, shadows and debris are not insects. If there is one, say what kind it is and whether it is sitting on a flower, on a leaf or the ground, or flying. Answer in JSON.",
+  "annotation_format": null,
+  "max_tokens": 200,
+  "reasoning_effort": null,
+  "temperature": null,
+  "response_format": {
+   "type": "json_schema",
+   "json_schema": {
+    "name": "x",
+    "schema": {
+     "type": "object",
+     "properties": {
+      "insect_at_center": {
+       "type": "boolean"
+      },
+      "kind": {
+       "type": "string",
+       "enum": [
+        "honeybee",
+        "bumblebee",
+        "other_bee",
+        "wasp",
+        "hoverfly",
+        "butterfly_or_moth",
+        "other_insect",
+        "none"
+       ]
+      },
+      "behavior": {
+       "type": "string",
+       "enum": [
+        "on_flower",
+        "on_leaf_or_ground",
+        "flying",
+        "none"
+       ]
+      },
+      "confidence": {
+       "type": "string",
+       "enum": [
+        "low",
+        "medium",
+        "high"
+       ]
+      }
+     },
+     "required": [
+      "insect_at_center",
+      "kind",
+      "behavior",
+      "confidence"
+     ]
+    }
+   }
+  }
+ },
+ "response": {
+  "text": "{\n  \"insect_at_center\": false,\n  \"kind\": \"none\",\n  \"behavior\": \"none\"\n  ,\n  \"confidence\": \"high\"\n}",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 335,
+   "completion_tokens": 44,
+   "total_tokens": 379,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "d830959d707c5433f80be1cf95c686ea",
+  "cost_usd": 0.000116
+ },
+ "raw": {
+  "id": "chatcmpl-d0781163df944c2c894ac22bca2c8870",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "{\n  \"insect_at_center\": false,\n  \"kind\": \"none\",\n  \"behavior\": \"none\"\n  ,\n  \"confidence\": \"high\"\n}",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792276164,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 335,
+   "completion_tokens": 44,
+   "total_tokens": 379,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

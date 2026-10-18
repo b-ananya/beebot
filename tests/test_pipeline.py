@@ -6,8 +6,8 @@ import numpy as np
 from analytics.metrics import clip_metrics, isotropic
 from eval.run_eval import score_clip
 from forecast.models import FUT, PAST, candidate_features, path_features
-from perception.flowers import stops, visit_events
-from perception.verify import sample_points, split_by_answers
+from perception.flowers import label_behavior, stops, visit_events
+from perception.verify import sample_points, split_by_hits
 from search.search import derived_moments, query, tokens
 
 
@@ -42,24 +42,30 @@ def test_interpolated_points_are_ignored():
 
 
 # ------------------------------------------------------------------ verify
-def test_split_trims_tail_after_two_noes():
-    points = pts([(100 + i, 100) for i in range(50)])          # 0.0 .. 4.9 s
+def test_split_trims_tail_after_misses():
+    points = pts([(100 + i, 100) for i in range(60)])          # 0.0 .. 5.9 s
     samples = sample_points(points, 0.5)
-    yes = {"insect_at_center": True, "kind": "honeybee", "behavior": "on_flower", "confidence": "high"}
-    no = {"insect_at_center": False, "kind": "none", "behavior": "none", "confidence": "high"}
-    answers = [yes if s["t"] < 2.0 else no for s in samples]
-    pieces = split_by_answers(points, samples, answers)
+    hits = [s["t"] < 2.0 for s in samples]                     # insect seen for 2 s, then gone
+    pieces = split_by_hits(points, samples, hits)
     assert len(pieces) == 1
-    assert pieces[0]["species"] == "honeybee"
-    assert max(p["t"] for p in pieces[0]["points"]) < 2.0
-    assert all(p["label"] == "foraging" for p in pieces[0]["points"])
+    assert max(p["t"] for p in pieces[0]) < 2.0
 
 
-def test_split_drops_unconfirmed_path():
-    points = pts([(100, 100)] * 30)
+def test_single_misses_do_not_cut_and_noise_path_is_dropped():
+    points = pts([(100, 100)] * 60)
     samples = sample_points(points, 0.5)
-    no = {"insect_at_center": False, "kind": "none", "behavior": "none", "confidence": "high"}
-    assert split_by_answers(points, samples, [no] * len(samples)) == []
+    hits = [i % 3 != 0 for i in range(len(samples))]           # one miss in three: still the same insect
+    assert len(split_by_hits(points, samples, hits)) == 1
+    sparse = [i % 4 == 0 for i in range(len(samples))]         # 25% hits: swaying flower
+    assert split_by_hits(points, samples, sparse) == []
+
+
+def test_label_behavior_from_motion():
+    tr = doc(pts([(100, 100)] * 10 + [(100 + 30 * i, 100) for i in range(1, 6)]))["tracks"]
+    ev = [{"track_id": "honeybee_1", "flower_id": "f", "type": "visit", "t_start": 0.0, "t_end": 0.9}]
+    label_behavior(tr, ev)
+    labels = [p["label"] for p in tr[0]["points"]]
+    assert labels[0] == "foraging" and labels[-1] == "flying"
 
 
 # ------------------------------------------------------------------ visits

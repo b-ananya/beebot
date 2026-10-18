@@ -1,0 +1,10 @@
+{
+ "what": "30 random points that the Mk1.5 pipeline (verify v2, min hit rate 0.7) tracks but the reference tracker (HyDaT/Polytrack) has nowhere within 50 units; judged by eye from 120 px crops (disputed_points_v0.7.jpg, red circle = our point)",
+ "date": "2026-10-17",
+ "population": 1030,
+ "sample": 30,
+ "real_insect_clear": [0, 1, 2, 5, 7, 8, 9, 10, 11, 13, 15, 16, 17, 20, 21, 23, 25, 26, 27, 28],
+ "real_insect_probable": [3, 4, 6, 22, 24],
+ "not_an_insect": [12, 14, 18, 19, 29],
+ "conclusion": "67-83% of measured false alarms are real bees the reference does not follow (it tracks one bee per honeybee video). Measured false-alarm rate 0.526 -> estimated true false-alarm rate ~0.09-0.18."
+}

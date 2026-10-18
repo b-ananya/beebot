@@ -1,0 +1,58 @@
+{
+ "request": {
+  "clip_id": "hb4_w00",
+  "piece": "verify",
+  "user": "b-ananya",
+  "created_at": "2026-10-17T22:42:37+00:00",
+  "media": [
+   "f5d56d041fa6c36f6ea01bfefca9859550c871fa5f96a4a0508d1b537518b903"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "verify",
+  "prompt_version": "v2-detect",
+  "prompt_text": "Your goal is to segment out the following categories: insect, bee, wasp, fly",
+  "annotation_format": "box",
+  "max_tokens": 400,
+  "reasoning_effort": null,
+  "temperature": null
+ },
+ "response": {
+  "text": "<collection mention=\"bee\">\n <point_box> (738,400) (812,469) </point_box>\n <point_box> (475,438) (578,600) </point_box>\n</collection>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 258,
+   "completion_tokens": 46,
+   "total_tokens": 304,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "44a7e6630e0596581d45f2419b951f91",
+  "cost_usd": 0.000108
+ },
+ "raw": {
+  "id": "chatcmpl-d0ee89ef9e204b37958ffac6c2685d26",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<collection mention=\"bee\">\n <point_box> (738,400) (812,469) </point_box>\n <point_box> (475,438) (578,600) </point_box>\n</collection>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792276956,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 258,
+   "completion_tokens": 46,
+   "total_tokens": 304,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

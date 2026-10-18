@@ -1,0 +1,6029 @@
+{
+ "clip_id": "hb6_w05",
+ "model": "cv-bgsub-dp+perceptron-mk1.5",
+ "prompt_version": "mk1.5-v2-detect",
+ "tracks": [
+  {
+   "track_id": "honeybee_1",
+   "species": "honeybee",
+   "complete": true,
+   "points": [
+    {
+     "t": 0.0,
+     "box": [
+      774.4,
+      432.8,
+      804.4,
+      486.2
+     ],
+     "center": [
+      789.4,
+      459.5
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 0.033,
+     "box": [
+      775.7,
+      434.4,
+      802.8,
+      482.7
+     ],
+     "center": [
+      789.3,
+      458.6
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 0.067,
+     "box": [
+      776.2,
+      434.3,
+      803.4,
+      482.6
+     ],
+     "center": [
+      789.8,
+      458.5
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 0.1,
+     "box": [
+      776.0,
+      434.6,
+      803.2,
+      482.9
+     ],
+     "center": [
+      789.6,
+      458.8
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 0.133,
+     "box": [
+      776.6,
+      434.4,
+      802.8,
+      481.1
+     ],
+     "center": [
+      789.7,
+      457.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.167,
+     "box": [
+      777.1,
+      431.4,
+      806.1,
+      483.1
+     ],
+     "center": [
+      791.6,
+      457.2
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 0.2,
+     "box": [
+      776.2,
+      429.3,
+      808.1,
+      486.0
+     ],
+     "center": [
+      792.1,
+      457.7
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.233,
+     "box": [
+      778.6,
+      434.5,
+      809.6,
+      489.5
+     ],
+     "center": [
+      794.1,
+      462.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.267,
+     "box": [
+      780.1,
+      421.2,
+      819.5,
+      491.2
+     ],
+     "center": [
+      799.8,
+      456.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.3,
+     "box": [
+      782.7,
+      420.8,
+      821.2,
+      489.1
+     ],
+     "center": [
+      802.0,
+      454.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.333,
+     "box": [
+      783.4,
+      420.9,
+      821.8,
+      489.2
+     ],
+     "center": [
+      802.6,
+      455.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.367,
+     "box": [
+      784.0,
+      420.7,
+      822.4,
+      489.0
+     ],
+     "center": [
+      803.2,
+      454.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.4,
+     "box": [
+      789.8,
+      419.7,
+      827.3,
+      486.3
+     ],
+     "center": [
+      808.5,
+      453.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.433,
+     "box": [
+      788.2,
+      420.7,
+      826.6,
+      489.0
+     ],
+     "center": [
+      807.4,
+      454.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.467,
+     "box": [
+      800.9,
+      427.4,
+      827.1,
+      474.1
+     ],
+     "center": [
+      814.0,
+      450.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.5,
+     "box": [
+      800.2,
+      427.9,
+      827.4,
+      476.3
+     ],
+     "center": [
+      813.8,
+      452.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.533,
+     "box": [
+      803.4,
+      429.9,
+      826.9,
+      471.6
+     ],
+     "center": [
+      815.1,
+      450.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.567,
+     "box": [
+      803.3,
+      429.3,
+      828.6,
+      474.3
+     ],
+     "center": [
+      816.0,
+      451.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.6,
+     "box": [
+      802.3,
+      427.7,
+      831.3,
+      479.3
+     ],
+     "center": [
+      816.8,
+      453.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.633,
+     "box": [
+      803.6,
+      428.7,
+      828.9,
+      473.7
+     ],
+     "center": [
+      816.3,
+      451.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.667,
+     "box": [
+      804.2,
+      429.6,
+      828.6,
+      473.0
+     ],
+     "center": [
+      816.4,
+      451.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.7,
+     "box": [
+      804.3,
+      429.3,
+      828.7,
+      472.6
+     ],
+     "center": [
+      816.5,
+      450.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.733,
+     "box": [
+      803.6,
+      427.3,
+      829.8,
+      474.0
+     ],
+     "center": [
+      816.7,
+      450.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.767,
+     "box": [
+      800.2,
+      424.2,
+      831.1,
+      479.2
+     ],
+     "center": [
+      815.7,
+      451.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.8,
+     "box": [
+      800.1,
+      424.2,
+      831.1,
+      479.2
+     ],
+     "center": [
+      815.6,
+      451.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.833,
+     "box": [
+      800.8,
+      425.4,
+      830.8,
+      478.7
+     ],
+     "center": [
+      815.8,
+      452.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.867,
+     "box": [
+      801.3,
+      425.4,
+      830.3,
+      477.1
+     ],
+     "center": [
+      815.8,
+      451.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.9,
+     "box": [
+      801.6,
+      426.4,
+      829.8,
+      476.4
+     ],
+     "center": [
+      815.7,
+      451.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.933,
+     "box": [
+      801.8,
+      426.3,
+      830.0,
+      476.3
+     ],
+     "center": [
+      815.9,
+      451.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.967,
+     "box": [
+      801.8,
+      426.4,
+      829.9,
+      476.4
+     ],
+     "center": [
+      815.9,
+      451.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.0,
+     "box": [
+      801.9,
+      426.3,
+      830.0,
+      476.3
+     ],
+     "center": [
+      815.9,
+      451.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.033,
+     "box": [
+      801.9,
+      426.3,
+      830.0,
+      476.3
+     ],
+     "center": [
+      815.9,
+      451.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.067,
+     "box": [
+      801.9,
+      426.3,
+      830.0,
+      476.3
+     ],
+     "center": [
+      815.9,
+      451.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.1,
+     "box": [
+      801.5,
+      426.6,
+      829.6,
+      476.6
+     ],
+     "center": [
+      815.6,
+      451.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.133,
+     "box": [
+      801.2,
+      426.1,
+      830.2,
+      477.7
+     ],
+     "center": [
+      815.7,
+      451.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.167,
+     "box": [
+      800.7,
+      425.4,
+      830.7,
+      478.7
+     ],
+     "center": [
+      815.7,
+      452.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.2,
+     "box": [
+      800.6,
+      425.1,
+      830.6,
+      478.4
+     ],
+     "center": [
+      815.6,
+      451.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.233,
+     "box": [
+      800.7,
+      425.2,
+      830.7,
+      478.6
+     ],
+     "center": [
+      815.7,
+      451.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.267,
+     "box": [
+      800.6,
+      425.1,
+      830.6,
+      478.5
+     ],
+     "center": [
+      815.6,
+      451.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.3,
+     "box": [
+      801.0,
+      426.1,
+      830.0,
+      477.8
+     ],
+     "center": [
+      815.5,
+      451.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.333,
+     "box": [
+      801.0,
+      426.2,
+      830.1,
+      477.9
+     ],
+     "center": [
+      815.6,
+      452.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.367,
+     "box": [
+      800.3,
+      425.6,
+      830.3,
+      478.9
+     ],
+     "center": [
+      815.3,
+      452.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.4,
+     "box": [
+      800.0,
+      425.7,
+      830.0,
+      479.0
+     ],
+     "center": [
+      815.0,
+      452.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.433,
+     "box": [
+      799.8,
+      426.2,
+      829.8,
+      479.5
+     ],
+     "center": [
+      814.8,
+      452.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.467,
+     "box": [
+      799.9,
+      425.8,
+      830.9,
+      480.8
+     ],
+     "center": [
+      815.4,
+      453.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.5,
+     "box": [
+      799.0,
+      424.7,
+      831.8,
+      483.1
+     ],
+     "center": [
+      815.4,
+      453.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.533,
+     "box": [
+      798.1,
+      427.9,
+      830.0,
+      484.6
+     ],
+     "center": [
+      814.0,
+      456.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.567,
+     "box": [
+      801.3,
+      427.9,
+      829.4,
+      477.9
+     ],
+     "center": [
+      815.4,
+      452.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.6,
+     "box": [
+      797.5,
+      426.6,
+      830.4,
+      484.9
+     ],
+     "center": [
+      813.9,
+      455.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.633,
+     "box": [
+      797.5,
+      427.1,
+      830.3,
+      485.4
+     ],
+     "center": [
+      813.9,
+      456.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.667,
+     "box": [
+      799.5,
+      428.7,
+      830.4,
+      483.7
+     ],
+     "center": [
+      815.0,
+      456.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.7,
+     "box": [
+      800.1,
+      431.6,
+      830.1,
+      484.9
+     ],
+     "center": [
+      815.1,
+      458.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.733,
+     "box": [
+      801.7,
+      432.7,
+      829.8,
+      482.7
+     ],
+     "center": [
+      815.8,
+      457.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.767,
+     "box": [
+      797.1,
+      424.0,
+      832.7,
+      487.3
+     ],
+     "center": [
+      814.9,
+      455.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.8,
+     "box": [
+      800.3,
+      431.9,
+      830.3,
+      485.3
+     ],
+     "center": [
+      815.3,
+      458.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.833,
+     "box": [
+      800.9,
+      433.1,
+      830.9,
+      486.5
+     ],
+     "center": [
+      815.9,
+      459.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.867,
+     "box": [
+      799.5,
+      433.2,
+      830.4,
+      488.2
+     ],
+     "center": [
+      814.9,
+      460.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.9,
+     "box": [
+      798.7,
+      432.4,
+      831.5,
+      490.7
+     ],
+     "center": [
+      815.1,
+      461.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.933,
+     "box": [
+      800.1,
+      435.8,
+      831.0,
+      490.8
+     ],
+     "center": [
+      815.5,
+      463.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.967,
+     "box": [
+      798.2,
+      434.4,
+      831.0,
+      492.7
+     ],
+     "center": [
+      814.6,
+      463.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.0,
+     "box": [
+      798.9,
+      435.6,
+      831.7,
+      493.9
+     ],
+     "center": [
+      815.3,
+      464.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.033,
+     "box": [
+      801.6,
+      434.6,
+      833.4,
+      491.3
+     ],
+     "center": [
+      817.5,
+      463.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.067,
+     "box": [
+      802.4,
+      435.9,
+      828.6,
+      482.6
+     ],
+     "center": [
+      815.5,
+      459.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.1,
+     "box": [
+      801.6,
+      432.0,
+      835.3,
+      492.0
+     ],
+     "center": [
+      818.4,
+      462.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.133,
+     "box": [
+      805.0,
+      439.4,
+      828.4,
+      481.0
+     ],
+     "center": [
+      816.7,
+      460.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.167,
+     "box": [
+      803.8,
+      435.6,
+      837.6,
+      495.6
+     ],
+     "center": [
+      820.7,
+      465.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.2,
+     "box": [
+      805.2,
+      438.5,
+      829.6,
+      481.8
+     ],
+     "center": [
+      817.4,
+      460.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.233,
+     "box": [
+      806.3,
+      437.3,
+      838.2,
+      493.9
+     ],
+     "center": [
+      822.2,
+      465.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    }
+   ]
+  },
+  {
+   "track_id": "honeybee_2",
+   "species": "honeybee",
+   "complete": true,
+   "points": [
+    {
+     "t": 0.0,
+     "box": [
+      78.5,
+      373.4,
+      121.6,
+      450.0
+     ],
+     "center": [
+      100.1,
+      411.7
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.033,
+     "box": [
+      89.1,
+      375.0,
+      123.8,
+      436.6
+     ],
+     "center": [
+      106.5,
+      405.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.067,
+     "box": [
+      93.8,
+      362.7,
+      129.4,
+      426.1
+     ],
+     "center": [
+      111.6,
+      394.4
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.1,
+     "box": [
+      102.0,
+      348.1,
+      133.9,
+      404.8
+     ],
+     "center": [
+      118.0,
+      376.4
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.133,
+     "box": [
+      118.0,
+      324.5,
+      154.6,
+      389.5
+     ],
+     "center": [
+      136.3,
+      357.0
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.167,
+     "box": [
+      140.4,
+      304.2,
+      173.2,
+      362.5
+     ],
+     "center": [
+      156.8,
+      333.4
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.2,
+     "box": [
+      162.8,
+      279.4,
+      191.9,
+      331.1
+     ],
+     "center": [
+      177.3,
+      305.3
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.233,
+     "box": [
+      180.4,
+      240.7,
+      207.5,
+      289.0
+     ],
+     "center": [
+      193.9,
+      264.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.267,
+     "box": [
+      189.9,
+      199.6,
+      210.6,
+      236.2
+     ],
+     "center": [
+      200.3,
+      217.9
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.3,
+     "box": [
+      195.8,
+      153.6,
+      214.6,
+      186.9
+     ],
+     "center": [
+      205.2,
+      170.2
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.333,
+     "box": [
+      185.9,
+      109.6,
+      213.1,
+      157.9
+     ],
+     "center": [
+      199.5,
+      133.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.367,
+     "box": [
+      185.4,
+      67.6,
+      211.6,
+      114.3
+     ],
+     "center": [
+      198.5,
+      91.0
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.4,
+     "box": [
+      177.7,
+      31.8,
+      211.5,
+      91.8
+     ],
+     "center": [
+      194.6,
+      61.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.433,
+     "box": [
+      179.5,
+      3.0,
+      212.3,
+      61.4
+     ],
+     "center": [
+      195.9,
+      32.2
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.467,
+     "box": [
+      183.8,
+      0.0,
+      218.5,
+      55.0
+     ],
+     "center": [
+      201.2,
+      24.2
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.5,
+     "box": [
+      193.1,
+      0.0,
+      225.9,
+      42.9
+     ],
+     "center": [
+      209.5,
+      13.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.533,
+     "box": [
+      206.2,
+      0.0,
+      235.2,
+      41.6
+     ],
+     "center": [
+      220.7,
+      15.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.567,
+     "box": [
+      222.1,
+      0.0,
+      252.1,
+      48.3
+     ],
+     "center": [
+      237.1,
+      21.6
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.6,
+     "box": [
+      243.3,
+      15.5,
+      269.5,
+      62.1
+     ],
+     "center": [
+      256.4,
+      38.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.633,
+     "box": [
+      264.2,
+      23.3,
+      286.7,
+      63.3
+     ],
+     "center": [
+      275.5,
+      43.3
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.667,
+     "box": [
+      271.7,
+      26.0,
+      298.0,
+      72.6
+     ],
+     "center": [
+      284.8,
+      49.3
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.7,
+     "box": [
+      281.8,
+      44.2,
+      296.8,
+      70.9
+     ],
+     "center": [
+      289.3,
+      57.5
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.733,
+     "box": [
+      281.1,
+      20.9,
+      309.2,
+      70.9
+     ],
+     "center": [
+      295.1,
+      45.9
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 0.767,
+     "box": [
+      283.2,
+      16.6,
+      306.6,
+      58.2
+     ],
+     "center": [
+      294.9,
+      37.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.8,
+     "box": [
+      282.5,
+      12.4,
+      308.7,
+      59.1
+     ],
+     "center": [
+      295.6,
+      35.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.833,
+     "box": [
+      282.8,
+      10.1,
+      311.8,
+      61.8
+     ],
+     "center": [
+      297.3,
+      36.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.867,
+     "box": [
+      288.4,
+      13.8,
+      312.7,
+      57.1
+     ],
+     "center": [
+      300.5,
+      35.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.9,
+     "box": [
+      294.1,
+      19.9,
+      318.5,
+      63.2
+     ],
+     "center": [
+      306.3,
+      41.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.933,
+     "box": [
+      289.0,
+      9.9,
+      319.0,
+      63.2
+     ],
+     "center": [
+      304.0,
+      36.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 0.967,
+     "box": [
+      290.9,
+      14.8,
+      313.4,
+      54.8
+     ],
+     "center": [
+      302.1,
+      34.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.0,
+     "box": [
+      284.4,
+      11.8,
+      307.8,
+      53.5
+     ],
+     "center": [
+      296.1,
+      32.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.033,
+     "box": [
+      284.4,
+      3.4,
+      309.8,
+      48.4
+     ],
+     "center": [
+      297.1,
+      25.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.067,
+     "box": [
+      288.4,
+      2.5,
+      304.4,
+      30.8
+     ],
+     "center": [
+      296.4,
+      16.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.1,
+     "box": [
+      287.9,
+      4.5,
+      304.8,
+      34.5
+     ],
+     "center": [
+      296.4,
+      19.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.133,
+     "box": [
+      290.3,
+      0.0,
+      312.8,
+      36.6
+     ],
+     "center": [
+      301.5,
+      16.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.167,
+     "box": [
+      288.4,
+      0.0,
+      315.6,
+      41.1
+     ],
+     "center": [
+      302.0,
+      17.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.2,
+     "box": [
+      290.0,
+      0.0,
+      317.2,
+      43.3
+     ],
+     "center": [
+      303.6,
+      19.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.233,
+     "box": [
+      290.5,
+      0.0,
+      315.9,
+      41.6
+     ],
+     "center": [
+      303.2,
+      19.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.267,
+     "box": [
+      293.7,
+      0.0,
+      315.2,
+      38.3
+     ],
+     "center": [
+      304.4,
+      19.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.3,
+     "box": [
+      293.7,
+      0.0,
+      317.1,
+      37.7
+     ],
+     "center": [
+      305.4,
+      16.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.333,
+     "box": [
+      293.5,
+      0.0,
+      317.8,
+      42.6
+     ],
+     "center": [
+      305.7,
+      20.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.367,
+     "box": [
+      292.0,
+      0.0,
+      318.3,
+      42.7
+     ],
+     "center": [
+      305.1,
+      19.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.4,
+     "box": [
+      296.4,
+      0.0,
+      318.9,
+      36.8
+     ],
+     "center": [
+      307.7,
+      16.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.433,
+     "box": [
+      286.4,
+      0.0,
+      324.9,
+      50.8
+     ],
+     "center": [
+      305.6,
+      16.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.467,
+     "box": [
+      288.1,
+      0.0,
+      327.4,
+      52.7
+     ],
+     "center": [
+      307.8,
+      17.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.5,
+     "box": [
+      293.4,
+      0.0,
+      321.5,
+      39.3
+     ],
+     "center": [
+      307.4,
+      14.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.533,
+     "box": [
+      296.2,
+      0.0,
+      322.5,
+      41.1
+     ],
+     "center": [
+      309.4,
+      17.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.567,
+     "box": [
+      292.0,
+      0.0,
+      323.0,
+      45.4
+     ],
+     "center": [
+      307.5,
+      17.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.6,
+     "box": [
+      294.0,
+      0.0,
+      323.1,
+      42.5
+     ],
+     "center": [
+      308.5,
+      16.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.633,
+     "box": [
+      296.1,
+      0.0,
+      324.2,
+      41.1
+     ],
+     "center": [
+      310.1,
+      16.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.667,
+     "box": [
+      295.7,
+      0.0,
+      323.8,
+      40.5
+     ],
+     "center": [
+      309.7,
+      15.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.7,
+     "box": [
+      296.7,
+      0.0,
+      323.9,
+      39.4
+     ],
+     "center": [
+      310.3,
+      15.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.733,
+     "box": [
+      296.9,
+      0.0,
+      324.1,
+      39.4
+     ],
+     "center": [
+      310.5,
+      15.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.767,
+     "box": [
+      296.3,
+      0.0,
+      324.5,
+      40.6
+     ],
+     "center": [
+      310.4,
+      15.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.8,
+     "box": [
+      297.1,
+      0.0,
+      324.3,
+      41.0
+     ],
+     "center": [
+      310.7,
+      16.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.833,
+     "box": [
+      297.3,
+      0.0,
+      324.5,
+      41.4
+     ],
+     "center": [
+      310.9,
+      17.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.867,
+     "box": [
+      298.9,
+      0.0,
+      324.2,
+      40.0
+     ],
+     "center": [
+      311.5,
+      17.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.9,
+     "box": [
+      298.6,
+      0.0,
+      324.8,
+      40.6
+     ],
+     "center": [
+      311.7,
+      17.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.933,
+     "box": [
+      298.6,
+      0.0,
+      324.9,
+      40.4
+     ],
+     "center": [
+      311.8,
+      17.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 1.967,
+     "box": [
+      298.6,
+      0.0,
+      324.8,
+      39.8
+     ],
+     "center": [
+      311.7,
+      16.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.0,
+     "box": [
+      298.5,
+      0.0,
+      324.8,
+      39.6
+     ],
+     "center": [
+      311.7,
+      16.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.033,
+     "box": [
+      297.5,
+      0.0,
+      326.6,
+      42.6
+     ],
+     "center": [
+      312.1,
+      16.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.067,
+     "box": [
+      298.1,
+      0.0,
+      325.2,
+      41.5
+     ],
+     "center": [
+      311.7,
+      17.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.1,
+     "box": [
+      298.0,
+      0.0,
+      325.2,
+      41.6
+     ],
+     "center": [
+      311.6,
+      17.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.133,
+     "box": [
+      297.8,
+      0.0,
+      325.0,
+      40.5
+     ],
+     "center": [
+      311.4,
+      16.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.167,
+     "box": [
+      297.4,
+      0.0,
+      325.5,
+      41.6
+     ],
+     "center": [
+      311.5,
+      16.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.2,
+     "box": [
+      297.4,
+      0.0,
+      325.6,
+      41.8
+     ],
+     "center": [
+      311.5,
+      16.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.233,
+     "box": [
+      300.1,
+      0.0,
+      325.4,
+      37.5
+     ],
+     "center": [
+      312.7,
+      15.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.267,
+     "box": [
+      299.9,
+      0.0,
+      325.2,
+      37.8
+     ],
+     "center": [
+      312.6,
+      15.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.3,
+     "box": [
+      296.9,
+      0.0,
+      325.0,
+      41.7
+     ],
+     "center": [
+      311.0,
+      16.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.333,
+     "box": [
+      296.3,
+      0.0,
+      326.3,
+      46.4
+     ],
+     "center": [
+      311.3,
+      19.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.367,
+     "box": [
+      296.5,
+      0.0,
+      326.5,
+      45.1
+     ],
+     "center": [
+      311.5,
+      18.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.4,
+     "box": [
+      295.3,
+      0.0,
+      327.2,
+      46.6
+     ],
+     "center": [
+      311.2,
+      18.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.433,
+     "box": [
+      294.7,
+      0.0,
+      328.5,
+      48.9
+     ],
+     "center": [
+      311.6,
+      18.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.467,
+     "box": [
+      296.8,
+      0.0,
+      328.7,
+      45.7
+     ],
+     "center": [
+      312.8,
+      17.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.5,
+     "box": [
+      298.7,
+      0.0,
+      328.7,
+      42.9
+     ],
+     "center": [
+      313.7,
+      16.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.533,
+     "box": [
+      300.0,
+      0.0,
+      329.0,
+      42.1
+     ],
+     "center": [
+      314.5,
+      16.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.567,
+     "box": [
+      302.4,
+      0.0,
+      329.6,
+      42.7
+     ],
+     "center": [
+      316.0,
+      18.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.6,
+     "box": [
+      300.4,
+      0.0,
+      329.5,
+      45.7
+     ],
+     "center": [
+      315.0,
+      19.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.633,
+     "box": [
+      300.0,
+      0.0,
+      328.1,
+      44.3
+     ],
+     "center": [
+      314.0,
+      19.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.667,
+     "box": [
+      298.5,
+      0.0,
+      327.6,
+      46.0
+     ],
+     "center": [
+      313.1,
+      20.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.7,
+     "box": [
+      297.5,
+      0.0,
+      325.7,
+      44.5
+     ],
+     "center": [
+      311.6,
+      19.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.733,
+     "box": [
+      295.6,
+      0.0,
+      322.8,
+      43.7
+     ],
+     "center": [
+      309.2,
+      19.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.767,
+     "box": [
+      296.4,
+      0.0,
+      321.7,
+      41.0
+     ],
+     "center": [
+      309.0,
+      18.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.8,
+     "box": [
+      296.5,
+      0.0,
+      320.9,
+      40.1
+     ],
+     "center": [
+      308.7,
+      18.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.833,
+     "box": [
+      299.0,
+      0.0,
+      320.6,
+      36.8
+     ],
+     "center": [
+      309.8,
+      17.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.867,
+     "box": [
+      300.6,
+      0.0,
+      319.3,
+      32.9
+     ],
+     "center": [
+      309.9,
+      16.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.9,
+     "box": [
+      300.4,
+      0.0,
+      319.2,
+      32.5
+     ],
+     "center": [
+      309.8,
+      15.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.933,
+     "box": [
+      300.3,
+      0.0,
+      319.1,
+      32.7
+     ],
+     "center": [
+      309.7,
+      16.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 2.967,
+     "box": [
+      300.0,
+      0.0,
+      318.8,
+      32.1
+     ],
+     "center": [
+      309.4,
+      15.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.0,
+     "box": [
+      299.5,
+      0.0,
+      319.2,
+      32.8
+     ],
+     "center": [
+      309.4,
+      15.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.033,
+     "box": [
+      299.4,
+      0.0,
+      319.1,
+      32.9
+     ],
+     "center": [
+      309.2,
+      15.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.067,
+     "box": [
+      298.1,
+      0.0,
+      319.7,
+      33.5
+     ],
+     "center": [
+      308.9,
+      14.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.1,
+     "box": [
+      299.7,
+      0.0,
+      319.4,
+      31.6
+     ],
+     "center": [
+      309.5,
+      14.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.133,
+     "box": [
+      299.5,
+      0.0,
+      319.2,
+      31.7
+     ],
+     "center": [
+      309.3,
+      14.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.167,
+     "box": [
+      299.6,
+      0.0,
+      319.2,
+      32.1
+     ],
+     "center": [
+      309.4,
+      14.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.2,
+     "box": [
+      299.4,
+      0.0,
+      319.1,
+      31.9
+     ],
+     "center": [
+      309.3,
+      14.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.233,
+     "box": [
+      297.2,
+      0.0,
+      319.7,
+      34.8
+     ],
+     "center": [
+      308.4,
+      14.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.267,
+     "box": [
+      292.2,
+      0.0,
+      321.2,
+      42.3
+     ],
+     "center": [
+      306.7,
+      16.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.3,
+     "box": [
+      291.9,
+      0.0,
+      320.9,
+      44.5
+     ],
+     "center": [
+      306.4,
+      18.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.333,
+     "box": [
+      296.8,
+      0.0,
+      321.2,
+      42.0
+     ],
+     "center": [
+      309.0,
+      20.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.367,
+     "box": [
+      300.9,
+      0.0,
+      326.2,
+      43.2
+     ],
+     "center": [
+      313.5,
+      20.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.4,
+     "box": [
+      301.8,
+      0.0,
+      333.7,
+      55.5
+     ],
+     "center": [
+      317.8,
+      27.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.433,
+     "box": [
+      296.8,
+      7.7,
+      331.5,
+      69.4
+     ],
+     "center": [
+      314.1,
+      38.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.467,
+     "box": [
+      295.7,
+      22.7,
+      322.0,
+      69.4
+     ],
+     "center": [
+      308.8,
+      46.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.5,
+     "box": [
+      291.3,
+      24.3,
+      313.8,
+      64.3
+     ],
+     "center": [
+      302.6,
+      44.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.533,
+     "box": [
+      279.4,
+      20.8,
+      300.9,
+      59.1
+     ],
+     "center": [
+      290.2,
+      40.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.567,
+     "box": [
+      267.5,
+      0.4,
+      299.4,
+      57.1
+     ],
+     "center": [
+      283.5,
+      28.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.6,
+     "box": [
+      270.8,
+      0.0,
+      299.8,
+      39.8
+     ],
+     "center": [
+      285.3,
+      13.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.633,
+     "box": [
+      282.0,
+      0.0,
+      297.0,
+      16.3
+     ],
+     "center": [
+      289.5,
+      3.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.667,
+     "box": [
+      293.3,
+      0.0,
+      308.3,
+      17.5
+     ],
+     "center": [
+      300.8,
+      4.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 3.867,
+     "box": [
+      283.1,
+      310.3,
+      298.1,
+      336.9
+     ],
+     "center": [
+      290.6,
+      323.6
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.3,
+     "box": [
+      81.5,
+      975.5,
+      102.2,
+      1000.0
+     ],
+     "center": [
+      91.9,
+      993.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.333,
+     "box": [
+      84.4,
+      971.1,
+      103.2,
+      1000.0
+     ],
+     "center": [
+      93.8,
+      987.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.367,
+     "box": [
+      86.9,
+      976.5,
+      101.9,
+      1000.0
+     ],
+     "center": [
+      94.4,
+      989.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.4,
+     "box": [
+      88.6,
+      978.6,
+      103.6,
+      1000.0
+     ],
+     "center": [
+      96.1,
+      991.9
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.433,
+     "box": [
+      78.0,
+      965.0,
+      105.2,
+      1000.0
+     ],
+     "center": [
+      91.6,
+      989.1
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.467,
+     "box": [
+      76.5,
+      958.3,
+      109.3,
+      1000.0
+     ],
+     "center": [
+      92.9,
+      987.4
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 4.5,
+     "box": [
+      78.2,
+      959.4,
+      109.2,
+      1000.0
+     ],
+     "center": [
+      93.7,
+      986.9
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 4.533,
+     "box": [
+      77.5,
+      959.0,
+      109.4,
+      1000.0
+     ],
+     "center": [
+      93.4,
+      987.4
+     ],
+     "interpolated": false,
+     "label": "walking"
+    }
+   ]
+  },
+  {
+   "track_id": "honeybee_3",
+   "species": "honeybee",
+   "complete": true,
+   "points": [
+    {
+     "t": 2.867,
+     "box": [
+      431.6,
+      232.5,
+      446.6,
+      259.2
+     ],
+     "center": [
+      439.1,
+      245.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.9,
+     "box": [
+      431.6,
+      233.9,
+      446.6,
+      260.6
+     ],
+     "center": [
+      439.1,
+      247.2
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.933,
+     "box": [
+      431.6,
+      235.3,
+      446.6,
+      261.9
+     ],
+     "center": [
+      439.1,
+      248.6
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 2.967,
+     "box": [
+      431.6,
+      236.7,
+      446.6,
+      263.3
+     ],
+     "center": [
+      439.1,
+      250.0
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.033,
+     "box": [
+      431.6,
+      236.7,
+      446.6,
+      263.3
+     ],
+     "center": [
+      439.1,
+      250.0
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 3.067,
+     "box": [
+      430.4,
+      238.8,
+      445.4,
+      265.4
+     ],
+     "center": [
+      437.9,
+      252.1
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 3.1,
+     "box": [
+      430.0,
+      236.7,
+      445.0,
+      263.3
+     ],
+     "center": [
+      437.5,
+      250.0
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.133,
+     "box": [
+      430.2,
+      235.7,
+      445.2,
+      262.3
+     ],
+     "center": [
+      437.7,
+      249.0
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.167,
+     "box": [
+      430.0,
+      235.4,
+      445.0,
+      262.0
+     ],
+     "center": [
+      437.5,
+      248.7
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.2,
+     "box": [
+      430.0,
+      235.3,
+      445.0,
+      261.9
+     ],
+     "center": [
+      437.5,
+      248.6
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.233,
+     "box": [
+      429.4,
+      234.8,
+      444.4,
+      261.5
+     ],
+     "center": [
+      436.9,
+      248.1
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.267,
+     "box": [
+      429.8,
+      233.6,
+      444.8,
+      260.3
+     ],
+     "center": [
+      437.3,
+      246.9
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.3,
+     "box": [
+      429.6,
+      233.0,
+      444.6,
+      259.6
+     ],
+     "center": [
+      437.1,
+      246.3
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 3.333,
+     "box": [
+      429.2,
+      230.4,
+      444.2,
+      257.1
+     ],
+     "center": [
+      436.7,
+      243.8
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.367,
+     "box": [
+      429.1,
+      230.4,
+      444.1,
+      257.1
+     ],
+     "center": [
+      436.6,
+      243.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 3.4,
+     "box": [
+      428.2,
+      227.6,
+      443.2,
+      254.3
+     ],
+     "center": [
+      435.7,
+      241.0
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.433,
+     "box": [
+      428.0,
+      226.9,
+      443.0,
+      253.6
+     ],
+     "center": [
+      435.5,
+      240.3
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.467,
+     "box": [
+      427.3,
+      226.2,
+      442.3,
+      252.9
+     ],
+     "center": [
+      434.8,
+      239.6
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 3.5,
+     "box": [
+      426.9,
+      224.2,
+      441.9,
+      250.9
+     ],
+     "center": [
+      434.4,
+      237.6
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.533,
+     "box": [
+      426.6,
+      223.9,
+      441.6,
+      250.5
+     ],
+     "center": [
+      434.1,
+      237.2
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.567,
+     "box": [
+      426.6,
+      223.8,
+      441.6,
+      250.5
+     ],
+     "center": [
+      434.1,
+      237.2
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.6,
+     "box": [
+      426.2,
+      223.8,
+      441.2,
+      250.5
+     ],
+     "center": [
+      433.7,
+      237.2
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.633,
+     "box": [
+      425.4,
+      223.5,
+      440.4,
+      250.2
+     ],
+     "center": [
+      432.9,
+      236.8
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.667,
+     "box": [
+      425.2,
+      224.2,
+      440.2,
+      250.9
+     ],
+     "center": [
+      432.7,
+      237.5
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.7,
+     "box": [
+      424.6,
+      223.1,
+      439.6,
+      249.8
+     ],
+     "center": [
+      432.1,
+      236.4
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.733,
+     "box": [
+      424.3,
+      222.5,
+      439.3,
+      249.2
+     ],
+     "center": [
+      431.8,
+      235.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 3.767,
+     "box": [
+      422.2,
+      222.8,
+      437.2,
+      249.4
+     ],
+     "center": [
+      429.7,
+      236.1
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.8,
+     "box": [
+      421.8,
+      222.8,
+      436.8,
+      249.4
+     ],
+     "center": [
+      429.3,
+      236.1
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 3.833,
+     "box": [
+      421.8,
+      222.7,
+      436.8,
+      249.4
+     ],
+     "center": [
+      429.3,
+      236.0
+     ],
+     "interpolated": false,
+     "label": "walking"
+    }
+   ]
+  },
+  {
+   "track_id": "honeybee_4",
+   "species": "honeybee",
+   "complete": true,
+   "points": [
+    {
+     "t": 4.4,
+     "box": [
+      597.9,
+      98.8,
+      659.8,
+      208.8
+     ],
+     "center": [
+      628.9,
+      153.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.433,
+     "box": [
+      604.4,
+      97.9,
+      671.0,
+      216.3
+     ],
+     "center": [
+      637.7,
+      157.1
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.467,
+     "box": [
+      596.5,
+      90.3,
+      663.1,
+      208.6
+     ],
+     "center": [
+      629.8,
+      149.4
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.5,
+     "box": [
+      618.3,
+      142.6,
+      633.3,
+      169.3
+     ],
+     "center": [
+      625.8,
+      156.0
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.6,
+     "box": [
+      614.3,
+      153.1,
+      640.5,
+      199.7
+     ],
+     "center": [
+      627.4,
+      176.4
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.633,
+     "box": [
+      610.9,
+      137.1,
+      645.6,
+      198.8
+     ],
+     "center": [
+      628.3,
+      167.9
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.667,
+     "box": [
+      605.1,
+      98.8,
+      670.7,
+      215.5
+     ],
+     "center": [
+      637.9,
+      157.1
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.7,
+     "box": [
+      629.9,
+      117.1,
+      656.1,
+      163.8
+     ],
+     "center": [
+      643.0,
+      140.5
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.733,
+     "box": [
+      634.6,
+      125.5,
+      658.0,
+      167.1
+     ],
+     "center": [
+      646.3,
+      146.3
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.767,
+     "box": [
+      630.1,
+      111.6,
+      647.9,
+      143.2
+     ],
+     "center": [
+      639.0,
+      127.4
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 4.833,
+     "box": [
+      625.6,
+      106.4,
+      649.0,
+      148.1
+     ],
+     "center": [
+      637.3,
+      127.2
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 4.867,
+     "box": [
+      624.9,
+      105.0,
+      649.3,
+      148.3
+     ],
+     "center": [
+      637.1,
+      126.6
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.9,
+     "box": [
+      629.6,
+      125.6,
+      657.7,
+      175.6
+     ],
+     "center": [
+      643.6,
+      150.6
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.933,
+     "box": [
+      633.8,
+      124.5,
+      657.3,
+      166.2
+     ],
+     "center": [
+      645.6,
+      145.3
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 4.967,
+     "box": [
+      626.0,
+      107.1,
+      659.8,
+      167.1
+     ],
+     "center": [
+      642.9,
+      137.1
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 5.0,
+     "box": [
+      630.0,
+      115.0,
+      658.1,
+      165.0
+     ],
+     "center": [
+      644.0,
+      140.0
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 5.067,
+     "box": [
+      618.3,
+      143.6,
+      633.3,
+      170.3
+     ],
+     "center": [
+      625.8,
+      156.9
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 5.1,
+     "box": [
+      614.2,
+      143.5,
+      644.2,
+      196.8
+     ],
+     "center": [
+      629.2,
+      170.2
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 5.133,
+     "box": [
+      615.9,
+      144.1,
+      642.1,
+      190.8
+     ],
+     "center": [
+      629.0,
+      167.4
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 5.167,
+     "box": [
+      618.7,
+      143.6,
+      633.7,
+      170.3
+     ],
+     "center": [
+      626.2,
+      156.9
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 5.3,
+     "box": [
+      618.1,
+      144.0,
+      633.1,
+      170.7
+     ],
+     "center": [
+      625.6,
+      157.3
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 5.333,
+     "box": [
+      614.5,
+      147.5,
+      639.9,
+      192.5
+     ],
+     "center": [
+      627.2,
+      170.0
+     ],
+     "interpolated": false,
+     "label": "flying"
+    }
+   ]
+  },
+  {
+   "track_id": "honeybee_5",
+   "species": "honeybee",
+   "complete": true,
+   "points": [
+    {
+     "t": 4.767,
+     "box": [
+      836.7,
+      470.8,
+      857.3,
+      507.5
+     ],
+     "center": [
+      847.0,
+      489.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 4.8,
+     "box": [
+      836.2,
+      469.8,
+      857.8,
+      508.2
+     ],
+     "center": [
+      847.0,
+      489.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 4.833,
+     "box": [
+      835.6,
+      468.7,
+      858.1,
+      508.7
+     ],
+     "center": [
+      846.9,
+      488.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 4.867,
+     "box": [
+      835.8,
+      468.3,
+      859.2,
+      510.0
+     ],
+     "center": [
+      847.5,
+      489.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 4.9,
+     "box": [
+      831.8,
+      460.8,
+      860.8,
+      512.5
+     ],
+     "center": [
+      846.3,
+      486.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 4.933,
+     "box": [
+      832.1,
+      461.3,
+      861.2,
+      513.0
+     ],
+     "center": [
+      846.6,
+      487.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 4.967,
+     "box": [
+      832.1,
+      461.7,
+      861.2,
+      513.3
+     ],
+     "center": [
+      846.6,
+      487.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.0,
+     "box": [
+      831.5,
+      460.4,
+      862.4,
+      515.4
+     ],
+     "center": [
+      846.9,
+      487.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.033,
+     "box": [
+      830.7,
+      459.0,
+      863.5,
+      517.3
+     ],
+     "center": [
+      847.1,
+      488.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.067,
+     "box": [
+      830.1,
+      457.6,
+      863.8,
+      517.6
+     ],
+     "center": [
+      846.9,
+      487.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.1,
+     "box": [
+      829.0,
+      456.1,
+      863.7,
+      517.8
+     ],
+     "center": [
+      846.3,
+      486.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.133,
+     "box": [
+      828.4,
+      456.3,
+      864.1,
+      519.7
+     ],
+     "center": [
+      846.3,
+      488.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.167,
+     "box": [
+      828.1,
+      455.6,
+      864.7,
+      520.6
+     ],
+     "center": [
+      846.4,
+      488.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.2,
+     "box": [
+      828.2,
+      455.4,
+      864.8,
+      520.4
+     ],
+     "center": [
+      846.5,
+      487.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.233,
+     "box": [
+      828.9,
+      456.4,
+      864.5,
+      519.8
+     ],
+     "center": [
+      846.7,
+      488.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.267,
+     "box": [
+      827.9,
+      455.4,
+      865.4,
+      522.1
+     ],
+     "center": [
+      846.6,
+      488.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.3,
+     "box": [
+      827.4,
+      454.3,
+      865.8,
+      522.6
+     ],
+     "center": [
+      846.6,
+      488.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.333,
+     "box": [
+      829.9,
+      459.6,
+      864.5,
+      521.2
+     ],
+     "center": [
+      847.2,
+      490.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.367,
+     "box": [
+      829.9,
+      459.6,
+      864.5,
+      521.2
+     ],
+     "center": [
+      847.2,
+      490.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.4,
+     "box": [
+      829.8,
+      459.8,
+      864.5,
+      521.4
+     ],
+     "center": [
+      847.1,
+      490.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.433,
+     "box": [
+      830.2,
+      461.0,
+      864.9,
+      522.7
+     ],
+     "center": [
+      847.6,
+      491.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.467,
+     "box": [
+      830.1,
+      461.0,
+      864.8,
+      522.7
+     ],
+     "center": [
+      847.4,
+      491.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.5,
+     "box": [
+      829.6,
+      459.6,
+      864.2,
+      521.3
+     ],
+     "center": [
+      846.9,
+      490.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.533,
+     "box": [
+      830.3,
+      460.5,
+      865.0,
+      522.1
+     ],
+     "center": [
+      847.6,
+      491.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.567,
+     "box": [
+      829.8,
+      459.8,
+      864.5,
+      521.4
+     ],
+     "center": [
+      847.2,
+      490.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.6,
+     "box": [
+      829.6,
+      460.0,
+      864.3,
+      521.7
+     ],
+     "center": [
+      846.9,
+      490.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.633,
+     "box": [
+      828.9,
+      458.4,
+      864.5,
+      521.8
+     ],
+     "center": [
+      846.7,
+      490.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.667,
+     "box": [
+      829.4,
+      459.4,
+      864.0,
+      521.1
+     ],
+     "center": [
+      846.7,
+      490.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.7,
+     "box": [
+      829.6,
+      459.6,
+      864.3,
+      521.3
+     ],
+     "center": [
+      847.0,
+      490.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.733,
+     "box": [
+      829.1,
+      458.6,
+      864.7,
+      521.9
+     ],
+     "center": [
+      846.9,
+      490.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.767,
+     "box": [
+      829.1,
+      458.4,
+      864.7,
+      521.8
+     ],
+     "center": [
+      846.9,
+      490.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.8,
+     "box": [
+      828.5,
+      457.6,
+      865.1,
+      522.6
+     ],
+     "center": [
+      846.8,
+      490.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.833,
+     "box": [
+      829.1,
+      458.8,
+      864.7,
+      522.1
+     ],
+     "center": [
+      846.9,
+      490.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.867,
+     "box": [
+      829.0,
+      458.6,
+      864.7,
+      521.9
+     ],
+     "center": [
+      846.8,
+      490.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.9,
+     "box": [
+      828.4,
+      457.6,
+      864.9,
+      522.6
+     ],
+     "center": [
+      846.7,
+      490.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.933,
+     "box": [
+      828.6,
+      457.9,
+      864.2,
+      521.2
+     ],
+     "center": [
+      846.4,
+      489.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 5.967,
+     "box": [
+      829.8,
+      459.8,
+      864.5,
+      521.4
+     ],
+     "center": [
+      847.1,
+      490.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.0,
+     "box": [
+      831.5,
+      461.4,
+      863.3,
+      518.1
+     ],
+     "center": [
+      847.4,
+      489.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.033,
+     "box": [
+      832.6,
+      463.1,
+      862.6,
+      516.4
+     ],
+     "center": [
+      847.6,
+      489.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.067,
+     "box": [
+      836.2,
+      468.9,
+      861.5,
+      513.9
+     ],
+     "center": [
+      848.8,
+      491.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.1,
+     "box": [
+      835.6,
+      468.1,
+      860.0,
+      511.4
+     ],
+     "center": [
+      847.8,
+      489.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.133,
+     "box": [
+      835.8,
+      469.3,
+      858.3,
+      509.3
+     ],
+     "center": [
+      847.0,
+      489.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.167,
+     "box": [
+      836.4,
+      469.4,
+      857.0,
+      506.1
+     ],
+     "center": [
+      846.7,
+      487.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.2,
+     "box": [
+      835.2,
+      464.6,
+      859.6,
+      508.0
+     ],
+     "center": [
+      847.4,
+      486.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.233,
+     "box": [
+      835.4,
+      463.9,
+      859.7,
+      507.2
+     ],
+     "center": [
+      847.6,
+      485.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.267,
+     "box": [
+      833.8,
+      457.1,
+      863.8,
+      510.4
+     ],
+     "center": [
+      848.8,
+      483.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.3,
+     "box": [
+      832.9,
+      450.2,
+      872.3,
+      520.2
+     ],
+     "center": [
+      852.6,
+      485.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.333,
+     "box": [
+      835.5,
+      458.6,
+      864.6,
+      510.3
+     ],
+     "center": [
+      850.1,
+      484.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.367,
+     "box": [
+      829.7,
+      448.4,
+      872.8,
+      525.1
+     ],
+     "center": [
+      851.3,
+      486.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.4,
+     "box": [
+      834.8,
+      459.5,
+      864.8,
+      512.8
+     ],
+     "center": [
+      849.8,
+      486.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.433,
+     "box": [
+      832.5,
+      451.8,
+      871.9,
+      521.8
+     ],
+     "center": [
+      852.2,
+      486.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.467,
+     "box": [
+      833.4,
+      451.5,
+      872.8,
+      521.5
+     ],
+     "center": [
+      853.1,
+      486.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.5,
+     "box": [
+      834.1,
+      454.7,
+      872.5,
+      523.0
+     ],
+     "center": [
+      853.3,
+      488.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.533,
+     "box": [
+      833.8,
+      452.1,
+      873.2,
+      522.1
+     ],
+     "center": [
+      853.5,
+      487.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.567,
+     "box": [
+      835.0,
+      443.2,
+      876.2,
+      516.5
+     ],
+     "center": [
+      855.6,
+      479.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.6,
+     "box": [
+      837.3,
+      447.8,
+      874.8,
+      514.5
+     ],
+     "center": [
+      856.0,
+      481.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.633,
+     "box": [
+      837.2,
+      445.7,
+      876.6,
+      515.7
+     ],
+     "center": [
+      856.9,
+      480.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.667,
+     "box": [
+      837.8,
+      446.2,
+      876.3,
+      514.5
+     ],
+     "center": [
+      857.1,
+      480.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.7,
+     "box": [
+      838.6,
+      446.4,
+      877.0,
+      514.8
+     ],
+     "center": [
+      857.8,
+      480.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.733,
+     "box": [
+      838.9,
+      446.5,
+      876.4,
+      513.2
+     ],
+     "center": [
+      857.7,
+      479.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.767,
+     "box": [
+      839.6,
+      447.5,
+      876.1,
+      512.5
+     ],
+     "center": [
+      857.9,
+      480.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.8,
+     "box": [
+      840.1,
+      446.7,
+      876.7,
+      511.7
+     ],
+     "center": [
+      858.4,
+      479.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.833,
+     "box": [
+      841.1,
+      447.6,
+      876.7,
+      510.9
+     ],
+     "center": [
+      858.9,
+      479.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.867,
+     "box": [
+      841.1,
+      447.6,
+      876.7,
+      510.9
+     ],
+     "center": [
+      858.9,
+      479.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.9,
+     "box": [
+      841.1,
+      447.1,
+      876.7,
+      510.4
+     ],
+     "center": [
+      858.9,
+      478.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.933,
+     "box": [
+      841.1,
+      446.5,
+      876.8,
+      509.8
+     ],
+     "center": [
+      858.9,
+      478.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 6.967,
+     "box": [
+      841.0,
+      446.8,
+      876.6,
+      510.1
+     ],
+     "center": [
+      858.8,
+      478.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.0,
+     "box": [
+      840.9,
+      446.6,
+      876.6,
+      510.0
+     ],
+     "center": [
+      858.7,
+      478.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.033,
+     "box": [
+      841.0,
+      446.6,
+      876.6,
+      510.0
+     ],
+     "center": [
+      858.8,
+      478.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.067,
+     "box": [
+      840.4,
+      445.8,
+      877.0,
+      510.8
+     ],
+     "center": [
+      858.7,
+      478.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.1,
+     "box": [
+      841.0,
+      446.4,
+      876.6,
+      509.7
+     ],
+     "center": [
+      858.8,
+      478.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.133,
+     "box": [
+      840.5,
+      445.6,
+      877.1,
+      510.6
+     ],
+     "center": [
+      858.8,
+      478.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.167,
+     "box": [
+      840.5,
+      445.7,
+      877.0,
+      510.7
+     ],
+     "center": [
+      858.7,
+      478.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.2,
+     "box": [
+      840.5,
+      445.7,
+      877.0,
+      510.7
+     ],
+     "center": [
+      858.8,
+      478.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.233,
+     "box": [
+      840.5,
+      445.6,
+      877.1,
+      510.6
+     ],
+     "center": [
+      858.8,
+      478.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.267,
+     "box": [
+      840.3,
+      445.5,
+      876.8,
+      510.5
+     ],
+     "center": [
+      858.6,
+      478.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.3,
+     "box": [
+      839.6,
+      444.7,
+      877.1,
+      511.3
+     ],
+     "center": [
+      858.4,
+      478.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.333,
+     "box": [
+      840.1,
+      445.3,
+      876.7,
+      510.3
+     ],
+     "center": [
+      858.4,
+      477.8
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.367,
+     "box": [
+      839.7,
+      443.9,
+      877.2,
+      510.6
+     ],
+     "center": [
+      858.4,
+      477.2
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.4,
+     "box": [
+      838.5,
+      442.6,
+      876.9,
+      510.9
+     ],
+     "center": [
+      857.7,
+      476.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.433,
+     "box": [
+      838.3,
+      441.0,
+      877.7,
+      511.0
+     ],
+     "center": [
+      858.0,
+      476.0
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.467,
+     "box": [
+      841.8,
+      446.3,
+      874.6,
+      504.6
+     ],
+     "center": [
+      858.2,
+      475.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.5,
+     "box": [
+      841.4,
+      441.8,
+      877.0,
+      505.2
+     ],
+     "center": [
+      859.2,
+      473.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.533,
+     "box": [
+      843.5,
+      443.9,
+      876.3,
+      502.3
+     ],
+     "center": [
+      859.9,
+      473.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.567,
+     "box": [
+      841.3,
+      440.1,
+      877.8,
+      505.1
+     ],
+     "center": [
+      859.6,
+      472.6
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.6,
+     "box": [
+      841.5,
+      439.6,
+      878.0,
+      504.6
+     ],
+     "center": [
+      859.8,
+      472.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.633,
+     "box": [
+      845.2,
+      447.3,
+      874.2,
+      499.0
+     ],
+     "center": [
+      859.7,
+      473.1
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.667,
+     "box": [
+      848.6,
+      446.2,
+      873.9,
+      491.2
+     ],
+     "center": [
+      861.3,
+      468.7
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.7,
+     "box": [
+      846.6,
+      444.1,
+      873.8,
+      492.5
+     ],
+     "center": [
+      860.2,
+      468.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.733,
+     "box": [
+      844.5,
+      440.6,
+      874.5,
+      494.0
+     ],
+     "center": [
+      859.5,
+      467.3
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.767,
+     "box": [
+      844.7,
+      440.2,
+      874.7,
+      493.6
+     ],
+     "center": [
+      859.7,
+      466.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.8,
+     "box": [
+      844.4,
+      439.8,
+      874.4,
+      493.1
+     ],
+     "center": [
+      859.4,
+      466.4
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.833,
+     "box": [
+      842.7,
+      437.2,
+      874.5,
+      493.9
+     ],
+     "center": [
+      858.6,
+      465.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.867,
+     "box": [
+      842.6,
+      437.1,
+      874.5,
+      493.8
+     ],
+     "center": [
+      858.6,
+      465.5
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.9,
+     "box": [
+      841.7,
+      438.6,
+      873.6,
+      495.3
+     ],
+     "center": [
+      857.7,
+      466.9
+     ],
+     "interpolated": false,
+     "label": "foraging"
+    },
+    {
+     "t": 7.933,
+     "box": [
+      842.8,
+      439.4,
+      872.8,
+      492.7
+     ],
+     "center": [
+      857.8,
+      466.0
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 7.967,
+     "box": [
+      844.1,
+      437.0,
+      874.1,
+      490.3
+     ],
+     "center": [
+      859.1,
+      463.6
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 8.0,
+     "box": [
+      842.9,
+      434.5,
+      875.7,
+      492.9
+     ],
+     "center": [
+      859.3,
+      463.7
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.033,
+     "box": [
+      843.7,
+      440.0,
+      872.7,
+      491.6
+     ],
+     "center": [
+      858.2,
+      465.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.067,
+     "box": [
+      843.8,
+      434.9,
+      872.8,
+      486.6
+     ],
+     "center": [
+      858.3,
+      460.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.1,
+     "box": [
+      841.6,
+      433.8,
+      871.6,
+      487.1
+     ],
+     "center": [
+      856.6,
+      460.4
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 8.133,
+     "box": [
+      841.1,
+      432.3,
+      872.0,
+      487.3
+     ],
+     "center": [
+      856.6,
+      459.8
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 8.167,
+     "box": [
+      841.6,
+      432.0,
+      871.6,
+      485.3
+     ],
+     "center": [
+      856.6,
+      458.6
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 8.2,
+     "box": [
+      841.2,
+      431.1,
+      872.1,
+      486.1
+     ],
+     "center": [
+      856.7,
+      458.6
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 8.233,
+     "box": [
+      840.4,
+      430.8,
+      871.4,
+      485.8
+     ],
+     "center": [
+      855.9,
+      458.3
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 8.267,
+     "box": [
+      841.1,
+      430.1,
+      872.0,
+      485.1
+     ],
+     "center": [
+      856.5,
+      457.6
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.3,
+     "box": [
+      838.5,
+      426.7,
+      876.0,
+      493.4
+     ],
+     "center": [
+      857.3,
+      460.1
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.333,
+     "box": [
+      841.9,
+      427.5,
+      873.8,
+      484.2
+     ],
+     "center": [
+      857.9,
+      455.9
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 8.367,
+     "box": [
+      842.5,
+      428.3,
+      874.4,
+      485.0
+     ],
+     "center": [
+      858.5,
+      456.6
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.4,
+     "box": [
+      843.0,
+      426.0,
+      875.8,
+      484.4
+     ],
+     "center": [
+      859.4,
+      455.2
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.433,
+     "box": [
+      844.8,
+      424.7,
+      878.5,
+      484.7
+     ],
+     "center": [
+      861.7,
+      454.7
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 8.467,
+     "box": [
+      845.4,
+      424.7,
+      879.2,
+      484.7
+     ],
+     "center": [
+      862.3,
+      454.7
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.5,
+     "box": [
+      847.8,
+      419.1,
+      882.5,
+      480.8
+     ],
+     "center": [
+      865.2,
+      450.0
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 8.533,
+     "box": [
+      851.1,
+      425.9,
+      878.3,
+      474.2
+     ],
+     "center": [
+      864.7,
+      450.0
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.567,
+     "box": [
+      847.7,
+      425.1,
+      879.6,
+      481.8
+     ],
+     "center": [
+      863.6,
+      453.5
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.6,
+     "box": [
+      845.1,
+      414.7,
+      886.3,
+      488.0
+     ],
+     "center": [
+      865.7,
+      451.3
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.633,
+     "box": [
+      848.9,
+      414.8,
+      885.5,
+      479.8
+     ],
+     "center": [
+      867.2,
+      447.3
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 8.667,
+     "box": [
+      840.7,
+      402.8,
+      891.3,
+      492.8
+     ],
+     "center": [
+      866.0,
+      447.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.7,
+     "box": [
+      850.8,
+      414.9,
+      887.4,
+      479.9
+     ],
+     "center": [
+      869.1,
+      447.4
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.733,
+     "box": [
+      849.9,
+      410.2,
+      892.1,
+      485.2
+     ],
+     "center": [
+      871.0,
+      447.7
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.767,
+     "box": [
+      854.2,
+      409.4,
+      891.7,
+      476.1
+     ],
+     "center": [
+      872.9,
+      442.7
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.8,
+     "box": [
+      855.9,
+      411.0,
+      893.4,
+      477.6
+     ],
+     "center": [
+      874.6,
+      444.3
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.833,
+     "box": [
+      855.7,
+      412.5,
+      893.2,
+      479.2
+     ],
+     "center": [
+      874.5,
+      445.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.867,
+     "box": [
+      856.1,
+      410.2,
+      893.6,
+      476.9
+     ],
+     "center": [
+      874.9,
+      443.5
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.9,
+     "box": [
+      856.9,
+      414.1,
+      894.4,
+      480.8
+     ],
+     "center": [
+      875.7,
+      447.4
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.933,
+     "box": [
+      862.2,
+      414.9,
+      895.0,
+      473.3
+     ],
+     "center": [
+      878.6,
+      444.1
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 8.967,
+     "box": [
+      862.4,
+      418.5,
+      892.4,
+      471.9
+     ],
+     "center": [
+      877.4,
+      445.2
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 9.0,
+     "box": [
+      859.9,
+      413.7,
+      895.6,
+      477.1
+     ],
+     "center": [
+      877.8,
+      445.4
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.033,
+     "box": [
+      860.4,
+      412.3,
+      893.2,
+      470.7
+     ],
+     "center": [
+      876.8,
+      441.5
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.067,
+     "box": [
+      859.5,
+      414.6,
+      895.1,
+      478.0
+     ],
+     "center": [
+      877.3,
+      446.3
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.1,
+     "box": [
+      862.7,
+      417.0,
+      891.7,
+      468.7
+     ],
+     "center": [
+      877.2,
+      442.9
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.133,
+     "box": [
+      860.4,
+      411.7,
+      893.3,
+      470.0
+     ],
+     "center": [
+      876.9,
+      440.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.167,
+     "box": [
+      863.9,
+      417.9,
+      891.1,
+      466.2
+     ],
+     "center": [
+      877.5,
+      442.1
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.2,
+     "box": [
+      860.8,
+      411.7,
+      891.7,
+      466.7
+     ],
+     "center": [
+      876.2,
+      439.2
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.233,
+     "box": [
+      866.2,
+      420.6,
+      892.4,
+      467.3
+     ],
+     "center": [
+      879.3,
+      444.0
+     ],
+     "interpolated": false,
+     "label": "flying"
+    }
+   ]
+  },
+  {
+   "track_id": "honeybee_6",
+   "species": "honeybee",
+   "complete": true,
+   "points": [
+    {
+     "t": 9.3,
+     "box": [
+      83.8,
+      910.9,
+      101.6,
+      942.6
+     ],
+     "center": [
+      92.7,
+      926.7
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 9.333,
+     "box": [
+      84.3,
+      910.2,
+      102.1,
+      941.9
+     ],
+     "center": [
+      93.2,
+      926.1
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.367,
+     "box": [
+      82.5,
+      909.8,
+      102.2,
+      944.8
+     ],
+     "center": [
+      92.4,
+      927.3
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 9.4,
+     "box": [
+      81.6,
+      908.9,
+      103.2,
+      947.2
+     ],
+     "center": [
+      92.4,
+      928.1
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 9.433,
+     "box": [
+      81.1,
+      908.9,
+      103.6,
+      948.9
+     ],
+     "center": [
+      92.4,
+      928.9
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.467,
+     "box": [
+      80.8,
+      905.8,
+      104.2,
+      947.5
+     ],
+     "center": [
+      92.5,
+      926.7
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 9.5,
+     "box": [
+      79.9,
+      904.7,
+      104.3,
+      948.0
+     ],
+     "center": [
+      92.1,
+      926.3
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 9.533,
+     "box": [
+      79.0,
+      904.3,
+      103.4,
+      947.7
+     ],
+     "center": [
+      91.2,
+      926.0
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.567,
+     "box": [
+      81.8,
+      904.0,
+      109.0,
+      952.3
+     ],
+     "center": [
+      95.4,
+      928.2
+     ],
+     "interpolated": false,
+     "label": "walking"
+    },
+    {
+     "t": 9.6,
+     "box": [
+      79.6,
+      900.9,
+      109.6,
+      954.2
+     ],
+     "center": [
+      94.6,
+      927.6
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.633,
+     "box": [
+      78.8,
+      901.5,
+      109.8,
+      956.5
+     ],
+     "center": [
+      94.3,
+      929.0
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.667,
+     "box": [
+      83.5,
+      909.6,
+      112.6,
+      961.3
+     ],
+     "center": [
+      98.1,
+      935.4
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.7,
+     "box": [
+      90.4,
+      912.3,
+      118.5,
+      962.3
+     ],
+     "center": [
+      104.5,
+      937.3
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.733,
+     "box": [
+      93.7,
+      913.7,
+      120.9,
+      962.0
+     ],
+     "center": [
+      107.3,
+      937.9
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.767,
+     "box": [
+      99.0,
+      901.3,
+      126.2,
+      949.7
+     ],
+     "center": [
+      112.6,
+      925.5
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.8,
+     "box": [
+      101.2,
+      887.6,
+      130.2,
+      939.3
+     ],
+     "center": [
+      115.7,
+      913.4
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.833,
+     "box": [
+      103.4,
+      883.2,
+      131.5,
+      933.2
+     ],
+     "center": [
+      117.5,
+      908.2
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.867,
+     "box": [
+      104.3,
+      879.4,
+      133.3,
+      931.1
+     ],
+     "center": [
+      118.8,
+      905.3
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.9,
+     "box": [
+      108.1,
+      875.3,
+      139.0,
+      930.3
+     ],
+     "center": [
+      123.5,
+      902.8
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.933,
+     "box": [
+      109.0,
+      867.5,
+      141.8,
+      925.8
+     ],
+     "center": [
+      125.4,
+      896.6
+     ],
+     "interpolated": false,
+     "label": "flying"
+    },
+    {
+     "t": 9.967,
+     "box": [
+      109.1,
+      861.7,
+      141.9,
+      920.0
+     ],
+     "center": [
+      125.5,
+      890.9
+     ],
+     "interpolated": false,
+     "label": "flying"
+    }
+   ]
+  }
+ ],
+ "flowers": [
+  {
+   "flower_id": "stop_0",
+   "source": "stop",
+   "box": [
+    800.6,
+    439.8,
+    830.6,
+    469.8
+   ]
+  },
+  {
+   "flower_id": "stop_1",
+   "source": "stop",
+   "box": [
+    295.2,
+    2.0,
+    325.2,
+    32.0
+   ]
+  },
+  {
+   "flower_id": "stop_2",
+   "source": "stop",
+   "box": [
+    832.5,
+    473.8,
+    862.5,
+    503.8
+   ]
+  }
+ ],
+ "events": [
+  {
+   "track_id": "honeybee_1",
+   "flower_id": "stop_0",
+   "type": "visit",
+   "t_start": 0.233,
+   "t_end": 2.233
+  },
+  {
+   "track_id": "honeybee_2",
+   "flower_id": "stop_1",
+   "type": "visit",
+   "t_start": 0.767,
+   "t_end": 3.667
+  },
+  {
+   "track_id": "honeybee_5",
+   "flower_id": "stop_2",
+   "type": "visit",
+   "t_start": 4.767,
+   "t_end": 7.9
+  }
+ ]
+}
