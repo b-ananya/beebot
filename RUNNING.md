@@ -33,6 +33,10 @@ Shareable link to a view: `http://localhost:8501/?source=truth&clip=sm3_12_12390
 | `python -m perception.pipeline --video my.mp4 --species honeybee` | any video (first 60 s) -> `tracks/uploads/` | cents |
 
 The stages can also run alone: `perception.cv_track`, `perception.verify`, `perception.visits` (each has `--help`).
+Flower boxes alone: `python -m perception.flowers --sm --eval --overlay` (same detector as the pipeline; add
+`--method middle` for the original single middle-frame call). After changing the flower detector, rerun the
+pipeline, `sim.run_plan --all` and `search.search build`, and commit tracks/, field/, plan/ together so flower ids
+agree across files.
 
 ## 3. Accuracy
 

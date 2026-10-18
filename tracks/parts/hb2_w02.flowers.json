@@ -1,0 +1,13 @@
+{
+ "clip_id": "hb2_w02",
+ "model": "perceptron-mk1.5",
+ "method": "tiled",
+ "prompt_version": "v1",
+ "dense": true,
+ "complete": true,
+ "cache_hit": true,
+ "api_calls": 0,
+ "cache_hits": 1,
+ "flowers": [],
+ "view_id": "hb2"
+}

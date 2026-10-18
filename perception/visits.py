@@ -1,13 +1,11 @@
-"""Flower boxes (Mk1.5 on an insect-free reference frame) and visit events (insect inside a flower).
+"""Visit events (insect inside a flower), stop-flowers and behavior labels; flower boxes come from perception.flowers.
 
     python -m perception.visits --clips sm3_12_123903       # tracks/verified/<clip>.json -> tracks/<clip>.json
     python -m perception.visits --all
     python -m perception.visits --all --no-api              # stop-based flowers only
 
-Reference frame: the per-pixel median of the clip, so moving insects vanish and flowers stay. Mk1.5 boxes every
-open flower on it (tiled 2x2 with overlap so small flowers are big enough to see; duplicates merged by IoU).
-Dense ground cover is detected from the first tile (cut-off answer or > DENSE_BOXES boxes) and skipped: on the
-honeybee clips 43 of 76 answers hit the 6,000-token limit at ~1,000 blossoms per clip.
+Flower boxes: ``perception.flowers.detect_tiled`` (the project's one flower detector: insect-free median frame,
+2x2 tiles, dense ground cover skipped). Ids are made stable per camera view by ``relabel_views``.
 
 Visits follow the Polytrack definition the farm truth uses: the insect's center is inside a flower's box (grown by
 ``GROW`` on each side) for at least ``MIN_VISIT_S``; gaps shorter than ``MERGE_GAP_S`` are bridged. In dense ground
@@ -20,17 +18,15 @@ import argparse
 import json
 from pathlib import Path
 
-import cv2
 import numpy as np
 
 from perception.client import ROOT, BudgetExceeded, PerceptionClient
+from perception.flowers import detect_tiled
 from perception.track import manifest
 
 IN_DIR = ROOT / "tracks" / "verified"
 OUT_DIR = ROOT / "tracks"
-REF_DIR = ROOT / "tracks" / "raw" / "frames" / "reference"
-PIECE = "flowers"     # cache dir tracks/raw/flowers (kept so cached answers stay valid)
-PROMPT_VERSION = "v1"
+PIECE = "flowers"     # Mk1.5 cache dir for flower calls (tracks/raw/flowers/), see perception.flowers.detect_tiled
 
 GROW = 0.25          # visit zone = flower box grown by this share of its size on each side
 MIN_VISIT_S = 0.3
@@ -38,81 +34,6 @@ MERGE_GAP_S = 0.5
 MIN_STOP_S = 0.6     # a bee this still for this long is on something
 STOP_SPEED = 25.0    # units (0-1000) per second, smoothed
 STOP_BOX = 30        # side of a stop-flower box in 0-1000 units
-
-DENSE_BOXES = 150    # first tile with more boxes than this (or a cut-off answer) = dense ground cover
-
-PROMPT = ("Your goal is to segment out the following categories: open flower. Box every individual open flower "
-          "head you can see, including small and partly hidden ones. Do not box leaves, buds or fruit.")
-
-
-def reference_frame(video: Path, clip_id: str, samples: int = 41) -> Path:
-    path = REF_DIR / f"{clip_id}.png"
-    if path.exists():
-        return path
-    cap = cv2.VideoCapture(str(video))
-    n = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    frames = []
-    for i in np.linspace(0, n - 1, min(samples, n)).astype(int):
-        cap.set(cv2.CAP_PROP_POS_FRAMES, int(i))
-        ok, f = cap.read()
-        if ok:
-            frames.append(f)
-    cap.release()
-    ref = np.median(np.stack(frames), axis=0).astype(np.uint8)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    cv2.imwrite(str(path), ref)
-    return path
-
-
-def _tiles(ref: Path, clip_id: str) -> list[tuple[Path, tuple[float, float, float, float]]]:
-    """2x2 overlapping tiles; each with its (x0, y0, w, h) in 0-1000 units of the full frame."""
-    img = cv2.imread(str(ref))
-    H, W = img.shape[:2]
-    tw, th = int(W * 0.6), int(H * 0.6)
-    out = []
-    for i, x0 in enumerate([0, W - tw]):
-        for j, y0 in enumerate([0, H - th]):
-            p = ref.with_name(f"{clip_id}_tile{i}{j}.png")
-            if not p.exists():
-                cv2.imwrite(str(p), img[y0:y0 + th, x0:x0 + tw])
-            out.append((p, (x0 / W * 1000, y0 / H * 1000, tw / W * 1000, th / H * 1000)))
-    return out
-
-
-def _iou(a, b) -> float:
-    ix = max(0.0, min(a[2], b[2]) - max(a[0], b[0]))
-    iy = max(0.0, min(a[3], b[3]) - max(a[1], b[1]))
-    inter = ix * iy
-    u = (a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - inter
-    return inter / u if u > 0 else 0.0
-
-
-def detect_flowers(client: PerceptionClient, clip_id: str, video: Path) -> list[dict]:
-    from perceptron import BoundingBox
-
-    boxes = []
-    for k, (tile, (x0, y0, w, h)) in enumerate(_tiles(reference_frame(video, clip_id), clip_id)):
-        r = client.call(clip_id=clip_id, prompt_name="flowers", prompt_version=PROMPT_VERSION, prompt_text=PROMPT,
-                        image_paths=[tile], annotation_format="box", max_tokens=6000)
-        tile_boxes = r.annotations().boxes
-        if k == 0 and (r.finish_reason == "length" or len(tile_boxes) > DENSE_BOXES):
-            # dense ground cover (the honeybee clips: ~1,000 blossoms, answers cut off at the token limit):
-            # a full inventory is neither complete nor useful, so visits fall back to stop-flowers
-            return []
-        for b in tile_boxes:
-            if not isinstance(b, BoundingBox):
-                continue
-            bx = [x0 + b.top_left.x / 1000 * w, y0 + b.top_left.y / 1000 * h,
-                  x0 + b.bottom_right.x / 1000 * w, y0 + b.bottom_right.y / 1000 * h]
-            if bx[2] - bx[0] < 3 or bx[3] - bx[1] < 3 or (bx[2] - bx[0]) * (bx[3] - bx[1]) > 250 * 250:
-                continue
-            boxes.append([round(min(max(v, 0), 1000), 1) for v in bx])
-    merged: list[list[float]] = []
-    for b in sorted(boxes, key=lambda b: -(b[2] - b[0]) * (b[3] - b[1])):
-        if all(_iou(b, m) < 0.4 for m in merged):
-            merged.append(b)
-    merged.sort(key=lambda b: (b[1], b[0]))
-    return [{"flower_id": f"flower_{i}", "box": b, "source": "mk1.5"} for i, b in enumerate(merged)]
 
 
 def _center(p):
@@ -214,7 +135,7 @@ def finish_clip(clip_id: str, *, client: PerceptionClient | None, video: Path | 
                 in_dir: Path = IN_DIR, out_dir: Path = OUT_DIR) -> dict:
     doc = json.loads((in_dir / f"{clip_id}.json").read_text())
     video = video or (ROOT / manifest()[clip_id]["path"])
-    flowers = detect_flowers(client, clip_id, video) if client else []
+    flowers = detect_tiled(clip_id, client=client, video=video)["flowers"] if client else []
     events, flowers = visit_events(doc["tracks"], flowers)
     label_behavior(doc["tracks"], events)
     for tr in doc["tracks"]:

@@ -1,111 +1,111 @@
 {
  "clip_id": "sm3_12_123633",
  "model": "perceptron-mk1.5",
+ "method": "tiled",
  "prompt_version": "v1",
- "finish_reason": "stop",
+ "dense": false,
  "complete": true,
  "cache_hit": true,
- "cost_usd": 0.0,
- "cache_file": "p2/sm3_12_123633__flowers-v1__50e1153951.json",
- "parse_errors": [],
+ "api_calls": 0,
+ "cache_hits": 4,
  "flowers": [
   {
    "flower_id": "flower_1",
    "box": [
-    492,
-    261,
-    532,
-    319
+    491.2,
+    259.8,
+    531.4,
+    318.6
    ]
   },
   {
    "flower_id": "flower_2",
    "box": [
-    523,
-    278,
-    563,
-    341
+    523.0,
+    278.4,
+    563.2,
+    343.2
+   ]
+  },
+  {
+   "flower_id": "flower_3",
+   "box": [
+    217.2,
+    322.8,
+    238.8,
+    352.8
    ]
   },
   {
    "flower_id": "flower_4",
    "box": [
-    157,
-    437,
-    195,
-    502
+    157.2,
+    436.2,
+    195.0,
+    502.8
    ]
   },
   {
    "flower_id": "flower_5",
    "box": [
-    827,
-    458,
-    871,
-    517
+    826.6,
+    457.2,
+    872.8,
+    519.6
+   ]
+  },
+  {
+   "flower_id": "flower_6",
+   "box": [
+    874.6,
+    484.8,
+    908.2,
+    536.4
    ]
   },
   {
    "flower_id": "flower_7",
    "box": [
-    877,
-    486,
-    909,
-    538
+    848.2,
+    506.4,
+    878.2,
+    543.6
+   ]
+  },
+  {
+   "flower_id": "flower_8",
+   "box": [
+    82.8,
+    530.4,
+    125.4,
+    598.8
    ]
   },
   {
    "flower_id": "flower_9",
    "box": [
-    83,
-    529,
-    125,
-    594
-   ]
-  },
-  {
-   "flower_id": "flower_10",
-   "box": [
-    865,
-    544,
-    908,
-    613
+    866.2,
+    529.6,
+    908.8,
+    613.6
    ]
   },
   {
    "flower_id": "flower_11",
    "box": [
-    793,
-    584,
-    812,
-    617
+    52.8,
+    881.8,
+    72.0,
+    913.6
    ]
   },
   {
-   "flower_id": "flower_14",
+   "flower_id": "flower_12",
    "box": [
-    219,
-    859,
-    254,
-    901
-   ]
-  },
-  {
-   "flower_id": "flower_16",
-   "box": [
-    51,
-    881,
-    71,
-    919
-   ]
-  },
-  {
-   "flower_id": "flower_17",
-   "box": [
-    110,
-    923,
-    138,
-    974
+    112.8,
+    923.8,
+    138.6,
+    970.0
    ]
   }
  ],
