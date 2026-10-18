@@ -67,6 +67,8 @@ python -m forecast.train                             # downloads trajectories (1
 python -m forecast.predict sm3_12_123903 --t 9.0     # path fan, next flower, dwell, rollouts at t = 9 s
 ```
 
+`forecast/models/` is gitignored, so a fresh clone has no trained models. The panel Forecast tab says "Forecast endpoint is unavailable" until you run `python -m forecast.train` once (about 2 minutes, no API cost).
+
 ## 6. Pollination deficit map and robot route
 
 ```powershell
