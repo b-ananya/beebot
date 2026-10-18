@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties } from 'react'
 import { HELP, IMAGE_NOTES, SOURCE_INFO } from './help'
-import { Hint, Intro } from './hint'
+import { Hint, InfoMark, Intro } from './hint'
 import { clip_metrics, pyRound, type MetricDoc, type Summary } from './analytics'
 import { trackUrl, type ManifestEntry, type PanelProps } from './types'
 
@@ -438,7 +438,7 @@ export function DatasetPanel(props: { source: PanelProps['source'] }) {
           How well the system works across all 48 clips. <b>Clips</b> summarizes what was measured in each clip.
           <b> Tracking accuracy</b> compares our insect tracks with the dataset authors&rsquo; own tracker (a reference,
           not hand labels). <b>Flower detection</b> scores the flower boxes three ways. The images are the visual
-          checks behind the numbers. Hover any <b>?</b> for details.
+          checks behind the numbers. Hover any <InfoMark /> for details.
         </p>
       </Intro>
       <div className="prop-head">Clips</div>

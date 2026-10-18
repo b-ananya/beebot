@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef } from 'react'
 import { clip_metrics, heatmap, type FlowerMetric, type Summary, type TransitionRow, type VisitRow } from './analytics'
 import type { PanelProps } from './types'
 import { HELP } from './help'
-import { Hint, Intro } from './hint'
+import { Hint, InfoMark, Intro } from './hint'
 
 const RAMP = ['#cde2fb', '#9ec5f4', '#6da7ec', '#3987e5', '#256abf', '#184f95', '#0d366b']
 const PROP = { gridTemplateColumns: '168px minmax(0, 1fr)' }
@@ -352,7 +352,7 @@ export function AnalyticsPanel({ clipId, source, doc, manifestEntry, time, onSee
             <p>
               Numbers measured from this clip&rsquo;s tracks: how often insects visit flowers, how long they stay and
               how they move between them. The &ldquo;robot parameters&rdquo; are what a robot pollinator or simulator
-              would copy. Hover any label with a <b>?</b> for what it means.
+              would copy. Hover any label with an <InfoMark /> for what it means.
             </p>
           </Intro>
           <SummaryStats summary={metrics.summary} />

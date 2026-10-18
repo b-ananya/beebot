@@ -44,7 +44,7 @@ export function Hint({ tip, children, block = false }: { tip: ReactNode; childre
       }}
     >
       {children}
-      <span className="hint-mark" aria-hidden="true">?</span>
+      <InfoMark />
       {open &&
         createPortal(
           <div
@@ -60,6 +60,11 @@ export function Hint({ tip, children, block = false }: { tip: ReactNode; childre
         )}
     </span>
   )
+}
+
+/** The small circled "i" that marks something you can hover for an explanation. */
+export function InfoMark() {
+  return <span className="hint-mark" aria-hidden="true">i</span>
 }
 
 /** A short "what am I looking at" box at the top of a panel. */
