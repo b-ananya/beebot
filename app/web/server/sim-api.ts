@@ -10,11 +10,13 @@ import fs from 'node:fs'
 import type { ServerResponse } from 'node:http'
 import path from 'node:path'
 import type { Connect } from 'vite'
+import { readDotenv } from './apis.ts'
 
 let repo = ''
 
 function python(): string {
-  const configured = (process.env.BEEBOT_PYTHON ?? '').trim()
+  // like apis.ts: the environment first, then the repo-root .env (where a venv outside the repo is configured)
+  const configured = (process.env.BEEBOT_PYTHON ?? readDotenv().BEEBOT_PYTHON ?? '').trim()
   if (configured) return configured
   for (const venv of [path.join(repo, '.venv', 'bin', 'python'), path.join(repo, '.venv', 'Scripts', 'python.exe')]) {
     if (fs.existsSync(venv)) return venv
@@ -23,7 +25,11 @@ function python(): string {
 }
 
 function menagerie(): string {
-  return process.env.MUJOCO_MENAGERIE?.trim() || path.resolve(repo, '..', 'mujoco_menagerie')
+  return (
+    process.env.MUJOCO_MENAGERIE?.trim() ||
+    readDotenv().MUJOCO_MENAGERIE?.trim() ||
+    path.resolve(repo, '..', 'mujoco_menagerie')
+  )
 }
 
 function send(res: ServerResponse, status: number, body: unknown): void {

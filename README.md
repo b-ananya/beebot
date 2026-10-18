@@ -20,7 +20,7 @@ flowers that were missed.
 | **Field** (farm clips) | Flowers colored by visits still needed, and the robot route that covers the most within a time budget |
 | **Dataset** | Accuracy across all clips, with the visual audits behind the numbers |
 | **Upload** | Analyze your own fixed-camera video |
-| **Simulation** | Route planner and an RL bee prototype; a **MuJoCo tab** simulating a bee hopping from flower to flower is in progress |
+| **Simulations** (own page) | An RL-trained bee flies over a random flower field it has never seen, in interactive 3D (rotate, zoom, scrub); the same flight renders in **MuJoCo** as a video, with a Crazyflie 2 drone standing in for the bee |
 
 ## Architecture
 
@@ -60,16 +60,16 @@ flowchart TB
     AN["analytics<br/>NumPy: dwell, transit,<br/>speed, turns"]
     FC["forecast · scikit-learn<br/>kNN path fan, gradient-boosted<br/>next flower, Monte Carlo rollouts"]
     PLN["route planner<br/>greedy + 2-opt<br/>orienteering"]
-    SIM["simulation<br/>Gymnasium + SB3 PPO bee;<br/>MuJoCo tab (in progress)"]
+    SIM["simulation<br/>Gymnasium + SB3 PPO bee,<br/>MuJoCo 3D replay<br/>(Crazyflie 2, Menagerie)"]
     EV["eval<br/>coverage, error, visits,<br/>flower audits"]
     AN ~~~ FC ~~~ PLN ~~~ SIM ~~~ EV
   end
 
   subgraph A["4 · Web app — React 19 · TypeScript · Vite 8 · Node 20+"]
     direction LR
-    UI["React tabs, Canvas 2D + SVG overlays<br/>Video · Analytics · Forecast · Field<br/>Dataset · Upload · Search"]
+    UI["React tabs, Canvas 2D + SVG overlays<br/>Video · Analytics · Forecast · Field<br/>Dataset · Upload · Search<br/>+ Simulations page (three.js 3D)"]
     UI ~~~ API
-    API["Vite middleware<br/>serves repo folders (HTTP range video)<br/>POST /api/forecast · /api/analyze · /api/search/live<br/>→ runs the Python forecast / pipeline"]
+    API["Vite middleware<br/>serves repo folders (HTTP range video)<br/>POST /api/forecast · /api/analyze · /api/search/live<br/>GET /api/sim/run · /api/sim/video<br/>→ runs the Python forecast / pipeline / sim"]
   end
 
   V --> P
@@ -93,9 +93,9 @@ is cached in `tracks/raw/`, so everything replays offline at no cost.
 | **Vision model** | **Perceptron Mk1.5** through the `perceptron` SDK 0.4: `chat.completions` with image and video inputs, `vision_config.annotation_format` = `box` / `point` / `clip` for boxes and time ranges, JSON-schema constrained output, and the Files API for video uploads |
 | **API caching & cost** | Our own client (`perception/client.py`): SHA-256 request keys, JSON answer cache in `tracks/raw/`, per-person CSV cost log, $40 spending cap, offline replay mode; key loaded with `python-dotenv` |
 | **Forecasting** | **scikit-learn** (`NearestNeighbors` path fan, `HistGradientBoostingClassifier` next flower, `LogisticRegression`, `StandardScaler`, `GroupShuffleSplit` held-out stations), **pandas** for the trajectory CSVs, **joblib** for saved models |
-| **Planning & simulation** | Orienteering planner in plain Python (greedy insertion + 2-opt); **Gymnasium** environment + **Stable-Baselines3** PPO for the RL bee; **MuJoCo** for the bee-hopping tab (in progress) |
+| **Planning & simulation** | Orienteering planner in plain Python (greedy insertion + 2-opt); **Gymnasium** environment + **Stable-Baselines3** PPO for the RL bee; **MuJoCo 3.2+** for the 3D replay (kinematic, not flight physics) with the Bitcraze **Crazyflie 2** model from **MuJoCo Menagerie**; **SciPy** cubic splines to smooth the flight path |
 | **Video** | **ffmpeg** via `imageio-ffmpeg` (H.264 rendering, upload transcoding) |
-| **Web app** | **React 19**, **TypeScript**, **Vite 8**: custom dev-server middleware serves the repo's folders (with HTTP range requests for video) and exposes `GET /api/health`, `POST /api/forecast`, `/api/analyze`, `/api/search/live`, which run Python through Node's `child_process`. Overlays are drawn with Canvas 2D and SVG. Needs Node 20.19+. |
+| **Web app** | **React 19**, **TypeScript**, **Vite 8**: custom dev-server middleware serves the repo's folders (with HTTP range requests for video) and exposes `GET /api/health`, `POST /api/forecast`, `/api/analyze`, `/api/search/live`, `GET /api/sim/run`, `/api/sim/video`, which run Python through Node's `child_process`. Overlays are drawn with Canvas 2D and SVG; the Simulations page uses **three.js** (WebGL). Needs Node 20.19+. |
 | **Data & testing** | Clips shipped as a **GitHub Release**; raw datasets from **figshare** (read with HTTP range requests, so only the needed files download); JSON file formats in [CONTRACT.md](CONTRACT.md) checked by a stdlib validator; **pytest** with a fake API client, so tests run offline |
 
 ## Data
@@ -149,6 +149,18 @@ python -m perception.pipeline --all    # tracks, flowers, visits
 python -m eval.run_eval                # tracking accuracy
 python -m sim.run_plan --all           # pollination maps and robot routes
 ```
+
+For the **Simulations** page (optional), install MuJoCo and fetch just the Crazyflie model from Menagerie, next to
+the repo:
+
+```bash
+pip install -r requirements-stretch.txt          # mujoco, gymnasium, stable-baselines3
+git clone --depth 1 --filter=blob:none --sparse https://github.com/google-deepmind/mujoco_menagerie ../mujoco_menagerie
+git -C ../mujoco_menagerie sparse-checkout set bitcraze_crazyflie_2
+```
+
+If Menagerie lives elsewhere, set `MUJOCO_MENAGERIE` in `.env`. From the command line:
+`python -m sim.mj_random --seed 7 --live` opens an interactive MuJoCo window.
 
 To analyze your own video, use **Upload** in the app, or run
 `python -m perception.pipeline --video my.mp4 --species honeybee`.

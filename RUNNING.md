@@ -88,3 +88,16 @@ visits counted over all of that camera's clips up to this one.
 python -m pytest -q                                  # offline, no API calls
 python -I scripts/validate.py                        # contract check for truth/ and tracks/
 ```
+
+## 8. Simulations (MuJoCo)
+
+```powershell
+pip install -r requirements-stretch.txt                     # mujoco, gymnasium, stable-baselines3
+git clone --depth 1 --filter=blob:none --sparse https://github.com/google-deepmind/mujoco_menagerie ..\mujoco_menagerie
+git -C ..\mujoco_menagerie sparse-checkout set bitcraze_crazyflie_2
+python -m sim.mj_random --seed 7 --live                     # random field, RL bee, interactive MuJoCo window
+python -m sim.mj_random --seed 7 --camera chase             # same, as rollouts/random_7_mujoco.mp4
+python -m sim.mj_render sm3_12_123903                       # replay a planned robot route over a real clip
+```
+
+In the app, the **Simulations** link in the top bar opens the 3D page. Menagerie elsewhere: set `MUJOCO_MENAGERIE` in `.env`.

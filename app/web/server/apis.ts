@@ -227,7 +227,7 @@ function resolveRepo(explicit?: string): string {
   return explicit ? path.resolve(explicit) : path.resolve(process.cwd(), '../..')
 }
 
-function readDotenv(): Record<string, string> {
+export function readDotenv(): Record<string, string> {
   const file = path.join(repoRoot, '.env')
   const out: Record<string, string> = {}
   if (!fs.existsSync(file)) return out

@@ -3,8 +3,6 @@ numpy>=1.26
 pandas>=2.1
 opencv-python>=4.9        # frames, overlays
 imageio[ffmpeg]>=2.34     # write mp4 without a system ffmpeg on PATH
-matplotlib>=3.8           # charts, 2D sim render
-openpyxl>=3.1             # Experiment1-Results.xlsx
 jsonschema>=4.21          # contract validator
 pytest>=8
 
@@ -12,11 +10,8 @@ pytest>=8
 perceptron>=0.4.0
 python-dotenv>=1.0        # PERCEPTRON_API_KEY from .env
 
-# B: eval
-scipy>=1.12               # track/event matching
-
-# C: planner
-ortools>=9.10             # orienteering / vehicle routing
+# smoothing the flight path in the MuJoCo replay (sim/mj_render.py)
+scipy>=1.12
 
 # forecasting (kNN path model, next-flower classifier)
 scikit-learn>=1.4
