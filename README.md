@@ -6,9 +6,7 @@
 motion tracking plus Perceptron's Mk1.5 vision model, then forecasts insect movement and plans a robot route to the
 flowers that were missed.
 
-[![Watch the Pollensight demo (1:50)](docs/img/demo-thumbnail.jpg)](https://github.com/b-ananya/pollensight/raw/main/docs/pollensight-demo.mp4)
-
-*Click to download the 1:50 demo video (8 MB).*
+**Demo video and project page:** [Pollensight on Devpost](https://devpost.com/software/beebot-zbaxvy)
 
 ## Features
 
