@@ -49,11 +49,28 @@ button {
   flex: 0 0 var(--top-h);
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
   padding: 0 10px;
   background: var(--panel);
   border-bottom: 1px solid var(--border);
   font-size: 12px;
+  overflow-x: auto;
+}
+
+.topbar > * {
+  flex-shrink: 0;
+}
+
+.topbar > .region-body {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.modes {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .brand {
@@ -148,6 +165,178 @@ button {
   min-height: 0;
 }
 
+.outliner .region-body,
+.properties .region-body,
+.timeline .region-body {
+  overflow: auto;
+}
+
+.tree {
+  padding: 2px 0 8px;
+}
+
+.tree-group {
+  margin: 8px 8px 2px;
+  color: #8d8d8d;
+}
+
+.tree-row {
+  width: 100%;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.tree-row .label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.swatch {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.tree-row:hover,
+.visit-row:hover {
+  background: #3a3a3a;
+}
+
+.tree-row.on {
+  background: #3d5c80;
+}
+
+.tree-row.on:hover {
+  background: #4a6d94;
+}
+
+.tree-row:focus-visible,
+.visit-row:focus-visible {
+  outline: 1px solid var(--text);
+  outline-offset: -1px;
+}
+
+.props {
+  padding: 4px 0 10px;
+}
+
+.prop {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 8px;
+  padding: 3px 8px;
+  align-items: baseline;
+}
+
+.prop-key,
+.prop-head,
+.empty-note {
+  color: #8d8d8d;
+}
+
+.prop-value,
+.visit-row {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.prop-value {
+  overflow-wrap: anywhere;
+}
+
+.prop-head {
+  margin: 8px 8px 2px;
+}
+
+.visit-row {
+  width: 100%;
+  display: block;
+  padding: 3px 8px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.empty-note {
+  padding: 8px;
+}
+
+.search {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 6px 8px 4px;
+  background: var(--panel);
+}
+
+.search input {
+  width: 100%;
+  height: 22px;
+  margin: 0;
+  padding: 0 6px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: var(--page);
+  color: var(--text);
+  font: inherit;
+}
+
+.search input:focus-visible {
+  outline: 1px solid var(--text);
+  outline-offset: 1px;
+}
+
+.search-hit {
+  width: 100%;
+  display: block;
+  margin-top: 4px;
+  padding: 4px 2px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.search-hit .meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: #bdbdbd;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.search-hit .text {
+  display: block;
+  margin-top: 2px;
+  white-space: normal;
+}
+
+.search-hit:hover {
+  background: #3a3a3a;
+}
+
+.search-hit:focus-visible {
+  outline: 1px solid var(--text);
+  outline-offset: -1px;
+}
+
+.search-empty {
+  padding: 6px 2px 2px;
+  color: #8d8d8d;
+}
+
 .stage {
   position: relative;
   flex: 1 1 auto;
@@ -168,6 +357,56 @@ button {
 .stage canvas {
   position: absolute;
   pointer-events: none;
+}
+
+.stage.field-mode video,
+.stage.field-mode canvas {
+  visibility: hidden;
+}
+
+.stage-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  background: var(--page);
+}
+
+.stage-panel > .region-body {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.field-view,
+.field-note {
+  position: absolute;
+  inset: 0;
+}
+
+.field-view svg {
+  width: 100%;
+  height: 100%;
+}
+
+.field-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+}
+
+.field-legend {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 6px 8px;
+  background: rgba(20, 20, 20, 0.82);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.45;
 }
 
 .splitter {
@@ -240,4 +479,118 @@ button {
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   font-size: 12px;
   font-variant-numeric: tabular-nums;
+}
+
+.tl {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  min-height: 100%;
+  padding: 4px 0 6px;
+}
+
+.tl-ruler-pad,
+.tl-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  min-width: 0;
+}
+
+.tl-ruler-pad {
+  height: 18px;
+}
+
+.tl-label {
+  color: #bdbdbd;
+}
+
+.tl-label .name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tl-sheet {
+  position: relative;
+  margin-right: 8px;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.tl-sheet:focus-visible {
+  outline: 1px solid var(--text);
+  outline-offset: -1px;
+}
+
+.tl-ruler {
+  position: relative;
+  height: 18px;
+}
+
+.tl-tick {
+  position: absolute;
+  top: 12px;
+  bottom: 0;
+  width: 1px;
+  background: #3a3a3a;
+  pointer-events: none;
+}
+
+.tl-cap {
+  position: absolute;
+  top: 0;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: #8d8d8d;
+  pointer-events: none;
+}
+
+.tl-cap.start {
+  left: 0;
+}
+
+.tl-cap.end {
+  right: 0;
+}
+
+.tl-lane {
+  position: relative;
+  background: #242424;
+  border-top: 1px solid #1a1a1a;
+  overflow: hidden;
+}
+
+.tl-bar,
+.tl-vis {
+  position: absolute;
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+.tl-vis {
+  opacity: 0.4;
+  min-width: 2px;
+}
+
+.tl-playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #f2f2f2;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.tl-playhead::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -3px;
+  border-left: 3.5px solid transparent;
+  border-right: 3.5px solid transparent;
+  border-top: 5px solid #f2f2f2;
 }

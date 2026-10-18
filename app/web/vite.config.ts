@@ -2,7 +2,20 @@ import react from '@vitejs/plugin-react'
 import fs from 'node:fs'
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import path from 'node:path'
-import { defineConfig, type Plugin } from 'vite'
+import { defineConfig, type Plugin, type PreviewServer, type ViteDevServer } from 'vite'
+import { attachApis } from './server/apis.ts'
+
+const FILE_MOUNTS: Array<[prefix: string, dir: string]> = [
+  ['/clips/', 'clips'],
+  ['/tracks/', 'tracks'],
+  ['/search/', 'search'],
+  ['/field/', 'field'],
+  ['/plan/', 'plan'],
+  ['/truth/', 'truth'],
+  ['/eval/', 'eval'],
+  ['/forecast/', 'forecast'],
+  ['/rollouts/', 'rollouts'],
+]
 
 function contentType(file: string): string {
   switch (path.extname(file).toLowerCase()) {
@@ -12,6 +25,13 @@ function contentType(file: string): string {
       return 'application/json'
     case '.webm':
       return 'video/webm'
+    case '.jpg':
+    case '.jpeg':
+      return 'image/jpeg'
+    case '.png':
+      return 'image/png'
+    case '.gif':
+      return 'image/gif'
     default:
       return 'application/octet-stream'
   }
@@ -132,14 +152,19 @@ function mountFiles(prefix: string, rootDir: string) {
   }
 }
 
+function mountRepo(server: ViteDevServer | PreviewServer): void {
+  const repo = path.resolve(server.config.root, '../..')
+  for (const [prefix, dir] of FILE_MOUNTS) {
+    server.middlewares.use(mountFiles(prefix, path.join(repo, dir)))
+  }
+  attachApis(server.middlewares, repo)
+}
+
 function clipsPlugin(): Plugin {
   return {
     name: 'beebot-clips',
-    configureServer(server) {
-      const repo = path.resolve(server.config.root, '../..')
-      server.middlewares.use(mountFiles('/clips/', path.join(repo, 'clips')))
-      server.middlewares.use(mountFiles('/tracks/', path.join(repo, 'tracks')))
-    },
+    configureServer: mountRepo,
+    configurePreviewServer: mountRepo,
   }
 }
 
