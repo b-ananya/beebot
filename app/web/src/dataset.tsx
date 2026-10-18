@@ -1,5 +1,5 @@
 import { useEffect, useState, type CSSProperties } from 'react'
-import { HELP, IMAGE_NOTES } from './help'
+import { HELP, IMAGE_NOTES, SOURCE_INFO } from './help'
 import { Hint, Intro } from './hint'
 import { clip_metrics, pyRound, type MetricDoc, type Summary } from './analytics'
 import { trackUrl, type ManifestEntry, type PanelProps } from './types'
@@ -11,9 +11,9 @@ const FLOWER_ROWS: Array<{ key: 'ref_iou' | 'ref_center' | 'audit'; label: strin
 ]
 
 const EVAL_REPORTS: Array<{ url: string; method: string }> = [
-  { url: '/eval/report.json', method: 'pipeline' },
-  { url: '/eval/report_heuristic.json', method: 'heuristic' },
-  { url: '/eval/report_mk15_v1.json', method: 'mk1.5 v1' },
+  { url: '/eval/report.json', method: SOURCE_INFO.pipeline.label },
+  { url: '/eval/report_heuristic.json', method: SOURCE_INFO.heuristic.label },
+  { url: '/eval/report_mk15_v1.json', method: 'Mk1.5 alone, whole clip' },
 ]
 
 const DISPUTED_IMAGE = '/eval/audit/disputed_points_v0.7.jpg'
@@ -472,8 +472,9 @@ export function DatasetPanel(props: { source: PanelProps['source'] }) {
           columns={['method', 'clips', 'coverage', 'median center error', 'false alarms', 'visit recall', 'visit precision']}
           columnHelp={{
             method:
-              'pipeline = our system (motion tracking + Mk1.5); heuristic = the same without Mk1.5; mk1.5 v1 = asking ' +
-              'Mk1.5 to track the whole clip on its own (1 clip, the approach that failed)',
+              `${SOURCE_INFO.pipeline.label} = our system (motion tracking + Mk1.5). ${SOURCE_INFO.heuristic.label} = ` +
+              'the same tracking without Mk1.5. Mk1.5 alone, whole clip = asking Mk1.5 to track a whole clip by itself ' +
+              '(tried on 1 clip; it invented a straight-line path, which is why the system uses motion tracking).',
             coverage: HELP.coverage,
             'median center error': HELP.medianError,
             'false alarms': HELP.falseAlarms,

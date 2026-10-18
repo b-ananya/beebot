@@ -659,3 +659,9 @@ button {
   opacity: 0.4;
   cursor: not-allowed;
 }
+
+.topbar-label {
+  color: #a8a8a8;
+  font-size: 12px;
+  margin-left: 6px;
+}

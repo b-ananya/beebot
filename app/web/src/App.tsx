@@ -9,6 +9,7 @@ import { MomentSearch } from './search-ui'
 import { trackUrl, type ClipTrack, type ManifestEntry, type PanelProps, type Source, type TrackDoc, type VisitEvent } from './types'
 import { UploadButton } from './upload'
 import { Hint } from './hint'
+import { SOURCE_INFO } from './help'
 import logo from './pollensight-logo.png'
 
 const DEFAULT_CLIP = 'hb6_w00'
@@ -20,12 +21,9 @@ type Mode = 'video' | 'analytics' | 'forecast' | 'field' | 'dataset'
 type ClipSet = 'honeybee' | 'farm'
 type DocStatus = 'loading' | 'missing' | 'ready'
 
-const SOURCES: Array<{ id: Source; label: string }> = [
-  { id: 'pipeline', label: 'Pipeline' },
-  { id: 'heuristic', label: 'Heuristic' },
-  { id: 'truth', label: 'Truth' },
-  { id: 'mock', label: 'Mock' },
-]
+const SOURCES: Array<{ id: Source; label: string; tip: string }> = (
+  ['pipeline', 'heuristic', 'truth', 'mock'] as const
+).map((id) => ({ id, label: SOURCE_INFO[id].label, tip: SOURCE_INFO[id].tip }))
 
 const CLIP_SETS: Array<{ id: ClipSet; label: string }> = [
   { id: 'honeybee', label: 'Honeybee close-ups' },
@@ -1077,14 +1075,33 @@ export function App() {
     <div className="shell" ref={shellRef}>
       <header className="topbar">
         <img className="brand" src={logo} alt="Pollensight" />
+        <Hint
+          tip={
+            <>
+              <div>
+                <b>Which tracking results to show.</b> Each option is a folder with one track file per clip; every
+                panel reads the one you pick.
+              </div>
+              {SOURCES.map((item) => (
+                <div key={item.id} style={{ marginTop: 6, opacity: item.id === source ? 1 : 0.7 }}>
+                  <b>{item.label}</b> <code>{SOURCE_INFO[item.id].folder}</code>
+                  {item.id === source ? ' (selected)' : ''}: {item.tip}
+                </div>
+              ))}
+            </>
+          }
+        >
+          <span className="topbar-label">Data</span>
+        </Hint>
         <select
           className="clip-select"
           aria-label="Source"
           value={source}
+          title={SOURCE_INFO[source].tip}
           onChange={(event) => setSource(event.target.value as Source)}
         >
           {SOURCES.map((item) => (
-            <option key={item.id} value={item.id}>
+            <option key={item.id} value={item.id} title={item.tip}>
               {item.label}
             </option>
           ))}

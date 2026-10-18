@@ -102,6 +102,45 @@ export const HELP = {
   visitPrecision: 'Share of our visits that match a reference visit (farm clips only).',
 } as const
 
+/** The Data dropdown: each option is a folder with one track file per clip; every panel reads the chosen one. */
+export const SOURCE_INFO: Record<'pipeline' | 'heuristic' | 'truth' | 'mock', { label: string; folder: string; tip: string }> = {
+  pipeline: {
+    label: 'Pollensight (Mk1.5)',
+    folder: 'tracks/',
+    tip:
+      'Our full system: motion tracking finds moving insects, Mk1.5 confirms them on close-up crops and boxes ' +
+      'the flowers. This is the product.',
+  },
+  heuristic: {
+    label: 'Motion only (no AI)',
+    folder: 'tracks/heuristic/',
+    tip:
+      'The same motion tracking without Mk1.5: simple rules decide what is an insect, and there are no flower ' +
+      'boxes. A free baseline that shows what Mk1.5 adds.',
+  },
+  truth: {
+    label: 'Reference tracker',
+    folder: 'truth/',
+    tip:
+      'The dataset authors’ own tracker output, which we score against. It is a reference, not hand labels, and ' +
+      'it follows only one bee per honeybee video.',
+  },
+  mock: {
+    label: 'Mock (test data)',
+    folder: 'tracks/mock/',
+    tip: 'Hand-made sample data from the first hours of the project, used to build the UI. Not real results.',
+  },
+}
+
+/** Friendly names for the `source` written inside field maps and eval reports. */
+export const SOURCE_NAME: Record<string, string> = {
+  'mk1.5': SOURCE_INFO.pipeline.label,
+  pipeline: SOURCE_INFO.pipeline.label,
+  heuristic: SOURCE_INFO.heuristic.label,
+  truth: SOURCE_INFO.truth.label,
+  mock: SOURCE_INFO.mock.label,
+}
+
 export const IMAGE_NOTES: Record<string, { title: string; body: string }> = {
   'disputed_points_v0.7.jpg': {
     title: 'Are our “false alarms” really wrong?',

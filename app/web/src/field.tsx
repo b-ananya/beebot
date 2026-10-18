@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { HELP } from './help'
+import { HELP, SOURCE_NAME } from './help'
 import { Hint, Intro } from './hint'
 import type { TrackPoint } from './overlay'
 import type { ManifestEntry, Source, TrackDoc } from './types'
@@ -807,7 +807,7 @@ export function FieldDiagram({
     ...bar,
     value: bar.key === 'ours' ? live.deficitCovered : live.baselines[bar.key],
   }))
-  const sourceLabel = field.source || source || '—'
+  const sourceLabel = SOURCE_NAME[field.source || source || ''] ?? (field.source || source || '—')
   const ratio = manifestEntry && manifestEntry.width > 0 && manifestEntry.height > 0
     ? `${manifestEntry.width} / ${manifestEntry.height}`
     : '16 / 9'
