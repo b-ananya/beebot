@@ -1,0 +1,193 @@
+.sim {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--page);
+}
+.sim-top {
+  height: var(--top-h);
+  flex: 0 0 var(--top-h);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+.sim-top a {
+  color: var(--text);
+  text-decoration: none;
+  opacity: 0.75;
+}
+.sim-top a:hover {
+  opacity: 1;
+}
+.sim-top .title {
+  font-weight: 600;
+}
+.sim-row {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+.sim-side {
+  width: 250px;
+  flex: 0 0 250px;
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+.sim-side h3 {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.6;
+}
+.sim-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sim-field input,
+.sim-field select {
+  background: var(--page);
+  color: var(--text);
+  border: 1px solid #3a3a3a;
+  border-radius: 3px;
+  padding: 4px 6px;
+  font: inherit;
+}
+.sim-inline {
+  display: flex;
+  gap: 6px;
+}
+.sim-inline > * {
+  flex: 1;
+  min-width: 0;
+}
+.sim-inline > .sim-btn.icon {
+  flex: 0 0 34px;
+}
+.sim-btn {
+  background: #3a3a3a;
+  border: 1px solid #474747;
+  border-radius: 3px;
+  padding: 6px 8px;
+  cursor: pointer;
+}
+.sim-btn:hover:not(:disabled) {
+  background: #464646;
+}
+.sim-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.sim-btn.primary {
+  background: #c9701c;
+  border-color: #e08a33;
+  color: #fff;
+  font-weight: 600;
+}
+.sim-btn.primary:hover:not(:disabled) {
+  background: #d97d25;
+}
+.sim-btn.on {
+  border-color: #e08a33;
+}
+.sim-stats {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 8px;
+  font-variant-numeric: tabular-nums;
+}
+.sim-stats span:nth-child(even) {
+  text-align: right;
+  color: #ffd27a;
+}
+.sim-note {
+  opacity: 0.6;
+  line-height: 1.45;
+}
+.sim-error {
+  color: #ff8a80;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  max-height: 160px;
+  overflow: auto;
+}
+.sim-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.sim-view {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+}
+.sim-view canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+.sim-view canvas:active {
+  cursor: grabbing;
+}
+.sim-hud {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  padding: 6px 10px;
+  background: rgba(20, 20, 20, 0.6);
+  border-radius: 4px;
+  pointer-events: none;
+  font-size: 13px;
+}
+.sim-hint {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  opacity: 0.7;
+  pointer-events: none;
+  text-shadow: 0 1px 2px #000;
+}
+.sim-busy {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  font-size: 14px;
+}
+.sim-timeline {
+  flex: 0 0 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+}
+.sim-timeline input[type='range'] {
+  flex: 1;
+  accent-color: #e08a33;
+}
+.sim-timeline .clock {
+  width: 90px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.sim-video {
+  width: 100%;
+  border-radius: 3px;
+  background: #000;
+}

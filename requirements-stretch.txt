@@ -1,2 +1,5 @@
 # Optional, after gate G3
 # (Phase 2 needs nothing beyond requirements.txt; add stretch packages here if used)
+mujoco>=3.2
+gymnasium
+stable-baselines3

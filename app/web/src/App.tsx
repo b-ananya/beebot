@@ -1175,6 +1175,7 @@ export function App() {
             )
           })}
         </span>
+        <a className="toggle" href="/sim.html">Simulations</a>
         <UploadButton />
       </header>
       <div className="row">

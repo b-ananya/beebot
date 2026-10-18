@@ -4,6 +4,7 @@ import type { IncomingMessage, ServerResponse } from 'node:http'
 import path from 'node:path'
 import { defineConfig, type Plugin, type PreviewServer, type ViteDevServer } from 'vite'
 import { attachApis } from './server/apis.ts'
+import { attachSimApi } from './server/sim-api.ts'
 
 const FILE_MOUNTS: Array<[prefix: string, dir: string]> = [
   ['/clips/', 'clips'],
@@ -157,6 +158,7 @@ function mountRepo(server: ViteDevServer | PreviewServer): void {
   for (const [prefix, dir] of FILE_MOUNTS) {
     server.middlewares.use(mountFiles(prefix, path.join(repo, dir)))
   }
+  attachSimApi(server.middlewares, repo) // before attachApis, which answers every other /api/ path
   attachApis(server.middlewares, repo)
 }
 
@@ -170,6 +172,9 @@ function clipsPlugin(): Plugin {
 
 export default defineConfig({
   plugins: [react(), clipsPlugin()],
+  build: {
+    rollupOptions: { input: { main: 'index.html', sim: 'sim.html' } },
+  },
   server: {
     port: 5173,
     strictPort: false,
