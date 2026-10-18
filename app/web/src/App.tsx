@@ -8,6 +8,7 @@ import { type Moment } from './search'
 import { MomentSearch } from './search-ui'
 import { trackUrl, type ClipTrack, type ManifestEntry, type PanelProps, type Source, type TrackDoc, type VisitEvent } from './types'
 import { UploadButton } from './upload'
+import { Hint } from './hint'
 
 const DEFAULT_CLIP = 'hb6_w00'
 const TOP_H = 28
@@ -26,9 +27,13 @@ const SOURCES: Array<{ id: Source; label: string }> = [
 ]
 
 const CLIP_SETS: Array<{ id: ClipSet; label: string }> = [
-  { id: 'honeybee', label: 'Honeybee' },
-  { id: 'farm', label: 'Farm' },
+  { id: 'honeybee', label: 'Honeybee close-ups' },
+  { id: 'farm', label: 'Strawberry farm' },
 ]
+
+const FIELD_ONLY_FARM =
+  'The Field view plans a robot route between individual flowers. Only the strawberry-farm clips have flowers ' +
+  'mapped one by one; the honeybee close-ups are a carpet of ~1,000 tiny blossoms. Pick “Strawberry farm” to use it.'
 
 const MODES: Array<{ id: Mode; label: string }> = [
   { id: 'video', label: 'Video' },
@@ -1053,6 +1058,10 @@ export function App() {
     source === 'truth'
       ? 'Agreement with the dataset tracker (HyDaT/Polytrack), not hand labels.'
       : (manifestEntry?.source ?? '')
+  useEffect(() => {
+    if (mode === 'field' && clipSet !== 'farm') setMode('video')
+  }, [mode, clipSet])
+
   const panelProps: PanelProps = {
     clipId,
     source,
@@ -1121,21 +1130,32 @@ export function App() {
           ))}
         </select>
         <span className="modes">
-          {MODES.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              className={mode === item.id ? 'toggle on' : 'toggle'}
-              aria-pressed={mode === item.id}
-              onClick={() => {
-                if (mode === item.id) return
-                if (item.id !== 'video') videoRef.current?.pause()
-                setMode(item.id)
-              }}
-            >
-              {item.label}
-            </button>
-          ))}
+          {MODES.map((item) => {
+            const blocked = item.id === 'field' && clipSet !== 'farm'
+            const button = (
+              <button
+                key={item.id}
+                type="button"
+                className={mode === item.id ? 'toggle on' : 'toggle'}
+                aria-pressed={mode === item.id}
+                disabled={blocked}
+                onClick={() => {
+                  if (mode === item.id) return
+                  if (item.id !== 'video') videoRef.current?.pause()
+                  setMode(item.id)
+                }}
+              >
+                {item.label}
+              </button>
+            )
+            return blocked ? (
+              <Hint key={item.id} tip={FIELD_ONLY_FARM}>
+                {button}
+              </Hint>
+            ) : (
+              button
+            )
+          })}
         </span>
         <UploadButton />
       </header>
@@ -1200,10 +1220,25 @@ export function App() {
               aria-label={clipId}
             />
             <canvas ref={canvasRef} aria-hidden="true" />
-            {mode === 'field' && fieldStatus === 'loading' && <div className="field-note">Loading field…</div>}
-            {mode === 'field' && fieldStatus === 'missing' && <div className="field-note">No field file for {clipId}.</div>}
-            {mode === 'field' && fieldStatus === 'ready' && fieldDoc && (
-              <FieldDiagram clipId={clipId} field={fieldDoc} plan={planDoc} />
+            {mode === 'field' && (
+              <div className="stage-panel">
+                {fieldStatus === 'loading' && <div className="empty-note">Loading field…</div>}
+                {fieldStatus === 'missing' && (
+                  <div className="empty-note">
+                    No field map for {clipId} yet. Build one with: python -m sim.run_plan {clipId}
+                  </div>
+                )}
+                {fieldStatus === 'ready' && fieldDoc && (
+                  <FieldDiagram
+                    clipId={clipId}
+                    field={fieldDoc}
+                    plan={planDoc}
+                    source={source}
+                    doc={doc}
+                    manifestEntry={manifestEntry}
+                  />
+                )}
+              </div>
             )}
             {mode === 'analytics' && (
               <div className="stage-panel">

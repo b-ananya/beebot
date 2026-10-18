@@ -1,4 +1,6 @@
 import { useEffect, useState, type CSSProperties } from 'react'
+import { HELP, IMAGE_NOTES } from './help'
+import { Hint, Intro } from './hint'
 import { clip_metrics, pyRound, type MetricDoc, type Summary } from './analytics'
 import { trackUrl, type ManifestEntry, type PanelProps } from './types'
 
@@ -186,14 +188,17 @@ function parseFlowers(body: unknown): FlowersView | null {
   if (isRecord(body.per_view_distinct_flowers)) {
     for (const [id, row] of Object.entries(body.per_view_distinct_flowers)) {
       if (!isRecord(row)) continue
-      const bits: string[] = []
-      for (const key of VIEW_FIELDS) {
-        if (!(key in row)) continue
-        const value = row[key]
-        if (typeof value === 'number' && Number.isFinite(value)) bits.push(`${key} ${value}`)
-        else if (value === null) bits.push(`${key} —`)
-      }
-      if (bits.length > 0) views.push(`${id}: ${bits.join(', ')}`)
+      const n = (key: (typeof VIEW_FIELDS)[number]) =>
+        typeof row[key] === 'number' && Number.isFinite(row[key]) ? (row[key] as number) : null
+      const boxes = n('distinct_boxes')
+      const onFlowers = n('boxes_on_open_flowers')
+      const open = n('open_flowers')
+      if (boxes == null || onFlowers == null || open == null) continue
+      const camera = /^sm(\d)/.exec(id)?.[1]
+      views.push(
+        `${camera ? `Camera ${camera}` : id} (${id}): ${onFlowers} of ${boxes} flower boxes are real open flowers, ` +
+          `and ${onFlowers} of the ${open} open flowers in view were found.`,
+      )
     }
   }
   return { scores, views }
@@ -213,11 +218,13 @@ function Table({
   columns,
   rows,
   wrapFirst = false,
+  columnHelp,
 }: {
   label: string
   columns: string[]
   rows: string[][]
   wrapFirst?: boolean
+  columnHelp?: Record<string, string>
 }) {
   const head: CSSProperties = { ...CELL, color: '#8d8d8d', fontWeight: 500 }
   return (
@@ -237,7 +244,7 @@ function Table({
           <tr>
             {columns.map((column) => (
               <th key={column || label} scope="col" style={head}>
-                {column}
+                {columnHelp?.[column] ? <Hint tip={columnHelp[column]}>{column}</Hint> : column}
               </th>
             ))}
           </tr>
@@ -276,8 +283,17 @@ function AuditImage({ src, alt }: { src: string; alt: string }) {
         onError={() => setFailed(true)}
         style={{ display: 'block', maxWidth: '100%', height: 'auto', background: '#111' }}
       />
-      <figcaption className="empty-note" style={{ padding: '4px 0 0', overflowWrap: 'anywhere' }}>
-        {src}
+      <figcaption className="empty-note" style={{ padding: '6px 0 0', lineHeight: 1.5 }}>
+        {(() => {
+          const note = IMAGE_NOTES[src.split('/').pop() ?? '']
+          return note ? (
+            <>
+              <b style={{ color: '#e6e6e6' }}>{/[?!.]$/.test(note.title) ? note.title : `${note.title}.`}</b> {note.body}
+            </>
+          ) : (
+            src
+          )
+        })()}
       </figcaption>
     </figure>
   )
@@ -417,7 +433,16 @@ export function DatasetPanel(props: { source: PanelProps['source'] }) {
       className="region-body"
       style={{ alignSelf: 'stretch', minHeight: 0, overflow: 'auto', display: 'block' }}
     >
+      <Intro title="What this view shows">
+        <p>
+          How well the system works across all 48 clips. <b>Clips</b> summarizes what was measured in each clip.
+          <b> Tracking accuracy</b> compares our insect tracks with the dataset authors&rsquo; own tracker (a reference,
+          not hand labels). <b>Flower detection</b> scores the flower boxes three ways. The images are the visual
+          checks behind the numbers. Hover any <b>?</b> for details.
+        </p>
+      </Intro>
       <div className="prop-head">Clips</div>
+      <div className="empty-note">One row per clip for the selected source. “sm*” = the strawberry-farm clips.</div>
       {clips.status === 'loading' && <div className="empty-note">Loading clip metrics…</div>}
       {clips.status === 'error' && <div className="empty-note">Could not load the clip manifest.</div>}
       {clips.status === 'ready' && clips.rows.length === 0 && (
@@ -445,6 +470,16 @@ export function DatasetPanel(props: { source: PanelProps['source'] }) {
         <Table
           label="Tracking accuracy"
           columns={['method', 'clips', 'coverage', 'median center error', 'false alarms', 'visit recall', 'visit precision']}
+          columnHelp={{
+            method:
+              'pipeline = our system (motion tracking + Mk1.5); heuristic = the same without Mk1.5; mk1.5 v1 = asking ' +
+              'Mk1.5 to track the whole clip on its own (1 clip, the approach that failed)',
+            coverage: HELP.coverage,
+            'median center error': HELP.medianError,
+            'false alarms': HELP.falseAlarms,
+            'visit recall': HELP.visitRecall,
+            'visit precision': HELP.visitPrecision,
+          }}
           rows={evalState.data.reports.map((row) => [
             row.method,
             fmt(row.clips),
@@ -461,6 +496,11 @@ export function DatasetPanel(props: { source: PanelProps['source'] }) {
       {evalState.data.disputed && <AuditImage src={DISPUTED_IMAGE} alt="Disputed tracking points" />}
 
       <div className="prop-head">Flower detection</div>
+      <div className="empty-note">
+        Precision = share of our flower boxes that are real flowers. Recall = share of real flowers we boxed. The same
+        boxes are scored against the dataset&rsquo;s flower list (two ways) and against a visual check of every open
+        flower; the note below explains why they differ.
+      </div>
       {evalState.status === 'loading' && <div className="empty-note">Loading flower report…</div>}
       {evalState.status === 'ready' && (!flowers || flowers.scores.length === 0) && (
         <div className="empty-note">No flower report.</div>

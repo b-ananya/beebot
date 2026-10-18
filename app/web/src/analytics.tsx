@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { clip_metrics, heatmap, type FlowerMetric, type Summary, type TransitionRow, type VisitRow } from './analytics'
 import type { PanelProps } from './types'
+import { HELP } from './help'
+import { Hint, Intro } from './hint'
 
 const RAMP = ['#cde2fb', '#9ec5f4', '#6da7ec', '#3987e5', '#256abf', '#184f95', '#0d366b']
-const VISIT_HELP = 'insect inside a flower zone for at least 0.3 s'
 const PROP = { gridTemplateColumns: '168px minmax(0, 1fr)' }
 const VISIT_GRID =
   'minmax(88px, 1.2fr) minmax(88px, 1.2fr) minmax(64px, 0.8fr) minmax(64px, 0.8fr) minmax(56px, 0.7fr) minmax(52px, 0.6fr)'
@@ -21,10 +22,10 @@ function rampColor(value: number, max: number): string | null {
   return RAMP[index]
 }
 
-function Stat({ label, value, note }: { label: string; value: string; note?: string }) {
+function Stat({ label, value, note, help }: { label: string; value: string; note?: string; help?: string }) {
   return (
     <div className="prop" style={PROP}>
-      <span className="prop-key">{label}</span>
+      <span className="prop-key">{help ? <Hint tip={help}>{label}</Hint> : label}</span>
       <span className="prop-value">
         {value}
         {note ? <span className="prop-key"> {note}</span> : null}
@@ -76,7 +77,7 @@ function SpeedHistogram({ speeds }: { speeds: number[] }) {
       viewBox={`0 0 ${width} ${height + 18}`}
       role="img"
       aria-label="Speed histogram, units per second"
-      style={{ display: 'block', width: '100%', minWidth: 0, height: 'auto', margin: '4px 8px 8px' }}
+      style={{ display: 'block', width: '100%', maxWidth: 520, minWidth: 0, height: 'auto', margin: '4px 8px 8px' }}
     >
       {counts.map((count, index) => {
         const barHeight = peak > 0 ? (count / peak) * height : 0
@@ -287,32 +288,37 @@ function SummaryStats({ summary }: { summary: Summary }) {
     <>
       <div className="props">
         <div className="prop-head">Visits</div>
-        <Stat label="visits" value={fmt(summary.visits)} note={VISIT_HELP} />
-        <Stat label="flowers visited" value={fmt(summary.flowers_visited)} />
-        <Stat label="flowers never visited" value={fmt(summary.flowers_never_visited)} />
-        <Stat label="visits per minute" value={fmt(summary.visits_per_min)} />
-        <Stat label="revisit rate" value={fmt(summary.revisit_rate)} />
-        <div className="prop-head">Robot parameters</div>
-        <Stat label="median dwell" value={summary.median_dwell_s == null ? '—' : `${fmt(summary.median_dwell_s)} s`} />
-        <Stat label="median transit" value={summary.median_transit_s == null ? '—' : `${fmt(summary.median_transit_s)} s`} />
+        <Stat label="visits" value={fmt(summary.visits)} help={HELP.visits} />
+        <Stat label="flowers visited" value={fmt(summary.flowers_visited)} help={HELP.flowersVisited} />
+        <Stat label="flowers never visited" value={fmt(summary.flowers_never_visited)} help={HELP.flowersNeverVisited} />
+        <Stat label="visits per minute" value={fmt(summary.visits_per_min)} help={HELP.visitsPerMin} />
+        <Stat label="revisit rate" value={fmt(summary.revisit_rate)} help={HELP.revisitRate} />
+        <div className="prop-head"><Hint tip={HELP.robotParams}>Robot parameters</Hint></div>
+        <Stat label="median dwell" value={summary.median_dwell_s == null ? '—' : `${fmt(summary.median_dwell_s)} s`}
+          help={HELP.medianDwell} />
+        <Stat label="median transit" value={summary.median_transit_s == null ? '—' : `${fmt(summary.median_transit_s)} s`}
+          help={HELP.medianTransit} />
         <Stat
           label="flight speed"
           value={summary.median_flight_speed_cm_s == null ? '—' : `${fmt(summary.median_flight_speed_cm_s)} cm/s`}
-          note={summary.scale_note}
+          help={HELP.flightSpeed}
         />
-        <Stat label="approach time" value={summary.median_approach_s == null ? '—' : `${fmt(summary.median_approach_s)} s`} />
-        <Stat label="nearest-flower rate" value={fmt(summary.nearest_flower_rate)} />
+        <Stat label="approach time" value={summary.median_approach_s == null ? '—' : `${fmt(summary.median_approach_s)} s`}
+          help={HELP.approachTime} />
+        <Stat label="nearest-flower rate" value={fmt(summary.nearest_flower_rate)} help={HELP.nearestFlowerRate} />
         <Stat
           label="median turn"
           value={summary.median_abs_turn_deg == null ? '—' : `${fmt(summary.median_abs_turn_deg)}°`}
+          help={HELP.medianTurn}
         />
-        <Stat label="moving share" value={fmt(summary.flying_share_by_speed)} />
-        <Stat label="tracked share" value={fmt(summary.tracked_share)} />
-        <Stat label="interpolated share" value={fmt(summary.interpolated_share)} />
+        <Stat label="moving share" value={fmt(summary.flying_share_by_speed)} help={HELP.movingShare} />
+        <Stat label="tracked share" value={fmt(summary.tracked_share)} help={HELP.trackedShare} />
+        <Stat label="interpolated share" value={fmt(summary.interpolated_share)} help={HELP.interpolatedShare} />
         <Stat
           label="scale"
           value={summary.scale_units_per_cm == null ? '—' : `${fmt(summary.scale_units_per_cm)} units/cm`}
           note={summary.scale_note}
+          help={HELP.scale}
         />
       </div>
     </>
@@ -342,13 +348,25 @@ export function AnalyticsPanel({ clipId, source, doc, manifestEntry, time, onSee
         </div>
       ) : (
         <>
+          <Intro title="What this view shows">
+            <p>
+              Numbers measured from this clip&rsquo;s tracks: how often insects visit flowers, how long they stay and
+              how they move between them. The &ldquo;robot parameters&rdquo; are what a robot pollinator or simulator
+              would copy. Hover any label with a <b>?</b> for what it means.
+            </p>
+          </Intro>
           <SummaryStats summary={metrics.summary} />
-          <div className="prop-head">Dwell per flower</div>
+          <div className="prop-head"><Hint tip={HELP.dwellChart}>Time on each flower</Hint></div>
           <DwellBars flowers={metrics.flowers} />
-          <div className="prop-head">Speed</div>
-          <div className="empty-note">units per second, 1 unit = 1/1000 of frame width</div>
+          <div className="prop-head"><Hint tip={HELP.speedChart}>Speed</Hint></div>
+          <div className="empty-note">units per second, 1 unit = 1/1000 of frame width; bar height = how often</div>
           <SpeedHistogram speeds={metrics.speeds} />
-          <div className="prop-head">Heatmap</div>
+          <div className="prop-head"><Hint tip={HELP.heatmap}>Heatmap: where insects spent time</Hint></div>
+          <div className="empty-note">
+            Each colored square is a patch of the frame; the darker the blue, the more time insects spent there. Squares
+            with no color were never visited. Yellow boxes are flowers. Clusters of dark squares on a flower mean long
+            visits; thin trails of light squares are flights.
+          </div>
           <HeatmapFrame
             clipId={clipId}
             time={time}
@@ -357,9 +375,9 @@ export function AnalyticsPanel({ clipId, source, doc, manifestEntry, time, onSee
             flowers={doc}
             grid={grid}
           />
-          <div className="prop-head">Transitions</div>
+          <div className="prop-head"><Hint tip={HELP.transitions}>Flower-to-flower moves</Hint></div>
           <TransitionTable rows={metrics.transitions} />
-          <div className="prop-head">Visits</div>
+          <div className="prop-head"><Hint tip={HELP.visitTable}>Every visit</Hint></div>
           <VisitTable rows={metrics.visits} onSeek={onSeek} />
         </>
       )}

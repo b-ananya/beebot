@@ -359,8 +359,8 @@ button {
   pointer-events: none;
 }
 
-.stage.field-mode video,
-.stage.field-mode canvas {
+.stage.field-mode > video,
+.stage.field-mode > canvas {
   visibility: hidden;
 }
 
@@ -593,4 +593,67 @@ button {
   border-left: 3.5px solid transparent;
   border-right: 3.5px solid transparent;
   border-top: 5px solid #f2f2f2;
+}
+
+/* ---- explanations: hover/focus hints and panel intros ---------------------------------------------- */
+.hint {
+  cursor: help;
+  border-bottom: 1px dotted #7c7c7c;
+  outline: none;
+}
+.hint:focus-visible {
+  outline: 1px solid var(--text);
+  outline-offset: 1px;
+}
+.hint-block {
+  display: inline-block;
+}
+.hint-mark {
+  display: inline-block;
+  margin-left: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #444;
+  color: #d4d4d4;
+  font-size: 9px;
+  line-height: 12px;
+  text-align: center;
+  vertical-align: 1px;
+}
+.hint-bubble {
+  position: fixed;
+  z-index: 1000;
+  max-width: 320px;
+  padding: 7px 9px;
+  background: #0f0f0f;
+  color: #ececec;
+  border: 1px solid #4a4a4a;
+  border-radius: 4px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+  line-height: 1.45;
+  pointer-events: none;
+}
+.intro {
+  margin: 8px;
+  padding: 8px 10px;
+  border-left: 3px solid #ff7a18;
+  background: #242424;
+  line-height: 1.5;
+}
+.intro-title {
+  font-weight: 600;
+  margin-bottom: 3px;
+  color: #f0f0f0;
+}
+.intro-body p {
+  margin: 0 0 4px;
+}
+.intro-body p:last-child {
+  margin-bottom: 0;
+}
+.toggle:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }

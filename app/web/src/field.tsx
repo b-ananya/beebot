@@ -1,4 +1,6 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { HELP } from './help'
+import { Hint, Intro } from './hint'
 import type { TrackPoint } from './overlay'
 import type { ManifestEntry, Source, TrackDoc } from './types'
 
@@ -79,203 +81,214 @@ type FarmStation = {
   flowers?: number
 }
 
-type Frame = { left: number; top: number; width: number; height: number; boxH: number }
-
 const START: Point = [0, 1000]
 const BEE_GAP_S = 0.6
-const EMPTY_FRAME: Frame = { left: 0, top: 0, width: 0, height: 0, boxH: 0 }
 
 const FIELD_CSS = `
-.stage.field-mode > video,
-.stage.field-mode .field-view video {
-  visibility: visible;
+.fd {
+  height: 100%;
+  overflow: auto;
+  padding-bottom: 16px;
 }
-.field-view {
+.fd-controls {
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  pointer-events: none;
-  background: transparent;
-  z-index: 1;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  align-items: center;
+  margin: 0 8px 8px;
+  padding: 6px 10px;
+  background: #242424;
 }
-.field-hud,
-.field-caption,
-.field-detail {
-  pointer-events: auto;
+.fd-slider {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.fd-slider b {
+  min-width: 3em;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+.fd-main {
+  display: grid;
+  grid-template-columns: minmax(320px, 3fr) minmax(260px, 2fr);
+  gap: 12px;
+  margin: 0 8px;
+  align-items: start;
+}
+@media (max-width: 1100px) {
+  .fd-main { grid-template-columns: 1fr; }
+}
+.fd-map {
+  margin: 0;
+}
+.fd-frame {
   position: relative;
-  z-index: 2;
+  width: 100%;
+  background: #111;
 }
-.field-hud,
-.field-detail {
-  background: rgba(20, 20, 20, 0.92);
+.fd-frame video,
+.fd-frame svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
-.field-hud {
-  flex: 0 0 auto;
+.fd-frame video {
+  object-fit: fill;
+  visibility: visible;
+  filter: brightness(0.8);
+}
+.fd-legend {
   display: flex;
   flex-wrap: wrap;
   gap: 4px 14px;
   align-items: center;
-  padding: 6px 8px;
+  padding: 6px 2px 0;
+  color: #b8b8b8;
+  font-size: 11px;
 }
-.field-slider {
+.fd-legend span {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  color: #e8e8e8;
-  white-space: nowrap;
+  gap: 5px;
 }
-.field-slider input[type='range'] {
-  width: 92px;
-  accent-color: #ff7a18;
+.fd-swatch-line {
+  display: inline-block;
+  width: 18px;
+  height: 3px;
 }
-.field-slider b {
-  min-width: 2.4em;
+.fd-swatch-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+.fd-ramp {
+  display: inline-flex;
+}
+.fd-ramp i {
+  display: inline-block;
+  width: 12px;
+  height: 9px;
+}
+.fd-card {
+  background: #242424;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+}
+.fd-card h3 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #f0f0f0;
+}
+.fd-stats {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3px 10px;
+  font-size: 12px;
+}
+.fd-stats b {
+  text-align: right;
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   font-variant-numeric: tabular-nums;
   font-weight: 500;
 }
-.field-caption {
-  flex: 0 0 auto;
-  margin: 0;
-  padding: 5px 8px 6px;
-  background: rgba(20, 20, 20, 0.94);
-  color: #f0f0f0;
-  line-height: 1.35;
-}
-.field-gap {
-  flex: 1 1 auto;
-  min-height: 72px;
-}
-.field-detail {
-  flex: 0 1 auto;
-  max-height: 46%;
-  min-height: 0;
-  overflow: auto;
-}
-.field-stats,
-.field-scroll {
-  flex: 0 0 auto;
-}
-.field-readouts {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px 8px;
-  padding: 4px 8px 2px;
+.fd-scope {
+  margin: 6px 0 0;
+  color: #9a9a9a;
   font-size: 11px;
+  line-height: 1.4;
 }
-.field-wide {
-  grid-column: 1 / -1;
-}
-.field-readouts span,
-.field-route,
-.field-plan,
-.field-missing,
-.field-clear {
-  line-height: 1.3;
-}
-.field-clear {
-  margin: 0;
-  padding: 0 8px 4px;
-}
-.field-route,
-.field-plan,
-.field-missing {
-  margin: 0;
-  padding: 1px 8px;
-  font-size: 11px;
-}
-.field-plan {
-  flex: 0 0 auto;
-  pointer-events: auto;
-  position: relative;
-  z-index: 2;
-  background: rgba(20, 20, 20, 0.94);
-}
-.field-route,
-.field-plan,
-.field-table {
-  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  font-variant-numeric: tabular-nums;
-}
-.field-route {
-  overflow-wrap: anywhere;
-}
-.field-bars {
+.fd-bar-row {
   display: grid;
-  gap: 2px;
-  padding: 3px 8px 4px;
-}
-.field-bar-row {
-  display: grid;
-  grid-template-columns: 108px minmax(0, 1fr) 42px;
-  gap: 6px;
+  grid-template-columns: 150px minmax(0, 1fr) 46px;
+  gap: 8px;
   align-items: center;
+  margin: 3px 0;
+  font-size: 12px;
 }
-.field-bar-label,
-.field-bar-value {
-  font-variant-numeric: tabular-nums;
-}
-.field-bar-value {
-  text-align: right;
-  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-}
-.field-bar-track {
-  height: 7px;
+.fd-bar-track {
+  height: 8px;
   background: #3a3a3a;
-  border-radius: 1px;
+  border-radius: 2px;
   overflow: hidden;
 }
-.field-bar-fill {
+.fd-bar-fill {
   display: block;
   height: 100%;
-  min-width: 0;
 }
-.field-bar-fill.ours {
-  background: #ff7a18;
+.fd-bar-fill.ours { background: #ff7a18; }
+.fd-bar-fill.base { background: #9a9a9a; }
+.fd-bar-value {
+  text-align: right;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
 }
-.field-bar-fill.base {
-  background: #9a9a9a;
+.fd-route {
+  margin: 0;
+  padding-left: 22px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.6;
 }
-.field-view > svg.field-map {
-  position: absolute;
-  z-index: 1;
-  overflow: visible;
-  pointer-events: none;
+.fd-clear {
+  margin: 0 0 6px;
+  color: #9fd49f;
 }
-.field-table {
-  width: 100%;
+.fd-more {
+  margin: 4px 8px 0;
+  background: #242424;
+}
+.fd-more summary {
+  cursor: pointer;
+  padding: 6px 10px;
+  font-weight: 600;
+}
+.fd-more > *:not(summary) {
+  margin: 0 10px 10px;
+}
+.fd-table {
+  width: calc(100% - 20px);
   border-collapse: collapse;
   font-size: 11px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
 }
-.field-table th,
-.field-table td {
+.fd-table th,
+.fd-table td {
   text-align: left;
-  padding: 2px 6px;
+  padding: 3px 6px;
   border-bottom: 1px solid #333;
   white-space: nowrap;
 }
-.field-table th {
+.fd-table th {
   color: #8d8d8d;
   font-weight: 500;
-  position: sticky;
-  top: 0;
-  background: #242424;
 }
-.field-rollout {
+.fd-rollout {
   display: block;
-  width: 100%;
-  max-height: 180px;
+  width: calc(100% - 20px);
+  max-height: 360px;
   background: #111;
 }
+.fd-fine {
+  margin: 10px 8px 0;
+  color: #8d8d8d;
+  font-size: 11px;
+  line-height: 1.5;
+}
 .field-farm {
-  margin: 0;
-  padding: 6px 8px 8px;
+  margin: 0 10px 10px;
 }
 .field-farm figcaption {
   margin-bottom: 4px;
   color: #8d8d8d;
 }
-.field-view .field-farm svg {
+.field-farm svg {
   width: 100%;
   height: 140px;
   display: block;
@@ -663,14 +676,6 @@ function parseFarm(body: unknown): FarmStation[] | null {
   return stations
 }
 
-function containedFrame(boxW: number, boxH: number, mediaW: number, mediaH: number): Frame {
-  if (boxW <= 0 || boxH <= 0 || mediaW <= 0 || mediaH <= 0) return { ...EMPTY_FRAME, boxH }
-  const scale = Math.min(boxW / mediaW, boxH / mediaH)
-  const width = mediaW * scale
-  const height = mediaH * scale
-  return { left: (boxW - width) / 2, top: (boxH - height) / 2, width, height, boxH }
-}
-
 function formatShare(value: number): string {
   return `${(value * 100).toFixed(1)}%`
 }
@@ -702,7 +707,6 @@ export function FieldDiagram({
   const [budget, setBudget] = useState(30)
   const [speed, setSpeed] = useState(100)
   const [fetched, setFetched] = useState<TrackDoc | null>(null)
-  const [frame, setFrame] = useState<Frame>(EMPTY_FRAME)
   const [rollout, setRollout] = useState<'pending' | 'ready' | 'missing'>('pending')
   const [stations, setStations] = useState<FarmStation[] | null>(null)
 
@@ -778,39 +782,6 @@ export function FieldDiagram({
     return () => ac.abort()
   }, [])
 
-  useLayoutEffect(() => {
-    const root = rootRef.current
-    const stage = root?.parentElement
-    if (!root || !stage) return
-    const video = stage.querySelector(':scope > video')
-    const fit = () => {
-      const media =
-        video instanceof HTMLVideoElement && video.videoWidth > 0 && video.videoHeight > 0
-          ? [video.videoWidth, video.videoHeight]
-          : manifestEntry && manifestEntry.width > 0 && manifestEntry.height > 0
-            ? [manifestEntry.width, manifestEntry.height]
-            : [16, 9]
-      const next = containedFrame(root.clientWidth, root.clientHeight, media[0], media[1])
-      setFrame((prev) =>
-        prev.left === next.left &&
-        prev.top === next.top &&
-        prev.width === next.width &&
-        prev.height === next.height &&
-        prev.boxH === next.boxH
-          ? prev
-          : next,
-      )
-    }
-    fit()
-    const observer = new ResizeObserver(fit)
-    observer.observe(root)
-    if (video instanceof HTMLVideoElement) video.addEventListener('loadedmetadata', fit)
-    return () => {
-      observer.disconnect()
-      if (video instanceof HTMLVideoElement) video.removeEventListener('loadedmetadata', fit)
-    }
-  }, [clipId, manifestEntry])
-
   const rows = useMemo(() => flowerRows(field.flowers, target), [field.flowers, target])
   const dwell = useMemo(() => medianVisitDwell(track), [track])
   const beeOrder = useMemo(() => beeVisitOrder(track), [track])
@@ -837,198 +808,219 @@ export function FieldDiagram({
     value: bar.key === 'ours' ? live.deficitCovered : live.baselines[bar.key],
   }))
   const sourceLabel = field.source || source || '—'
-  const bottomBand = frame.boxH - frame.top - frame.height
-  const detailMax = bottomBand >= 120 ? bottomBand : undefined
+  const ratio = manifestEntry && manifestEntry.width > 0 && manifestEntry.height > 0
+    ? `${manifestEntry.width} / ${manifestEntry.height}`
+    : '16 / 9'
+  // Draw in true proportions: x is scaled by the frame aspect, so circles stay round and labels undistorted.
+  // Pipeline maps store the radius in frame-height units; reference (truth) maps in frame-width units.
+  const sx = (p: Point): [number, number] => [p[0] * aspect, p[1]]
+  const radiusY = (r: number) => (field.source === 'truth' ? r * aspect : r)
+  const legendSteps = [0, 0.2, 0.4, 0.6, 0.8, 1].map((t) => shade(minDeficit + t * (maxDeficit - minDeficit), minDeficit, maxDeficit))
+  const BAR_HELP: Record<string, string> = {
+    ours: HELP.ourRoute,
+    nearest_all: HELP.nearest,
+    random: HELP.random,
+    follow_bee: HELP.followBee,
+  }
 
   return (
-    <div className="field-view" ref={rootRef} aria-label={`Field ${clipId}`}>
+    <div className="fd" ref={rootRef} aria-label={`Field ${clipId}`}>
       <style>{FIELD_CSS}</style>
-      <div className="field-hud">
-        <label className="field-slider">
-          Target visits
-          <input
-            type="range"
-            min={1}
-            max={10}
-            step={1}
-            value={target}
-            aria-label="Target visits"
-            onChange={(event) => setTarget(Number(event.target.value))}
-          />
+      <Intro title="What this view does">
+        <p>
+          It turns the camera footage into a <b>pollination to-do list for a robot</b>. Every flower this camera has
+          seen is a circle, colored by how many more insect visits it needs to reach your target (darker = needs more).
+          The <b style={{ color: '#ff7a18' }}>orange line</b> is the route a robot would fly within its time budget to
+          deliver the most missing visits; the numbers are the stop order. The <b>grey line</b> is where the insect
+          actually went in this clip.
+        </p>
+        <p>
+          Only the strawberry-farm clips have this view: there each flower can be mapped one by one, while the honeybee
+          close-ups are a carpet of about a thousand tiny blossoms.
+        </p>
+      </Intro>
+
+      <div className="fd-controls">
+        <label className="fd-slider">
+          <Hint tip={HELP.fieldTarget}>Target visits per flower</Hint>
+          <input type="range" min={1} max={10} step={1} value={target} aria-label="Target visits"
+            onChange={(event) => setTarget(Number(event.target.value))} />
           <b>{target}</b>
         </label>
-        <label className="field-slider">
-          Budget
-          <input
-            type="range"
-            min={10}
-            max={120}
-            step={5}
-            value={budget}
-            aria-label="Budget"
-            onChange={(event) => setBudget(Number(event.target.value))}
-          />
+        <label className="fd-slider">
+          <Hint tip={HELP.fieldBudget}>Robot time budget</Hint>
+          <input type="range" min={10} max={120} step={5} value={budget} aria-label="Budget"
+            onChange={(event) => setBudget(Number(event.target.value))} />
           <b>{budget} s</b>
         </label>
-        <label className="field-slider">
-          Robot speed
-          <input
-            type="range"
-            min={25}
-            max={300}
-            step={25}
-            value={speed}
-            aria-label="Robot speed"
-            onChange={(event) => setSpeed(Number(event.target.value))}
-          />
+        <label className="fd-slider">
+          <Hint tip={HELP.fieldSpeed}>Robot speed</Hint>
+          <input type="range" min={25} max={300} step={25} value={speed} aria-label="Robot speed"
+            onChange={(event) => setSpeed(Number(event.target.value))} />
           <b>{speed}</b>
         </label>
       </div>
-      <p className="field-caption">
-        A visit is not pollination. Target visits are a setting. The layout is approximate. This is a planning prototype, not flight physics.
-      </p>
-      <p className="field-plan">
-        Planner {live.planner}. Path length {live.pathLength.toFixed(1)}. Budget {live.budgetS} s. Speed {live.speed}. Dwell{' '}
-        {live.dwellS.toFixed(2)} s.{timeScale != null ? ` Time scale ${timeScale}.` : ''}
-      </p>
-      <div className="field-gap" />
-      {frame.width > 0 && (
-        <svg
-          className="field-map"
-          viewBox="0 0 1000 1000"
-          preserveAspectRatio="none"
-          role="img"
-          aria-label={`Pollination map for ${clipId}`}
-          style={{ left: frame.left, top: frame.top, width: frame.width, height: frame.height }}
-        >
-          {bee.map((segment, index) => (
-            <polyline
-              key={`bee-${index}`}
-              points={segment.map((p) => p.join(',')).join(' ')}
-              fill="none"
-              stroke="#d2d2d2"
-              strokeWidth="2.5"
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              vectorEffect="non-scaling-stroke"
-            />
-          ))}
-          {placed.map((flower) => (
-            <circle
-              key={flower.id}
-              cx={flower.center[0]}
-              cy={flower.center[1]}
-              r={flower.radius}
-              fill={flower.open ? shade(flower.deficit, minDeficit, maxDeficit) : '#d9d9d9'}
-              stroke={flower.open ? '#3d2208' : '#555'}
-              strokeWidth="1.5"
-              vectorEffect="non-scaling-stroke"
-              pointerEvents="auto"
-            >
-              <title>{flowerTitle(flower)}</title>
-            </circle>
-          ))}
-          {routePoints.length > 1 && (
-            <polyline
-              points={routePoints.map((p) => p.join(',')).join(' ')}
-              fill="none"
-              stroke="#111"
-              strokeWidth="5"
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              vectorEffect="non-scaling-stroke"
-            />
-          )}
-          {routePoints.length > 1 && (
-            <polyline
-              points={routePoints.map((p) => p.join(',')).join(' ')}
-              fill="none"
-              stroke="#ff7a18"
-              strokeWidth="3"
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              vectorEffect="non-scaling-stroke"
-            />
-          )}
-          <circle cx={START[0]} cy={START[1]} r={Math.max(8, (frame.height > 0 ? 5000 / frame.height : 8))} fill="#ff7a18" />
-          {live.route.map((id, index) => {
-            const flower = byId.get(id)
-            if (!flower) return null
-            return (
-              <text
-                key={`${id}-${index}`}
-                x={flower.center[0]}
-                y={flower.center[1] + 6}
-                textAnchor="middle"
-                fill="#f4f4f4"
-                stroke="#111"
-                strokeWidth="4"
-                paintOrder="stroke"
-                fontSize="22"
-              >
-                {index + 1}
-              </text>
-            )
-          })}
-        </svg>
-      )}
-      <div className="field-detail" style={detailMax != null ? { maxHeight: detailMax } : undefined}>
-        <div className="field-stats">
-          <div className="field-readouts">
-            <span>Flowers mapped {placed.length}</span>
-            <span>Never visited {neverVisited}</span>
-            <span>Visits still needed {live.totalDeficit}</span>
-            <span>Share cleared {live.totalDeficit === 0 ? '—' : formatShare(live.deficitCovered)}</span>
-            <span className="field-wide">Visits scope {field.visits_scope ?? '—'}</span>
-            <span>Source {sourceLabel}</span>
-          </div>
-          {live.totalDeficit === 0 && <p className="field-clear">Every mapped flower is already at the target.</p>}
-          <div className="field-bars" role="list" aria-label="Deficit covered">
-            {scores.map((bar) => (
-              <div className="field-bar-row" role="listitem" key={bar.key}>
-                <span className="field-bar-label">{bar.label}</span>
-                <span className="field-bar-track">
-                  <span
-                    className={bar.ours ? 'field-bar-fill ours' : 'field-bar-fill base'}
-                    style={{ width: `${Math.max(0, Math.min(1, bar.value)) * 100}%` }}
-                  />
-                </span>
-                <span className="field-bar-value">{bar.value.toFixed(3)}</span>
-              </div>
-            ))}
-          </div>
-          <p className="field-route">Route {live.route.length > 0 ? live.route.join(' → ') : '—'}</p>
-        </div>
-        <div className="field-scroll">
-          <table className="field-table" aria-label="Flowers">
-            <thead>
-              <tr>
-                <th>id</th>
-                <th>state</th>
-                <th>visits</th>
-                <th>dwell_s</th>
-                <th>deficit</th>
-                <th>seen_in_clips</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row) => (
-                <tr key={row.id}>
-                  <td>{row.id}</td>
-                  <td>{row.state}</td>
-                  <td>{row.visits}</td>
-                  <td>{cell(row.dwellS)}</td>
-                  <td>{cell(row.deficit)}</td>
-                  <td>{row.seen == null ? '—' : row.seen}</td>
-                </tr>
+
+      <div className="fd-main">
+        <figure className="fd-map">
+          <div className="fd-frame" style={{ aspectRatio: ratio }}>
+            <video src={`/clips/${clipId}.mp4`} muted playsInline preload="auto" aria-hidden="true" />
+            <svg viewBox={`0 0 ${1000 * aspect} 1000`} role="img" aria-label={`Pollination map for ${clipId}`}>
+              {bee.map((segment, index) => (
+                <polyline key={`bee-${index}`} points={segment.map((p) => sx(p).join(',')).join(' ')} fill="none"
+                  stroke="#d2d2d2" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" opacity={0.85} />
               ))}
-            </tbody>
-          </table>
-          {rollout === 'ready' && <video className="field-rollout" src={rolloutUrl} controls playsInline preload="metadata" />}
-          {rollout === 'missing' && <p className="field-missing">Run python -m sim.run_plan {clipId}</p>}
-          {stations && stations.length > 0 && <FarmStations stations={stations} />}
+              {placed.map((flower) => {
+                const [cx, cy] = sx(flower.center)
+                return (
+                  <circle key={flower.id} cx={cx} cy={cy} r={radiusY(flower.radius)}
+                    fill={flower.open ? shade(flower.deficit, minDeficit, maxDeficit) : '#d9d9d9'} fillOpacity={0.9}
+                    stroke={flower.open ? '#3d2208' : '#555'} strokeWidth="2">
+                    <title>{flowerTitle(flower)}</title>
+                  </circle>
+                )
+              })}
+              {routePoints.length > 1 && (
+                <>
+                  <polyline points={routePoints.map((p) => sx(p).join(',')).join(' ')} fill="none" stroke="#111"
+                    strokeWidth="7" strokeLinejoin="round" strokeLinecap="round" />
+                  <polyline points={routePoints.map((p) => sx(p).join(',')).join(' ')} fill="none" stroke="#ff7a18"
+                    strokeWidth="4" strokeLinejoin="round" strokeLinecap="round" />
+                </>
+              )}
+              <circle cx={sx(START)[0]} cy={sx(START)[1]} r={16} fill="#ff7a18" stroke="#111" strokeWidth="3" />
+              {live.route.map((id, index) => {
+                const flower = byId.get(id)
+                if (!flower) return null
+                const [cx, cy] = sx(flower.center)
+                return (
+                  <text key={`${id}-${index}`} x={cx} y={cy + 9} textAnchor="middle" fill="#fff" stroke="#111"
+                    strokeWidth="5" paintOrder="stroke" fontSize="28" fontWeight="700">
+                    {index + 1}
+                  </text>
+                )
+              })}
+            </svg>
+          </div>
+          <figcaption className="fd-legend">
+            {maxDeficit > minDeficit ? (
+              <span>
+                needs {minDeficit} more
+                <span className="fd-ramp">{legendSteps.map((c, k) => <i key={k} style={{ background: c }} />)}</span>
+                needs {maxDeficit} more
+              </span>
+            ) : (
+              <span>
+                <span className="fd-ramp"><i style={{ background: legendSteps[0] }} /></span>
+                every flower needs {maxDeficit} more
+              </span>
+            )}
+            <span><i className="fd-swatch-line" style={{ background: '#ff7a18' }} /> robot route (numbers = stop order)</span>
+            <span><i className="fd-swatch-dot" style={{ background: '#ff7a18' }} /> robot start</span>
+            <span><i className="fd-swatch-line" style={{ background: '#d2d2d2' }} /> insect path in this clip</span>
+          </figcaption>
+        </figure>
+
+        <div>
+          <section className="fd-card">
+            <h3>This flower patch</h3>
+            <div className="fd-stats">
+              <Hint tip={HELP.flowersMapped}>Flowers mapped</Hint><b>{placed.length}</b>
+              <Hint tip={HELP.neverVisitedField}>Never visited</Hint><b>{neverVisited}</b>
+              <Hint tip={HELP.stillNeeded}>Visits still needed</Hint><b>{live.totalDeficit}</b>
+              <Hint tip={HELP.shareCleared}>Delivered by the robot route</Hint>
+              <b>{live.totalDeficit === 0 ? '—' : formatShare(live.deficitCovered)}</b>
+            </div>
+            <p className="fd-scope">
+              <Hint tip={HELP.visitsScope}>Visits counted from</Hint> {field.visits_scope ?? '—'} · source {sourceLabel}
+            </p>
+          </section>
+
+          <section className="fd-card">
+            <h3>How the route compares</h3>
+            {live.totalDeficit === 0 && <p className="fd-clear">Every mapped flower already has the target number of visits.</p>}
+            <div role="list" aria-label="Share of needed visits delivered">
+              {scores.map((bar) => (
+                <div className="fd-bar-row" role="listitem" key={bar.key}>
+                  <Hint tip={BAR_HELP[bar.key]}>{bar.label}</Hint>
+                  <span className="fd-bar-track">
+                    <span className={bar.ours ? 'fd-bar-fill ours' : 'fd-bar-fill base'}
+                      style={{ width: `${Math.max(0, Math.min(1, bar.value)) * 100}%` }} />
+                  </span>
+                  <span className="fd-bar-value">{formatShare(Math.max(0, bar.value))}</span>
+                </div>
+              ))}
+            </div>
+            <p className="fd-scope">Share of the needed visits each strategy delivers within the same time budget.</p>
+          </section>
+
+          <section className="fd-card">
+            <h3>Robot route</h3>
+            {live.route.length > 0 ? (
+              <ol className="fd-route">
+                {live.route.map((id, index) => {
+                  const flower = byId.get(id)
+                  return (
+                    <li key={`${id}-${index}`}>
+                      {id}{flower ? ` · needs ${flower.deficit}, has ${flower.visits}` : ''}
+                    </li>
+                  )
+                })}
+              </ol>
+            ) : (
+              <p className="fd-scope">No flower can be reached within the budget.</p>
+            )}
+          </section>
         </div>
       </div>
+
+      <details className="fd-more">
+        <summary>All flowers ({rows.length})</summary>
+        <table className="fd-table" aria-label="Flowers">
+          <thead>
+            <tr>
+              <th>flower</th>
+              <th>state</th>
+              <th>visits</th>
+              <th>insect time (s)</th>
+              <th>still needed</th>
+              <th>seen in clips</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.id}>
+                <td>{row.id}</td>
+                <td>{row.state}</td>
+                <td>{row.visits}</td>
+                <td>{cell(row.dwellS)}</td>
+                <td>{cell(row.deficit)}</td>
+                <td>{row.seen == null ? '—' : row.seen}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </details>
+
+      <details className="fd-more">
+        <summary>Rendered route video (default settings)</summary>
+        {rollout === 'ready' && <video className="fd-rollout" src={rolloutUrl} controls playsInline preload="metadata" />}
+        {rollout === 'missing' && <p className="fd-scope">Not rendered yet. Run: python -m sim.run_plan {clipId}</p>}
+        {rollout === 'pending' && <p className="fd-scope">Checking…</p>}
+      </details>
+
+      {stations && stations.length > 0 && (
+        <details className="fd-more">
+          <summary>Farm stations</summary>
+          <FarmStations stations={stations} />
+        </details>
+      )}
+
+      <p className="fd-fine">
+        Assumptions: a visit is not proof of pollination; the target is a setting; the layout comes from one camera; this
+        is a route plan, not a flight simulation. Planner {live.planner}, path length {live.pathLength.toFixed(0)} units,
+        dwell {live.dwellS.toFixed(2)} s per stop{timeScale != null ? `, time scale ${timeScale}` : ''}.
+      </p>
     </div>
   )
 }

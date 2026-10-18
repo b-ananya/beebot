@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { HELP } from './help'
+import { Hint } from './hint'
 import type { Flower, TrackPoint } from './overlay'
 import type { ClipTrack, PanelProps } from './types'
 
@@ -191,8 +193,15 @@ export function ForecastPanel({ clipId, source, doc, manifestEntry, time, onSeek
         />
       )}
       <aside className="fc-side">
+        <p className="fc-caption">
+          Predicts where the selected insect goes next, using models trained on 2,335 recorded insect flights. The
+          picture shows its path so far, the forecast for the next 2 s with a spread of possible futures, and (dotted)
+          what really happened. Hover any label with a <b>?</b> for details.
+        </p>
         <label className="fc-field">
-          <span className="fc-field-label">Insect</span>
+          <span className="fc-field-label">
+            <Hint tip={HELP.insect}>Insect</Hint>
+          </span>
           <select
             aria-label="Insect"
             value={activeId ?? ''}
@@ -208,7 +217,7 @@ export function ForecastPanel({ clipId, source, doc, manifestEntry, time, onSeek
         {range && forecastT != null ? (
           <label className="fc-field">
             <span className="fc-field-label">
-              <span>Forecast from</span>
+              <Hint tip={HELP.forecastFrom}>Forecast from</Hint>
               <span className="fc-field-value">{formatSeconds(forecastT)}</span>
             </span>
             <input
@@ -231,7 +240,7 @@ export function ForecastPanel({ clipId, source, doc, manifestEntry, time, onSeek
         )}
         <label className="fc-field">
           <span className="fc-field-label">
-            <span>Horizon</span>
+            <Hint tip={HELP.horizon}>Horizon</Hint>
             <span className="fc-field-value">{horizon}s</span>
           </span>
           <input
@@ -254,13 +263,15 @@ export function ForecastPanel({ clipId, source, doc, manifestEntry, time, onSeek
           {phase === 'loading' && <p className="fc-status">Forecasting…</p>}
         </div>
         <div className="fc-metrics">
-          <Metric label="Dwell remaining" value={data ? dwellText(data) : '—'} help={dwellCaption} />
-          <Metric label="Another visit" value={data ? formatRate(num(data.p_another_visit)) : '—'} />
-          <Metric label={`Leaves within ${horizon}s`} value={data ? leavesText(data) : '—'} />
+          <Metric label="Dwell remaining" tip={HELP.dwellRemaining} value={data ? dwellText(data) : '—'}
+            help={dwellCaption} />
+          <Metric label="Another visit" tip={HELP.anotherVisit} value={data ? formatRate(num(data.p_another_visit)) : '—'} />
+          <Metric label={`Leaves within ${horizon}s`} tip={HELP.leavesWithin} value={data ? leavesText(data) : '—'} />
           <Metric
             label="Most likely sequence"
+            tip={HELP.likelySequence}
             value={data ? sequenceText(data) : '—'}
-            help={data ? 'The single most common rollout. Expected visits show the full picture.' : undefined}
+            help={data ? 'Expected visits below show the full picture.' : undefined}
           />
         </div>
         {data && <FlowerBars data={data} horizon={horizon} />}
@@ -400,10 +411,10 @@ function ForecastFrame({
   )
 }
 
-function Metric({ label, value, help }: { label: string; value: string; help?: string }) {
+function Metric({ label, value, help, tip }: { label: string; value: string; help?: string; tip?: string }) {
   return (
     <div>
-      <div className="fc-metric-label">{label}</div>
+      <div className="fc-metric-label">{tip ? <Hint tip={tip}>{label}</Hint> : label}</div>
       <div className="fc-metric-value" title={help}>
         {value}
       </div>

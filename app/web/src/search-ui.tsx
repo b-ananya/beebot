@@ -1,4 +1,6 @@
 import { useMemo, useRef, useState, type KeyboardEvent } from 'react'
+import { HELP } from './help'
+import { Hint } from './hint'
 import { query, tokens, type Moment } from './search'
 
 function formatTime(seconds: number): string {
@@ -136,9 +138,11 @@ export function MomentSearch({
             This clip
           </button>
         </div>
-        <button type="button" className={live ? 'toggle on' : 'toggle'} aria-pressed={live} onClick={toggleLive}>
-          Live
-        </button>
+        <Hint tip={HELP.liveSearch}>
+          <button type="button" className={live ? 'toggle on' : 'toggle'} aria-pressed={live} onClick={toggleLive}>
+            Live
+          </button>
+        </Hint>
       </div>
       {hits.map((hit, index) => (
         <button
