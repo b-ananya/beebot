@@ -54,6 +54,7 @@ Phase 2 is cut only if Phase 1 isn't solid at G3. Standups at hours 4, 8, 12, 16
 | C5 | 12–14 | Field-scale plan over 9 stations; replay a day hour by hour | Route on `farm_day*.json` |
 | C6 | 14–17 | Render polish: bee trails grey, robot route colored, deficit counter | D drops videos into the app |
 | C7 | 17–20 | Assumptions paragraph (visit ≠ pollination, layout approximated, no flight physics) | Read by the team |
+| C8 | stretch | MuJoCo 3D replay of the planned route (see Stretch goals 5); only if the team agrees to work past hour 17 | 10 `rollouts/<clip>_mujoco.mp4` |
 
 ### D: App + story
 | Step | Hours | Deliverable | Done when |
@@ -95,6 +96,7 @@ from cache, live calls are a bonus.
 
 Python 3.11 · `perceptron` SDK 0.4.0 (Mk1.5) · ffmpeg + OpenCV · numpy / pandas / scipy ·
 OR-Tools (routing) · matplotlib + imageio (2D sim) · Streamlit + Plotly · GitHub (repo, Release, Projects)
+Stretch only: MuJoCo ≥ 3.2 + MuJoCo Menagerie `bitcraze_crazyflie_2` (3D replay, `requirements-stretch.txt`)
 
 ## Stretch goals (after G3, stop at hour 17)
 
@@ -102,6 +104,17 @@ OR-Tools (routing) · matplotlib + imageio (2D sim) · Streamlit + Plotly · Git
 2. Multiple robots (OR-Tools vehicle routing).
 3. Synthetic fields for stress-testing the planner at scale.
 4. Battery model sets the route budget.
+5. **MuJoCo 3D replay (C8).** Needs the team's OK: it runs past the hour-17 stretch stop.
+
+   | | |
+   |---|---|
+   | What | A Crazyflie 2 (MuJoCo Menagerie, `bitcraze_crazyflie_2`) replays the planner route in 3D over the clip's first frame; flowers are disks colored by deficit. Kinematic replay only, no flight physics, so the C7 assumption still holds. |
+   | Inputs | `field/<clip>.json` and `plan/<clip>.json` (what `sim/render.py` reads) + frame 0 of `clips/<clip>.mp4`. Optional path source: waypoints in `rollouts/<clip>_rl.json` (the MuJoCo hand-off in `sim/README.md`). No new file formats; CONTRACT.md unchanged. |
+   | Output | `rollouts/<clip>_mujoco.mp4`, beside `<clip>_plan.mp4` |
+   | Code | `sim/mj_render.py`: `python -m sim.mj_render <clip> --menagerie ..\mujoco_menagerie`. Add `mujoco>=3.2` to `requirements-stretch.txt`. Menagerie is cloned outside the repo and never committed. |
+   | Mapping | norm1000, origin top-left, y down: `x_w = (x/1000 - 0.5) * W`, `y_w = (0.5 - y/1000) * H`, `W = H * 16/9`. `H ≈ 0.42 m` from the median flower radius in `field/*.json` (29 units; half the larger box side, which here is the vertical extent, so frame-height units like the planner) and a strawberry flower ≈ 2.5 cm across (cite a source before quoting). Speed `robot.speed * H/1000` m/s, matching the leg timing in `sim/render.py`; dwell `robot.dwell_s`. |
+   | Watch out | The reference plans `plan/truth/sm3_12_*` have empty routes (every flower already meets the target): skip empty routes, don't crash. The 10 `plan/*.json` routes are non-empty and every route flower exists in its field. |
+   | Done when | mp4s render for the 10 `plan/*.json` clips; the robot stops on the same flowers, in the same order, as `<clip>_plan.mp4`; D decides whether the app's "Pollination & robot plan" tab shows it next to the 2D video. |
 
 ## Cut list (in order)
 
@@ -115,3 +128,4 @@ OR-Tools (routing) · matplotlib + imageio (2D sim) · Streamlit + Plotly · Git
 - Truth is the dataset authors' tracker output, not hand labels: "agreement with a reference tracker."
 - A visit isn't pollination; target visits per flower is a setting (cite any number used).
 - Field layout is approximated; the robot is a planning prototype, not flight physics.
+- If the MuJoCo view is shown: "The 3D view is a visual replay of the planned route, not a flight simulation."
