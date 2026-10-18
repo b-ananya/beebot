@@ -94,6 +94,36 @@ boxes, falls back to points with the median flower radius, and sets `detection.w
 answer was cut off, so the JSON says when the path is built on a bad flower list. Tiling the image
 into quarters would be the next thing to try. The farm frames (6–10 flowers) detect fine.
 
+## Known limitations
+
+1. **Flower detection is the weak link.** Mk1.5 boxes the farm frames well (6–10 flowers) but
+   collapses on dense scenes: on the Monash Scaevola ground cover it emits sliver boxes along the
+   top edge until the token limit, ignores the "at most 40" instruction, and a point-only retry
+   still clusters in the top band. `predict` drops slivers, retries with points, and sets
+   `detection.warning` in the JSON, but it cannot make a bad flower list good. Untested on an
+   ordinary garden photo; expect it to sit between those two cases. Tiling the image is the next
+   thing to try.
+2. **One dwell time for every flower.** Every visit lasts 3.33 s, the median of the 14 real farm
+   visits. Real dwell varies a lot (1–7 s in truth) and depends on the flower; 14 samples are too
+   few to learn that, so the number is a constant, not a prediction.
+3. **Straight-line flight.** The policy learned bee speed and dwell, not bee paths: no inertia,
+   wind, hovering, circling before landing, or occlusion by leaves. Trails are smooth curves
+   between flowers, not bee-like flight. Behaviour cloning on the 48 clips' tracks is the fix.
+4. **No pixels, no scene.** The agent sees flower boxes only. It does not know flower species,
+   quality, scent, or whether a flower was already pollinated; every open flower is worth +1.
+5. **Start point is a guess.** Rollouts start where the real bee entered the frame (first truth
+   point); `predict` starts at the bottom-right corner unless `--start` is given.
+6. **Single bee, flat field.** One agent, a 2-D plane, flowers that never close, no other insects.
+7. **Trained on random fields, scored on 10 real layouts.** PPO ties the greedy baseline there,
+   which says the pipeline works, not that RL beats a rule. The RL framing pays off only once the
+   reward gets richer (deficits, several agents, flowers closing).
+8. **Not in CONTRACT.md.** The rollout and predict JSON shapes are this folder's own; the
+   `waypoints` list (`t, x, y, flower_id`) is meant as the MuJoCo hand-off but nothing consumes
+   it yet.
+9. **Runs from the main checkout.** `sim.rollout` needs `clips/`, `predict` needs `.env` with
+   `PERCEPTRON_API_KEY`; both are gitignored. Pasting a photo into chat does not create a file:
+   save it to disk and pass the path.
+
 ## Files
 
 | Path | What |
