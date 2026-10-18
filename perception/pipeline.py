@@ -52,10 +52,12 @@ def analyze_video(path: Path, *, use_api: bool | None = None, species: str = "un
         if ffmpeg is None:
             import imageio_ffmpeg
             ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
+        partial = mp4.with_name(mp4.stem + ".partial.mp4")
         # 720p, 30 fps, at most 60 s: the motion tracker holds the clip in memory, Mk1.5 sees crops only
         subprocess.run([ffmpeg, "-y", "-v", "error", "-i", str(path), "-t", "60", "-vf", "scale=-2:720,fps=30",
                         "-c:v", "libx264", "-crf", "20", "-preset", "fast", "-pix_fmt", "yuv420p", "-an",
-                        "-movflags", "+faststart", str(mp4)], check=True)
+                        "-movflags", "+faststart", str(partial)], check=True)
+        partial.replace(mp4)        # only a finished transcode gets the real name
     out_dir = ROOT / "tracks" / "uploads"
     doc = run(clip_id, use_api=use_api, video=mp4, out_dir=out_dir, species=species)
     return clip_id, mp4, doc

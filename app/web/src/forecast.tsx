@@ -196,7 +196,7 @@ export function ForecastPanel({ clipId, source, doc, manifestEntry, time, onSeek
         <p className="fc-caption">
           Predicts where the selected insect goes next, using models trained on 2,335 recorded insect flights. The
           picture shows its path so far, the forecast for the next 2 s with a spread of possible futures, and (dotted)
-          what really happened. Hover any label with an <InfoMark /> for details.
+          what really happened. Hover any label with an <InfoMark inline /> for details.
         </p>
         <label className="fc-field">
           <span className="fc-field-label">

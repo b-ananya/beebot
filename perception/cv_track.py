@@ -68,18 +68,20 @@ def detect(frames: np.ndarray, p: Params) -> list[np.ndarray]:
     idx = np.linspace(0, n - 1, min(p.bg_samples, n)).astype(int)
     bg = np.median(frames[idx], axis=0).astype(np.int16)
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
-    masks, diffs = [], []
-    heat = np.zeros(frames.shape[1:], np.float32)
-    for i in range(n):
+    def diff_mask(i):
         diff = np.abs(cv2.GaussianBlur(frames[i], (3, 3), 0).astype(np.int16) - bg).astype(np.uint8)
         mask = cv2.morphologyEx((diff > p.diff_thresh).astype(np.uint8), cv2.MORPH_OPEN, kernel)
-        mask = cv2.dilate(mask, kernel, iterations=2)
-        heat += mask
-        masks.append(mask)
-        diffs.append(diff)
+        return diff, cv2.dilate(mask, kernel, iterations=2)
+
+    # two passes instead of keeping every frame's diff and mask in memory (3x the clip; ~5 GB for a 60 s upload):
+    # pass 1 measures how often each spot moves, pass 2 recomputes each frame's mask and extracts its blobs
+    heat = np.zeros(frames.shape[1:], np.float32)
+    for i in range(n):
+        heat += diff_mask(i)[1]
     heat = cv2.blur(heat / n, (9, 9))
     dets = []
-    for mask, diff in zip(masks, diffs):
+    for i in range(n):
+        diff, mask = diff_mask(i)
         k, labels, stats, cents = cv2.connectedComponentsWithStats(mask, connectivity=8)
         rows = []
         for j in range(1, k):

@@ -218,7 +218,7 @@ def clip_metrics(doc: dict, duration_s: float | None = None, aspect: float = 720
         "median_revisit_interval_s": med(revisit_intervals),
         "median_approach_s": med(approach),
         "median_abs_turn_deg": med([abs(a) for a in turns]),
-        "foraging_share": round(labels.get("foraging", 0) / sum(labels.values()), 2) if labels else None,
+        "foraging_share": round(labels.get("foraging", 0) / sum(labels.values()), 2) if sum(labels.values()) > 0 else None,
         "tracked_s": round(observed, 2),
         "tracked_share": round(min(covered / duration_s, 1.0), 2) if duration_s else None,
         "interpolated_share": round(n_interp / (n_obs + n_interp), 3) if (n_obs + n_interp) else None,

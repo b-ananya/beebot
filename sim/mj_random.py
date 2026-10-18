@@ -113,15 +113,13 @@ def main():
     # MuJoCo/OpenCV load only after the policy has run: importing them before torch can crash torch's import
     global mujoco, pose_quat
     import cv2, imageio.v2 as imageio, mujoco
-    from sim.mj_render import FPS, pose_quat, rl_trajectory, scaled_cf2
+    from sim.mj_render import FPS, load_scene, pose_quat, rl_trajectory, scaled_cf2
     S = a.size_m
     cf2_dir = Path(a.menagerie) / "bitcraze_crazyflie_2"
     scaled_cf2(cf2_dir, a.drone_scale)
     grass = out_dir / f"{name}_grass.png"
     grass_png(grass, a.seed)
-    scene = cf2_dir / "beebot_random.xml"
-    scene.write_text(build_xml(flowers, S, grass, a.shadow))
-    model = mujoco.MjModel.from_xml_path(str(scene))
+    model = load_scene(cf2_dir, build_xml(flowers, S, grass, a.shadow), "beebot_random")
     data = mujoco.MjData(model)
     ring = {f["flower_id"]: model.geom(f"ring_{f['flower_id']}").id for f in flowers}
     done_at = {v["flower_id"]: v["t"] for v in visits}

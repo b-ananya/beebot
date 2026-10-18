@@ -80,7 +80,7 @@ def forecast(doc: dict, track_id: str, t: float, *, aspect: float = ASPECT, hori
     on_flower = bool(visit and visit["t_end"] >= t - 0.1)
     if hist is not None:
         x = path_features(hist, fxyr, on_flower)
-        med = pm.predict(x[None], "knn")[0].reshape(FUT, 2) + hist[-1]
+        med = pm.predict(x[None])[0].reshape(FUT, 2) + hist[-1]          # the model train.py picked (pm.best)
         fan = pm.fan(x, k=25) + hist[-1]
         out["path"] = {"t": (t + np.arange(1, FUT + 1) / HZ).round(2).tolist(),
                        "median": _to_contract(med, aspect).round(1).tolist(),
@@ -124,18 +124,20 @@ def forecast(doc: dict, track_id: str, t: float, *, aspect: float = ASPECT, hori
 
     # Monte Carlo rollouts over the next horizon_s: sample dwell, next flower, transit, repeat
     rng = np.random.default_rng(seed)
-    dwell_samples = np.clip(fm.sample_dwell(species, rng, (rollouts, 50)), 0.1, None)
     expected = np.zeros(len(fids))
     sequences = []
     leave = 0
+    heading0 = heading
     for r in range(rollouts):
+        heading = heading0                 # every rollout starts from the insect's real heading
         tt = t + (out["dwell_remaining_s"] if on_flower else 0.0)
-        c, c_xy, cnt, k, seq = cur, cur_xy, dict(counts), 0, []
+        c, c_xy, cnt, seq = cur, cur_xy, dict(counts), []
         n_done = len(past_visits)
         while tt < t + horizon_s:
+            dwell_k = float(max(fm.sample_dwell(species, rng, 1)[0], 0.1))
             unv = [j for j in range(len(fids)) if j not in cnt]
             du = min((float(np.linalg.norm(fxyr[j, :2] - c_xy)) for j in unv), default=500.0)
-            if n_done and rng.random() > fm.p_continue(n_done, float(dwell_samples[r, k]), len(fids), len(unv), du,
+            if n_done and rng.random() > fm.p_continue(n_done, dwell_k, len(fids), len(unv), du,
                                                        species):
                 leave += 1
                 break
@@ -151,8 +153,7 @@ def forecast(doc: dict, track_id: str, t: float, *, aspect: float = ASPECT, hori
             cnt[j] = cnt.get(j, 0) + 1
             heading = fxyr[j, :2] - c_xy
             c, c_xy = j, fxyr[j, :2]
-            tt += float(dwell_samples[r, k])
-            k += 1
+            tt += dwell_k
             n_done += 1
         sequences.append(tuple(f for f, _ in seq))
     expected /= rollouts

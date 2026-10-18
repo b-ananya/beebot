@@ -61,6 +61,7 @@ const STEM_FIX: Record<string, string> = {
   landing: 'land',
   lands: 'land',
   flie: 'fly',
+  fli: 'fly',
   flying: 'fly',
   takeoff: 'takeoff',
   taking: 'take',

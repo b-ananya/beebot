@@ -438,7 +438,7 @@ export function DatasetPanel(props: { source: PanelProps['source'] }) {
           How well the system works across all 48 clips. <b>Clips</b> summarizes what was measured in each clip.
           <b> Tracking accuracy</b> compares our insect tracks with the dataset authors&rsquo; own tracker (a reference,
           not hand labels). <b>Flower detection</b> scores the flower boxes three ways. The images are the visual
-          checks behind the numbers. Hover any <InfoMark /> for details.
+          checks behind the numbers. Hover any <InfoMark inline /> for details.
         </p>
       </Intro>
       <div className="prop-head">Clips</div>

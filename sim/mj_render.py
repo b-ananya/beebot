@@ -1,5 +1,5 @@
 """MuJoCo replay of a BeeBot plan: Crazyflie 2 flies plan route over the clip frame (kinematic, no physics)."""
-import argparse, json, math, re
+import argparse, json, math, os, re
 from pathlib import Path
 import cv2, imageio.v2 as imageio, mujoco, numpy as np
 from scipy.interpolate import CubicSpline
@@ -36,7 +36,23 @@ def scaled_cf2(cf2_dir, scale):
     """Copy of cf2.xml with every mesh scaled, so a small pollinator robot can stand in for the Crazyflie."""
     xml = (cf2_dir / "cf2.xml").read_text()
     xml = re.sub(r'<mesh file="([^"]+)"/>', rf'<mesh file="\1" scale="{scale} {scale} {scale}"/>', xml)
-    (cf2_dir / "cf2_beebot.xml").write_text(xml)
+    # written to a private name, then swapped in, so a render running at the same time never reads a half file
+    tmp = cf2_dir / f"cf2_beebot.{os.getpid()}.tmp"
+    tmp.write_text(xml)
+    os.replace(tmp, cf2_dir / "cf2_beebot.xml")
+
+
+def load_scene(cf2_dir, xml, stem):
+    """Compile a scene that must sit next to cf2.xml (so mesh paths resolve) under a per-process name, and remove
+    the file afterwards: two renders at once (two browser tabs) must not load each other's flowers."""
+    import mujoco
+
+    scene = cf2_dir / f"{stem}_{os.getpid()}.xml"
+    scene.write_text(xml)
+    try:
+        return mujoco.MjModel.from_xml_path(str(scene))
+    finally:
+        scene.unlink(missing_ok=True)
 
 def pose_quat(yaw, tilt=None):
     """Quaternion for heading yaw plus a lean toward world-frame acceleration tilt=(ax, ay) radians."""
@@ -125,9 +141,7 @@ def main():
     H = a.height_m; W = H * aspect
     cf2_dir = Path(a.menagerie) / "bitcraze_crazyflie_2"
     scaled_cf2(cf2_dir, a.drone_scale)
-    scene = cf2_dir / "beebot_scene.xml"   # lives next to cf2.xml so its mesh paths resolve
-    scene.write_text(build_xml(cf2_dir, frame, field, W, H))
-    model = mujoco.MjModel.from_xml_path(str(scene))
+    model = load_scene(cf2_dir, build_xml(cf2_dir, frame, field, W, H), "beebot_scene")
     data = mujoco.MjData(model)
     out = a.out or f"rollouts/{a.clip_id}_mujoco{'_rl' if a.path == 'rl' else ''}.mp4"; Path(out).parent.mkdir(exist_ok=True)
     writer = imageio.get_writer(out, fps=FPS, codec="libx264", macro_block_size=8)

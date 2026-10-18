@@ -63,8 +63,13 @@ export function Hint({ tip, children, block = false }: { tip: ReactNode; childre
 }
 
 /** The small circled "i" that marks something you can hover for an explanation. */
-export function InfoMark() {
-  return <span className="hint-mark" aria-hidden="true">i</span>
+export function InfoMark({ inline = false }: { inline?: boolean }) {
+  // next to a label the icon is decoration; inside a sentence ("hover any label with an (i)") it is a word
+  return inline ? (
+    <span className="hint-mark" role="img" aria-label="info icon">i</span>
+  ) : (
+    <span className="hint-mark" aria-hidden="true">i</span>
+  )
 }
 
 /** A short "what am I looking at" box at the top of a panel. */

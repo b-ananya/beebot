@@ -48,7 +48,7 @@ def stem(w: str) -> str:
         if w.endswith(suf) and len(w) - len(suf) >= 3:
             w = w[: -len(suf)] + rep
             break
-    return {"landing": "land", "lands": "land", "flie": "fly", "flying": "fly", "takeoff": "takeoff",
+    return {"landing": "land", "lands": "land", "flie": "fly", "fli": "fly", "flying": "fly", "takeoff": "takeoff",
             "taking": "take", "visitor": "visit", "foraging": "forage", "forag": "forage", "leav": "leave",
             "arriv": "arrive", "lingr": "linger", "linger": "linger", "pollinat": "pollinate"}.get(w, w)
 

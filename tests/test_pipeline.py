@@ -164,3 +164,33 @@ def test_visits_never_overlap_for_one_insect():
     m = clip_metrics(doc(pts(seq), fl, events), duration_s=2.0)["summary"]
     assert m["median_transit_s"] is None or m["median_transit_s"] >= 0
     assert m["tracked_share"] <= 1.0
+
+
+# ------------------------------------------------------------------ regressions from the final review
+def test_flies_and_fly_match_in_search():
+    assert tokens("flies away") == tokens("fly away") == ["fly", "away"]
+
+
+def test_foraging_share_survives_zero_length_labels():
+    p = pts([(100, 100)] * 2, step=0.0)                      # two points at the same timestamp
+    for q in p:
+        q["label"] = "walking"
+    assert clip_metrics(doc(p), duration_s=1.0)["summary"]["foraging_share"] is None
+
+
+def test_long_rollouts_do_not_run_out_of_dwell_samples():
+    import pytest
+    from forecast import predict as P
+    if not P.available():
+        pytest.skip("forecast models not trained (python -m forecast.train)")
+    pm, fm = P.models()
+    orig = fm.sample_dwell, fm.p_continue
+    fm.sample_dwell = lambda sp, rng, size: np.full(size, 0.1)   # tiny dwells, never leaves: > 50 visits
+    fm.p_continue = lambda *a, **k: 1.0
+    try:
+        fl = [{"flower_id": "a", "box": [100, 100, 120, 120]}, {"flower_id": "b", "box": [130, 100, 150, 120]}]
+        ev = [{"track_id": "honeybee_1", "flower_id": "a", "type": "visit", "t_start": 0.0, "t_end": 1.9}]
+        out = P.forecast(doc(pts([(110, 110)] * 20), fl, ev), "honeybee_1", 1.9, horizon_s=60, rollouts=5)
+        assert len(out["rollout"]["most_likely_sequence"]) > 50
+    finally:
+        fm.sample_dwell, fm.p_continue = orig

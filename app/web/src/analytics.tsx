@@ -352,7 +352,7 @@ export function AnalyticsPanel({ clipId, source, doc, manifestEntry, time, onSee
             <p>
               Numbers measured from this clip&rsquo;s tracks: how often insects visit flowers, how long they stay and
               how they move between them. The &ldquo;robot parameters&rdquo; are what a robot pollinator or simulator
-              would copy. Hover any label with an <InfoMark /> for what it means.
+              would copy. Hover any label with an <InfoMark inline /> for what it means.
             </p>
           </Intro>
           <SummaryStats summary={metrics.summary} />

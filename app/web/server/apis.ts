@@ -201,6 +201,7 @@ type HttpError = Error & { status: number }
 
 let repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..')
 const successCache = new Map<string, unknown>()
+const CACHE_MAX = 200
 const inflight = new Map<string, Promise<unknown>>()
 
 function httpError(status: number, error: string): HttpError {
@@ -426,6 +427,32 @@ function bodyKey(pathname: string, raw: Buffer): string {
   return createHash('sha256').update(pathname).update('\0').update(raw).digest('hex')
 }
 
+/** Modification times of the files a forecast depends on (its track file and both models), so re-running the
+ *  pipeline or retraining invalidates cached answers instead of serving stale ones until the server restarts. */
+function forecastStamp(raw: Buffer): string {
+  const mtime = (file: string) => {
+    try {
+      return String(fs.statSync(file).mtimeMs)
+    } catch {
+      return '0'
+    }
+  }
+  let body: Record<string, unknown> | null = null
+  try {
+    body = asRecord(JSON.parse(raw.toString('utf8')))
+  } catch {
+    body = null
+  }
+  const dir = typeof body?.source === 'string' ? SOURCE_DIRS[body.source] : undefined
+  const clipId = safeId(body?.clipId)
+  const models = path.join(repoRoot, 'forecast', 'models')
+  return [
+    dir && clipId ? mtime(path.join(repoRoot, dir, `${clipId}.json`)) : '0',
+    mtime(path.join(models, 'path.joblib')),
+    mtime(path.join(models, 'flower.joblib')),
+  ].join(':')
+}
+
 function withCache(key: string, produce: () => Promise<unknown>): Promise<unknown> {
   const hit = successCache.get(key)
   if (hit !== undefined) return Promise.resolve(hit)
@@ -434,6 +461,8 @@ function withCache(key: string, produce: () => Promise<unknown>): Promise<unknow
   const job = produce()
     .then((data) => {
       successCache.set(key, data)
+      // bounded: drop the oldest entries (Map keeps insertion order)
+      while (successCache.size > CACHE_MAX) successCache.delete(successCache.keys().next().value as string)
       return data
     })
     .finally(() => {
@@ -604,7 +633,7 @@ async function dispatch(req: IncomingMessage, res: ServerResponse, pathname: str
     return
   }
   if (pathname === '/api/forecast') {
-    sendJson(res, 200, await withCache(key, () => postForecast(raw)))
+    sendJson(res, 200, await withCache(`${key}|${forecastStamp(raw)}`, () => postForecast(raw)))
     return
   }
   if (pathname === '/api/analyze') {
