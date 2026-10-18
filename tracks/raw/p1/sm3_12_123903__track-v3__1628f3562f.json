@@ -1,0 +1,58 @@
+{
+ "request": {
+  "clip_id": "sm3_12_123903",
+  "piece": "p1",
+  "user": "raika",
+  "created_at": "2026-10-17T21:25:44+00:00",
+  "media": [
+   "61587100ffd84664ded3ab101a81fee7127a1d41d9af9046d65e447e09297270"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "track",
+  "prompt_version": "v3",
+  "prompt_text": "Point to the single honeybee in this video at each sampled time while it is visible.\n\nWhat to look for: a small dark insect, about 20 to 30 pixels across, with a lighter striped abdomen. It flies and walks between flowers and ground cover, changes direction often, and may leave the frame or hide behind leaves. The camera does not move. Only the insect moves.\n\nReturn exactly one track with mention=\"honeybee\" and asset_idx=\"0\" made of point children, each with a timestamp in seconds and coordinates normalized to 0-1000, origin top-left. Put the point on the centre of the insect's body. Give a point about every 0.25 seconds, but only at times where you can see the insect in that frame. The clip is 15.0 seconds long.\n\nRules:\n- Every point must come from where the insect is in that frame. Do not extrapolate, smooth or fill in a path. Real insect paths are jerky, not straight lines, and the insect often stays in one place for a while.\n- If the insect is hidden, out of frame, or you cannot find it, give no point for that time. A gap is correct. A guess is wrong.\n\nOutput only the track markup, no explanation.",
+  "annotation_format": "point",
+  "max_tokens": 4096,
+  "reasoning_effort": null,
+  "temperature": null
+ },
+ "response": {
+  "text": "<track mention=\"honeybee\" asset_idx=\"0\">\n <point t=\"1.5 seconds\"> (552,319) </point>\n <point t=\"2.6 seconds\"> (555,321) </point>\n <point t=\"3.1 seconds\"> (553,322) </point>\n <point t=\"4.1 seconds\"> (554,325) </point>\n <point t=\"4.6 seconds\"> (551,324) </point>\n <point t=\"5.7 seconds\"> (548,326) </point>\n <point t=\"6.2 seconds\"> (549,328) </point>\n <point t=\"6.7 seconds\"> (550,329) </point>\n <point t=\"7.2 seconds\"> (549,331) </point>\n <point t=\"8.3 seconds\"> (546,332) </point>\n <point t=\"8.8 seconds\"> (545,333) </point>\n <point t=\"9.3 seconds\"> (543,335) </point>\n <point t=\"9.8 seconds\"> (541,336) </point>\n <point t=\"10.3 seconds\"> (540,338) </point>\n <point t=\"10.8 seconds\"> (539,339) </point>\n <point t=\"11.9 seconds\"> (538,340) </point>\n <point t=\"12.4 seconds\"> (537,342) </point>\n <point t=\"12.9 seconds\"> (536,343) </point>\n <point t=\"13.4 seconds\"> (535,344) </point>\n <point t=\"13.9 seconds\"> (534,346) </point>\n <point t=\"14.5 seconds\"> (533,347) </point>\n <point t=\"15.0 seconds\"> (532,349) </point>\n</track>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 13706,
+   "completion_tokens": 386,
+   "total_tokens": 14092,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "bdf0b83fa0a5a1edd6a48b2b68dce0ca",
+  "cost_usd": 0.002635
+ },
+ "raw": {
+  "id": "chatcmpl-f3969e4835d344b1b8024cd792f55e90",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<track mention=\"honeybee\" asset_idx=\"0\">\n <point t=\"1.5 seconds\"> (552,319) </point>\n <point t=\"2.6 seconds\"> (555,321) </point>\n <point t=\"3.1 seconds\"> (553,322) </point>\n <point t=\"4.1 seconds\"> (554,325) </point>\n <point t=\"4.6 seconds\"> (551,324) </point>\n <point t=\"5.7 seconds\"> (548,326) </point>\n <point t=\"6.2 seconds\"> (549,328) </point>\n <point t=\"6.7 seconds\"> (550,329) </point>\n <point t=\"7.2 seconds\"> (549,331) </point>\n <point t=\"8.3 seconds\"> (546,332) </point>\n <point t=\"8.8 seconds\"> (545,333) </point>\n <point t=\"9.3 seconds\"> (543,335) </point>\n <point t=\"9.8 seconds\"> (541,336) </point>\n <point t=\"10.3 seconds\"> (540,338) </point>\n <point t=\"10.8 seconds\"> (539,339) </point>\n <point t=\"11.9 seconds\"> (538,340) </point>\n <point t=\"12.4 seconds\"> (537,342) </point>\n <point t=\"12.9 seconds\"> (536,343) </point>\n <point t=\"13.4 seconds\"> (535,344) </point>\n <point t=\"13.9 seconds\"> (534,346) </point>\n <point t=\"14.5 seconds\"> (533,347) </point>\n <point t=\"15.0 seconds\"> (532,349) </point>\n</track>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792272340,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 13706,
+   "completion_tokens": 386,
+   "total_tokens": 14092,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

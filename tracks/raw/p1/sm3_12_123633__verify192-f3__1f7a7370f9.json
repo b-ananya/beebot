@@ -1,0 +1,61 @@
+{
+ "request": {
+  "clip_id": "sm3_12_123633",
+  "piece": "p1",
+  "user": "raika",
+  "created_at": "2026-10-17T22:41:09+00:00",
+  "model": "perceptron-mk1.5",
+  "prompt_name": "verify192",
+  "prompt_version": "f3",
+  "prompt_text": "This is a small zoomed-in crop, about 190 pixels square, from one frame of a fixed camera filming flowers and ground cover. Is there a butterfly or moth in it? A butterfly or moth is a dark insect with a lighter striped abdomen, wings and legs. In a crop this size it would be large and clear, roughly a tenth to a third of the crop wide. Petals, leaves, stems, shadows, soil and dark spots are not insects.\n\nIf there is one, return exactly one point on the centre of its body, with mention=\"butterfly or moth\", coordinates normalized to 0-1000 with origin top-left.\n\nIf there is no insect in this crop, answer exactly: none",
+  "annotation_format": "point",
+  "max_tokens": 128,
+  "reasoning_effort": null,
+  "temperature": null,
+  "media": [
+   "012000_c1000_390_192.jpg"
+  ],
+  "media_sha256": [
+   "cee590623403a60637dfc65c0664ccb5494f4e81bf4a5641174b363b45598511"
+  ]
+ },
+ "response": {
+  "text": "none",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 231,
+   "completion_tokens": 5,
+   "total_tokens": 236,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "c2ab43f6deb9d1ab2d1ffc2fb9692b97",
+  "cost_usd": 4.2e-05
+ },
+ "raw": {
+  "id": "chatcmpl-f7f1943dfc5d4dcd9f6b9ff9c21f0188",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "none",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792276868,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 231,
+   "completion_tokens": 5,
+   "total_tokens": 236,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

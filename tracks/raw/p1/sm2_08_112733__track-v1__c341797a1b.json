@@ -1,0 +1,58 @@
+{
+ "request": {
+  "clip_id": "sm2_08_112733",
+  "piece": "p1",
+  "user": "raika",
+  "created_at": "2026-10-17T21:24:25+00:00",
+  "media": [
+   "39751b5550533b092df16622f9d15ffcc5c18c8c8a968814f351b48c51dc9c9b"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "track",
+  "prompt_version": "v1",
+  "prompt_text": "Track the single wasp in this video while it is visible.\n\nThe bee is small (roughly 20 to 30 pixels across), dark with a lighter striped abdomen, and it moves fast between flowers and ground cover. Follow that one insect only. If several insects appear, follow the one that is visible for the longest time.\n\nReturn exactly one track with mention=\"wasp\" and asset_idx=\"0\". Use point_box children with timestamps in seconds and coordinates normalized to 0-1000. Give a box roughly every 0.5 seconds while the bee is visible. The clip is 9.633 seconds long.\n\nDo not invent positions when the bee is occluded, out of frame, or you are not sure where it is. A missing observation is better than a guessed one. Output only the track markup, no explanation.",
+  "annotation_format": "box",
+  "max_tokens": 4096,
+  "reasoning_effort": null,
+  "temperature": null
+ },
+ "response": {
+  "text": "<track mention=\"wasp\" asset_idx=\"0\">\n <point_box t=\"1.7 seconds\"> (895,768) (912,806) </point_box>\n <point_box t=\"2.3 seconds\"> (865,678) (882,716) </point_box>\n <point_box t=\"2.8 seconds\"> (813,592) (833,635) </point_box>\n <point_box t=\"3.4 seconds\"> (670,581) (698,619) </point_box>\n <point_box t=\"4.0 seconds\"> (555,444) (582,481) </point_box>\n <point_box t=\"4.5 seconds\"> (414,388) (438,426) </point_box>\n <point_box t=\"5.1 seconds\"> (384,606) (406,640) </point_box>\n <point_box t=\"5.6 seconds\"> (393,688) (416,719) </point_box>\n <point_box t=\"6.2 seconds\"> (528,496) (545,532) </point_box>\n <point_box t=\"6.8 seconds\"> (615,456) (639,488) </point_box>\n <point_box t=\"7.3 seconds\"> (705,431) (730,464) </point_box>\n <point_box t=\"7.9 seconds\"> (773,394) (798,427) </point_box>\n <point_box t=\"8.5 seconds\"> (845,356) (870,389) </point_box>\n <point_box t=\"9.0 seconds\"> (913,314) (937,347) </point_box>\n <point_box t=\"9.6 seconds\"> (962,276) (986,309) </point_box>\n</track>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 8238,
+   "completion_tokens": 324,
+   "total_tokens": 8562,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "796c7fd5f1cf49404d1df8a0b3602b0b",
+  "cost_usd": 0.001722
+ },
+ "raw": {
+  "id": "chatcmpl-4a7442196b804be1aee8be5b464d9cf5",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<track mention=\"wasp\" asset_idx=\"0\">\n <point_box t=\"1.7 seconds\"> (895,768) (912,806) </point_box>\n <point_box t=\"2.3 seconds\"> (865,678) (882,716) </point_box>\n <point_box t=\"2.8 seconds\"> (813,592) (833,635) </point_box>\n <point_box t=\"3.4 seconds\"> (670,581) (698,619) </point_box>\n <point_box t=\"4.0 seconds\"> (555,444) (582,481) </point_box>\n <point_box t=\"4.5 seconds\"> (414,388) (438,426) </point_box>\n <point_box t=\"5.1 seconds\"> (384,606) (406,640) </point_box>\n <point_box t=\"5.6 seconds\"> (393,688) (416,719) </point_box>\n <point_box t=\"6.2 seconds\"> (528,496) (545,532) </point_box>\n <point_box t=\"6.8 seconds\"> (615,456) (639,488) </point_box>\n <point_box t=\"7.3 seconds\"> (705,431) (730,464) </point_box>\n <point_box t=\"7.9 seconds\"> (773,394) (798,427) </point_box>\n <point_box t=\"8.5 seconds\"> (845,356) (870,389) </point_box>\n <point_box t=\"9.0 seconds\"> (913,314) (937,347) </point_box>\n <point_box t=\"9.6 seconds\"> (962,276) (986,309) </point_box>\n</track>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792272261,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 8238,
+   "completion_tokens": 324,
+   "total_tokens": 8562,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

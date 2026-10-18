@@ -1,0 +1,311 @@
+{
+ "clip_id": "hb3_w04",
+ "model": "perceptron-mk1.5",
+ "prompt_version": "v2",
+ "resolution": "720p",
+ "annotation_format": "box",
+ "step_s": 0.5,
+ "reasoning_effort": "medium",
+ "usage": {
+  "prompt_tokens": 9229,
+  "completion_tokens": 849,
+  "total_tokens": 10078,
+  "prompt_tokens_details": {
+   "audio_tokens": 0
+  }
+ },
+ "finish_reason": "stop",
+ "cache_hit": false,
+ "cost_usd": 0.002658,
+ "cache_file": "p1/hb3_w04__track-v2__4f54591453.json",
+ "parse_errors": [],
+ "tracks": [
+  {
+   "track_id": "honeybee_1",
+   "species": "honeybee",
+   "complete": true,
+   "points": [
+    {
+     "t": 0.0,
+     "box": [
+      834,
+      0,
+      849,
+      18
+     ],
+     "center": [
+      841.5,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 0.5,
+     "box": [
+      812,
+      0,
+      824,
+      18
+     ],
+     "center": [
+      818.0,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.0,
+     "box": [
+      788,
+      0,
+      798,
+      18
+     ],
+     "center": [
+      793.0,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.6,
+     "box": [
+      766,
+      0,
+      776,
+      18
+     ],
+     "center": [
+      771.0,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 2.1,
+     "box": [
+      741,
+      0,
+      751,
+      18
+     ],
+     "center": [
+      746.0,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 2.6,
+     "box": [
+      717,
+      0,
+      727,
+      18
+     ],
+     "center": [
+      722.0,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 3.1,
+     "box": [
+      693,
+      0,
+      702,
+      18
+     ],
+     "center": [
+      697.5,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 3.7,
+     "box": [
+      669,
+      0,
+      678,
+      18
+     ],
+     "center": [
+      673.5,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 4.2,
+     "box": [
+      645,
+      0,
+      655,
+      18
+     ],
+     "center": [
+      650.0,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 4.7,
+     "box": [
+      621,
+      0,
+      630,
+      18
+     ],
+     "center": [
+      625.5,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 5.2,
+     "box": [
+      597,
+      0,
+      607,
+      18
+     ],
+     "center": [
+      602.0,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 5.8,
+     "box": [
+      573,
+      0,
+      583,
+      18
+     ],
+     "center": [
+      578.0,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 6.3,
+     "box": [
+      548,
+      0,
+      558,
+      18
+     ],
+     "center": [
+      553.0,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 6.8,
+     "box": [
+      524,
+      0,
+      534,
+      18
+     ],
+     "center": [
+      529.0,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 7.3,
+     "box": [
+      500,
+      0,
+      510,
+      18
+     ],
+     "center": [
+      505.0,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 7.9,
+     "box": [
+      476,
+      0,
+      486,
+      18
+     ],
+     "center": [
+      481.0,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 8.4,
+     "box": [
+      452,
+      0,
+      462,
+      18
+     ],
+     "center": [
+      457.0,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 8.9,
+     "box": [
+      427,
+      0,
+      438,
+      18
+     ],
+     "center": [
+      432.5,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 9.4,
+     "box": [
+      402,
+      0,
+      413,
+      18
+     ],
+     "center": [
+      407.5,
+      9.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 10.0,
+     "box": [
+      377,
+      0,
+      387,
+      18
+     ],
+     "center": [
+      382.0,
+      9.0
+     ],
+     "interpolated": false
+    }
+   ]
+  }
+ ]
+}

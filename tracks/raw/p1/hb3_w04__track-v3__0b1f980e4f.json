@@ -1,0 +1,58 @@
+{
+ "request": {
+  "clip_id": "hb3_w04",
+  "piece": "p1",
+  "user": "raika",
+  "created_at": "2026-10-17T21:25:36+00:00",
+  "media": [
+   "03ee3c0a54425520b8f8861db1740ac6fac96f3f334f01f2f92f78af182ef940"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "track",
+  "prompt_version": "v3",
+  "prompt_text": "Point to the single honeybee in this video at each sampled time while it is visible.\n\nWhat to look for: a small dark insect, about 20 to 30 pixels across, with a lighter striped abdomen. It flies and walks between flowers and ground cover, changes direction often, and may leave the frame or hide behind leaves. The camera does not move. Only the insect moves.\n\nReturn exactly one track with mention=\"honeybee\" and asset_idx=\"0\" made of point children, each with a timestamp in seconds and coordinates normalized to 0-1000, origin top-left. Put the point on the centre of the insect's body. Give a point about every 0.25 seconds, but only at times where you can see the insect in that frame. The clip is 10.0 seconds long.\n\nRules:\n- Every point must come from where the insect is in that frame. Do not extrapolate, smooth or fill in a path. Real insect paths are jerky, not straight lines, and the insect often stays in one place for a while.\n- If the insect is hidden, out of frame, or you cannot find it, give no point for that time. A gap is correct. A guess is wrong.\n\nOutput only the track markup, no explanation.",
+  "annotation_format": "point",
+  "max_tokens": 4096,
+  "reasoning_effort": null,
+  "temperature": null
+ },
+ "response": {
+  "text": "<track mention=\"honeybee\" asset_idx=\"0\">\n <point t=\"5.2 seconds\"> (888,967) </point>\n <point t=\"5.8 seconds\"> (884,944) </point>\n <point t=\"6.3 seconds\"> (880,919) </point>\n <point t=\"6.8 seconds\"> (883,894) </point>\n <point t=\"7.3 seconds\"> (886,869) </point>\n <point t=\"7.9 seconds\"> (887,842) </point>\n <point t=\"8.4 seconds\"> (889,817) </point>\n <point t=\"8.9 seconds\"> (890,794) </point>\n <point t=\"9.4 seconds\"> (891,771) </point>\n <point t=\"10.0 seconds\"> (892,749) </point>\n</track>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 9227,
+   "completion_tokens": 186,
+   "total_tokens": 9413,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "823cda64b4eafa7812f68a4274fc77e4",
+  "cost_usd": 0.001663
+ },
+ "raw": {
+  "id": "chatcmpl-63316edf997647b2a2fa5835e9b86960",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<track mention=\"honeybee\" asset_idx=\"0\">\n <point t=\"5.2 seconds\"> (888,967) </point>\n <point t=\"5.8 seconds\"> (884,944) </point>\n <point t=\"6.3 seconds\"> (880,919) </point>\n <point t=\"6.8 seconds\"> (883,894) </point>\n <point t=\"7.3 seconds\"> (886,869) </point>\n <point t=\"7.9 seconds\"> (887,842) </point>\n <point t=\"8.4 seconds\"> (889,817) </point>\n <point t=\"8.9 seconds\"> (890,794) </point>\n <point t=\"9.4 seconds\"> (891,771) </point>\n <point t=\"10.0 seconds\"> (892,749) </point>\n</track>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792272334,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 9227,
+   "completion_tokens": 186,
+   "total_tokens": 9413,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

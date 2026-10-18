@@ -5,9 +5,9 @@
 
 Parts live in tracks/parts/ (a contract addition; each owner writes only their own):
 
-    <clip>.track.json    P1 (Raika)   {"clip_id", "model", "prompt_version", "tracks": [...]}
-    <clip>.flowers.json  P2 (Ananya)  {"clip_id", "flowers": [{"flower_id", "box"}]}
-    <clip>.events.json   P2 (Ananya)  {"clip_id", "events": [{"track_id", "flower_id", "type", "t_start", "t_end"}]}
+    <clip>.track.json    P1 (Raika)    {"clip_id", "model", "prompt_version", "tracks": [...]}
+    <clip>.flowers.json  P2 (Falisha)  {"clip_id", "flowers": [{"flower_id", "box"}]}
+    <clip>.events.json   P2 (Falisha)  {"clip_id", "events": [{"track_id", "flower_id", "type", "t_start", "t_end"}]}
 
 Events must name a track_id from the track part (``<species>_1``, e.g. ``honeybee_1``) and a flower_id from the
 flowers part; others are dropped with a warning. Missing flowers or events parts mean empty lists.
@@ -70,7 +70,7 @@ def merge_clip(clip_id: str, *, interpolate_gap_s: float | None = None, root: Pa
         raise ValueError(f"{clip_id}: merged doc fails the contract: {errs[:5]}")
     out_dir.mkdir(parents=True, exist_ok=True)
     out = out_dir / f"{clip_id}.json"
-    out.write_text(json.dumps(doc, indent=1))
+    out.write_text(json.dumps(doc, indent=1), newline="\n")
     return out
 
 

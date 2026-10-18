@@ -1,0 +1,5 @@
+This is one frame from a fixed camera filming flowers and ground cover. Find the single {species} in it: a small dark insect, about 20 to 30 pixels across, with a lighter striped abdomen, on or between the plants.
+
+If you can see it, return exactly one point on the centre of its body, with mention="{species}", coordinates normalized to 0-1000 with origin top-left.
+
+If there is no such insect in this frame, or you are not sure, answer exactly: none

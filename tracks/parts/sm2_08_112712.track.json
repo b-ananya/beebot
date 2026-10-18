@@ -1,0 +1,78 @@
+{
+ "clip_id": "sm2_08_112712",
+ "prompt_version": "f3",
+ "mode": "hybrid",
+ "resolution": "720p",
+ "annotation_format": "box",
+ "step_s": 0.5,
+ "reasoning_effort": null,
+ "model": "perceptron-mk1.5",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 20720,
+  "completion_tokens": 332
+ },
+ "cost_usd": 0.0,
+ "cache_hit": true,
+ "frames": 12,
+ "fps": 2.0,
+ "tiles": 2,
+ "crop_px": 192,
+ "tile_version": "f2",
+ "candidates": 8,
+ "verified": 3,
+ "cache_file": "p1/sm2_08_112712__{frame2t2,verify192}-*.json",
+ "parse_errors": [],
+ "tracks": [
+  {
+   "track_id": "vespidae_1",
+   "species": "vespidae",
+   "complete": true,
+   "points": [
+    {
+     "t": 1.0,
+     "box": [
+      784.9,
+      597.3,
+      808.9,
+      621.3
+     ],
+     "center": [
+      796.9,
+      609.3
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 1.5,
+     "box": [
+      781.8,
+      555.0,
+      805.8,
+      579.0
+     ],
+     "center": [
+      793.8,
+      567.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 2.0,
+     "box": [
+      795.0,
+      577.2,
+      819.0,
+      601.2
+     ],
+     "center": [
+      807.0,
+      589.2
+     ],
+     "interpolated": false
+    }
+   ],
+   "box_from": "point"
+  }
+ ]
+}

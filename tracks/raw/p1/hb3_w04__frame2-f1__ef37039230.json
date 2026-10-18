@@ -1,0 +1,58 @@
+{
+ "request": {
+  "clip_id": "hb3_w04",
+  "piece": "p1",
+  "user": "raika",
+  "created_at": "2026-10-17T21:29:45+00:00",
+  "media": [
+   "743c411775d8c45248f63dacc707d0711e68422739184475691360c4b74b1379"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "frame2",
+  "prompt_version": "f1",
+  "prompt_text": "This is one frame from a fixed camera filming flowers and ground cover. Find the single honeybee in it: a small dark insect, about 20 to 30 pixels across, with a lighter striped abdomen, on or between the plants.\n\nIf you can see it, return exactly one point on the centre of its body, with mention=\"honeybee\", coordinates normalized to 0-1000 with origin top-left.\n\nIf there is no such insect in this frame, or you are not sure, answer exactly: none",
+  "annotation_format": "point",
+  "max_tokens": 256,
+  "reasoning_effort": null,
+  "temperature": null
+ },
+ "response": {
+  "text": "none",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 1006,
+   "completion_tokens": 5,
+   "total_tokens": 1011,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "b9a5323c5aacbd3479a217ed950b0f9a",
+  "cost_usd": 0.000158
+ },
+ "raw": {
+  "id": "chatcmpl-674c6b32b5b14fc1bde542ea17fe29a0",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "none",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792272584,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 1006,
+   "completion_tokens": 5,
+   "total_tokens": 1011,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "clip_id": "sm3_12_123903",
+ "source": "geometry",
+ "margin": 15,
+ "min_dwell_s": 0.4,
+ "events": [
+  {
+   "track_id": "honeybee_1",
+   "flower_id": "flower_5",
+   "type": "visit",
+   "t_start": 11.5,
+   "t_end": 13.0
+  }
+ ]
+}

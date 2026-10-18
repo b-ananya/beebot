@@ -1,0 +1,262 @@
+{
+ "clip_id": "sm2_08_112658",
+ "model": "perceptron-mk1.5",
+ "prompt_version": "f3",
+ "tracks": [
+  {
+   "track_id": "vespidae_1",
+   "species": "vespidae",
+   "complete": true,
+   "points": [
+    {
+     "t": 2.0,
+     "box": [
+      827.1,
+      462.0,
+      851.1,
+      486.0
+     ],
+     "center": [
+      839.1,
+      474.0
+     ],
+     "interpolated": false
+    },
+    {
+     "t": 2.1,
+     "box": [
+      838.6,
+      420.4,
+      862.6,
+      444.4
+     ],
+     "center": [
+      850.6,
+      432.4
+     ],
+     "interpolated": true
+    },
+    {
+     "t": 2.2,
+     "box": [
+      850.0,
+      378.9,
+      874.0,
+      402.9
+     ],
+     "center": [
+      862.0,
+      390.9
+     ],
+     "interpolated": true
+    },
+    {
+     "t": 2.3,
+     "box": [
+      861.5,
+      337.3,
+      885.5,
+      361.3
+     ],
+     "center": [
+      873.5,
+      349.3
+     ],
+     "interpolated": true
+    },
+    {
+     "t": 2.4,
+     "box": [
+      873.0,
+      295.8,
+      897.0,
+      319.8
+     ],
+     "center": [
+      885.0,
+      307.8
+     ],
+     "interpolated": true
+    },
+    {
+     "t": 2.5,
+     "box": [
+      884.5,
+      254.2,
+      908.5,
+      278.2
+     ],
+     "center": [
+      896.5,
+      266.2
+     ],
+     "interpolated": true
+    },
+    {
+     "t": 2.6,
+     "box": [
+      895.9,
+      212.6,
+      919.9,
+      236.6
+     ],
+     "center": [
+      907.9,
+      224.6
+     ],
+     "interpolated": true
+    },
+    {
+     "t": 2.7,
+     "box": [
+      907.4,
+      171.1,
+      931.4,
+      195.1
+     ],
+     "center": [
+      919.4,
+      183.1
+     ],
+     "interpolated": true
+    },
+    {
+     "t": 2.8,
+     "box": [
+      918.9,
+      129.5,
+      942.9,
+      153.5
+     ],
+     "center": [
+      930.9,
+      141.5
+     ],
+     "interpolated": true
+    },
+    {
+     "t": 2.9,
+     "box": [
+      930.3,
+      88.0,
+      954.3,
+      112.0
+     ],
+     "center": [
+      942.3,
+      100.0
+     ],
+     "interpolated": true
+    },
+    {
+     "t": 3.0,
+     "box": [
+      941.8,
+      46.4,
+      965.8,
+      70.4
+     ],
+     "center": [
+      953.8,
+      58.4
+     ],
+     "interpolated": false
+    }
+   ],
+   "box_from": "point"
+  }
+ ],
+ "flowers": [
+  {
+   "flower_id": "flower_1",
+   "box": [
+    613,
+    275,
+    649,
+    321
+   ]
+  },
+  {
+   "flower_id": "flower_2",
+   "box": [
+    458,
+    347,
+    479,
+    378
+   ]
+  },
+  {
+   "flower_id": "flower_3",
+   "box": [
+    520,
+    412,
+    555,
+    476
+   ]
+  },
+  {
+   "flower_id": "flower_4",
+   "box": [
+    446,
+    506,
+    483,
+    569
+   ]
+  },
+  {
+   "flower_id": "flower_5",
+   "box": [
+    822,
+    561,
+    851,
+    609
+   ]
+  },
+  {
+   "flower_id": "flower_6",
+   "box": [
+    66,
+    621,
+    91,
+    679
+   ]
+  },
+  {
+   "flower_id": "flower_7",
+   "box": [
+    752,
+    627,
+    765,
+    652
+   ]
+  },
+  {
+   "flower_id": "flower_8",
+   "box": [
+    98,
+    684,
+    120,
+    716
+   ]
+  },
+  {
+   "flower_id": "flower_9",
+   "box": [
+    395,
+    694,
+    421,
+    743
+   ]
+  },
+  {
+   "flower_id": "flower_10",
+   "box": [
+    278,
+    731,
+    329,
+    805
+   ]
+  }
+ ],
+ "events": []
+}

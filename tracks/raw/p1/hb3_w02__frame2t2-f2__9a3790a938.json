@@ -1,0 +1,61 @@
+{
+ "request": {
+  "clip_id": "hb3_w02",
+  "piece": "p1",
+  "user": "raika",
+  "created_at": "2026-10-17T22:25:16+00:00",
+  "model": "perceptron-mk1.5",
+  "prompt_name": "frame2t2",
+  "prompt_version": "f2",
+  "prompt_text": "This is a crop from one frame of a fixed camera filming flowers and ground cover. Look for a honeybee: a small dark insect with a lighter striped abdomen, on or between the plants. It may be small and partly hidden by leaves or petals.\n\nIf there is one, return exactly one point on the centre of its body, with mention=\"honeybee\", coordinates normalized to 0-1000 with origin top-left. If there are several, point to the clearest one.\n\nIf there is no insect in this crop, answer exactly: none",
+  "annotation_format": "point",
+  "max_tokens": 128,
+  "reasoning_effort": null,
+  "temperature": null,
+  "media": [
+   "002000_t2_00.jpg"
+  ],
+  "media_sha256": [
+   "d010d84b9e2abe1eedd1be6bf40c0a5af7fa2509a7502ab028c82da19d65109f"
+  ]
+ },
+ "response": {
+  "text": "<point mention=\"honeybee\"> (536,624) </point>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 395,
+   "completion_tokens": 19,
+   "total_tokens": 414,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "0ad52601a10c1e13430ed65d89be8a53",
+  "cost_usd": 8.8e-05
+ },
+ "raw": {
+  "id": "chatcmpl-f3166eb59239477f88185ece21a8c431",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<point mention=\"honeybee\"> (536,624) </point>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792275916,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 395,
+   "completion_tokens": 19,
+   "total_tokens": 414,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

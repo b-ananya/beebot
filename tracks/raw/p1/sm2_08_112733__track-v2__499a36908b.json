@@ -1,0 +1,58 @@
+{
+ "request": {
+  "clip_id": "sm2_08_112733",
+  "piece": "p1",
+  "user": "raika",
+  "created_at": "2026-10-17T21:24:43+00:00",
+  "media": [
+   "39751b5550533b092df16622f9d15ffcc5c18c8c8a968814f351b48c51dc9c9b"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "track",
+  "prompt_version": "v2",
+  "prompt_text": "Track the single wasp in this video, frame by frame, while it is visible.\n\nWhat to look for: a small dark insect, about 20 to 30 pixels across, with a lighter striped abdomen. It flies and walks between flowers and ground cover, changes direction often, and may leave the frame or hide behind leaves. The camera does not move. Only the insect moves.\n\nReturn exactly one track with mention=\"wasp\" and asset_idx=\"0\". Use point_box children with timestamps in seconds and coordinates normalized to 0-1000, origin top-left. Give a box about every 0.5 seconds, but only at times where you can see the insect in that frame. The clip is 9.633 seconds long.\n\nRules:\n- Every box must come from where the insect is in that frame. Do not extrapolate, smooth or fill in a path. Real insect paths are jerky, not straight lines, and the insect often stays in one place for a while.\n- If the insect is hidden, out of frame, or you cannot find it, give no box for that time. A gap is correct. A guess is wrong.\n- Keep the box tight around the insect's body.\n\nOutput only the track markup, no explanation.",
+  "annotation_format": "box",
+  "max_tokens": 4096,
+  "reasoning_effort": null,
+  "temperature": null
+ },
+ "response": {
+  "text": "<track mention=\"wasp\" asset_idx=\"0\">\n <point_box t=\"1.7 seconds\"> (895,768) (913,806) </point_box>\n <point_box t=\"2.3 seconds\"> (865,681) (882,719) </point_box>\n <point_box t=\"2.8 seconds\"> (815,593) (834,635) </point_box>\n <point_box t=\"3.4 seconds\"> (674,586) (698,624) </point_box>\n <point_box t=\"4.0 seconds\"> (557,444) (581,480) </point_box>\n <point_box t=\"4.5 seconds\"> (388,600) (407,638) </point_box>\n <point_box t=\"5.6 seconds\"> (530,494) (544,531) </point_box>\n <point_box t=\"6.2 seconds\"> (527,456) (542,490) </point_box>\n <point_box t=\"6.8 seconds\"> (617,458) (639,489) </point_box>\n <point_box t=\"7.3 seconds\"> (684,469) (705,501) </point_box>\n <point_box t=\"7.9 seconds\"> (748,446) (770,479) </point_box>\n <point_box t=\"8.5 seconds\"> (798,415) (819,447) </point_box>\n <point_box t=\"9.0 seconds\"> (837,381) (858,413) </point_box>\n <point_box t=\"9.6 seconds\"> (873,344) (893,376) </point_box>\n</track>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 8328,
+   "completion_tokens": 304,
+   "total_tokens": 8632,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "bdadd3c90c5ac66b2d9c050735171936",
+  "cost_usd": 0.001705
+ },
+ "raw": {
+  "id": "chatcmpl-89dab9a21fd74e329a899c11f9e87010",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<track mention=\"wasp\" asset_idx=\"0\">\n <point_box t=\"1.7 seconds\"> (895,768) (913,806) </point_box>\n <point_box t=\"2.3 seconds\"> (865,681) (882,719) </point_box>\n <point_box t=\"2.8 seconds\"> (815,593) (834,635) </point_box>\n <point_box t=\"3.4 seconds\"> (674,586) (698,624) </point_box>\n <point_box t=\"4.0 seconds\"> (557,444) (581,480) </point_box>\n <point_box t=\"4.5 seconds\"> (388,600) (407,638) </point_box>\n <point_box t=\"5.6 seconds\"> (530,494) (544,531) </point_box>\n <point_box t=\"6.2 seconds\"> (527,456) (542,490) </point_box>\n <point_box t=\"6.8 seconds\"> (617,458) (639,489) </point_box>\n <point_box t=\"7.3 seconds\"> (684,469) (705,501) </point_box>\n <point_box t=\"7.9 seconds\"> (748,446) (770,479) </point_box>\n <point_box t=\"8.5 seconds\"> (798,415) (819,447) </point_box>\n <point_box t=\"9.0 seconds\"> (837,381) (858,413) </point_box>\n <point_box t=\"9.6 seconds\"> (873,344) (893,376) </point_box>\n</track>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792272280,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 8328,
+   "completion_tokens": 304,
+   "total_tokens": 8632,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}
