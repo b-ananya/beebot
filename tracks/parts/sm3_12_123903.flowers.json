@@ -1,102 +1,102 @@
 {
  "clip_id": "sm3_12_123903",
  "model": "perceptron-mk1.5",
+ "method": "tiled",
  "prompt_version": "v1",
- "finish_reason": "stop",
+ "dense": false,
  "complete": true,
  "cache_hit": true,
- "cost_usd": 0.0,
- "cache_file": "p2/sm3_12_123903__flowers-v1__0d60036235.json",
- "parse_errors": [],
+ "api_calls": 0,
+ "cache_hits": 4,
  "flowers": [
   {
    "flower_id": "flower_1",
    "box": [
-    492,
-    261,
-    531,
-    319
+    491.2,
+    259.8,
+    531.4,
+    322.8
    ]
   },
   {
    "flower_id": "flower_2",
    "box": [
-    523,
-    279,
-    563,
-    340
+    523.0,
+    278.4,
+    563.2,
+    343.2
+   ]
+  },
+  {
+   "flower_id": "flower_3",
+   "box": [
+    217.2,
+    322.8,
+    238.8,
+    352.8
    ]
   },
   {
    "flower_id": "flower_4",
    "box": [
-    158,
-    436,
-    195,
-    504
+    157.2,
+    436.2,
+    195.0,
+    502.8
    ]
   },
   {
    "flower_id": "flower_5",
    "box": [
-    827,
-    458,
-    872,
-    519
+    826.6,
+    457.2,
+    872.8,
+    519.6
+   ]
+  },
+  {
+   "flower_id": "flower_6",
+   "box": [
+    874.6,
+    485.4,
+    908.2,
+    538.2
    ]
   },
   {
    "flower_id": "flower_7",
    "box": [
-    878,
-    486,
-    909,
-    540
+    848.2,
+    506.4,
+    878.2,
+    547.2
+   ]
+  },
+  {
+   "flower_id": "flower_8",
+   "box": [
+    81.6,
+    529.6,
+    125.4,
+    598.6
    ]
   },
   {
    "flower_id": "flower_9",
    "box": [
-    82,
-    529,
-    125,
-    598
+    866.2,
+    533.8,
+    908.8,
+    615.4
    ]
   },
   {
-   "flower_id": "flower_10",
+   "flower_id": "flower_11",
    "box": [
-    867,
-    544,
-    910,
-    615
-   ]
-  },
-  {
-   "flower_id": "flower_14",
-   "box": [
-    223,
-    860,
-    254,
-    901
-   ]
-  },
-  {
-   "flower_id": "flower_16",
-   "box": [
-    51,
-    885,
-    71,
-    921
-   ]
-  },
-  {
-   "flower_id": "flower_17",
-   "box": [
-    107,
-    924,
-    138,
-    974
+    52.8,
+    881.8,
+    71.4,
+    913.6
    ]
   }
  ],

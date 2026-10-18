@@ -1,0 +1,116 @@
+{
+ "field_id": "sm2_08_112658",
+ "source": "mk1.5",
+ "units": "norm1000",
+ "target_visits": 4,
+ "visits_scope": "1 clip(s) of camera view sm2_08 through sm2_08_112658 (7 s observed)",
+ "clips": [
+  "sm2_08_112658"
+ ],
+ "flowers": [
+  {
+   "flower_id": "flower_1",
+   "center": [
+    631.6,
+    296.7
+   ],
+   "radius": 23.7,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 1
+  },
+  {
+   "flower_id": "flower_2",
+   "center": [
+    466.8,
+    362.4
+   ],
+   "radius": 16.2,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 1
+  },
+  {
+   "flower_id": "flower_3",
+   "center": [
+    537.3,
+    444.7
+   ],
+   "radius": 31.5,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 1
+  },
+  {
+   "flower_id": "flower_4",
+   "center": [
+    464.5,
+    538.2
+   ],
+   "radius": 31.8,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 1
+  },
+  {
+   "flower_id": "flower_5",
+   "center": [
+    837.7,
+    590.2
+   ],
+   "radius": 19.8,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 1
+  },
+  {
+   "flower_id": "flower_6",
+   "center": [
+    77.4,
+    651.7
+   ],
+   "radius": 29.7,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 1
+  },
+  {
+   "flower_id": "flower_8",
+   "center": [
+    408.6,
+    718.0
+   ],
+   "radius": 25.2,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 1
+  },
+  {
+   "flower_id": "flower_9",
+   "center": [
+    304.2,
+    767.5
+   ],
+   "radius": 37.5,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 1
+  }
+ ]
+}

@@ -4363,17 +4363,7 @@
  ],
  "flowers": [
   {
-   "flower_id": "stop_0",
-   "source": "stop",
-   "box": [
-    884.7,
-    881.5,
-    914.7,
-    911.5
-   ]
-  },
-  {
-   "flower_id": "stop_1",
+   "flower_id": "flower_23",
    "source": "stop",
    "box": [
     867.0,
@@ -4383,7 +4373,7 @@
    ]
   },
   {
-   "flower_id": "stop_2",
+   "flower_id": "flower_25",
    "source": "stop",
    "box": [
     968.5,
@@ -4391,29 +4381,40 @@
     998.5,
     830.1
    ]
+  },
+  {
+   "flower_id": "flower_31",
+   "source": "stop",
+   "box": [
+    884.7,
+    881.5,
+    914.7,
+    911.5
+   ]
   }
  ],
  "events": [
   {
    "track_id": "honeybee_1",
-   "flower_id": "stop_0",
+   "flower_id": "flower_31",
    "type": "visit",
    "t_start": 0.0,
    "t_end": 2.867
   },
   {
    "track_id": "honeybee_1",
-   "flower_id": "stop_1",
+   "flower_id": "flower_23",
    "type": "visit",
    "t_start": 3.033,
    "t_end": 4.167
   },
   {
    "track_id": "honeybee_1",
-   "flower_id": "stop_2",
+   "flower_id": "flower_25",
    "type": "visit",
    "t_start": 6.9,
    "t_end": 8.9
   }
- ]
+ ],
+ "view_id": "hb3"
 }

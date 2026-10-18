@@ -33,6 +33,10 @@ python -m app.render --clip sm3_12_123903 --source tracks
 | `python -m perception.pipeline --video my.mp4 --species honeybee` | any video (first 60 s) -> `tracks/uploads/` | cents |
 
 The stages can also run alone: `perception.cv_track`, `perception.verify`, `perception.visits` (each has `--help`).
+Flower boxes alone: `python -m perception.flowers --sm --eval --overlay` (same detector as the pipeline; add
+`--method middle` for the original single middle-frame call). After changing the flower detector, rerun the
+pipeline, `sim.run_plan --all` and `search.search build`, and commit tracks/, field/, plan/ together so flower ids
+agree across files.
 
 ## 3. Accuracy
 
@@ -60,7 +64,18 @@ python -m forecast.train                             # downloads trajectories (1
 python -m forecast.predict sm3_12_123903 --t 9.0     # path fan, next flower, dwell, rollouts at t = 9 s
 ```
 
-## 6. Tests
+## 6. Pollination deficit map and robot route
+
+```powershell
+python -m sim.run_plan --all                         # field/<clip>.json + plan/<clip>.json + rollouts/<clip>_plan.mp4
+python -m sim.run_plan sm3_12_124130 --budget 60 --target 6
+python -m sim.run_plan --all --source truth          # dataset whole-day maps -> field/truth/, plan/truth/
+```
+
+The field map for a farm clip holds every flower its camera has seen (stable flower ids across clips) and the
+visits counted over all of that camera's clips up to this one.
+
+## 7. Tests
 
 ```powershell
 python -m pytest -q                                  # offline, no API calls

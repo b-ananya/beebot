@@ -123,3 +123,17 @@ def test_path_features_shape_and_candidates():
     rows, idx = candidate_features(np.array([0.0, 0.0]), np.array([1.0, 1.0]), fl, 0, {0: 1})
     assert idx == [0, 1, 2] and rows[0, 5] == 1.0 and rows[1, 1] == 1     # current flag, distance rank
     assert FUT == 20
+
+
+def test_stable_ids_follow_the_flower_across_clips():
+    from perception.visits import stable_ids
+    a = {"clip_id": "sm9_01_000001", "flowers": [{"flower_id": "flower_0", "box": [500, 100, 540, 140], "source": "mk1.5"},
+                                                  {"flower_id": "flower_1", "box": [100, 600, 140, 640], "source": "mk1.5"}],
+         "events": [{"track_id": "insect_1", "flower_id": "flower_1", "type": "visit", "t_start": 0, "t_end": 1}]}
+    b = {"clip_id": "sm9_01_000002", "flowers": [{"flower_id": "flower_0", "box": [102, 601, 141, 642], "source": "mk1.5"}],
+         "events": [{"track_id": "insect_1", "flower_id": "flower_0", "type": "visit", "t_start": 0, "t_end": 1}]}
+    A, B = stable_ids([a, b])
+    lower = next(f["flower_id"] for f in A["flowers"] if f["box"][1] == 600)
+    assert B["flowers"][0]["flower_id"] == lower                      # same physical flower, same id
+    assert A["events"][0]["flower_id"] == lower == B["events"][0]["flower_id"]
+    assert all(f["source"] == "mk1.5" for f in A["flowers"] + B["flowers"])

@@ -1,0 +1,33 @@
+{
+ "field_id": "sm3_12_124027",
+ "planner": "greedy_2opt",
+ "start": [
+  0.0,
+  1000.0
+ ],
+ "budget_s": 30.0,
+ "route": [
+  "flower_11",
+  "flower_12",
+  "flower_13",
+  "flower_8",
+  "flower_4",
+  "flower_3"
+ ],
+ "path_length": 1108.2,
+ "deficit_covered": 0.477,
+ "total_deficit": 44.0,
+ "robot": {
+  "speed": 100.0,
+  "dwell_s": 2.77,
+  "units": "y-norm1000 per s",
+  "time_scale": 1.0
+ },
+ "baselines": {
+  "nearest_all": 0.477,
+  "random": 0.18,
+  "follow_bee": 0.114
+ },
+ "video": "rollouts/sm3_12_124027_plan.mp4",
+ "source": "mk1.5"
+}

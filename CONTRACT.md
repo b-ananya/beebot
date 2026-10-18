@@ -76,6 +76,8 @@ Live queries return the same shape with `"source": "mk1.5-live"`.
 | `state` | `open`, `bud`, `fruit`, `unknown`; only `open` flowers get a deficit |
 | `deficit` | `max(target_visits - visits, 0)`; `target_visits` is a setting, not a biological claim |
 | `station` | farm only: station number 1–9 |
+| `visits_scope` | what the visit counts cover, e.g. 5 clips of camera view sm3_12 (source mk1.5) or a whole station-day (truth) |
+| `clips`, `flowers[].seen_in_clips` | mk1.5 only: clips accumulated into this map, and how many of them detected each flower |
 
 ## plan/<field_id>.json (C → D)
 

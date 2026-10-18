@@ -69,10 +69,10 @@ def test_parse_flowers_is_contract_clean():
 def test_flowers_clip_caches_and_merges_with_track(repo):
     c = FakeClient(repo)
     parts = repo / "tracks" / "parts"
-    part = flowers.flowers_clip("sm1_01_000000", client=c, root=repo, parts_dir=parts)
+    part = flowers.flowers_clip("sm1_01_000000", method="middle", client=c, root=repo, parts_dir=parts)
     assert len(part["flowers"]) == 3 and not part["cache_hit"] and part["complete"]
     assert part["cache_file"].startswith("p2/sm1_01_000000__flowers-v1__")
-    assert flowers.flowers_clip("sm1_01_000000", client=c, root=repo, parts_dir=parts)["cache_hit"]
+    assert flowers.flowers_clip("sm1_01_000000", method="middle", client=c, root=repo, parts_dir=parts)["cache_hit"]
     assert c.requests == 1
 
     # P1's track part and a P2 events part referencing a flower id from this module merge into a valid doc
@@ -114,3 +114,31 @@ def test_match_scores():
 def test_real_prompt_loads():
     text = flowers.load_prompt("v1")
     assert "point_box" in text and "{" not in text
+
+
+class DenseClient(FakeClient):
+    """First tile answer is cut off at the token limit, like the honeybee ground cover."""
+
+    def _request(self, parts, prompt_text, **kw):
+        self.requests += 1
+        return {"text": MARKUP, "finish_reason": "length", "model": "perceptron-mk1.5", "request_id": "req-2",
+                "usage": {"prompt_tokens": 1500, "completion_tokens": 6000}, "raw": None}
+
+
+def test_tiled_is_default_merges_tiles_and_caches(repo):
+    c = FakeClient(repo)
+    parts = repo / "tracks" / "parts"
+    part = flowers.flowers_clip("sm1_01_000000", client=c, root=repo, parts_dir=parts)
+    # 2x2 tiles; the test video is flat gray, so identical tiles are answered from the cache after the first
+    assert part["method"] == "tiled" and not part["dense"] and c.api_calls + c.cache_hits == 4
+    assert (repo / "tracks" / "raw" / "frames" / "reference" / "sm1_01_000000.png").exists()   # median frame
+    # every tile returned the same markup: boxes land in different places of the full frame, none outside 0-1000
+    assert part["flowers"] and all(0 <= v <= 1000 for f in part["flowers"] for v in f["box"])
+    again = flowers.flowers_clip("sm1_01_000000", client=c, root=repo, parts_dir=parts)
+    assert again["cache_hit"] and c.requests == part["api_calls"] and again["flowers"] == part["flowers"]
+
+
+def test_tiled_skips_dense_ground_cover(repo):
+    c = DenseClient(repo)
+    res = flowers.detect_tiled("sm1_01_000000", client=c, root=repo)
+    assert res["dense"] and res["flowers"] == [] and c.requests == 1                  # stops after the first tile

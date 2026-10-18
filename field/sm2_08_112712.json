@@ -1,0 +1,132 @@
+{
+ "field_id": "sm2_08_112712",
+ "source": "mk1.5",
+ "units": "norm1000",
+ "target_visits": 4,
+ "visits_scope": "4 clip(s) of camera view sm2_08 through sm2_08_112712 (24 s observed)",
+ "clips": [
+  "sm2_08_112658",
+  "sm2_08_112704",
+  "sm2_08_112710",
+  "sm2_08_112712"
+ ],
+ "flowers": [
+  {
+   "flower_id": "flower_1",
+   "center": [
+    631.6,
+    296.6
+   ],
+   "radius": 23.9,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 4
+  },
+  {
+   "flower_id": "flower_2",
+   "center": [
+    467.0,
+    363.3
+   ],
+   "radius": 15.6,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 4
+  },
+  {
+   "flower_id": "flower_3",
+   "center": [
+    538.0,
+    445.2
+   ],
+   "radius": 32.4,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 4
+  },
+  {
+   "flower_id": "flower_4",
+   "center": [
+    464.4,
+    537.5
+   ],
+   "radius": 32.5,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 4
+  },
+  {
+   "flower_id": "flower_5",
+   "center": [
+    837.9,
+    589.1
+   ],
+   "radius": 20.9,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 4
+  },
+  {
+   "flower_id": "flower_6",
+   "center": [
+    77.2,
+    652.1
+   ],
+   "radius": 29.2,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 4
+  },
+  {
+   "flower_id": "flower_7",
+   "center": [
+    108.3,
+    701.2
+   ],
+   "radius": 17.4,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 1
+  },
+  {
+   "flower_id": "flower_8",
+   "center": [
+    408.9,
+    717.7
+   ],
+   "radius": 25.5,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 4
+  },
+  {
+   "flower_id": "flower_9",
+   "center": [
+    304.1,
+    768.3
+   ],
+   "radius": 37.1,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 4
+  }
+ ]
+}

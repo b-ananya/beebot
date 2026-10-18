@@ -52,8 +52,9 @@ best-path search (it bridges occlusions of up to 0.5 s). Its top path is the bee
 but it also proposes swaying flowers. `perception/verify.py` therefore asks Mk1.5 to detect insects in a 160 px
 crop every 0.5 s along each path and keeps paths where at least 70% of crops contain one (single crops are weak
 evidence: 93% recall but many false boxes; a path of 10-20 is strong). Species come from dataset metadata or the
-user, because Mk1.5 called every insect a hoverfly at this resolution. `perception/visits.py` has Mk1.5 box flowers
-on the clip's insect-free median frame (skipped for dense ground cover, where stops become the flowers);
+user, because Mk1.5 called every insect a hoverfly at this resolution. Flowers come from the project's one flower
+detector, `perception/flowers.py` (`detect_tiled`: Mk1.5 on the clip's insect-free median frame in 2x2 tiles, dense
+ground cover skipped so stops become the flowers; ids stable per camera view); `perception/visits.py` adds visits:
 a visit is the insect inside a flower box for ≥ 0.3 s (Polytrack's rule).
 
 `tracks/*.json` is written by `perception.pipeline`. The earlier hybrid tracker's tracks (Raika, 2 fps) are kept in

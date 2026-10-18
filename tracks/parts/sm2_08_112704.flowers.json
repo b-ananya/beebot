@@ -1,93 +1,93 @@
 {
  "clip_id": "sm2_08_112704",
  "model": "perceptron-mk1.5",
+ "method": "tiled",
  "prompt_version": "v1",
- "finish_reason": "stop",
+ "dense": false,
  "complete": true,
  "cache_hit": true,
- "cost_usd": 0.0,
- "cache_file": "p2/sm2_08_112704__flowers-v1__24a5775aff.json",
- "parse_errors": [],
+ "api_calls": 0,
+ "cache_hits": 4,
  "flowers": [
   {
    "flower_id": "flower_1",
    "box": [
-    615,
-    274,
-    648,
-    321
+    614.8,
+    273.0,
+    648.4,
+    318.6
    ]
   },
   {
    "flower_id": "flower_2",
    "box": [
-    455,
-    346,
-    479,
-    381
+    456.4,
+    349.8,
+    478.6,
+    378.6
    ]
   },
   {
    "flower_id": "flower_3",
    "box": [
-    520,
-    412,
-    555,
-    476
+    520.2,
+    412.0,
+    556.2,
+    478.6
    ]
   },
   {
    "flower_id": "flower_4",
    "box": [
-    446,
-    506,
-    483,
-    569
+    446.2,
+    504.6,
+    482.8,
+    570.0
    ]
   },
   {
    "flower_id": "flower_5",
    "box": [
-    822,
-    562,
-    851,
-    609
+    825.4,
+    566.2,
+    851.2,
+    610.0
    ]
   },
   {
    "flower_id": "flower_6",
    "box": [
-    66,
-    621,
-    91,
-    679
+    64.8,
+    622.0,
+    90.0,
+    681.4
+   ]
+  },
+  {
+   "flower_id": "flower_7",
+   "box": [
+    96.6,
+    683.8,
+    120.0,
+    718.6
    ]
   },
   {
    "flower_id": "flower_8",
    "box": [
-    97,
-    685,
-    121,
-    717
+    395.4,
+    691.6,
+    421.8,
+    743.2
    ]
   },
   {
    "flower_id": "flower_9",
    "box": [
-    395,
-    694,
-    421,
-    743
-   ]
-  },
-  {
-   "flower_id": "flower_10",
-   "box": [
-    278,
-    733,
-    329,
-    806
+    279.6,
+    731.8,
+    328.2,
+    805.0
    ]
   }
  ],

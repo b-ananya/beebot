@@ -38,3 +38,13 @@ agreement with the motion tracker (which never sees truth): coverage goes from ~
 2-3 units. Confirmed visually: after the shift the bee sits in the truth box, before it the box is on empty leaves
 (`eval/checks/offset_sm3_12_124027.jpg`). One offset per video, the median over its 5 clips, so a single clip can't
 move it. `truth/sm*.json` now carry `time_offset_s`. `sm3_12_123633` still agrees poorly at any shift (worth a look).
+
+## Farm-level data in git (`data/spatial/`, under 1 MB)
+
+Copied from `Insect_Trajectory_Dataset.zip` so B and C can build field maps without the raw download:
+`Flower_Positions_CSV/flowers_<station><day>.csv` (x0, y0, radius in 1920×1080 pixels, `Total_visits`,
+`Total_time` in frames at 30 fps), `flower_summary.csv`, `flower_visits.csv` (timestamped visits),
+`data_point_summary.csv`, `track_summary.csv`, `time_summary.csv`. Same CC BY 4.0 credit as above.
+
+Station positions in the farm are not in the data (only in the paper's Fig. 2b), so any farm-scale
+layout is an approximation and must be labeled as one.

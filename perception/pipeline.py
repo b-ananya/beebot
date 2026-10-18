@@ -81,6 +81,9 @@ def main(argv=None) -> int:
     for cid in clips:
         doc = run(cid, use_api=use_api, workers=args.workers)
         print(f"{cid:16s} {len(doc['tracks'])} insects, {len(doc['flowers'])} flowers, {len(doc['events'])} visits")
+    out_dir = ROOT / "tracks" if use_api else ROOT / "tracks" / "heuristic"
+    per_view = visits.relabel_views(out_dir)
+    print("stable flower ids per camera view: " + ", ".join(f"{v} {n}" for v, n in per_view.items()))
     return 0
 
 

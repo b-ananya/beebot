@@ -1,0 +1,4 @@
+,flower_num,x0,y0,y_adj,radius,species,confidence,Total_time,Total_visits,honeybee_807135005001_time,honeybee_807135005001_visits,honeybee_807152355005_time,honeybee_807152355005_visits,honeybee_807152355006_time,honeybee_807152355006_visits,honeybee_807152327003_time,honeybee_807152327003_visits,honeybee_807152416007_time,honeybee_807152416007_visits
+0,0,233,512,512,30,flower,0.84922147,0.0,0.0,0.0,,0.0,,0.0,,0.0,,0.0,
+1,1,730,683,683,38,flower,0.99415463,0.0,0.0,0.0,,0.0,,0.0,,0.0,,0.0,
+2,2,853,663,663,40,flower,0.9966623,0.0,0.0,0.0,,0.0,,0.0,,0.0,,0.0,
