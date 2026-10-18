@@ -32,7 +32,7 @@ Shareable link to a view: `http://localhost:8501/?source=truth&clip=sm3_12_12390
 | `python -m perception.pipeline --all --no-api` | same without Mk1.5 -> `tracks/heuristic/` | free |
 | `python -m perception.pipeline --video my.mp4 --species honeybee` | any video (first 60 s) -> `tracks/uploads/` | cents |
 
-The stages can also run alone: `perception.cv_track`, `perception.verify`, `perception.flowers` (each has `--help`).
+The stages can also run alone: `perception.cv_track`, `perception.verify`, `perception.visits` (each has `--help`).
 
 ## 3. Accuracy
 

@@ -6,7 +6,7 @@ import numpy as np
 from analytics.metrics import clip_metrics, isotropic
 from eval.run_eval import score_clip
 from forecast.models import FUT, PAST, candidate_features, path_features
-from perception.flowers import label_behavior, stops, visit_events
+from perception.visits import label_behavior, stops, visit_events
 from perception.verify import sample_points, split_by_hits
 from search.search import derived_moments, query, tokens
 

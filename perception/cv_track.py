@@ -9,7 +9,7 @@ the bee into dozens of pieces among hundreds of swaying-flower blobs, so instead
 through all detections at once (dynamic programming over a DAG whose edges may skip up to ``max_skip`` frames, so a
 short occlusion doesn't end the track). Paths are extracted greedily: best path, remove its detections, repeat.
 
-``perception.verify`` then asks Mk1.5 which paths are really insects, and ``perception.flowers`` adds flower boxes
+``perception.verify`` then asks Mk1.5 which paths are really insects, and ``perception.visits`` adds flower boxes
 and visit events. Output follows CONTRACT.md: tracks ``cand_<n>`` with per-track stats under ``"stats"``.
 Coordinates are normalized to 0-1000 like Mk1.5.
 """

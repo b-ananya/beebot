@@ -50,9 +50,11 @@ Why not let Mk1.5 track the whole clip: on `hb1_w00` it returned an evenly space
 (3.9% coverage, `eval/report_mk15_v1.json`); the bee is ~20 px and the clip is ~9k tokens. The cameras are fixed, so
 `perception/cv_track.py` finds moving blobs against the clip's median background and links them with a global
 best-path search (it bridges occlusions of up to 0.5 s). Its top path is the bee in every honeybee clip we checked,
-but it also proposes swaying flowers. `perception/verify.py` therefore asks Mk1.5 about a 160 px crop every 0.5 s
-along each path: is there an insect at the center, what is it, is it on a flower or flying? Paths are cut where
-it says no twice in a row. `perception/flowers.py` has Mk1.5 box flowers on the clip's insect-free median frame;
+but it also proposes swaying flowers. `perception/verify.py` therefore asks Mk1.5 to detect insects in a 160 px
+crop every 0.5 s along each path and keeps paths where at least 70% of crops contain one (single crops are weak
+evidence: 93% recall but many false boxes; a path of 10-20 is strong). Species come from dataset metadata or the
+user, because Mk1.5 called every insect a hoverfly at this resolution. `perception/visits.py` has Mk1.5 box flowers
+on the clip's insect-free median frame (skipped for dense ground cover, where stops become the flowers);
 a visit is the insect inside a flower box for ≥ 0.3 s (Polytrack's rule).
 
 Forecasting (`forecast/`) trains on the 2,335 Polytrack farm trajectories, scored on 11 camera stations held out of

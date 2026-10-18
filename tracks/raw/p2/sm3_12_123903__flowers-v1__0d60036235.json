@@ -1,0 +1,58 @@
+{
+ "request": {
+  "clip_id": "sm3_12_123903",
+  "piece": "p2",
+  "user": "falisha",
+  "created_at": "2026-10-17T22:17:20+00:00",
+  "media": [
+   "d846a7a7c9534267978d04692a268f3240d449b4eb46cf9de0673d5f461c2aab"
+  ],
+  "model": "perceptron-mk1.5",
+  "prompt_name": "flowers",
+  "prompt_version": "v1",
+  "prompt_text": "Find every open flower in this image.\n\nThe image is a single frame from a field camera looking down at plants. Open flowers are small (roughly 30 to 60 pixels across), with white petals around a yellow center. Ignore buds, green or yellow fruit with no white petals, leaves, and insects.\n\nReturn one point_box per open flower with mention=\"flower\", coordinates normalized to 0-1000. Draw each box tightly around the petals. Do not box the same flower twice, and do not guess: if you are not sure something is an open flower, leave it out. Output only the box markup, no explanation.",
+  "annotation_format": "box",
+  "max_tokens": 4096,
+  "reasoning_effort": null,
+  "temperature": null
+ },
+ "response": {
+  "text": "<collection mention=\"flower\">\n <point_box> (492,261) (531,319) </point_box>\n <point_box> (523,279) (563,340) </point_box>\n <point_box> (158,436) (195,504) </point_box>\n <point_box> (827,458) (872,519) </point_box>\n <point_box> (878,486) (909,540) </point_box>\n <point_box> (82,529) (125,598) </point_box>\n <point_box> (867,544) (910,615) </point_box>\n <point_box> (223,860) (254,901) </point_box>\n <point_box> (51,885) (71,921) </point_box>\n <point_box> (107,924) (138,974) </point_box>\n</collection>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 1030,
+   "completion_tokens": 158,
+   "total_tokens": 1188,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "4794eecd78ae1b296492a72acd470b07",
+  "cost_usd": 0.000391
+ },
+ "raw": {
+  "id": "chatcmpl-b2eceba9cac041228489dec1fe59795f",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<collection mention=\"flower\">\n <point_box> (492,261) (531,319) </point_box>\n <point_box> (523,279) (563,340) </point_box>\n <point_box> (158,436) (195,504) </point_box>\n <point_box> (827,458) (872,519) </point_box>\n <point_box> (878,486) (909,540) </point_box>\n <point_box> (82,529) (125,598) </point_box>\n <point_box> (867,544) (910,615) </point_box>\n <point_box> (223,860) (254,901) </point_box>\n <point_box> (51,885) (71,921) </point_box>\n <point_box> (107,924) (138,974) </point_box>\n</collection>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792275439,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 1030,
+   "completion_tokens": 158,
+   "total_tokens": 1188,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

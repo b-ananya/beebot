@@ -16,14 +16,16 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from perception import cv_track, flowers, verify
+from perception import cv_track, verify, visits
 from perception.client import ROOT, PerceptionClient
 
 UPLOADS = ROOT / "clips" / "uploads"
 
 
 def api_ready() -> bool:
-    return bool(os.getenv("PERCEPTRON_API_KEY")) and not bool(int(os.getenv("BEEBOT_OFFLINE", "0")))
+    """Mk1.5 stages run when a key is set. BEEBOT_OFFLINE=1 keeps them on but cache-only (the client raises
+    CacheMiss instead of calling), so a demo replays Mk1.5 results with the network off."""
+    return bool(os.getenv("PERCEPTRON_API_KEY")) or bool(int(os.getenv("BEEBOT_OFFLINE", "0")))
 
 
 def run(clip_id: str, *, use_api: bool, video: Path | None = None, out_dir: Path | None = None,
@@ -34,8 +36,8 @@ def run(clip_id: str, *, use_api: bool, video: Path | None = None, out_dir: Path
     client_v = PerceptionClient(verify.PIECE) if use_api else None
     verify.verify_clip(clip_id, client=client_v, workers=workers, cv_dir=stage / "cv", out_dir=stage / "verified",
                        video=video, species=species)
-    client_f = PerceptionClient(flowers.PIECE) if use_api else None
-    return flowers.finish_clip(clip_id, client=client_f, video=video, in_dir=stage / "verified", out_dir=out_dir)
+    client_f = PerceptionClient(visits.PIECE) if use_api else None
+    return visits.finish_clip(clip_id, client=client_f, video=video, in_dir=stage / "verified", out_dir=out_dir)
 
 
 def analyze_video(path: Path, *, use_api: bool | None = None, species: str = "unknown") -> tuple[str, Path, dict]:

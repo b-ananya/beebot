@@ -1,18 +1,17 @@
-"""Flower boxes (Mk1.5 on an insect-free reference frame) and visit events (insect inside a flower).
+"""P2: flower boxes from one reference frame per clip -> tracks/parts/<clip>.flowers.json.
 
-    python -m perception.flowers --clips sm3_12_123903       # tracks/verified/<clip>.json -> tracks/<clip>.json
-    python -m perception.flowers --all
-    python -m perception.flowers --all --no-api              # stop-based flowers only
+    python -m perception.flowers --clips sm3_12_124130              # one clip
+    python -m perception.flowers --sm --eval --overlay              # the 10 farm clips, scored against truth
+    python -m perception.flowers --sm --merge                       # also tracks/<clip>.json (needs a track part)
 
-Reference frame: the per-pixel median of the clip, so moving insects vanish and flowers stay. Mk1.5 boxes every
-open flower on it (tiled 2x2 with overlap so small flowers are big enough to see; duplicates merged by IoU).
-Dense ground cover is detected from the first tile (cut-off answer or > DENSE_BOXES boxes) and skipped: on the
-honeybee clips 43 of 76 answers hit the 6,000-token limit at ~1,000 blossoms per clip.
+The reference frame is the clip's middle frame (tracks/raw/frames/<clip>_ref.png, committed so the cache key, which
+hashes the PNG bytes, is the same for everyone). Flowers do not move, so one frame per clip is enough and far cheaper
+than sending the video. Reruns are free: the shared client serves repeated requests from tracks/raw/p2/.
 
-Visits follow the Polytrack definition the farm truth uses: the insect's center is inside a flower's box (grown by
-``GROW`` on each side) for at least ``MIN_VISIT_S``; gaps shorter than ``MERGE_GAP_S`` are bridged. In dense ground
-cover (the honeybee clips have hundreds of flowers) a bee that stops for ``MIN_STOP_S`` outside every detected box
-still counts: the stop itself becomes a flower (``"source": "stop"``), so analytics never lose a visit.
+The part file is the shape merge.py expects ({"clip_id", "flowers": [{"flower_id", "box"}]}) plus run metadata,
+like P1's track part. Flower ids are stable per camera view: clips cut from one recording (sm3_12_*, hb1_*) share a
+fixed camera, so the same physical flower gets the same flower_<n> in every clip of that view, numbered top-to-bottom
+then left-to-right. A clip may lack some ids (a flower not detected in that frame).
 """
 from __future__ import annotations
 
@@ -21,231 +20,238 @@ import json
 from pathlib import Path
 
 import cv2
-import numpy as np
 
-from perception.client import ROOT, BudgetExceeded, PerceptionClient
-from perception.track import manifest
+from perception.client import ROOT, PerceptionClient, Response
+from perception.track import PARTS_DIR, clip_path, manifest
 
-IN_DIR = ROOT / "tracks" / "verified"
-OUT_DIR = ROOT / "tracks"
-REF_DIR = ROOT / "tracks" / "raw" / "frames" / "reference"
-PIECE = "flowers"
-PROMPT_VERSION = "v1"
-
-GROW = 0.25          # visit zone = flower box grown by this share of its size on each side
-MIN_VISIT_S = 0.3
-MERGE_GAP_S = 0.5
-MIN_STOP_S = 0.6     # a bee this still for this long is on something
-STOP_SPEED = 25.0    # units (0-1000) per second, smoothed
-STOP_BOX = 30        # side of a stop-flower box in 0-1000 units
-
-DENSE_BOXES = 150    # first tile with more boxes than this (or a cut-off answer) = dense ground cover
-
-PROMPT = ("Your goal is to segment out the following categories: open flower. Box every individual open flower "
-          "head you can see, including small and partly hidden ones. Do not box leaves, buds or fruit.")
+PROMPTS_DIR = ROOT / "prompts" / "flowers"
+PIECE = "p2"
+DUP_IOU = 0.7
+# same flower across clips of one view overlaps at IoU >= 0.7 (median ~0.9); distinct flowers in a clip at <= 0.09
+VIEW_IOU = 0.4
 
 
-def reference_frame(video: Path, clip_id: str, samples: int = 41) -> Path:
-    path = REF_DIR / f"{clip_id}.png"
-    if path.exists():
-        return path
-    cap = cv2.VideoCapture(str(video))
-    n = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    frames = []
-    for i in np.linspace(0, n - 1, min(samples, n)).astype(int):
-        cap.set(cv2.CAP_PROP_POS_FRAMES, int(i))
-        ok, f = cap.read()
-        if ok:
-            frames.append(f)
-    cap.release()
-    ref = np.median(np.stack(frames), axis=0).astype(np.uint8)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    cv2.imwrite(str(path), ref)
-    return path
-
-
-def _tiles(ref: Path, clip_id: str) -> list[tuple[Path, tuple[float, float, float, float]]]:
-    """2x2 overlapping tiles; each with its (x0, y0, w, h) in 0-1000 units of the full frame."""
-    img = cv2.imread(str(ref))
-    H, W = img.shape[:2]
-    tw, th = int(W * 0.6), int(H * 0.6)
-    out = []
-    for i, x0 in enumerate([0, W - tw]):
-        for j, y0 in enumerate([0, H - th]):
-            p = ref.with_name(f"{clip_id}_tile{i}{j}.png")
-            if not p.exists():
-                cv2.imwrite(str(p), img[y0:y0 + th, x0:x0 + tw])
-            out.append((p, (x0 / W * 1000, y0 / H * 1000, tw / W * 1000, th / H * 1000)))
+def reference_frame(clip_id: str, *, root: Path = ROOT, frames_dir: Path | None = None) -> Path:
+    """The clip's middle frame as a PNG, extracted once and reused."""
+    out = (frames_dir or root / "tracks" / "raw" / "frames") / f"{clip_id}_ref.png"
+    if out.exists():
+        return out
+    cap = cv2.VideoCapture(str(clip_path(clip_id, root=root)))
+    try:
+        n = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        cap.set(cv2.CAP_PROP_POS_FRAMES, max(n // 2, 0))
+        ok, frame = cap.read()
+    finally:
+        cap.release()
+    if not ok or frame is None:
+        raise RuntimeError(f"could not read the middle frame of {clip_id}")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    cv2.imwrite(str(out), frame)
     return out
 
 
-def _iou(a, b) -> float:
+def load_prompt(version: str) -> str:
+    return (PROMPTS_DIR / f"{version}.txt").read_text().strip()
+
+
+def detect_flowers(clip_id: str, version: str = "v1", *, client: PerceptionClient | None = None,
+                   max_tokens: int = 4096, root: Path = ROOT, frames_dir: Path | None = None) -> Response:
+    """One Mk1.5 box call on the reference frame; parsing is parse_flowers()."""
+    client = client or PerceptionClient(PIECE)
+    png = reference_frame(clip_id, root=root, frames_dir=frames_dir)
+    return client.call(clip_id=clip_id, prompt_name="flowers", prompt_version=version,
+                       prompt_text=load_prompt(version), image_paths=[png], annotation_format="box",
+                       max_tokens=max_tokens)
+
+
+def iou(a, b) -> float:
     ix = max(0.0, min(a[2], b[2]) - max(a[0], b[0]))
     iy = max(0.0, min(a[3], b[3]) - max(a[1], b[1]))
     inter = ix * iy
-    u = (a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - inter
-    return inter / u if u > 0 else 0.0
+    union = (a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - inter
+    return inter / union if union > 0 else 0.0
 
 
-def detect_flowers(client: PerceptionClient, clip_id: str, video: Path) -> list[dict]:
-    from perceptron import BoundingBox
+def parse_flowers(text: str) -> list[dict]:
+    """The answer's boxes as CONTRACT.md flowers. Malformed, out-of-range, unordered or zero-area boxes are dropped,
+    never fixed up; a box overlapping an earlier one by IoU > 0.7 is a duplicate and dropped."""
+    from perceptron import collect_annotations
 
-    boxes = []
-    for k, (tile, (x0, y0, w, h)) in enumerate(_tiles(reference_frame(video, clip_id), clip_id)):
-        r = client.call(clip_id=clip_id, prompt_name="flowers", prompt_version=PROMPT_VERSION, prompt_text=PROMPT,
-                        image_paths=[tile], annotation_format="box", max_tokens=6000)
-        tile_boxes = r.annotations().boxes
-        if k == 0 and (r.finish_reason == "length" or len(tile_boxes) > DENSE_BOXES):
-            # dense ground cover (the honeybee clips: ~1,000 blossoms, answers cut off at the token limit):
-            # a full inventory is neither complete nor useful, so visits fall back to stop-flowers
-            return []
-        for b in tile_boxes:
-            if not isinstance(b, BoundingBox):
+    kept = []
+    for b in collect_annotations(text or "").boxes:
+        box = [b.top_left.x, b.top_left.y, b.bottom_right.x, b.bottom_right.y]
+        if not all(isinstance(v, (int, float)) and 0 <= v <= 1000 for v in box):
+            continue
+        if box[0] >= box[2] or box[1] >= box[3]:
+            continue
+        if any(iou(box, k) > DUP_IOU for k in kept):
+            continue
+        kept.append(box)
+    kept.sort(key=lambda bx: (bx[1], bx[0]))
+    return [{"flower_id": f"flower_{i}", "box": bx} for i, bx in enumerate(kept, 1)]
+
+
+def flowers_clip(clip_id: str, *, version: str = "v1", client: PerceptionClient | None = None,
+                 max_tokens: int = 4096, root: Path = ROOT, parts_dir: Path | None = None,
+                 frames_dir: Path | None = None) -> dict:
+    client = client or PerceptionClient(PIECE)
+    resp = detect_flowers(clip_id, version, client=client, max_tokens=max_tokens, root=root, frames_dir=frames_dir)
+    part = {"clip_id": clip_id, "model": resp.model or client.model, "prompt_version": version,
+            "finish_reason": resp.finish_reason, "complete": resp.complete, "cache_hit": resp.cache_hit,
+            "cost_usd": resp.cost_usd, "cache_file": str(resp.cache_path.relative_to(client.cache_dir)).replace("\\", "/"),
+            "parse_errors": resp.annotations().errors, "flowers": parse_flowers(resp.text)}
+    parts_dir = parts_dir or PARTS_DIR
+    parts_dir.mkdir(parents=True, exist_ok=True)
+    (parts_dir / f"{clip_id}.flowers.json").write_text(json.dumps(part, indent=1))
+    return label_view(view_id(clip_id), parts_dir)[clip_id]
+
+
+def view_id(clip_id: str) -> str:
+    """The camera recording a clip was cut from: sm3_12_124130 -> sm3_12, hb1_w00 -> hb1."""
+    return clip_id.rsplit("_", 1)[0]
+
+
+def assign_view_ids(parts: list[dict]) -> dict[str, dict]:
+    """Relabel the flowers of one view's parts so a physical flower has one flower_id in every clip.
+
+    Boxes are matched one-to-one per clip against the view's flowers so far (IoU >= VIEW_IOU, best first); an unmatched
+    box is a new flower. Ids follow each flower's mean box, top-to-bottom then left-to-right. Boxes themselves are kept
+    as detected. The result does not depend on the parts' current ids, so relabeling twice changes nothing."""
+    flowers, members = [], []  # per view flower: mean box, number of clips it was seen in
+    seen = []
+    for part in sorted(parts, key=lambda p: p["clip_id"]):
+        boxes = [f["box"] for f in part["flowers"]]
+        pairs = sorted(((iou(b, fl), i, j) for i, b in enumerate(boxes) for j, fl in enumerate(flowers)), reverse=True)
+        which, used = {}, set()
+        for v, i, j in pairs:
+            if v < VIEW_IOU:
+                break
+            if i in which or j in used:
                 continue
-            bx = [x0 + b.top_left.x / 1000 * w, y0 + b.top_left.y / 1000 * h,
-                  x0 + b.bottom_right.x / 1000 * w, y0 + b.bottom_right.y / 1000 * h]
-            if bx[2] - bx[0] < 3 or bx[3] - bx[1] < 3 or (bx[2] - bx[0]) * (bx[3] - bx[1]) > 250 * 250:
-                continue
-            boxes.append([round(min(max(v, 0), 1000), 1) for v in bx])
-    merged: list[list[float]] = []
-    for b in sorted(boxes, key=lambda b: -(b[2] - b[0]) * (b[3] - b[1])):
-        if all(_iou(b, m) < 0.4 for m in merged):
-            merged.append(b)
-    merged.sort(key=lambda b: (b[1], b[0]))
-    return [{"flower_id": f"flower_{i}", "box": b, "source": "mk1.5"} for i, b in enumerate(merged)]
-
-
-def _center(p):
-    return p.get("center") or [(p["box"][0] + p["box"][2]) / 2, (p["box"][1] + p["box"][3]) / 2]
-
-
-def _runs(flags: list[bool], ts: list[float], min_s: float, gap_s: float) -> list[tuple[float, float]]:
-    runs, start, last = [], None, None
-    for f, t in zip(flags, ts):
-        if f:
-            if start is None:
-                start = t
-            elif t - last > gap_s:
-                runs.append((start, last))
-                start = t
-            last = t
-        elif start is not None and t - last > gap_s:
-            runs.append((start, last))
-            start = None
-    if start is not None:
-        runs.append((start, last))
-    return [(a, b) for a, b in runs if b - a >= min_s - 1e-6]
-
-
-def stops(points: list[dict]) -> list[tuple[float, float, list[float]]]:
-    """Stretches where the smoothed speed stays under STOP_SPEED; (t_start, t_end, mean center)."""
-    obs = [p for p in points if not p.get("interpolated")]
-    if len(obs) < 3:
-        return []
-    ts = np.array([p["t"] for p in obs])
-    cs = np.array([_center(p) for p in obs])
-    k = 5
-    sm = np.stack([np.convolve(cs[:, d], np.ones(k) / k, mode="same") for d in range(2)], axis=1)
-    sm[: k // 2], sm[-(k // 2):] = cs[: k // 2], cs[-(k // 2):]
-    sp = np.zeros(len(ts))
-    sp[1:] = np.linalg.norm(np.diff(sm, axis=0), axis=1) / np.maximum(np.diff(ts), 1e-3)
-    out = []
-    for a, b in _runs(list(sp < STOP_SPEED), list(ts), MIN_STOP_S, 0.2):
-        m = (ts >= a) & (ts <= b)
-        out.append((float(a), float(b), cs[m].mean(axis=0).tolist()))
+            which[i] = j
+            used.add(j)
+        for i, b in enumerate(boxes):
+            if i not in which:
+                flowers.append(list(b))
+                members.append(0)
+                which[i] = len(flowers) - 1
+            j, n = which[i], members[which[i]]
+            flowers[j] = [(m * n + v) / (n + 1) for m, v in zip(flowers[j], b)]
+            members[j] = n + 1
+        seen.append((part, which))
+    order = sorted(range(len(flowers)), key=lambda j: (flowers[j][1], flowers[j][0]))
+    rank = {j: k for k, j in enumerate(order, 1)}
+    out = {}
+    for part, which in seen:
+        fl = sorted(({"flower_id": f"flower_{rank[which[i]]}", "box": f["box"]} for i, f in enumerate(part["flowers"])),
+                    key=lambda f: int(f["flower_id"].split("_")[1]))
+        out[part["clip_id"]] = {**part, "view_id": view_id(part["clip_id"]), "flowers": fl}
     return out
 
 
-def visit_events(tracks: list[dict], flowers: list[dict]) -> tuple[list[dict], list[dict]]:
-    """Visit events, plus stop-flowers for stops that are not inside any detected flower."""
-    flowers = list(flowers)
-    events = []
-    n_stop = 0
-    for tr in tracks:
-        obs = [p for p in tr["points"] if not p.get("interpolated")]
-        ts = [p["t"] for p in obs]
-        cs = [_center(p) for p in obs]
-        for st in stops(tr["points"]):
-            a, b, c = st
-            inside = False
-            for f in flowers:
-                x1, y1, x2, y2 = f["box"]
-                gx, gy = (x2 - x1) * GROW, (y2 - y1) * GROW
-                inside |= x1 - gx <= c[0] <= x2 + gx and y1 - gy <= c[1] <= y2 + gy
-            if not inside:
-                h = STOP_BOX / 2
-                flowers.append({"flower_id": f"stop_{n_stop}", "source": "stop",
-                                "box": [round(max(c[0] - h, 0), 1), round(max(c[1] - h, 0), 1),
-                                        round(min(c[0] + h, 1000), 1), round(min(c[1] + h, 1000), 1)]})
-                n_stop += 1
+def label_view(view: str, parts_dir: Path | None = None) -> dict[str, dict]:
+    """Relabel every flowers part of one view on disk with stable ids (free: no API calls)."""
+    parts_dir = parts_dir or PARTS_DIR
+    paths = [p for p in sorted(parts_dir.glob(f"{view}_*.flowers.json")) if view_id(p.name.split(".")[0]) == view]
+    out = assign_view_ids([json.loads(p.read_text()) for p in paths])
+    for clip_id, part in out.items():
+        (parts_dir / f"{clip_id}.flowers.json").write_text(json.dumps(part, indent=1))
+    return out
+
+
+# ------------------------------------------------------------------ validation (A2, step 5)
+def match(pred: list[dict], truth: list[dict], iou_thr: float = 0.3) -> dict:
+    """Greedy one-to-one IoU matching. Truth flower boxes come from the dataset's annotations, so they are
+    approximate; the threshold is looser than the usual 0.5 for that reason."""
+    pairs = sorted(((iou(p["box"], t["box"]), i, j) for i, p in enumerate(pred) for j, t in enumerate(truth)),
+                   reverse=True)
+    used_p, used_t, matched = set(), set(), []
+    for v, i, j in pairs:
+        if v < iou_thr:
+            break
+        if i in used_p or j in used_t:
+            continue
+        used_p.add(i)
+        used_t.add(j)
+        matched.append({"pred": pred[i]["flower_id"], "truth": truth[j]["flower_id"], "iou": round(v, 3)})
+    tp = len(matched)
+    return {"pred": len(pred), "truth": len(truth), "tp": tp,
+            "precision": round(tp / len(pred), 3) if pred else None,
+            "recall": round(tp / len(truth), 3) if truth else None,
+            "mean_iou": round(sum(m["iou"] for m in matched) / tp, 3) if tp else None, "matches": matched}
+
+
+def overlay(clip_id: str, pred: list[dict], truth: list[dict], *, root: Path = ROOT,
+            out_dir: Path | None = None) -> Path:
+    """Reference frame with truth boxes in green and Mk1.5 boxes in magenta."""
+    img = cv2.imread(str(reference_frame(clip_id, root=root)))
+    h, w = img.shape[:2]
+    for flowers, color in ((truth, (0, 200, 0)), (pred, (255, 0, 255))):
         for f in flowers:
-            x1, y1, x2, y2 = f["box"]
-            gx, gy = (x2 - x1) * GROW, (y2 - y1) * GROW
-            flags = [x1 - gx <= c[0] <= x2 + gx and y1 - gy <= c[1] <= y2 + gy for c in cs]
-            for a, b in _runs(flags, ts, MIN_VISIT_S, MERGE_GAP_S):
-                events.append({"track_id": tr["track_id"], "flower_id": f["flower_id"], "type": "visit",
-                               "t_start": round(a, 3), "t_end": round(b, 3)})
-    events.sort(key=lambda e: e["t_start"])
-    return events, flowers
-
-
-FLY_SPEED = 40.0      # units/s; faster than this between observed points = flying
-
-
-def label_behavior(tracks: list[dict], events: list[dict]) -> None:
-    """Per-point label from motion and visits: inside a visit = foraging, fast = flying, otherwise walking.
-    (Mk1.5's own behavior answers on 20 px insects were unreliable, see perception/verify.py.)"""
-    for tr in tracks:
-        vis = [(e["t_start"], e["t_end"]) for e in events if e["track_id"] == tr["track_id"]]
-        pts = tr["points"]
-        for i, p in enumerate(pts):
-            if any(a <= p["t"] <= b for a, b in vis):
-                p["label"] = "foraging"
-                continue
-            j = i + 1 if i + 1 < len(pts) else i - 1
-            if j < 0 or pts[j]["t"] == p["t"]:
-                continue
-            a, b = _center(p), _center(pts[j])
-            speed = ((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2) ** 0.5 / abs(pts[j]["t"] - p["t"])
-            p["label"] = "flying" if speed >= FLY_SPEED else "walking"
-
-
-def finish_clip(clip_id: str, *, client: PerceptionClient | None, video: Path | None = None,
-                in_dir: Path = IN_DIR, out_dir: Path = OUT_DIR) -> dict:
-    doc = json.loads((in_dir / f"{clip_id}.json").read_text())
-    video = video or (ROOT / manifest()[clip_id]["path"])
-    flowers = detect_flowers(client, clip_id, video) if client else []
-    events, flowers = visit_events(doc["tracks"], flowers)
-    label_behavior(doc["tracks"], events)
-    for tr in doc["tracks"]:
-        for k in ("source_track", "confirmed_samples", "kind_votes", "hit_rate"):
-            tr.pop(k, None)
-    out = {"clip_id": clip_id, "model": doc["model"], "prompt_version": doc["prompt_version"],
-           "tracks": doc["tracks"], "flowers": flowers, "events": events}
-    out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / f"{clip_id}.json").write_text(json.dumps(out, indent=1))
+            x1, y1, x2, y2 = (int(round(v / 1000 * s)) for v, s in zip(f["box"], (w, h, w, h)))
+            cv2.rectangle(img, (x1, y1), (x2, y2), color, 2)
+            cv2.putText(img, f["flower_id"].split("_")[-1], (x1, max(y1 - 4, 10)), cv2.FONT_HERSHEY_SIMPLEX, 0.5,
+                        color, 1, cv2.LINE_AA)
+    out = (out_dir or root / "eval" / "checks") / f"{clip_id}_flowers.png"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    cv2.imwrite(str(out), img)
     return out
+
+
+def truth_flowers(clip_id: str, root: Path = ROOT) -> list[dict] | None:
+    path = root / "truth" / f"{clip_id}.json"
+    return json.loads(path.read_text()).get("flowers") if path.exists() else None
 
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--clips", nargs="*", default=[])
-    ap.add_argument("--all", action="store_true")
-    ap.add_argument("--no-api", action="store_true")
-    ap.add_argument("--in", dest="in_dir", default=str(IN_DIR))
-    ap.add_argument("--out", default=str(OUT_DIR))
+    ap.add_argument("--clips", nargs="*", default=[], help="clip ids (default: none)")
+    ap.add_argument("--sm", action="store_true", help="the farm clips (sm*), the ones with truth flowers")
+    ap.add_argument("--all", action="store_true", help="every clip in clips/manifest.json")
+    ap.add_argument("--version", default="v1", help="prompt version: prompts/flowers/<version>.txt")
+    ap.add_argument("--max-tokens", type=int, default=4096)
+    ap.add_argument("--eval", action="store_true", help="score against truth flower boxes (IoU match)")
+    ap.add_argument("--overlay", action="store_true", help="draw eval/checks/<clip>_flowers.png")
+    ap.add_argument("--merge", action="store_true", help="also write tracks/<clip>.json (clips with a track part)")
     args = ap.parse_args(argv)
-    in_dir = Path(args.in_dir)
-    clips = [c for c in manifest() if (in_dir / f"{c}.json").exists()] if args.all else args.clips
-    client = None if args.no_api else PerceptionClient(PIECE)
-    for cid in clips:
-        try:
-            doc = finish_clip(cid, client=client, in_dir=in_dir, out_dir=Path(args.out))
-        except BudgetExceeded as e:
-            print(f"stopping: {e}")
-            break
-        nf = sum(f.get("source") == "mk1.5" for f in doc["flowers"])
-        print(f"{cid:16s} {nf:3d} flowers, {len(doc['flowers']) - nf} stop-flowers, {len(doc['events'])} visits")
+
+    ids = list(manifest())
+    clips = ids if args.all else [c for c in ids if c.startswith("sm")] if args.sm else args.clips
+    if not clips:
+        ap.error("give --clips ..., --sm or --all")
+    client = PerceptionClient(PIECE)
+    print(f"model {client.model} | user {client.user} | spent ${client.spent_usd():.3f} of ${client.cost_cap_usd:.0f}")
+    runs = {c: flowers_clip(c, version=args.version, client=client, max_tokens=args.max_tokens) for c in clips}
+    total, scores = 0.0, []
+    for clip_id in clips:
+        # ids are final only once every clip of the view is labeled, so read the part back
+        part = json.loads((PARTS_DIR / f"{clip_id}.flowers.json").read_text())
+        total += runs[clip_id]["cost_usd"]
+        flag = "cache" if part["cache_hit"] else f"${part['cost_usd']:.4f}"
+        state = "" if part["complete"] else f"  INCOMPLETE ({part['finish_reason']})"
+        line = f"{clip_id:16s} {len(part['flowers']):3d} flowers  {flag:>8s}{state}"
+        truth = truth_flowers(clip_id)
+        if args.eval and truth is not None:
+            s = match(part["flowers"], truth)
+            scores.append(s)
+            line += f"  P={s['precision']} R={s['recall']} mIoU={s['mean_iou']} ({s['tp']}/{s['truth']} truth)"
+        if args.overlay:
+            overlay(clip_id, part["flowers"], truth or [])
+        print(line)
+    print(f"{client.api_calls} API calls, {client.cache_hits} cache hits, ${total:.4f} this run, "
+          f"${client.spent_usd():.3f} total on {client.cost_log.name}")
+    if scores:
+        tp, n_pred, n_truth = (sum(s[k] for s in scores) for k in ("tp", "pred", "truth"))
+        ious = [m["iou"] for s in scores for m in s["matches"]]
+        print(f"overall: precision {tp / n_pred if n_pred else 0:.3f}, recall {tp / n_truth if n_truth else 0:.3f}, "
+              f"mean IoU {sum(ious) / len(ious) if ious else 0:.3f} over {len(scores)} clips")
+    if args.merge:
+        from perception.merge import merge_clip
+
+        merged = [c for c in clips if (PARTS_DIR / f"{c}.track.json").exists()]
+        for clip_id in merged:
+            merge_clip(clip_id)
+        print(f"merged {len(merged)} clips into tracks/ ({len(clips) - len(merged)} have no track part yet)")
     return 0
 
 
