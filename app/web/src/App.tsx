@@ -8,6 +8,7 @@ import { type Moment } from './search'
 import { MomentSearch } from './search-ui'
 import { trackUrl, type ClipTrack, type ManifestEntry, type PanelProps, type Source, type TrackDoc, type VisitEvent } from './types'
 import { UploadButton } from './upload'
+import logo from './pollensight-logo.png'
 
 const DEFAULT_CLIP = 'hb6_w00'
 const TOP_H = 28
@@ -1066,7 +1067,7 @@ export function App() {
   return (
     <div className="shell" ref={shellRef}>
       <header className="topbar">
-        <span className="brand">BeeBot</span>
+        <img className="brand" src={logo} alt="Pollensight" />
         <select
           className="clip-select"
           aria-label="Source"

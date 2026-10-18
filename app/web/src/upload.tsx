@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { TrackDoc } from './types'
+import uploadSign from './upload-sign.png'
 
 const SPECIES = ['unknown', 'honeybee', 'vespidae', 'syrphidae', 'lepidoptera'] as const
 const PANEL_W = 320
@@ -181,6 +182,7 @@ export function UploadButton() {
         aria-controls="upload-panel"
         onClick={() => setOpen((on) => !on)}
       >
+        <img className="up-mark" src={uploadSign} alt="" />
         Upload
       </button>
       {open && (
@@ -318,6 +320,17 @@ const CSS = `
 .up-anchor {
   display: flex;
   align-items: center;
+}
+.up-anchor > .toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.up-mark {
+  width: 12px;
+  height: 12px;
+  display: block;
+  filter: invert(1) brightness(0.83);
 }
 .up-pop {
   position: fixed;
