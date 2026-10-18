@@ -23,6 +23,8 @@ pip install -r requirements.txt
 cp .env.example .env              # add PERCEPTRON_API_KEY
 ```
 
+To run the panel UI, follow [app/web/SETUP.md](app/web/SETUP.md) (Node, `npm install`, `npm run dev`).
+
 ## Get the data (2 minutes, no Monash download)
 
 ```bash

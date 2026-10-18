@@ -17,28 +17,7 @@ running anything twice costs nothing the second time. `costs/<you>.csv` logs eve
 
 The Streamlit app has been removed. The replacement is the panel UI in `app/web` (Blender-style shell: video in the center, lists and properties on the sides, timeline along the bottom).
 
-Needs Node 20+ (`winget install OpenJS.NodeJS.LTS` / `brew install node`). Once:
-
-```powershell
-cd app\web
-npm install
-```
-
-Then, every time:
-
-```powershell
-cd app\web
-npm run dev          # http://localhost:5173 ; npm run build type-checks and bundles
-```
-
-The dev server serves `clips/`, `tracks/`, `field/`, `plan/`, `eval/`, `forecast/` and `rollouts/` straight from the repo,
-and runs Python for Forecast, Upload and Live search. It uses, in order: `BEEBOT_PYTHON` (environment or `.env`), the
-repo's `.venv` (`bin/python` or `Scripts\python.exe`), then `python` on Windows / `python3` elsewhere. With the
-environment outside the repo, add to `.env`:
-
-```
-BEEBOT_PYTHON=C:\Users\<you>\.venvs\beebot\Scripts\python.exe
-```
+Setup and start: [app/web/SETUP.md](app/web/SETUP.md) (Node, `npm install`, `npm run dev`, then http://localhost:5173). With the Python environment outside the repo, set `BEEBOT_PYTHON` in `.env`.
 
 Overlays can still be burned into an mp4 without a UI:
 
