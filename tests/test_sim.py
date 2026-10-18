@@ -89,10 +89,53 @@ def test_rollout_json_is_valid(tmp_path):
     ts = [w["t"] for w in way]
     assert ts == sorted(ts) and ts[0] == 0.0 and ts[-1] == pytest.approx(15.0)
     assert all(0 <= w["x"] <= 1000 and 0 <= w["y"] <= 1000 for w in way)
-    ids = {f["flower_id"] for f in flowers_from_truth("sm3_12_123903")}
+    flowers, source = ro.load_flowers("sm3_12_123903")
+    assert d["flowers_from"] == source in ("truth", "mk1.5")
+    ids = {f["flower_id"] for f in flowers}
     assert all(w["flower_id"] is None or w["flower_id"] in ids for w in way)
     assert d["n_visits"] == len(d["visits"]) >= 1
     assert all(v["flower_id"] in ids and 0 < v["t"] <= 15 for v in d["visits"])
     # every visit is marked on a waypoint at that time
     marked = {w["flower_id"] for w in way if w["flower_id"]}
     assert {v["flower_id"] for v in d["visits"]} <= marked
+
+
+# ---------------------------------------------------------------- sim.predict (image -> path), no API, no video
+def _fake_detector(flowers):
+    return lambda path: (flowers, {"source": "fake", "cost_usd": 0.0, "cache_hit": True})
+
+
+def test_predict_writes_json_and_png(tmp_path):
+    import cv2
+    from sim import predict as pr
+
+    img = tmp_path / "my photo.jpg"
+    cv2.imwrite(str(img), np.full((300, 400, 3), 90, dtype=np.uint8))
+    r = pr.predict(img, policy="baseline", budget_s=20, write_video_file=False, out_dir=tmp_path,
+                   detector=_fake_detector(FLOWERS))
+    d = json.loads((tmp_path / "my_photo_rl.json").read_text())
+    assert d == r and d["width"] == 400 and d["height"] == 300 and d["video"] is None
+    assert (tmp_path / "my_photo_rl.png").exists()
+    assert d["n_open"] == 2 and d["n_visits"] == 2  # the bud is drawn but never visited
+    for v in d["visits"]:
+        assert v["dwell_s"] == pytest.approx(d["dwell_s"], abs=0.05)
+        assert v["t_arrive"] < v["t_leave"] <= 20
+    assert [v["order"] for v in d["visits"]] == [1, 2]
+    ids = {f["flower_id"] for f in FLOWERS}
+    assert all(w["flower_id"] is None or w["flower_id"] in ids for w in d["waypoints"])
+
+
+def test_visit_table_uses_last_arrival():
+    from sim.predict import visit_table
+
+    way = [{"t": 0.0, "flower_id": None}, {"t": 0.1, "flower_id": "flower_0"}, {"t": 0.2, "flower_id": None},
+           {"t": 0.3, "flower_id": "flower_0"}, {"t": 0.4, "flower_id": "flower_0"}]
+    rows = visit_table(way, [{"flower_id": "flower_0", "t": 0.4}], dt=0.1)
+    assert rows == [{"order": 1, "flower_id": "flower_0", "t_arrive": 0.3, "t_leave": 0.4, "dwell_s": 0.2}]
+
+
+def test_sane_boxes_drops_slivers():
+    from sim.predict import sane_boxes
+
+    kept, dropped = sane_boxes([{"flower_id": "a", "box": [0, 0, 9, 1]}, {"flower_id": "b", "box": [10, 10, 40, 40]}])
+    assert [f["flower_id"] for f in kept] == ["b"] and dropped == 1

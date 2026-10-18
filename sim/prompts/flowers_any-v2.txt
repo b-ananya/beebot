@@ -1,0 +1,5 @@
+Find the open flowers in this image.
+
+The image is a photo of plants with flowers, taken from any angle. An open flower shows its petals spread out; it may be any colour. Ignore buds that have not opened, fruit, leaves, stems, and insects.
+
+Return one point_box per open flower with mention="flower", coordinates normalized to 0-1000, each box drawn tightly around the petals. If there are more than 40 open flowers, return only the 40 largest and clearest ones, spread across the whole image. Never return more than 40 boxes. Do not box the same flower twice, and do not guess: if you are not sure something is an open flower, leave it out. Output only the box markup, no explanation.

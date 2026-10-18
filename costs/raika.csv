@@ -7723,3 +7723,8 @@ time,user,piece,clip_id,prompt,version,model,prompt_tokens,cached_tokens,complet
 2026-10-17T23:51:58+00:00,raika,p1,hb7_w02,verify192,f3,perceptron-mk1.5,227,,5,4.2e-05,stop,5778e343af3330bd32c1ecc73259b183,p1/hb7_w02__verify192-f3__cf2cc5cdda.json
 2026-10-17T23:51:58+00:00,raika,p1,hb7_w02,verify192,f3,perceptron-mk1.5,227,,5,4.2e-05,stop,c4dca4803246b30339cad7f8a289ecc7,p1/hb7_w02__verify192-f3__4895d54f8f.json
 2026-10-17T23:51:58+00:00,raika,p1,hb7_w02,verify192,f3,perceptron-mk1.5,227,,19,6.3e-05,stop,cc9cd03d0564f2e4c381e144a1298f8a,p1/hb7_w02__verify192-f3__ef93b68fc9.json
+2026-10-18T00:10:50+00:00,raika,p2,scaevola_patch,flowers-any,v1,perceptron-mk1.5,1019,,4096,0.006297,length,b1f974efffe18ed3748682c8691f70c4,p2/scaevola_patch__flowers-any-v1__538a40a357.json
+2026-10-18T00:12:15+00:00,raika,p2,scaevola_patch,flowers-any,v2,perceptron-mk1.5,1057,,4096,0.006303,length,d4a8e8c19c73a43078bc061fb1bcdd56,p2/scaevola_patch__flowers-any-v2__a349231f2b.json
+2026-10-18T00:13:26+00:00,raika,p2,scaevola_patch,flowers-points,v1,perceptron-mk1.5,1026,,428,0.000796,stop,d0e1732dcd5575ee05980a0e01044f76,p2/scaevola_patch__flowers-points-v1__bda7c59a04.json
+2026-10-18T00:13:57+00:00,raika,p2,scaevola_crop,flowers-any,v2,perceptron-mk1.5,285,,4096,0.006187,length,5a98ed7233b38d563eec99e6d4b0f22b,p2/scaevola_crop__flowers-any-v2__85a59af533.json
+2026-10-18T00:14:04+00:00,raika,p2,scaevola_crop,flowers-points,v1,perceptron-mk1.5,254,,2048,0.00311,length,34813ffa1d157161cf05ef296bb72615,p2/scaevola_crop__flowers-points-v1__3a88dfb243.json

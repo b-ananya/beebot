@@ -72,39 +72,52 @@ def run_episode(env, actor):
     return way, visits
 
 
+class Overlay:
+    """Draws the agent path onto RGB frames of one size; shared by the clip and still-image renderers."""
+
+    def __init__(self, way, flowers, visits, width, height, label="RL bee"):
+        self.ts = np.array([w["t"] for w in way])
+        self.xs = np.array([w["x"] for w in way]) * width / 1000.0
+        self.ys = np.array([w["y"] for w in way]) * height / 1000.0
+        self.flowers, self.visits, self.label = flowers, visits, label
+        self.visited_at = {v["flower_id"]: v["t"] for v in visits}
+        self.sx, self.sy = width / 1000.0, height / 1000.0
+        self.t_end = float(self.ts[-1])
+
+    def draw(self, frame, t):
+        import cv2
+
+        frame = np.ascontiguousarray(frame[:, :, :3])
+        for f in self.flowers:
+            x1, y1, x2, y2 = f["box"]
+            done = f["flower_id"] in self.visited_at and self.visited_at[f["flower_id"]] <= t
+            cv2.rectangle(frame, (int(x1 * self.sx), int(y1 * self.sy)), (int(x2 * self.sx), int(y2 * self.sy)),
+                          GREEN if done else WHITE, 3 if done else 1)
+        k = int(np.searchsorted(self.ts, t, side="right"))
+        if k >= 2:
+            pts = np.stack([self.xs[:k], self.ys[:k]], axis=1).astype(np.int32)
+            cv2.polylines(frame, [pts], False, ORANGE, 2, cv2.LINE_AA)
+        x = float(np.interp(t, self.ts, self.xs))
+        y = float(np.interp(t, self.ts, self.ys))
+        cv2.circle(frame, (int(x), int(y)), 9, ORANGE, -1, cv2.LINE_AA)
+        cv2.circle(frame, (int(x), int(y)), 9, (40, 40, 40), 1, cv2.LINE_AA)
+        cv2.putText(frame, f"{self.label}  t={t:4.1f}s  visits={sum(1 for v in self.visits if v['t'] <= t)}",
+                    (12, 28), cv2.FONT_HERSHEY_SIMPLEX, 0.7, ORANGE, 2, cv2.LINE_AA)
+        return frame
+
+
 def render(video_path, out_path, way, flowers, visits, fps, width, height):
-    import cv2
     import imageio.v2 as imageio
 
+    ov = Overlay(way, flowers, visits, width, height)
     reader = imageio.get_reader(str(video_path))
     writer = imageio.get_writer(str(out_path), fps=fps, codec="libx264", quality=7, macro_block_size=1)
-    ts = np.array([w["t"] for w in way])
-    xs = np.array([w["x"] for w in way]) * width / 1000.0
-    ys = np.array([w["y"] for w in way]) * height / 1000.0
-    visited_at = {v["flower_id"]: v["t"] for v in visits}
-    sx, sy = width / 1000.0, height / 1000.0
     n = 0
     for i, frame in enumerate(reader):
         t = i / fps
-        if t > ts[-1] + 1.0 / fps:
+        if t > ov.t_end + 1.0 / fps:
             break
-        frame = np.ascontiguousarray(frame[:, :, :3])
-        for f in flowers:
-            x1, y1, x2, y2 = f["box"]
-            done = f["flower_id"] in visited_at and visited_at[f["flower_id"]] <= t
-            cv2.rectangle(frame, (int(x1 * sx), int(y1 * sy)), (int(x2 * sx), int(y2 * sy)),
-                          GREEN if done else WHITE, 3 if done else 1)
-        k = int(np.searchsorted(ts, t, side="right"))
-        if k >= 2:
-            pts = np.stack([xs[:k], ys[:k]], axis=1).astype(np.int32)
-            cv2.polylines(frame, [pts], False, ORANGE, 2, cv2.LINE_AA)
-        x = float(np.interp(t, ts, xs))
-        y = float(np.interp(t, ts, ys))
-        cv2.circle(frame, (int(x), int(y)), 9, ORANGE, -1, cv2.LINE_AA)
-        cv2.circle(frame, (int(x), int(y)), 9, (40, 40, 40), 1, cv2.LINE_AA)
-        cv2.putText(frame, f"RL bee  t={t:4.1f}s  visits={sum(1 for v in visits if v['t'] <= t)}",
-                    (12, 28), cv2.FONT_HERSHEY_SIMPLEX, 0.7, ORANGE, 2, cv2.LINE_AA)
-        writer.append_data(frame)
+        writer.append_data(ov.draw(frame, t))
         n += 1
     writer.close()
     reader.close()

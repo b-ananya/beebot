@@ -16,3 +16,5 @@ tracks/raw/frames/*
 app/cache/
 .pytest_cache/
 eval/*.png
+
+rollouts/*.png

@@ -1,0 +1,61 @@
+{
+ "request": {
+  "clip_id": "scaevola_patch",
+  "piece": "p2",
+  "user": "raika",
+  "created_at": "2026-10-18T00:13:26+00:00",
+  "model": "perceptron-mk1.5",
+  "prompt_name": "flowers-points",
+  "prompt_version": "v1",
+  "prompt_text": "Mark the open flowers in this image.\n\nThe image is a photo of plants with flowers, taken from any angle. An open flower shows its petals spread out; it may be any colour. Ignore buds that have not opened, fruit, leaves, stems, and insects.\n\nReturn one point per open flower with mention=\"flower\", at the flower's centre, coordinates normalized to 0-1000. If there are more than 40 open flowers, return only the 40 largest and clearest ones, spread across the whole image. Never return more than 40 points. Output only the point markup, no explanation.",
+  "annotation_format": "point",
+  "max_tokens": 2048,
+  "reasoning_effort": null,
+  "temperature": null,
+  "media": [
+   "scaevola_patch.jpg"
+  ],
+  "media_sha256": [
+   "41e8dba1f5d66ab5f16abd4538889fcf7a5261fa8d305184d821b046a72551f1"
+  ]
+ },
+ "response": {
+  "text": "<collection mention=\"flower\">\n <point> (314,5) </point>\n <point> (488,8) </point>\n <point> (658,10) </point>\n <point> (355,12) </point>\n <point> (624,28) </point>\n <point> (34,35) </point>\n <point> (934,48) </point>\n <point> (492,52) </point>\n <point> (853,55) </point>\n <point> (86,65) </point>\n <point> (325,75) </point>\n <point> (602,79) </point>\n <point> (388,84) </point>\n <point> (736,94) </point>\n <point> (122,96) </point>\n <point> (338,115) </point>\n <point> (541,118) </point>\n <point> (838,121) </point>\n <point> (750,123) </point>\n <point> (108,128) </point>\n <point> (386,138) </point>\n <point> (244,151) </point>\n <point> (892,151) </point>\n <point> (357,156) </point>\n <point> (638,158) </point>\n <point> (945,168) </point>\n <point> (223,188) </point>\n <point> (544,189) </point>\n <point> (444,194) </point>\n <point> (81,206) </point>\n <point> (120,216) </point>\n <point> (894,276) </point>\n <point> (214,279) </point>\n <point> (141,296) </point>\n <point> (911,298) </point>\n <point> (238,300) </point>\n <point> (705,303) </point>\n <point> (802,304) </point>\n <point> (855,317) </point>\n <point> (389,321) </point>\n <point> (948,340) </point>\n</collection>",
+  "finish_reason": "stop",
+  "usage": {
+   "prompt_tokens": 1026,
+   "completion_tokens": 428,
+   "total_tokens": 1454,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  },
+  "model": "perceptron-mk1.5",
+  "request_id": "d0e1732dcd5575ee05980a0e01044f76",
+  "cost_usd": 0.000796
+ },
+ "raw": {
+  "id": "chatcmpl-0e5761e419eb4a67af057096d3927f40",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "content": "<collection mention=\"flower\">\n <point> (314,5) </point>\n <point> (488,8) </point>\n <point> (658,10) </point>\n <point> (355,12) </point>\n <point> (624,28) </point>\n <point> (34,35) </point>\n <point> (934,48) </point>\n <point> (492,52) </point>\n <point> (853,55) </point>\n <point> (86,65) </point>\n <point> (325,75) </point>\n <point> (602,79) </point>\n <point> (388,84) </point>\n <point> (736,94) </point>\n <point> (122,96) </point>\n <point> (338,115) </point>\n <point> (541,118) </point>\n <point> (838,121) </point>\n <point> (750,123) </point>\n <point> (108,128) </point>\n <point> (386,138) </point>\n <point> (244,151) </point>\n <point> (892,151) </point>\n <point> (357,156) </point>\n <point> (638,158) </point>\n <point> (945,168) </point>\n <point> (223,188) </point>\n <point> (544,189) </point>\n <point> (444,194) </point>\n <point> (81,206) </point>\n <point> (120,216) </point>\n <point> (894,276) </point>\n <point> (214,279) </point>\n <point> (141,296) </point>\n <point> (911,298) </point>\n <point> (238,300) </point>\n <point> (705,303) </point>\n <point> (802,304) </point>\n <point> (855,317) </point>\n <point> (389,321) </point>\n <point> (948,340) </point>\n</collection>",
+     "role": "assistant"
+    },
+    "finish_reason": "stop"
+   }
+  ],
+  "created": 1792282403,
+  "model": "perceptron-mk1.5",
+  "object": "chat.completion",
+  "usage": {
+   "prompt_tokens": 1026,
+   "completion_tokens": 428,
+   "total_tokens": 1454,
+   "prompt_tokens_details": {
+    "audio_tokens": 0
+   }
+  }
+ }
+}

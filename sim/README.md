@@ -8,6 +8,7 @@ flower-only clip. Everything here lives under `sim/` and `rollouts/`.
 python -m sim.bee_stats                 # measure speed / dwell from truth/sm*.json -> sim/bee_stats.json
 python -m sim.train                     # ~5 min CPU PPO -> sim/policy.zip, sim/eval.json
 python -m sim.rollout sm3_12_123903     # -> rollouts/sm3_12_123903_rl.mp4 + .json
+python -m sim.predict photo.jpg         # any picture -> Mk1.5 flowers -> path over the still (png, mp4, json)
 python -m pytest tests/test_sim.py
 ```
 
@@ -68,6 +69,31 @@ it is a training-budget gap, not a modelling one. The RL framing earns its keep 
 gets things a greedy rule cannot handle: flower deficits as reward weights, several bees or
 robots sharing a field, flowers that close, or motion costs that are not straight lines.
 
+## Any picture: `python -m sim.predict photo.jpg`
+
+The upload path. One image goes to Mk1.5 for flower boxes through the shared `perception.client`
+(cached by image bytes, so a repeat is free; logged in `costs/`, about $0.006 a picture), the policy
+flies the field for `--budget` seconds (default 30), and three files land in `rollouts/`:
+
+- `<name>_rl.png`: the whole path, each visited flower numbered in visit order with its arrival
+  time and how long the bee waits there (`+3.3s`, the median farm dwell).
+- `<name>_rl.mp4`: the orange dot animated over the still image.
+- `<name>_rl.json`: the flowers, `detection` (source, cost, warnings), `visits` with
+  `t_arrive`, `t_leave`, `dwell_s`, and the full `waypoints` list. This is the hand-off for a
+  MuJoCo bee: follow the waypoints, pause at each visit.
+
+Farm reference frames (`tracks/raw/frames/<clip>_ref.png`) reuse the team's cached detection in
+`tracks/parts/` and cost nothing. `--prompt strawberry` uses the farm camera prompt; the default
+`any` prompt accepts any colour of flower. `--start x,y` moves the entry point (default
+bottom-right).
+
+**Known limit: very dense fields.** On the Monash Scaevola ground cover (hundreds of flowers in
+frame) Mk1.5 collapses: it emits sliver boxes along the top edge until it runs out of tokens, and
+a point-only retry with a 40-flower cap still clusters in the top band. `predict` drops sliver
+boxes, falls back to points with the median flower radius, and sets `detection.warning` when the
+answer was cut off, so the JSON says when the path is built on a bad flower list. Tiling the image
+into quarters would be the next thing to try. The farm frames (6�10 flowers) detect fine.
+
 ## Files
 
 | Path | What |
@@ -76,8 +102,8 @@ robots sharing a field, flowers that close, or motion costs that are not straigh
 | `sim/field_env.py` | `FieldEnv` (Gymnasium), `random_layout`, `nearest_unvisited_action` baseline |
 | `sim/train.py` → `sim/policy.zip`, `sim/eval.json` | PPO training and the per-layout comparison |
 | `sim/rollout.py` → `rollouts/<clip>_rl.mp4`, `rollouts/<clip>_rl.json` | render + waypoints `[{t, x, y, flower_id}]` |
-| `tests/test_sim.py` | env reset/step, reward fires on a visit, rollout JSON shape |
+| `tests/test_sim.py` | env reset/step, reward fires on a visit, rollout and predict JSON shape (no API, no video) |
 
-`rollouts/*.mp4` is gitignored; the JSON is committed. The rollout starts the dot where the
+`rollouts/*.mp4` and `*.png` are gitignored; the JSON is committed. The rollout starts the dot where the
 real bee entered the frame (first truth point) so the overlay is comparable with the truth
 track; without a track it starts at the bottom-right corner.
