@@ -74,7 +74,9 @@ button {
 }
 
 .brand {
-  font-weight: 600;
+  display: block;
+  height: 22px;
+  width: auto;
 }
 
 .clip-select {
