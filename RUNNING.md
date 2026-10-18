@@ -13,15 +13,15 @@ On another machine: `python -m venv .venv`, activate it, `pip install -r require
 The API key goes in `.env` as `PERCEPTRON_API_KEY=...`. Every Mk1.5 answer is cached under `tracks/raw/`, so
 running anything twice costs nothing the second time. `costs/<you>.csv` logs every paid call; calls stop at $40.
 
-## 1. The app (start here)
+## 1. The UI
+
+The Streamlit app has been removed. The replacement is the panel UI in `app/web` (Blender-style shell: video in the center, lists and properties on the sides, timeline along the bottom).
+
+Overlays can still be burned into an mp4 without a UI:
 
 ```powershell
-streamlit run app/app.py
+python -m app.render --clip sm3_12_123903 --source tracks
 ```
-
-Opens http://localhost:8501. Sidebar: pick the data source (Mk1.5 pipeline, motion-only, reference tracker, mock)
-and a clip. Tabs: video + search, analytics, forecast, dataset & accuracy, analyze your own video.
-Shareable link to a view: `http://localhost:8501/?source=truth&clip=sm3_12_123903`.
 
 ## 2. The pipeline (video -> tracks, flowers, visits)
 
