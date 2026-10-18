@@ -28,54 +28,75 @@ flowers that were missed.
 flowchart TB
   subgraph IN["Inputs"]
     direction LR
-    V["Field video<br/>fixed camera"]
-    PT[("2,335 recorded<br/>insect flights")]
+    V["Field video · mp4<br/>fixed camera, 720p 30 fps"]
+    PT[("2,335 insect flights<br/>Polytrack CSVs (figshare)")]
     REF[("Reference tracks<br/>HyDaT / Polytrack")]
   end
 
-  subgraph P["1 · Perception — perception/"]
+  subgraph P["1 · Perception — Python · OpenCV · NumPy"]
     direction LR
-    CV["cv_track<br/>motion vs median background,<br/>global best-path linking"] --> VER["verify<br/>Mk1.5 checks a crop<br/>every 0.5 s per path"] --> VIS["visits<br/>visit events,<br/>behavior labels"]
-    FL["flowers<br/>Mk1.5 boxes on median frame,<br/>stable ids per camera"] --> VIS
-    MK{{"Perceptron Mk1.5<br/>cached client · cost cap"}}
-    VER -.-> MK
-    FL -.-> MK
+    CV["cv_track<br/>OpenCV median background,<br/>connected components,<br/>NumPy best-path DP"] --> VER["verify<br/>160 px crops every 0.5 s,<br/>Mk1.5 box detection,<br/>path kept if ≥ 70% hits"] --> VIS["visits<br/>visit events, stop-flowers,<br/>stable flower ids"]
+    FL["flowers<br/>median frame in 2×2 tiles,<br/>Mk1.5 box detection"] --> VIS
   end
 
-  subgraph O["2 · Contract files — CONTRACT.md, checked by validate.py"]
+  subgraph MKG["Perceptron API — perceptron SDK 0.4"]
     direction LR
-    TR["tracks/*.json"]
-    FI["field/*.json"]
-    PL["plan/*.json"]
-    IDX["search/index.json"]
+    MK{{"Mk1.5 · chat.completions<br/>vision_config: box · point · clip<br/>JSON-schema output · Files API"}}
+    CACHE[("tracks/raw/ cache<br/>sha256 key · costs/*.csv<br/>$40 cap · offline replay")]
+    MK --- CACHE
   end
 
-  subgraph I["3 · Intelligence"]
+  subgraph O["2 · Contract files — JSON, CONTRACT.md, validate.py"]
     direction LR
-    AN["analytics"]
-    FC["forecast"]
-    PLN["route planner"]
-    SIM["RL bee · MuJoCo tab<br/>(prototype / in progress)"]
-    EV["eval + audits"]
+    TR["tracks/*.json<br/>insects · flowers · visits"]
+    FI["field/*.json<br/>deficit per flower"]
+    PL["plan/*.json<br/>robot route"]
+    IDX["search/index.json<br/>moments"]
+    TR ~~~ FI ~~~ PL ~~~ IDX
   end
 
-  subgraph A["4 · Web app — app/web"]
+  subgraph I["3 · Intelligence — Python"]
     direction LR
-    UI["React tabs<br/>Video · Analytics · Forecast · Field<br/>Dataset · Upload · Search"]
-    API["dev-server API<br/>forecast · upload · live search"]
+    AN["analytics<br/>NumPy: dwell, transit,<br/>speed, turns"]
+    FC["forecast · scikit-learn<br/>kNN path fan, gradient-boosted<br/>next flower, Monte Carlo rollouts"]
+    PLN["route planner<br/>greedy + 2-opt<br/>orienteering"]
+    SIM["simulation<br/>Gymnasium + SB3 PPO bee;<br/>MuJoCo tab (in progress)"]
+    EV["eval<br/>coverage, error, visits,<br/>flower audits"]
+    AN ~~~ FC ~~~ PLN ~~~ SIM ~~~ EV
+  end
+
+  subgraph A["4 · Web app — React 19 · TypeScript · Vite 8 · Node 20+"]
+    direction LR
+    UI["React tabs, Canvas 2D + SVG overlays<br/>Video · Analytics · Forecast · Field<br/>Dataset · Upload · Search"]
+    UI ~~~ API
+    API["Vite middleware<br/>serves repo folders (HTTP range video)<br/>POST /api/forecast · /api/analyze · /api/search/live<br/>→ runs the Python forecast / pipeline"]
   end
 
   V --> P
+  P <-. "crops + frames / boxes" .-> MKG
   P --> O
   O --> I
-  PT --> FC
-  REF --> EV
-  I --> A
+  PT --> I
+  REF --> I
   O --> A
+  I --> A
 ```
 
 Each stage reads and writes small JSON files with a fixed format ([CONTRACT.md](CONTRACT.md)). Every Mk1.5 answer
 is cached in `tracks/raw/`, so everything replays offline at no cost.
+
+## Tech stack
+
+| Layer | Tools |
+|---|---|
+| **Perception** | Python 3.10+, **OpenCV** (video decoding, median background, connected components), **NumPy** (dynamic-programming path linking) |
+| **Vision model** | **Perceptron Mk1.5** through the `perceptron` SDK 0.4: `chat.completions` with image and video inputs, `vision_config.annotation_format` = `box` / `point` / `clip` for boxes and time ranges, JSON-schema constrained output, and the Files API for video uploads |
+| **API caching & cost** | Our own client (`perception/client.py`): SHA-256 request keys, JSON answer cache in `tracks/raw/`, per-person CSV cost log, $40 spending cap, offline replay mode; key loaded with `python-dotenv` |
+| **Forecasting** | **scikit-learn** (`NearestNeighbors` path fan, `HistGradientBoostingClassifier` next flower, `LogisticRegression`, `StandardScaler`, `GroupShuffleSplit` held-out stations), **pandas** for the trajectory CSVs, **joblib** for saved models |
+| **Planning & simulation** | Orienteering planner in plain Python (greedy insertion + 2-opt); **Gymnasium** environment + **Stable-Baselines3** PPO for the RL bee; **MuJoCo** for the bee-hopping tab (in progress) |
+| **Video** | **ffmpeg** via `imageio-ffmpeg` (H.264 rendering, upload transcoding) |
+| **Web app** | **React 19**, **TypeScript**, **Vite 8**: custom dev-server middleware serves the repo's folders (with HTTP range requests for video) and exposes `GET /api/health`, `POST /api/forecast`, `/api/analyze`, `/api/search/live`, which run Python through Node's `child_process`. Overlays are drawn with Canvas 2D and SVG. Needs Node 20.19+. |
+| **Data & testing** | Clips shipped as a **GitHub Release**; raw datasets from **figshare** (read with HTTP range requests, so only the needed files download); JSON file formats in [CONTRACT.md](CONTRACT.md) checked by a stdlib validator; **pytest** with a fake API client, so tests run offline |
 
 ## Data
 
