@@ -5,8 +5,8 @@
  "within_25": 0.924,
  "track_coverage": 0.929,
  "false_alarm_rate": 0.59,
- "visit_recall": 0.571,
- "visit_precision": 0.75,
+ "visit_recall": 0.5,
+ "visit_precision": 0.636,
  "notes": "center error in 0-1000 units vs reference tracker (HyDaT/Polytrack); interpolated points excluded",
  "per_clip": {
   "hb1_w00": {
@@ -616,9 +616,9 @@
    "within_25": 0.997,
    "false_alarm_rate": 0.0,
    "visits_truth": 2,
-   "visits_truth_found": 2,
+   "visits_truth_found": 1,
    "visits_pred": 2,
-   "visits_pred_correct": 2
+   "visits_pred_correct": 1
   },
   "sm3_12_124130": {
    "truth_points": 336,
@@ -630,8 +630,8 @@
    "false_alarm_rate": 0.0,
    "visits_truth": 3,
    "visits_truth_found": 3,
-   "visits_pred": 4,
-   "visits_pred_correct": 4
+   "visits_pred": 3,
+   "visits_pred_correct": 3
   }
  }
 }
