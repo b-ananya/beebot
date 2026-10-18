@@ -60,6 +60,45 @@ button {
   font-weight: 600;
 }
 
+.clip-select {
+  height: 20px;
+  max-width: 180px;
+  margin: 0;
+  padding: 0 4px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: var(--page);
+  color: var(--text);
+  font: inherit;
+}
+
+.header-spacer {
+  flex: 1 1 auto;
+}
+
+.toggle {
+  height: 18px;
+  padding: 0 6px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.toggle.on {
+  background: #3a3a3a;
+}
+
+.toggle:hover {
+  background: #3a3a3a;
+}
+
+.toggle:focus-visible {
+  outline: 1px solid var(--text);
+  outline-offset: 1px;
+}
+
 .row {
   flex: 1 1 auto;
   min-height: 0;

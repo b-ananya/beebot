@@ -87,52 +87,58 @@ function sendFile(req: IncomingMessage, res: ServerResponse, file: string, total
   stream.pipe(res)
 }
 
+function mountFiles(prefix: string, rootDir: string) {
+  const root = path.resolve(rootDir)
+  return (req: IncomingMessage, res: ServerResponse, next: (err?: unknown) => void) => {
+    const raw = req.url?.split('?')[0] ?? ''
+    if (!raw.startsWith(prefix)) {
+      next()
+      return
+    }
+    if (req.method !== 'GET' && req.method !== 'HEAD') {
+      next()
+      return
+    }
+
+    let rel: string
+    try {
+      rel = decodeURIComponent(raw.slice(prefix.length))
+    } catch {
+      res.statusCode = 400
+      res.end()
+      return
+    }
+    if (!rel || rel.includes('\0')) {
+      res.statusCode = 400
+      res.end()
+      return
+    }
+
+    const file = path.resolve(root, rel)
+    const fromRoot = path.relative(root, file)
+    if (fromRoot.startsWith('..') || path.isAbsolute(fromRoot)) {
+      res.statusCode = 403
+      res.end()
+      return
+    }
+
+    fs.stat(file, (err, stat) => {
+      if (err || !stat.isFile()) {
+        next()
+        return
+      }
+      sendFile(req, res, file, stat.size)
+    })
+  }
+}
+
 function clipsPlugin(): Plugin {
   return {
     name: 'beebot-clips',
     configureServer(server) {
-      const clipsDir = path.resolve(server.config.root, '../../clips')
-      server.middlewares.use((req, res, next) => {
-        const raw = req.url?.split('?')[0] ?? ''
-        if (!raw.startsWith('/clips/')) {
-          next()
-          return
-        }
-        if (req.method !== 'GET' && req.method !== 'HEAD') {
-          next()
-          return
-        }
-
-        let rel: string
-        try {
-          rel = decodeURIComponent(raw.slice('/clips/'.length))
-        } catch {
-          res.statusCode = 400
-          res.end()
-          return
-        }
-        if (!rel || rel.includes('\0')) {
-          res.statusCode = 400
-          res.end()
-          return
-        }
-
-        const file = path.resolve(clipsDir, rel)
-        const fromRoot = path.relative(clipsDir, file)
-        if (fromRoot.startsWith('..') || path.isAbsolute(fromRoot)) {
-          res.statusCode = 403
-          res.end()
-          return
-        }
-
-        fs.stat(file, (err, stat) => {
-          if (err || !stat.isFile()) {
-            next()
-            return
-          }
-          sendFile(req, res, file, stat.size)
-        })
-      })
+      const repo = path.resolve(server.config.root, '../..')
+      server.middlewares.use(mountFiles('/clips/', path.join(repo, 'clips')))
+      server.middlewares.use(mountFiles('/tracks/', path.join(repo, 'tracks')))
     },
   }
 }

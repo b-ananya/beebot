@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
+import { drawOverlay, type TrackFile } from './overlay'
 
-const CLIP_ID = 'hb6_w00'
+const DEFAULT_CLIP = 'hb6_w00'
 const TOP_H = 28
 const SPLIT = 5
 const MIN_SIDE = 120
@@ -70,11 +71,37 @@ export function App() {
   const [playing, setPlaying] = useState(false)
   const [time, setTime] = useState(0)
   const [duration, setDuration] = useState(0)
+  const [clips, setClips] = useState<string[]>([DEFAULT_CLIP])
+  const [clipId, setClipId] = useState(DEFAULT_CLIP)
+  const [showBoxes, setShowBoxes] = useState(true)
+  const [showTrail, setShowTrail] = useState(true)
 
   const shellRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const stageRef = useRef<HTMLDivElement>(null)
+  const trackRef = useRef<TrackFile | null>(null)
+  const showBoxesRef = useRef(showBoxes)
+  const showTrailRef = useRef(showTrail)
+  const paintRef = useRef<() => void>(() => {})
+  showBoxesRef.current = showBoxes
+  showTrailRef.current = showTrail
+
+  paintRef.current = () => {
+    const canvas = canvasRef.current
+    const video = videoRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+    if (!video || video.videoWidth === 0) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      return
+    }
+    drawOverlay(ctx, trackRef.current, video.currentTime, {
+      boxes: showBoxesRef.current,
+      trail: showTrailRef.current,
+    })
+  }
   const leftRef = useRef(leftW)
   const rightRef = useRef(rightW)
   const bottomRef = useRef(bottomH)
@@ -90,6 +117,7 @@ export function App() {
     const stopTick = () => cancelAnimationFrame(frame)
     const tick = () => {
       setTime(video.currentTime)
+      paintRef.current()
       frame = requestAnimationFrame(tick)
     }
     const onPlay = () => {
@@ -101,10 +129,12 @@ export function App() {
       setPlaying(false)
       stopTick()
       setTime(video.currentTime)
+      paintRef.current()
     }
     const onMeta = () => {
       setDuration(Number.isFinite(video.duration) ? video.duration : 0)
       setTime(video.currentTime)
+      paintRef.current()
     }
 
     video.addEventListener('play', onPlay)
@@ -113,6 +143,7 @@ export function App() {
     video.addEventListener('loadedmetadata', onMeta)
     video.addEventListener('durationchange', onMeta)
     video.addEventListener('timeupdate', onMeta)
+    video.addEventListener('seeked', onMeta)
     return () => {
       stopTick()
       video.removeEventListener('play', onPlay)
@@ -121,6 +152,7 @@ export function App() {
       video.removeEventListener('loadedmetadata', onMeta)
       video.removeEventListener('durationchange', onMeta)
       video.removeEventListener('timeupdate', onMeta)
+      video.removeEventListener('seeked', onMeta)
     }
   }, [])
 
@@ -155,6 +187,7 @@ export function App() {
       const bh = Math.max(1, Math.round(h * dpr))
       if (canvas.width !== bw) canvas.width = bw
       if (canvas.height !== bh) canvas.height = bh
+      paintRef.current()
     }
 
     const observer = new ResizeObserver(sync)
@@ -171,7 +204,7 @@ export function App() {
     const onKey = (event: KeyboardEvent) => {
       if (event.code !== 'Space') return
       const target = event.target
-      if (target instanceof HTMLElement && (target.tagName === 'BUTTON' || target.tagName === 'INPUT')) return
+      if (target instanceof HTMLElement && (target.tagName === 'BUTTON' || target.tagName === 'INPUT' || target.tagName === 'SELECT')) return
       event.preventDefault()
       const video = videoRef.current
       if (!video) return
@@ -181,6 +214,42 @@ export function App() {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [])
+
+  useEffect(() => {
+    let cancel = false
+    fetch('/clips/manifest.json')
+      .then((res) => (res.ok ? res.json() : []))
+      .then((rows: { clip_id?: string }[]) => {
+        if (cancel || !Array.isArray(rows)) return
+        const ids = rows
+          .map((row) => row.clip_id)
+          .filter((id): id is string => typeof id === 'string' && id.length > 0)
+        if (ids.length) setClips(ids)
+      })
+      .catch(() => {})
+    return () => {
+      cancel = true
+    }
+  }, [])
+
+  useEffect(() => {
+    const ac = new AbortController()
+    trackRef.current = null
+    paintRef.current()
+    fetch(`/tracks/${clipId}.json`, { signal: ac.signal })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((doc: TrackFile | null) => {
+        if (ac.signal.aborted) return
+        trackRef.current = doc
+        paintRef.current()
+      })
+      .catch(() => {})
+    return () => ac.abort()
+  }, [clipId])
+
+  useEffect(() => {
+    paintRef.current()
+  }, [showBoxes, showTrail])
 
   const togglePlay = () => {
     const video = videoRef.current
@@ -223,7 +292,22 @@ export function App() {
     <div className="shell" ref={shellRef}>
       <header className="topbar">
         <span className="brand">BeeBot</span>
-        <span className="clip-id">{CLIP_ID}</span>
+        <select
+          className="clip-select"
+          aria-label="Clip"
+          value={clipId}
+          onChange={(event) => {
+            setClipId(event.target.value)
+            setTime(0)
+            setPlaying(false)
+          }}
+        >
+          {clips.map((id) => (
+            <option key={id} value={id}>
+              {id}
+            </option>
+          ))}
+        </select>
       </header>
       <div className="row">
         <section className="panel outliner" style={{ width: leftW }} aria-label="Outliner">
@@ -251,14 +335,31 @@ export function App() {
             <span className="time">
               {formatTime(time)} / {formatTime(duration)}
             </span>
+            <span className="header-spacer" />
+            <button
+              type="button"
+              className={showBoxes ? 'toggle on' : 'toggle'}
+              aria-pressed={showBoxes}
+              onClick={() => setShowBoxes((on) => !on)}
+            >
+              Boxes
+            </button>
+            <button
+              type="button"
+              className={showTrail ? 'toggle on' : 'toggle'}
+              aria-pressed={showTrail}
+              onClick={() => setShowTrail((on) => !on)}
+            >
+              Trail
+            </button>
           </div>
           <div className="stage" ref={stageRef}>
             <video
               ref={videoRef}
-              src={`/clips/${CLIP_ID}.mp4`}
+              src={`/clips/${clipId}.mp4`}
               preload="auto"
               playsInline
-              aria-label={CLIP_ID}
+              aria-label={clipId}
             />
             <canvas ref={canvasRef} aria-hidden="true" />
           </div>
