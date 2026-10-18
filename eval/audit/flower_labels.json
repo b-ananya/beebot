@@ -1,0 +1,256 @@
+{
+ "what": "Open strawberry flowers in the two farm camera views, judged by eye on each clip's median frame (the frame the detector sees). One scene per camera: clips of a view share it.",
+ "who": "visual audit by Claude (AI assistant), 2026-10-17. Needs a human spot-check before quoting as ground truth.",
+ "how": "Every distinct Mk1.5 box (stable id, union over the view's clips) was cropped and judged open flower / not; then each scene was searched in six zoomed sections for unboxed open flowers, and candidates were zoomed and judged. Spent (wilting) flowers, closed buds and fallen petals are not open flowers.",
+ "images": [
+  "flowers_sm2_08_boxes.jpg",
+  "flowers_sm3_12_boxes.jpg",
+  "flowers_unboxed_candidates.jpg"
+ ],
+ "views": {
+  "sm2_08": {
+   "open_flowers": [
+    {
+     "id": "flower_1",
+     "box": [
+      614.0,
+      272.4,
+      649.1,
+      321.0
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_2",
+     "box": [
+      455.6,
+      347.9,
+      478.6,
+      378.8
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_3",
+     "box": [
+      520.2,
+      412.9,
+      555.5,
+      477.4
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_4",
+     "box": [
+      446.0,
+      505.1,
+      482.8,
+      570.2
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_5",
+     "box": [
+      825.3,
+      568.7,
+      850.7,
+      610.0
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_6",
+     "box": [
+      64.6,
+      622.7,
+      90.0,
+      681.4
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_7",
+     "box": [
+      96.6,
+      683.8,
+      120.0,
+      718.6
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_8",
+     "box": [
+      396.1,
+      692.1,
+      421.8,
+      743.2
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_9",
+     "box": [
+      279.7,
+      731.3,
+      328.4,
+      805.7
+     ],
+     "found_by_mk15": true
+    }
+   ],
+   "not_flowers_boxed": [],
+   "rejected_candidates": {
+    "G (971,460) px": "fallen petal on a leaf"
+   }
+  },
+  "sm3_12": {
+   "open_flowers": [
+    {
+     "id": "flower_1",
+     "box": [
+      491.4,
+      259.7,
+      531.1,
+      321.1
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_2",
+     "box": [
+      523.6,
+      278.2,
+      563.3,
+      343.6
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_3",
+     "box": [
+      218.2,
+      321.6,
+      238.7,
+      351.5
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_4",
+     "box": [
+      156.7,
+      435.9,
+      195.0,
+      503.6
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_5",
+     "box": [
+      826.6,
+      457.2,
+      871.8,
+      520.7
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_6",
+     "box": [
+      874.6,
+      485.6,
+      908.3,
+      537.8
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_7",
+     "box": [
+      848.6,
+      505.9,
+      878.3,
+      546.6
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_8",
+     "box": [
+      81.8,
+      530.3,
+      125.4,
+      599.2
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_9",
+     "box": [
+      866.2,
+      533.7,
+      908.8,
+      615.3
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_11",
+     "box": [
+      52.9,
+      881.4,
+      72.7,
+      914.8
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "flower_12",
+     "box": [
+      111.0,
+      924.0,
+      138.6,
+      968.8
+     ],
+     "found_by_mk15": true
+    },
+    {
+     "id": "missed_A",
+     "box": [
+      119.5,
+      561.1,
+      150.8,
+      616.7
+     ],
+     "found_by_mk15": false,
+     "note": "small flower seen side-on, partly hidden, right of flower_8 (probable)"
+    },
+    {
+     "id": "missed_E",
+     "box": [
+      793.0,
+      580.6,
+      816.4,
+      622.2
+     ],
+     "found_by_mk15": false,
+     "note": "small open flower left of the flower_5..9 cluster"
+    }
+   ],
+   "not_flowers_boxed": {
+    "flower_10": "green-yellow fruit (boxed in 1 of 5 clips)",
+    "flower_13": "pale leaf at the bottom edge (1 of 5 clips)"
+   },
+   "rejected_candidates": {
+    "B (300,633) px": "spent flower",
+    "C (318,636) px": "closed bud",
+    "D (377,637) px": "spent flower",
+    "F (1258,465) px": "fallen petals"
+   }
+  }
+ }
+}

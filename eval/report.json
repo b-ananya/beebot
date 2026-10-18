@@ -6,7 +6,7 @@
  "track_coverage": 0.895,
  "false_alarm_rate": 0.526,
  "visit_recall": 0.571,
- "visit_precision": 0.846,
+ "visit_precision": 0.9,
  "notes": "center error in 0-1000 units vs reference tracker (HyDaT/Polytrack); interpolated points excluded",
  "per_clip": {
   "hb1_w00": {
@@ -604,7 +604,7 @@
    "false_alarm_rate": 0.0,
    "visits_truth": 2,
    "visits_truth_found": 2,
-   "visits_pred": 3,
+   "visits_pred": 2,
    "visits_pred_correct": 2
   },
   "sm3_12_124027": {
@@ -630,8 +630,8 @@
    "false_alarm_rate": 0.0,
    "visits_truth": 3,
    "visits_truth_found": 3,
-   "visits_pred": 5,
-   "visits_pred_correct": 5
+   "visits_pred": 3,
+   "visits_pred_correct": 3
   }
  }
 }

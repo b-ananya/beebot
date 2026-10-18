@@ -45,6 +45,9 @@ python -m eval.run_eval                                   # tracks/ vs truth/ ->
 python -m eval.run_eval --pred tracks/heuristic --out eval/report_heuristic.json
 ```
 
+Flower boxes: `python -m eval.flowers_eval` scores the farm clips three ways (dataset list by overlap, dataset list
+by center distance, visual audit) -> `eval/flowers_report.json`.
+
 Coverage = share of reference points we match within 50 units; false alarms = our points not near the reference.
 The honeybee videos often contain more than one bee and the reference follows only one, so some "false alarms"
 are real bees.

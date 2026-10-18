@@ -11,22 +11,21 @@
   "flower_12",
   "flower_13",
   "flower_8",
-  "flower_4",
   "flower_3"
  ],
- "path_length": 1108.2,
- "deficit_covered": 0.477,
- "total_deficit": 44.0,
+ "path_length": 1104.0,
+ "deficit_covered": 0.422,
+ "total_deficit": 45.0,
  "robot": {
   "speed": 100.0,
-  "dwell_s": 2.77,
+  "dwell_s": 3.5,
   "units": "y-norm1000 per s",
   "time_scale": 1.0
  },
  "baselines": {
-  "nearest_all": 0.477,
-  "random": 0.18,
-  "follow_bee": 0.114
+  "nearest_all": 0.378,
+  "random": 0.174,
+  "follow_bee": 0.067
  },
  "video": "rollouts/sm3_12_124027_plan.mp4",
  "source": "mk1.5"

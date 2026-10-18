@@ -11828,18 +11828,18 @@
    "t_end": 8.0
   },
   {
-   "track_id": "honeybee_3",
-   "flower_id": "flower_14",
-   "type": "visit",
-   "t_start": 6.233,
-   "t_end": 9.967
-  },
-  {
    "track_id": "honeybee_2",
    "flower_id": "flower_1",
    "type": "visit",
    "t_start": 7.133,
    "t_end": 9.933
+  },
+  {
+   "track_id": "honeybee_3",
+   "flower_id": "flower_14",
+   "type": "visit",
+   "t_start": 8.033,
+   "t_end": 9.967
   },
   {
    "track_id": "honeybee_4",

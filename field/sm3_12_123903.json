@@ -18,9 +18,9 @@
    ],
    "radius": 31.0,
    "state": "open",
-   "visits": 1,
-   "dwell_s": 2.77,
-   "deficit": 3,
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
    "seen_in_clips": 3
   },
   {
@@ -157,14 +157,14 @@
    "flower_id": "flower_12",
    "center": [
     124.9,
-    946.8
+    946.6
    ],
    "radius": 22.4,
    "state": "open",
    "visits": 0,
    "dwell_s": 0.0,
    "deficit": 4,
-   "seen_in_clips": 2
+   "seen_in_clips": 3
   },
   {
    "flower_id": "flower_13",

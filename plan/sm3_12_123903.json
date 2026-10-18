@@ -10,23 +10,22 @@
   "flower_11",
   "flower_12",
   "flower_13",
-  "flower_8",
   "flower_4",
   "flower_3"
  ],
- "path_length": 1107.8,
- "deficit_covered": 0.479,
- "total_deficit": 48.0,
+ "path_length": 1025.3,
+ "deficit_covered": 0.408,
+ "total_deficit": 49.0,
  "robot": {
   "speed": 100.0,
-  "dwell_s": 2.77,
+  "dwell_s": 3.5,
   "units": "y-norm1000 per s",
   "time_scale": 1.0
  },
  "baselines": {
-  "nearest_all": 0.479,
-  "random": 0.184,
-  "follow_bee": 0.188
+  "nearest_all": 0.388,
+  "random": 0.18,
+  "follow_bee": 0.122
  },
  "video": "rollouts/sm3_12_123903_plan.mp4",
  "source": "mk1.5"

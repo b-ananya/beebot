@@ -172,7 +172,20 @@ def clip_metrics(doc: dict, duration_s: float | None = None, aspect: float = 720
     dwell = [r["dwell_s"] for r in visit_rows]
     speeds = [s for t in tracks.values() for s in t["speeds"]]
     turns = [a for t in tracks.values() for a in t["turns_deg"]]
-    observed = sum(t["observed_s"] for t in tracks.values())
+    observed = sum(t["observed_s"] for t in tracks.values())          # insect-seconds (adds up across insects)
+    # time with at least one insect tracked: union of observed stretches (gaps < 0.6 s) over all tracks
+    spans = sorted((a["t"], b["t"]) for tr in doc.get("tracks", [])
+                   for a, b in zip([p for p in tr["points"] if not p.get("interpolated")][:-1],
+                                   [p for p in tr["points"] if not p.get("interpolated")][1:])
+                   if b["t"] - a["t"] < 0.6)
+    covered, cur = 0.0, None
+    for a, b in spans:
+        if cur and a <= cur[1]:
+            cur[1] = max(cur[1], b)
+        else:
+            covered += (cur[1] - cur[0]) if cur else 0.0
+            cur = [a, b]
+    covered += (cur[1] - cur[0]) if cur else 0.0
 
     def med(x):
         return round(float(np.median(x)), 2) if len(x) else None
@@ -207,7 +220,7 @@ def clip_metrics(doc: dict, duration_s: float | None = None, aspect: float = 720
         "median_abs_turn_deg": med([abs(a) for a in turns]),
         "foraging_share": round(labels.get("foraging", 0) / sum(labels.values()), 2) if labels else None,
         "tracked_s": round(observed, 2),
-        "tracked_share": round(observed / duration_s, 2) if duration_s else None,
+        "tracked_share": round(min(covered / duration_s, 1.0), 2) if duration_s else None,
         "interpolated_share": round(n_interp / (n_obs + n_interp), 3) if (n_obs + n_interp) else None,
         "scale_units_per_cm": round(scale, 2) if scale else None,
         "scale_note": scale_note,

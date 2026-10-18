@@ -61,7 +61,7 @@ def _runs(flags: list[bool], ts: list[float], min_s: float, gap_s: float) -> lis
 def stops(points: list[dict]) -> list[tuple[float, float, list[float]]]:
     """Stretches where the smoothed speed stays under STOP_SPEED; (t_start, t_end, mean center)."""
     obs = [p for p in points if not p.get("interpolated")]
-    if len(obs) < 3:
+    if len(obs) < 5:                  # shorter than the 5-point smoothing window: too short to call a stop
         return []
     ts = np.array([p["t"] for p in obs])
     cs = np.array([_center(p) for p in obs])
@@ -99,13 +99,29 @@ def visit_events(tracks: list[dict], flowers: list[dict]) -> tuple[list[dict], l
                                 "box": [round(max(c[0] - h, 0), 1), round(max(c[1] - h, 0), 1),
                                         round(min(c[0] + h, 1000), 1), round(min(c[1] + h, 1000), 1)]})
                 n_stop += 1
-        for f in flowers:
-            x1, y1, x2, y2 = f["box"]
-            gx, gy = (x2 - x1) * GROW, (y2 - y1) * GROW
-            flags = [x1 - gx <= c[0] <= x2 + gx and y1 - gy <= c[1] <= y2 + gy for c in cs]
-            for a, b in _runs(flags, ts, MIN_VISIT_S, MERGE_GAP_S):
-                events.append({"track_id": tr["track_id"], "flower_id": f["flower_id"], "type": "visit",
-                               "t_start": round(a, 3), "t_end": round(b, 3)})
+        # an insect is on at most one flower: each point goes to the nearest flower whose zone contains it
+        # (grown zones of neighbouring flowers overlap, which used to produce simultaneous visits)
+        owner = []
+        for c in cs:
+            best, best_d = None, None
+            for k, f in enumerate(flowers):
+                x1, y1, x2, y2 = f["box"]
+                gx, gy = (x2 - x1) * GROW, (y2 - y1) * GROW
+                if x1 - gx <= c[0] <= x2 + gx and y1 - gy <= c[1] <= y2 + gy:
+                    d = (c[0] - (x1 + x2) / 2) ** 2 + (c[1] - (y1 + y2) / 2) ** 2
+                    if best_d is None or d < best_d:
+                        best, best_d = k, d
+            owner.append(best)
+        track_events = []
+        for k, f in enumerate(flowers):
+            for a, b in _runs([o == k for o in owner], ts, MIN_VISIT_S, MERGE_GAP_S):
+                track_events.append({"track_id": tr["track_id"], "flower_id": f["flower_id"], "type": "visit",
+                                     "t_start": round(a, 3), "t_end": round(b, 3)})
+        # gap bridging can still let a visit run past the start of the next one: end it there
+        track_events.sort(key=lambda e: e["t_start"])
+        for e, nxt in zip(track_events, track_events[1:]):
+            e["t_end"] = min(e["t_end"], nxt["t_start"])
+        events += [e for e in track_events if e["t_end"] - e["t_start"] >= MIN_VISIT_S - 1e-6]
     events.sort(key=lambda e: e["t_start"])
     return events, flowers
 
@@ -175,8 +191,35 @@ def stable_ids(docs: list[dict]) -> list[dict]:
     return out
 
 
-def relabel_views(tracks_dir: Path = OUT_DIR, clip_ids: list[str] | None = None) -> dict[str, int]:
-    """Apply ``stable_ids`` to every camera view under tracks_dir; returns flowers per view."""
+FILL_MIN_CLIPS = 2    # a flower Mk1.5 found in at least this many clips of a view exists in all of them
+
+
+def fill_view(docs: list[dict], min_clips: int = FILL_MIN_CLIPS) -> list[dict]:
+    """Cameras are fixed, so a flower seen in >= min_clips clips of a view is added (mean box,
+    ``"source": "mk1.5-view"``) to the view's clips where Mk1.5 missed it; flowers seen once stay local, which
+    keeps one-off false boxes from spreading. Visits and behavior labels are then recomputed. Expects stable ids."""
+    boxes: dict[str, list] = {}
+    for d in docs:
+        for f in d["flowers"]:
+            if f.get("source", "mk1.5") == "mk1.5":
+                boxes.setdefault(f["flower_id"], []).append(f["box"])
+    view = {fid: [round(sum(v) / len(v), 1) for v in zip(*bs)] for fid, bs in boxes.items() if len(bs) >= min_clips}
+    out = []
+    for d in docs:
+        base = [f for f in d["flowers"] if f.get("source", "mk1.5") == "mk1.5"]
+        have = {f["flower_id"] for f in base}
+        base += [{"flower_id": fid, "box": b, "source": "mk1.5-view", "seen_in_clips": len(boxes[fid])}
+                 for fid, b in view.items() if fid not in have]
+        tracks = [{**tr, "points": [{k: v for k, v in pt.items() if k != "label"} for pt in tr["points"]]}
+                  for tr in d["tracks"]]
+        events, flowers = visit_events(tracks, base)
+        label_behavior(tracks, events)
+        out.append({**d, "tracks": tracks, "flowers": flowers, "events": events})
+    return out
+
+
+def relabel_views(tracks_dir: Path = OUT_DIR, clip_ids: list[str] | None = None, *, fill: bool = True) -> dict[str, int]:
+    """Apply ``stable_ids`` (and ``fill_view``) to every camera view under tracks_dir; returns flowers per view."""
     from perception.flowers import view_id
 
     clip_ids = clip_ids or [c for c in manifest() if (tracks_dir / f"{c}.json").exists()]
@@ -186,6 +229,8 @@ def relabel_views(tracks_dir: Path = OUT_DIR, clip_ids: list[str] | None = None)
     summary = {}
     for view, cids in views.items():
         docs = stable_ids([json.loads((tracks_dir / f"{c}.json").read_text()) for c in cids])
+        if fill:
+            docs = stable_ids(fill_view(docs))
         for d in docs:
             (tracks_dir / f"{d['clip_id']}.json").write_text(json.dumps(d, indent=1))
         summary[view] = len({f["flower_id"] for d in docs for f in d["flowers"]})

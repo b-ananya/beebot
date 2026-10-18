@@ -2601,7 +2601,7 @@
       550.2
      ],
      "interpolated": false,
-     "label": "foraging"
+     "label": "flying"
     },
     {
      "t": 8.167,
@@ -2616,7 +2616,7 @@
       538.5
      ],
      "interpolated": false,
-     "label": "foraging"
+     "label": "flying"
     },
     {
      "t": 8.2,
@@ -6118,6 +6118,17 @@
     913.6
    ],
    "source": "mk1.5"
+  },
+  {
+   "flower_id": "flower_12",
+   "box": [
+    111.0,
+    924.0,
+    138.6,
+    968.8
+   ],
+   "source": "mk1.5-view",
+   "seen_in_clips": 3
   }
  ],
  "events": [
@@ -6126,7 +6137,7 @@
    "flower_id": "flower_9",
    "type": "visit",
    "t_start": 2.5,
-   "t_end": 8.167
+   "t_end": 8.1
   },
   {
    "track_id": "insect_1",

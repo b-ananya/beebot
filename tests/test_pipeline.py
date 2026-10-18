@@ -137,3 +137,30 @@ def test_stable_ids_follow_the_flower_across_clips():
     assert B["flowers"][0]["flower_id"] == lower                      # same physical flower, same id
     assert A["events"][0]["flower_id"] == lower == B["events"][0]["flower_id"]
     assert all(f["source"] == "mk1.5" for f in A["flowers"] + B["flowers"])
+
+
+def test_fill_view_adds_flowers_seen_twice_only():
+    from perception.visits import fill_view
+    still = pts([(500, 500)] * 12)                                   # an insect sitting on the shared flower
+    shared = {"flower_id": "flower_1", "box": [480, 480, 520, 520], "source": "mk1.5"}
+    once = {"flower_id": "flower_2", "box": [100, 100, 140, 140], "source": "mk1.5"}
+    a = {**doc(still, [shared, once]), "clip_id": "sm9_01_000001"}
+    b = {**doc(pts([(800, 800)] * 3), [shared]), "clip_id": "sm9_01_000002"}
+    c = {**doc(still, []), "clip_id": "sm9_01_000003"}              # Mk1.5 missed both flowers here
+    A, B, C = fill_view([a, b, c])
+    assert {f["flower_id"] for f in C["flowers"] if f.get("source") != "stop"} == {"flower_1"}   # seen twice -> filled
+    assert C["flowers"][0]["source"] == "mk1.5-view"
+    assert any(e["flower_id"] == "flower_1" for e in C["events"])   # the visit is recovered
+    assert "flower_2" not in {f["flower_id"] for f in B["flowers"]}  # seen once -> stays local
+
+
+def test_visits_never_overlap_for_one_insect():
+    # two flowers whose grown zones overlap; the insect sits between them, then on the right one
+    fl = [{"flower_id": "a", "box": [100, 100, 140, 140]}, {"flower_id": "b", "box": [145, 100, 185, 140]}]
+    seq = [(141, 120)] * 10 + [(165, 120)] * 10
+    events, _ = visit_events(doc(pts(seq))["tracks"], fl)
+    events.sort(key=lambda e: e["t_start"])
+    assert all(e["t_end"] <= n["t_start"] for e, n in zip(events, events[1:]))
+    m = clip_metrics(doc(pts(seq), fl, events), duration_s=2.0)["summary"]
+    assert m["median_transit_s"] is None or m["median_transit_s"] >= 0
+    assert m["tracked_share"] <= 1.0
