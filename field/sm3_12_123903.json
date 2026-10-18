@@ -1,0 +1,183 @@
+{
+ "field_id": "sm3_12_123903",
+ "source": "mk1.5",
+ "units": "norm1000",
+ "target_visits": 4,
+ "visits_scope": "3 clip(s) of camera view sm3_12 through sm3_12_123903 (35 s observed)",
+ "clips": [
+  "sm3_12_123633",
+  "sm3_12_123810",
+  "sm3_12_123903"
+ ],
+ "flowers": [
+  {
+   "flower_id": "flower_1",
+   "center": [
+    511.3,
+    290.4
+   ],
+   "radius": 31.0,
+   "state": "open",
+   "visits": 1,
+   "dwell_s": 2.77,
+   "deficit": 3,
+   "seen_in_clips": 3
+  },
+  {
+   "flower_id": "flower_2",
+   "center": [
+    543.3,
+    310.6
+   ],
+   "radius": 32.6,
+   "state": "open",
+   "visits": 1,
+   "dwell_s": 7.47,
+   "deficit": 3,
+   "seen_in_clips": 3
+  },
+  {
+   "flower_id": "flower_3",
+   "center": [
+    228.4,
+    336.7
+   ],
+   "radius": 14.7,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 3
+  },
+  {
+   "flower_id": "flower_4",
+   "center": [
+    176.1,
+    469.1
+   ],
+   "radius": 33.7,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 3
+  },
+  {
+   "flower_id": "flower_5",
+   "center": [
+    849.7,
+    488.7
+   ],
+   "radius": 31.5,
+   "state": "open",
+   "visits": 1,
+   "dwell_s": 3.43,
+   "deficit": 3,
+   "seen_in_clips": 3
+  },
+  {
+   "flower_id": "flower_6",
+   "center": [
+    891.5,
+    511.4
+   ],
+   "radius": 26.2,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 3
+  },
+  {
+   "flower_id": "flower_7",
+   "center": [
+    863.6,
+    526.9
+   ],
+   "radius": 19.9,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 3
+  },
+  {
+   "flower_id": "flower_8",
+   "center": [
+    103.9,
+    564.3
+   ],
+   "radius": 34.4,
+   "state": "open",
+   "visits": 1,
+   "dwell_s": 0.67,
+   "deficit": 3,
+   "seen_in_clips": 3
+  },
+  {
+   "flower_id": "flower_9",
+   "center": [
+    887.5,
+    572.9
+   ],
+   "radius": 41.9,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 3
+  },
+  {
+   "flower_id": "flower_10",
+   "center": [
+    587.7,
+    670.0
+   ],
+   "radius": 20.4,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 1
+  },
+  {
+   "flower_id": "flower_11",
+   "center": [
+    62.8,
+    897.4
+   ],
+   "radius": 16.2,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 3
+  },
+  {
+   "flower_id": "flower_12",
+   "center": [
+    124.9,
+    946.8
+   ],
+   "radius": 22.4,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 2
+  },
+  {
+   "flower_id": "flower_13",
+   "center": [
+    172.5,
+    971.8
+   ],
+   "radius": 32.1,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 1
+  }
+ ]
+}

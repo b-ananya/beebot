@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import json
+import os
 import sys
 import tempfile
 from pathlib import Path
@@ -17,6 +18,7 @@ import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+os.chdir(ROOT)      # sim/ and scripts use repo-relative paths
 
 from analytics.metrics import clip_metrics, heatmap  # noqa: E402
 from app.render import cached_render, render  # noqa: E402
@@ -145,8 +147,9 @@ st.sidebar.divider()
 st.sidebar.caption("Truth is the dataset authors' tracker, not hand labels: errors are *agreement with a "
                    "reference tracker*. A visit is not proof of pollination.")
 
-tab_video, tab_stats, tab_forecast, tab_data, tab_upload = st.tabs(
-    ["🎥 Video & search", "📊 Analytics", "🔮 Forecast", "🗂 Dataset & accuracy", "⬆️ Analyze a video"])
+tab_video, tab_stats, tab_forecast, tab_plan, tab_data, tab_upload = st.tabs(
+    ["🎥 Video & search", "📊 Analytics", "🔮 Forecast", "🌼 Pollination & robot plan", "🗂 Dataset & accuracy",
+     "⬆️ Analyze a video"])
 
 entry = manifest().get(clip_id) if clip_id else None
 doc = get_doc(SRC, clip_id) if clip_id else None
@@ -396,6 +399,110 @@ with tab_forecast:
                     f"more than the single line.\n"
                     f"- **Another visit?** {R['continue']['accuracy']:.0%} accuracy vs {R['continue']['majority_baseline']:.0%} "
                     f"always-guess-yes: weak signal, shown as a probability.")
+
+
+# ------------------------------------------------------------------ tab: pollination & robot plan
+# deficit = visits still needed per flower: magnitude, so one hue light->dark (orange: blue is taken by insects)
+DEFICIT_RAMP = ["#fde3d6", "#f9b897", "#f28d5e", "#eb6834", "#c4501f", "#8f3913"]
+
+with tab_plan:
+    from sim.field import patch_from_pipeline, patch_from_truth, pipeline_bee
+    from sim.planner import plan_route
+
+    if not clip_id or not clip_id.startswith("sm"):
+        st.info("Robot planning runs on the strawberry-farm clips, where flowers are mapped one by one. "
+                "Pick a clip from the **Farm (strawberry)** set.")
+    elif SRC == "tracks/mock":
+        st.info("Pick the Mk1.5 pipeline, motion-only or reference source.")
+    else:
+        c1, c2, c3 = st.columns(3)
+        target = c1.slider("Target visits per flower", 1, 10, 4,
+                           help="a setting, not a biological claim: how many insect visits each open flower should get")
+        budget = c2.slider("Robot time budget (s)", 10, 120, 30, 5)
+        speed = c3.slider("Robot speed (units/s)", 25, 300, 100, 25, help="1000 units = frame height")
+        if SRC == "truth":
+            field = patch_from_truth(clip_id, target)
+            tdoc = get_doc("truth", clip_id)
+            bee_order = [e["flower_id"] for e in tdoc["events"]]
+        else:
+            field = patch_from_pipeline(clip_id, target, tracks_dir=SRC)
+            _, bee_order = pipeline_bee(clip_id, tracks_dir=SRC)
+        if not field["flowers"]:
+            st.info("No flower boxes for this source: the motion-only run has no Mk1.5 flower detection. "
+                    "Pick **Mk1.5 pipeline** or **Reference tracker**.")
+        else:
+            dwell = metrics["summary"]["median_dwell_s"] or 3.0
+            aspect = entry["width"] / entry["height"]
+            plan = plan_route(field, start=(0, 1000), speed=float(speed), dwell_s=float(dwell), budget_s=float(budget),
+                              aspect=aspect, bee_order=bee_order)
+            flowers_f = field["flowers"]
+            total_def = sum(f["deficit"] for f in flowers_f)
+            never = sum(f["visits"] == 0 for f in flowers_f)
+
+            k = st.columns(4)
+            k[0].metric("Flowers mapped", len(flowers_f), help=field.get("visits_scope"))
+            k[1].metric("Never visited", never)
+            k[2].metric("Visits still needed", int(total_def), help=f"sum of max({target} - visits, 0) over open flowers")
+            k[3].metric("Cleared by robot route", f"{plan['deficit_covered']:.0%}",
+                        help=f"{len(plan['route'])} stops, {budget}s budget, {dwell}s per flower (median insect dwell)")
+            st.caption(f"Visits counted over {field.get('visits_scope', 'the dataset')}. Source: {field['source']}.")
+            if total_def == 0:
+                st.success("Every mapped flower already has at least the target number of visits, so the robot has "
+                            "nothing to do. (The reference maps count a whole day of visits; the Mk1.5 maps count "
+                            "only the footage we have.)")
+
+            left, right = st.columns([3, 2])
+            with left:
+                fig = image_fig(reference_rgb(str(video)), 470)
+                dmax = max([f["deficit"] for f in flowers_f] + [1])
+                fig.add_trace(go.Scatter(
+                    x=[f["center"][0] for f in flowers_f], y=[f["center"][1] for f in flowers_f], mode="markers",
+                    name="flowers (color = visits still needed)",
+                    marker=dict(size=[max(12, f["radius"] * 0.9) for f in flowers_f],
+                                color=[f["deficit"] for f in flowers_f], cmin=0, cmax=dmax,
+                                colorscale=[[i / (len(DEFICIT_RAMP) - 1), c] for i, c in enumerate(DEFICIT_RAMP)],
+                                line=dict(color="white", width=2), showscale=True,
+                                colorbar=dict(title="needed", thickness=12)),
+                    customdata=[[f["flower_id"], f["visits"], f["deficit"], f["dwell_s"]] for f in flowers_f],
+                    hovertemplate="%{customdata[0]}<br>%{customdata[1]} visits · needs %{customdata[2]} more"
+                                  "<br>insect time %{customdata[3]} s<extra></extra>"))
+                ids = {f["flower_id"]: f for f in flowers_f}
+                route = [ids[r] for r in plan["route"] if r in ids]
+                xs = [plan["start"][0]] + [f["center"][0] for f in route]
+                ys = [plan["start"][1]] + [f["center"][1] for f in route]
+                fig.add_trace(go.Scatter(x=xs, y=ys, mode="lines+markers+text", name="robot route",
+                                         line=dict(color=SERIES[0], width=2), marker=dict(size=8, color=SERIES[0]),
+                                         text=[""] + [str(i) for i in range(1, len(route) + 1)],
+                                         textposition="top center", textfont=dict(color="white", size=13),
+                                         hovertemplate="stop %{text}<extra></extra>"))
+                fig.update_layout(title=dict(text="Pollination deficit map and robot route", font_size=13))
+                st.plotly_chart(fig, width="stretch")
+            with right:
+                names = {"ours": "Robot planner (greedy + 2-opt)", "nearest_all": "Nearest flower first",
+                         "random": "Random order (avg of 20)", "follow_bee": "Follow the insect"}
+                rows = [("ours", plan["deficit_covered"])] + [(k2, v) for k2, v in plan["baselines"].items()]
+                rows = sorted(rows, key=lambda r: r[1])
+                fig = go.Figure(go.Bar(
+                    x=[v for _, v in rows], y=[names.get(k2, k2) for k2, _ in rows], orientation="h",
+                    marker=dict(color=[SERIES[0] if k2 == "ours" else MUTED for k2, _ in rows], cornerradius=4),
+                    text=[f"{v:.0%}" for _, v in rows], textposition="outside",
+                    hovertemplate="%{y}: %{x:.0%} of needed visits<extra></extra>"))
+                fig.update_xaxes(tickformat=".0%", range=[0, 1.1])
+                st.plotly_chart(style(fig, 240, title=dict(text="Share of needed visits cleared in the budget",
+                                                           font_size=13)), width="stretch")
+                st.markdown("**Route**: " + (" → ".join(plan["route"]) or "no flower reachable in the budget"))
+                if len({f["deficit"] for f in flowers_f}) <= 1:
+                    st.caption("Every flower needs the same number of visits, so nearest-first is already close to "
+                               "optimal. The planner pulls ahead when needs differ: raise the target or pick a later "
+                               "clip, where more visits have been counted.")
+                vid = ROOT / "rollouts" / f"{clip_id}_plan{'_truth' if SRC == 'truth' else ''}.mp4"
+                if vid.exists() and SRC != "tracks/heuristic":
+                    with st.expander("Rendered rollout (default settings)"):
+                        st.video(str(vid))
+                else:
+                    st.caption("Render the rollout video with `python -m sim.run_plan " + clip_id + "`.")
+            with st.expander("Field map table"):
+                st.dataframe(pd.DataFrame(flowers_f), hide_index=True, width="stretch")
 
 
 # ------------------------------------------------------------------ tab: dataset

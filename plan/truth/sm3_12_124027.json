@@ -1,0 +1,25 @@
+{
+ "field_id": "sm3_12_124027",
+ "planner": "greedy_2opt",
+ "start": [
+  0.0,
+  1000.0
+ ],
+ "budget_s": 30.0,
+ "route": [],
+ "path_length": 0.0,
+ "deficit_covered": 0.0,
+ "total_deficit": 0.0,
+ "robot": {
+  "speed": 100.0,
+  "dwell_s": 3.83,
+  "units": "y-norm1000 per s",
+  "time_scale": 1.0
+ },
+ "baselines": {
+  "nearest_all": 0.0,
+  "random": 0.0,
+  "follow_bee": 0.0
+ },
+ "video": "rollouts/sm3_12_124027_plan.mp4"
+}

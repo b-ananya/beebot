@@ -1,0 +1,133 @@
+{
+ "field_id": "sm2_08_112733",
+ "source": "mk1.5",
+ "units": "norm1000",
+ "target_visits": 4,
+ "visits_scope": "5 clip(s) of camera view sm2_08 through sm2_08_112733 (33 s observed)",
+ "clips": [
+  "sm2_08_112658",
+  "sm2_08_112704",
+  "sm2_08_112710",
+  "sm2_08_112712",
+  "sm2_08_112733"
+ ],
+ "flowers": [
+  {
+   "flower_id": "flower_1",
+   "center": [
+    631.5,
+    296.7
+   ],
+   "radius": 24.3,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 5
+  },
+  {
+   "flower_id": "flower_2",
+   "center": [
+    467.1,
+    363.4
+   ],
+   "radius": 15.5,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 5
+  },
+  {
+   "flower_id": "flower_3",
+   "center": [
+    537.8,
+    445.2
+   ],
+   "radius": 32.3,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 5
+  },
+  {
+   "flower_id": "flower_4",
+   "center": [
+    464.4,
+    537.7
+   ],
+   "radius": 32.6,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 5
+  },
+  {
+   "flower_id": "flower_5",
+   "center": [
+    838.0,
+    589.4
+   ],
+   "radius": 20.6,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 5
+  },
+  {
+   "flower_id": "flower_6",
+   "center": [
+    77.3,
+    652.1
+   ],
+   "radius": 29.3,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 5
+  },
+  {
+   "flower_id": "flower_7",
+   "center": [
+    108.3,
+    701.2
+   ],
+   "radius": 17.4,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 1
+  },
+  {
+   "flower_id": "flower_8",
+   "center": [
+    409.0,
+    717.6
+   ],
+   "radius": 25.6,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 5
+  },
+  {
+   "flower_id": "flower_9",
+   "center": [
+    304.1,
+    768.5
+   ],
+   "radius": 37.2,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4,
+   "seen_in_clips": 5
+  }
+ ]
+}

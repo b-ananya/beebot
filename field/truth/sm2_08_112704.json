@@ -1,0 +1,82 @@
+{
+ "field_id": "sm2_08_112704",
+ "source": "truth",
+ "units": "norm1000",
+ "target_visits": 4,
+ "visits_scope": "station 2, day 08 (whole day, from dataset)",
+ "station": 2,
+ "flowers": [
+  {
+   "flower_id": "flower_0",
+   "center": [
+    363.6,
+    794.5
+   ],
+   "radius": 19.2,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4
+  },
+  {
+   "flower_id": "flower_1",
+   "center": [
+    402.6,
+    706.5
+   ],
+   "radius": 13.5,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4
+  },
+  {
+   "flower_id": "flower_2",
+   "center": [
+    458.4,
+    570.4
+   ],
+   "radius": 16.7,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4
+  },
+  {
+   "flower_id": "flower_3",
+   "center": [
+    552.0,
+    463.0
+   ],
+   "radius": 16.2,
+   "state": "open",
+   "visits": 1,
+   "dwell_s": 0.1,
+   "deficit": 3
+  },
+  {
+   "flower_id": "flower_4",
+   "center": [
+    637.5,
+    294.4
+   ],
+   "radius": 14.1,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4
+  },
+  {
+   "flower_id": "flower_5",
+   "center": [
+    119.8,
+    704.6
+   ],
+   "radius": 13.0,
+   "state": "open",
+   "visits": 0,
+   "dwell_s": 0.0,
+   "deficit": 4
+  }
+ ]
+}

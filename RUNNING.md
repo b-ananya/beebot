@@ -60,7 +60,19 @@ python -m forecast.train                             # downloads trajectories (1
 python -m forecast.predict sm3_12_123903 --t 9.0     # path fan, next flower, dwell, rollouts at t = 9 s
 ```
 
-## 6. Tests
+## 6. Pollination deficit map and robot route
+
+```powershell
+python -m sim.run_plan --all                         # field/<clip>.json + plan/<clip>.json + rollouts/<clip>_plan.mp4
+python -m sim.run_plan sm3_12_124130 --budget 60 --target 6
+python -m sim.run_plan --all --source truth          # dataset whole-day maps -> field/truth/, plan/truth/
+```
+
+The field map for a farm clip holds every flower its camera has seen (stable flower ids across clips) and the
+visits counted over all of that camera's clips up to this one. In the app: tab "Pollination & robot plan", with
+sliders for target visits, robot budget and speed.
+
+## 7. Tests
 
 ```powershell
 python -m pytest -q                                  # offline, no API calls
