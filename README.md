@@ -96,7 +96,7 @@ is cached in `tracks/raw/`, so everything replays offline at no cost.
 | **Video** | **ffmpeg** via `imageio-ffmpeg` (H.264 rendering, upload transcoding) |
 | **Web app** | **React 19** and **react-dom**, **TypeScript**, **Vite 8** with `@vitejs/plugin-react`, and hand-written CSS. Video overlays are **Canvas 2D**; the field view is **SVG**. The Simulations page is **three.js** (WebGL): OrbitControls, Line2 for the flight path, and OBJLoader for the Crazyflie mesh. A custom Vite middleware serves the repo's folders (HTTP range requests for video) and exposes `GET /api/health`, `POST /api/forecast`, `/api/analyze`, `/api/search/live`, `GET /api/sim/run`, `/api/sim/video`, which run Python through Node's `child_process`. Needs Node 20.19+. |
 | **Data & testing** | Clips shipped as a **GitHub Release**; raw datasets from **figshare** (read with HTTP range requests, so only the needed files download); JSON file formats in [CONTRACT.md](CONTRACT.md) checked by a stdlib validator; **pytest** with a fake API client, so tests run offline |
-| **Development** | Written in the **Cursor** IDE with the **Grok** model, and with **Claude Code**. |
+| **Development** | Written in the **Cursor** IDE with **Grok** and **Claude Code**. |
 
 ## Data
 
